@@ -139,53 +139,53 @@ const Step1 = (props) => {
                                         </View>
                                         <View style={tw`border-b border-r border-l border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Director</Text>
                                         </View>
                                         <View style={tw`border-b border-l  border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Camera</Text>
                                         </View>
                                     </View>
                                     <View style={tw`bg-[#fff] flex flex-row`}>
                                         <View style={tw`border-b border-r border-t border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15 `, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Lighting</Text>
                                         </View>
                                         <View style={tw`border border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Sound</Text>
                                         </View>
                                         <View style={tw`border-b border-t border-l border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Editorial</Text>
                                         </View>
                                     </View>
                                     <View style={tw`bg-[#fff] flex flex-row`}>
                                         <View style={tw`border-b border-r border-t border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15 `, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>HMU</Text>
                                         </View>
                                         <View style={tw`border border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Wardrobe</Text>
                                         </View>
                                         <View style={tw`border-b border-t border-l border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Special FX</Text>
                                         </View>
                                     </View>
                                     <View style={tw`bg-[#fff] flex flex-row rounded-b-md`}>
                                         <View style={tw` border-r border-t border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15 `, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Art</Text>
                                         </View>
                                         <View style={tw`border-t border-l border-r border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Office</Text>
                                         </View>
                                         <View style={tw`border-t border-l border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Misc.</Text>
                                         </View>
                                     </View>
 

@@ -120,6 +120,9 @@ const linkdin = require(`${assetsRootPath}linkdin.png`);
 const producer = require(`${assetsRootPath}producer.png`);
 const camrea = require(`${assetsRootPath}camrea.png`);
 const calendar_icon = require(`${assetsRootPath}calendar_icon.png`);
+const timer = require(`${assetsRootPath}timer.png`);
+const like = require(`${assetsRootPath}like.png`);
+const chat = require(`${assetsRootPath}chat.png`);
 
 const ImageIcons = {
   rightarrow,
@@ -129,6 +132,9 @@ const ImageIcons = {
   camrea,
   calendar_icon,
   lock_icon,
+  timer,
+  like,
+  chat,
   eye_icon,
   eye_icon_hide,
   email_icon,
