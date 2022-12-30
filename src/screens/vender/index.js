@@ -220,9 +220,9 @@ const Vendor = (props) => {
               />
             </View>
             <View style={tw`flex-row my-5`}>
-              <View>
+              <TouchableOpacity onPress={()=> props.navigation.navigate("Salonwoman")}>
                 <Image source={ImageIcons.camrea} style={tw`w-12 h-12`} />
-              </View>
+              </TouchableOpacity>
               <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1  mx-10`} onPress={() => setModalVisible(false)}>
                 <Text style={tw`text-[#000] text-[3.5]  px-15 font-normal`}>New Post</Text>
               </TouchableOpacity>

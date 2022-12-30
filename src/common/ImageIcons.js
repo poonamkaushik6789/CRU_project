@@ -123,6 +123,15 @@ const calendar_icon = require(`${assetsRootPath}calendar_icon.png`);
 const timer = require(`${assetsRootPath}timer.png`);
 const like = require(`${assetsRootPath}like.png`);
 const chat = require(`${assetsRootPath}chat.png`);
+const rawartist = require(`${assetsRootPath}rawartist.png`);
+const gearexpo = require(`${assetsRootPath}gearexpo.png`);
+const conference = require(`${assetsRootPath}conference.png`);
+const filmmakers = require(`${assetsRootPath}filmmakers.png`);
+const filmfestival = require(`${assetsRootPath}filmfestival.png`);
+
+
+
+
 
 const ImageIcons = {
   rightarrow,
@@ -247,5 +256,10 @@ const ImageIcons = {
   viewIcon,
   kitchen,
   producer,
+  rawartist,
+  gearexpo,
+  conference,
+  filmmakers,
+  filmfestival,
 };
 export default ImageIcons;

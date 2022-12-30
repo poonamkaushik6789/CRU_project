@@ -88,19 +88,19 @@ const SalesStack = (props) => {
           name="Salonwoman"
           component={Salonwoman}
           options={({ navigation }) => ({
-            //  headerRight: () => (
-            //    <View style={{flexDirection:'row'}}>
-            //   <Image source={ImageIcons.mor} style={{width:20,height:21,right:20}}  />
-            //   <Image source={ImageIcons.moreoption1} style={{width:22,height:20,right:10}}  />
-            //   <Image source={ImageIcons.threedot} style={{width:22,height:20,right:5}}  />
-            //   </View>
-            // ),
+             headerRight: () => (
+               <View style={{flexDirection:'row'}}>
+              <Image source={ImageIcons.man} style={{width:35,height:35,right:20,borderRadius:75}}  />
+            {/* //   <Image source={ImageIcons.moreoption1} style={{width:22,height:20,right:10}}  /> */}
+            {/* //   <Image source={ImageIcons.threedot} style={{width:22,height:20,right:5}}  /> */}
+               </View>
+            ),
             headerShown: true,
             //headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
-            headerTitle: "Salon At Home",
-            //headerTitleAlign: "center",
+            headerTitle: "Events",
+            headerTitleAlign: "center",
             headerTitleStyle: { color: Colors.BLACK, },
-            headerStyle: { backgroundColor: "#ccccb3", elevation: 4, shadowOpacity: 0, },
+            headerStyle: { backgroundColor: "#FFFFFF", elevation: 4, shadowOpacity: 0, },
           })}
         />
 
