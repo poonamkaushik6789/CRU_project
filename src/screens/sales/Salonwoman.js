@@ -58,37 +58,7 @@ const Salonwoman = (props) => {
 
   };
 
-  // const showisaction = () => {
-  //   setisaction(true);
-  // };
-  // const hideisaction = () => {
-  //   setisaction(false);
-  // };
-  const containerStyle = { backgroundColor: 'red', padding: '7%', marginHorizontal: '5%', alignItems: 'center', };
-
-  const images = [
-    {
-      image: 'https://images.unsplash.com/photo-1567226475328-9d6baaf565cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60',
-      desc: 'Silent Waters in the mountains in midst of Himilayas',
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1455620611406-966ca6889d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1130&q=80',
-      desc:
-        'Red fort in India New Delhi is a magnificient masterpeiece of humans',
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1455620611406-966ca6889d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1130&q=80',
-      desc:
-        'Red fort in India New Delhi is a magnificient masterpeiece of humans',
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1455620611406-966ca6889d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1130&q=80',
-      desc:
-        'Red fort in India New Delhi is a magnificient masterpeiece of humans',
-    },
-  ]
-
-  const DATA = [
+    const DATA = [
     {
       text: 'Screenings',
       //  image:ImageIcons.salonman,
@@ -108,71 +78,32 @@ const Salonwoman = (props) => {
     {
       text: 'RAW  Annual Short Film Festival',
       image: ImageIcons.rawartist,
+      View: 'JUN 3',
     },
     {
       text: 'Cine Gear Expo',
       image: ImageIcons.gearexpo,
+      View: 'JUN 5',
     },
     {
       text: 'Produced By Conference',
       image: ImageIcons.conference,
+      View: 'JUN 5',
     },
     {
       text: 'NewFilmmakers Los Angeles',
       image: ImageIcons.filmmakers,
+      View: 'JUN 6',
     },
     {
       text: 'Los Angeles Film Festival',
       image: ImageIcons.filmfestival,
+      View: 'JUN 7',
     },
 
   ];
 
 
-  //   const DATA2 = [
-  //    {
-  //     text:'Salon for Men',
-  //     image:ImageIcons.salonman,
-  //    },
-  //     {
-  //    text:'Salon at Home for Women',
-  //     image:ImageIcons.salonwoman,
-  //    },
-
-  //  ];
-
-  //  const DATA3 = [
-  //    {
-  //     text:'Salon for Men',
-  //     image:ImageIcons.cleanclap,
-  //    },
-  //     {
-  //    text:'Salon for Women',
-  //     image:ImageIcons.repairclap,
-  //    },
-  //     {
-  //     text:'Spa for Women',
-  //     image:ImageIcons.repairclap,
-  //    },
-  //    {
-  //     text:'Massage for Men',
-  //     image:ImageIcons.cleanclap,
-  //    },
-  //     {
-  //     text:'Hair services',
-  //     image:ImageIcons.repairclap,
-  //    }, 
-
-  //  ];
-  //   const renderItem = ({ item ,index }) => {
-  //     return(
-  //      <View>
-  //       <View style={tw`w-80 bg-white mb-6 ml-5 rounded-xl`} >
-  //          <Image source={item.image} style={tw`w-80 h-40 mx-auto`} />
-  //          <Text style={tw`text-center py-4`} >{item.text}</Text>
-  //       </View>
-  //       </View>
-  //  );
   const renderItem = ({ item, index }) => {
     return (
       <View style={tw`w-46 h-18 bg-white my-6 ml-5 rounded-xl border-solid border-t-8 border-black`} >
@@ -184,34 +115,17 @@ const Salonwoman = (props) => {
 
   const renderItem1 = ({ item, index }) => {
     return (
-      <View>
+      <View >
         <View style={tw`w-80 bg-white mb-6 ml-5 rounded-xl z-10 `} >
           <Image source={item.image} style={tw`w-80 h-40 mx-auto rounded-xl  `} />
           <Text style={tw`text-center py-4`} >{item.text}</Text>
         </View>
-        <View><Text style={`w-46 h-18 bg-pink absolute z-50`} >hyy</Text></View>
+        <View style={tw`w-12 h-12 bg-white mt-4 ml-10 rounded-xl border-solid  absolute z-50`} >
+          <Text style={tw`text-center pt-1 mb-2 text-black text-center text-justify	`} >{item.View}</Text>
+        </View>
       </View>
     );
   }
-
-  //  const renderItem2 = ({ item ,index }) => {
-  //      return(
-  //        <View style={{padding:8}}>
-  //           <Image source={item.image} style={styles.manclap2} />
-  //           <Text style={{fontSize:12,textAlign:'center',marginVertical:8}}>{item.text}</Text>
-  //        </View>
-  //   );
-  // }
-
-  // const renderItem3 = ({ item ,index }) => {
-  //      return(
-  //        <View style={{paddingHorizontal:6, borderRightWidth:1,borderColor:'#f2f2f2',justifyContent:'center'}}>
-  //           <Image source={item.image} style={styles.manclap3} />
-  //           <Text style={{fontSize:12,textAlign:'center',maxWidth:55,marginVertical:8}}>{item.text}</Text>
-  //        </View>
-  //   );
-  // }
-
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"} style={styles.root}>
@@ -226,75 +140,14 @@ const Salonwoman = (props) => {
             keyExtractor={item => item.id}
           />
           <View >
-            <FlatList  
+            <FlatList
 
               data={DATA1}
               renderItem={renderItem1}
               keyExtractor={item => item.id}
             />
-            </View>
-            
-          
+          </View>
         </SafeAreaView>
-
-        {/* <View style={{backgroundColor:'#ffffff'}}>  */}
-        {/* <View style={{margin:'5%'}}>
-                //  <Image source={ImageIcons.uclogo}  style={{height:33,width:73,}}/>  
-               <Text style={{fontSize:24,fontWeight:'bold',color:'#000000'}}>Select your Salon</Text>
-               <Text style={{fontSize:14,color:'#848484',marginTop:'2%'}}>Choose from range of brands,prices and salon experience</Text>
-             </View> */}
-
-        {/* <TouchableOpacity onPress={() => props.navigation.navigate("Waterpurifier")} style={{flexDirection:'row',marginHorizontal:'7%',marginVertical:'5%'}}>
-        
-               <View>
-                <Image source={ImageIcons.womansalon}  style={{height:87,width:87,borderRadius:5}}/>
-               </View>
-               <View style={{marginLeft:'7%',alignSelf:'center'}}>
-                 <View style={{flexDirection:'row',justifyContent:'space-between',width:210,}}>
-                   <Text style={{fontSize:16,fontWeight:'bold'}}>Salon Prime</Text>
-                   <Image source={ImageIcons.rightclap}  style={{height:23,width:23,}}/>
-                 </View>
-                   <View style={{flexDirection:'row',marginVertical:'2%'}}>
-                     <View style={{backgroundColor:'#b3ffcc',width:48,borderRadius:5,}}>
-                        <Text style={{fontSize:12,color:'#009900',fontWeight:'bold', textAlign:'center',margin:2}}>Rs.Rs.</Text>
-                     </View>
-                     <View style={{backgroundColor:'#d9d9d9',width:55,borderRadius:5,marginLeft:5}}>
-                        <Text style={{fontSize:11,color:'#848484',margin:2}}>PREMIUM</Text>
-                     </View>
-                   </View>
-                     <Text style={{fontSize:16,color:'#848484'}}>LOREAL  |  RICA  |  O3+</Text>
-               </View>
-
-             </TouchableOpacity> */}
-        {/* <View style={{borderBottomWidth:1,borderColor:'#d9d9d9',marginVertical:'6%'}}></View> */}
-
-        <View style={{ flexDirection: 'row', marginHorizontal: '7%', marginVertical: '5%' }}>
-
-          {/* <View>
-                <Image source={ImageIcons.womansalon}  style={{height:89,width:89,borderRadius:5}}/>
-               </View> */}
-          {/* <View style={{marginLeft:'7%',alignSelf:'center'}}>
-                 <View style={{flexDirection:'row',justifyContent:'space-between',width:210}}>
-                   <Text style={{fontSize:16,fontWeight:'bold'}}>Salon Classic</Text>
-                   <Image source={ImageIcons.rightclap}  style={{height:23,width:23,}}/>
-                 </View>
-
-                  <View style={{flexDirection:'row',marginVertical:'2%'}}>
-                     <View style={{backgroundColor:'#b3ffcc',width:48,borderRadius:5,}}>
-                        <Text style={{fontSize:12,color:'#009900',fontWeight:'bold', textAlign:'center',margin:2}}>Rs.Rs.</Text>
-                     </View>
-                     <View style={{backgroundColor:'#d9d9d9',width:74,borderRadius:5,marginLeft:5}}>
-                        <Text style={{fontSize:11,color:'#848484',margin:2}}>ECONOMICAL</Text>
-                     </View>
-                   </View>
-    
-                     <View>
-                       <Text style={{fontSize:16,marginLeft:6,color:'#848484'}}>VLCC  |  RICHELON  |  Crave</Text>
-                     </View>
-               </View> */}
-
-        </View>
-        {/* </View> */}
 
       </ScrollView>
       <Editprofile />
