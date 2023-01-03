@@ -120,15 +120,35 @@ const linkdin = require(`${assetsRootPath}linkdin.png`);
 const producer = require(`${assetsRootPath}producer.png`);
 const camrea = require(`${assetsRootPath}camrea.png`);
 const calendar_icon = require(`${assetsRootPath}calendar_icon.png`);
+const timer = require(`${assetsRootPath}timer.png`);
+const like = require(`${assetsRootPath}like.png`);
+const chat = require(`${assetsRootPath}chat.png`);
+
+const closetoday = require(`${assetsRootPath}closetoday.png`);
+const notification_icon = require(`${assetsRootPath}notification_icon.png`);
+const rawartist = require(`${assetsRootPath}rawartist.png`);
+const gearexpo = require(`${assetsRootPath}gearexpo.png`);
+const conference = require(`${assetsRootPath}conference.png`);
+const filmmakers = require(`${assetsRootPath}filmmakers.png`);
+const filmfestival = require(`${assetsRootPath}filmfestival.png`);
+
+
+
+
 
 const ImageIcons = {
   rightarrow,
+  notification_icon,
+  closetoday,
   backarrow,
   fb,
   linkdin,
   camrea,
   calendar_icon,
   lock_icon,
+  timer,
+  like,
+  chat,
   eye_icon,
   eye_icon_hide,
   email_icon,
@@ -241,5 +261,10 @@ const ImageIcons = {
   viewIcon,
   kitchen,
   producer,
+  rawartist,
+  gearexpo,
+  conference,
+  filmmakers,
+  filmfestival,
 };
 export default ImageIcons;

@@ -1,6 +1,6 @@
 
 import { connect } from 'react-redux';
-import Instantvalen from '../../screens/sales/Instantvalen';
+import Likelist from '../../screens/sales/Likelist';
 
 const mapStateToProps = (state) => ({
     //redeemedCouponTrackingData: state.coupon.redeemedCouponTrackingData,
@@ -11,5 +11,5 @@ const mapDispatchToProps = {
     
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Instantvalen);
+export default connect(mapStateToProps, mapDispatchToProps)(Likelist);
 

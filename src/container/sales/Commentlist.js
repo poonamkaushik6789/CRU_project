@@ -1,6 +1,6 @@
 
 import { connect } from 'react-redux';
-import Air from '../../screens/sales/Air';
+import Commentlist from '../../screens/sales/Commentlist';
 
 const mapStateToProps = (state) => ({
     //redeemedCouponTrackingData: state.coupon.redeemedCouponTrackingData,
@@ -11,5 +11,5 @@ const mapDispatchToProps = {
     
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Air);
+export default connect(mapStateToProps, mapDispatchToProps)(Commentlist);
 

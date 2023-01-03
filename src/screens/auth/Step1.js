@@ -39,6 +39,13 @@ const Step1 = (props) => {
     const [rememberMe, setRememberMe] = useState(false);
     const [refreshFiled, setRefreshFiled] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
+    const [cameramodalVisible, setCameramodalVisible] = useState(false);
+    const [Cinematographer, setCinematographer] = useState(false);
+    const [operator, setOperator] = useState(false);
+    const [assistantcamera, setAssistantcamera] = useState(false);
+    const [assistantcamera2, setAssistantcamera2] = useState(false);
+    const [loader, setLoader] = useState(false);
+
     const [deviceToken, setDeviceToken] = useState();
     const [email, setEmail] = useState(false);
     const [username, setUsername] = useState(false);
@@ -139,53 +146,53 @@ const Step1 = (props) => {
                                         </View>
                                         <View style={tw`border-b border-r border-l border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Director</Text>
                                         </View>
-                                        <View style={tw`border-b border-l  border-[#ccc] flex-1 items-center py-6`}>
+                                        <TouchableOpacity style={tw`border-b border-l  border-[#ccc] flex-1 items-center py-6`} onPress={() => setCameramodalVisible(!cameramodalVisible)}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Camera</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={tw`bg-[#fff] flex flex-row`}>
+                                        <View style={tw`border-b border-r border-t border-[#ccc] flex-1 items-center py-6`}>
+                                            <Image source={ImageIcons.producer} style={[tw`w-15 h-15 `, { tintColor: '#5fafcf' }]} />
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Lighting</Text>
+                                        </View>
+                                        <View style={tw`border border-[#ccc] flex-1 items-center py-6`}>
+                                            <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Sound</Text>
+                                        </View>
+                                        <View style={tw`border-b border-t border-l border-[#ccc] flex-1 items-center py-6`}>
+                                            <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Editorial</Text>
                                         </View>
                                     </View>
                                     <View style={tw`bg-[#fff] flex flex-row`}>
                                         <View style={tw`border-b border-r border-t border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15 `, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>HMU</Text>
                                         </View>
                                         <View style={tw`border border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Wardrobe</Text>
                                         </View>
                                         <View style={tw`border-b border-t border-l border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
-                                        </View>
-                                    </View>
-                                    <View style={tw`bg-[#fff] flex flex-row`}>
-                                        <View style={tw`border-b border-r border-t border-[#ccc] flex-1 items-center py-6`}>
-                                            <Image source={ImageIcons.producer} style={[tw`w-15 h-15 `, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
-                                        </View>
-                                        <View style={tw`border border-[#ccc] flex-1 items-center py-6`}>
-                                            <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
-                                        </View>
-                                        <View style={tw`border-b border-t border-l border-[#ccc] flex-1 items-center py-6`}>
-                                            <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Special FX</Text>
                                         </View>
                                     </View>
                                     <View style={tw`bg-[#fff] flex flex-row rounded-b-md`}>
                                         <View style={tw` border-r border-t border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15 `, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Art</Text>
                                         </View>
                                         <View style={tw`border-t border-l border-r border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Office</Text>
                                         </View>
                                         <View style={tw`border-t border-l border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Misc.</Text>
                                         </View>
                                     </View>
 
@@ -198,7 +205,7 @@ const Step1 = (props) => {
                                     <Text style={tw`text-[#000] text-[3.9] font-normal`}>Select the areas you are willing to travel</Text>
                                 </View>
                                 <View style={tw`bg-[#fff] rounded-[3] flex py-5`}>
-                                    
+
                                 </View>
                             </View>
                         </ProgressStep>
@@ -231,7 +238,7 @@ const Step1 = (props) => {
                         </ProgressStep>
                     </ProgressSteps>
                 </View>
-                <TouchableOpacity style={tw`bg-[#e6e6e6] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`}  onPress={()=> handlestepSubmit()}  >
+                <TouchableOpacity style={tw`bg-[#e6e6e6] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`} onPress={() => handlestepSubmit()}  >
                     <Text style={tw`text-[#000] text-[3.5] p-3 px-15 font-normal`}>Step 2</Text>
                 </TouchableOpacity>
                 <Modal
@@ -248,12 +255,91 @@ const Step1 = (props) => {
                                 <Text style={tw`text-base font-normal  text-black align-middle`} numberOfLines={1} ellipsizeMode='tail' >Congratulations</Text>
                             </View>
                             <View style={tw`p-3`}>
-                                
+
                                 <View style={tw`mx-5`}>
                                     <Text style={tw`text-[#000000] mt-1 font-normal text-[3.1]`}>You are now an official Cru Member! Feel free to use this resource to create your own crews, find jobs, events, and maintain your personal business all in one place!</Text>
                                 </View>
                                 <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`} onPress={() => setModalVisible(false)}>
                                     <Text style={tw`text-[#000] text-[3.5] p-2 px-15 font-normal`}>Continue</Text>
+                                </TouchableOpacity>
+
+
+                            </View>
+
+
+                        </View>
+                    </View>
+
+                </Modal>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={cameramodalVisible}
+                    onRequestClose={() => {
+                        setCameramodalVisible(!cameramodalVisible);
+                    }}
+                    style={tw`m-0`} >
+                    <View style={tw`flex-1	 justify-center  bg-zinc-500`}>
+                        <View style={tw`bg-white rounded-[2]  justify-center drop-shadow-xl m-4`} >
+                            <View style={tw`flex-row justify-between items-center border-b border-[#ccc] p-4`}>
+                                <View>
+                                    <Text style={tw`text-base font-normal  text-black align-middle`} numberOfLines={1} ellipsizeMode='tail' ></Text>
+                                </View>
+                                <View>
+                                    <Text style={tw`text-base font-normal  text-black align-middle`} numberOfLines={1} ellipsizeMode='tail' >Camera</Text>
+                                </View>
+                                <View>
+                                    <Image source={ImageIcons.closetoday} style={[tw`w-4 h-4`, { tintColor: '#5fafcf' }]} />
+                                </View>
+                            </View>
+                            <View style={tw`p-3`}>
+
+                                <View style={tw`mx-5 my-2 items-center`}>
+                                    <Text style={tw`text-[#000000]  font-normal text-[3.9]`}>Select the positions you work</Text>
+                                </View>
+                                <View style={tw`flex-row items-center my-1`}>
+                                    <CheckBox
+                                        value={Cinematographer}
+                                        onValueChange={setCinematographer}
+                                        tintColors={{ true: '#5fafcf', false: '#ccc', }}
+                                    />
+                                    <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>Cinematographer</Text>
+                                </View>
+                                <View style={tw`flex-row items-center  my-1`}>
+                                    <CheckBox
+                                        value={operator}
+                                        onValueChange={setOperator}
+                                        tintColors={{ true: '#5fafcf', false: '#ccc', }}
+                                    />
+                                    <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>Camera Operator</Text>
+                                </View>
+                                <View style={tw`flex-row items-center  my-1`}>
+                                    <CheckBox
+                                        value={assistantcamera}
+                                        onValueChange={setAssistantcamera}
+                                        tintColors={{ true: '#5fafcf', false: '#ccc', }}
+                                    />
+                                    <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>1st Assistant Camera</Text>
+                                </View>
+                                <View style={tw`flex-row items-center  my-1`}>
+                                    <CheckBox
+                                        value={assistantcamera2}
+                                        onValueChange={setAssistantcamera2}
+                                        tintColors={{ true: '#5fafcf', false: '#ccc', }}
+                                    />
+                                    <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>1st Assistant Camera</Text>
+                                </View>
+                                <View style={tw`flex-row items-center  my-1`}>
+                                    <CheckBox
+                                        value={loader}
+                                        onValueChange={setLoader}
+                                        tintColors={{ true: '#5fafcf', false: '#ccc', }}
+                                        
+                                    />
+                                    <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>Loader</Text>
+                                </View>
+                                <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`} onPress={() => setCameramodalVisible(false)}>
+                                    <Text style={tw`text-[#000] text-[3.5] p-2 px-15 font-normal`}>Save</Text>
                                 </TouchableOpacity>
 
 

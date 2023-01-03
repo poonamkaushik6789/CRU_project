@@ -27,14 +27,14 @@ import Pestcontrol from './vender/Pestcontrol';
 import Appliances from './sales/Appliances';
 import Aircondition from './sales/Aircondition';
 import Waterpurifier from './sales/Waterpurifier';
-import Air from './sales/Air';
+import Likelist from './sales/Likelist';
 import Gyser from './sales/Gyser';
 import Washing from './sales/Washing';
 import Gysercondition from './sales/Gysercondition';
 import Booking from './sales/Booking';
 import Salonwoman from './sales/Salonwoman';
 import Searchloc from './sales/Searchloc';
-import Instantvalen from './sales/Instantvalen';
+import Commentlist from './sales/Commentlist';
 import Search from './sales/Search';
 
 
@@ -44,7 +44,7 @@ export {
     Registration,
     Step1,
     Search,
-    Instantvalen,
+    Commentlist,
     Vendor,
     Profile,
     Editprofile,
@@ -57,7 +57,7 @@ export {
     Appliances,
     Aircondition,
     Waterpurifier,
-    Air,
+    Likelist,
     Gyser,
     Washing,
     Gysercondition,
