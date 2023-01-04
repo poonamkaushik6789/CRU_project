@@ -17,7 +17,7 @@ import tw from 'twrnc';
 
 
 
-const Salonwoman = (props) => {
+const EventScreen = (props) => {
   const {
     navigation,
     values,
@@ -76,29 +76,34 @@ const Salonwoman = (props) => {
 
   const DATA1 = [
     {
-      text: 'RAW  Annual Short Film Festival',
+      text: 'RAW Artists Annual Short Film Festival',
       image: ImageIcons.rawartist,
-      View: 'JUN 3',
+      month: 'JUN',
+      date:'3',
     },
     {
       text: 'Cine Gear Expo',
       image: ImageIcons.gearexpo,
-      View: 'JUN 5',
+      month: 'JUN',
+      date:'4',
     },
     {
       text: 'Produced By Conference',
       image: ImageIcons.conference,
-      View: 'JUN 5',
+      month: 'JUN',
+      date:'3',
     },
     {
       text: 'NewFilmmakers Los Angeles',
       image: ImageIcons.filmmakers,
-      View: 'JUN 6',
+      month: 'JUN',
+      date:'4',
     },
     {
       text: 'Los Angeles Film Festival',
       image: ImageIcons.filmfestival,
-      View: 'JUN 7',
+      month: 'JUN',
+      date:'2',
     },
 
   ];
@@ -107,7 +112,6 @@ const Salonwoman = (props) => {
   const renderItem = ({ item, index }) => {
     return (
       <View style={tw`w-46 h-18 bg-white my-6 ml-5 rounded-xl border-solid border-t-8 border-black`} >
-        {/* <Image source={item.image} style={styles.manclap2} /> */}
         <Text style={tw`text-center pt-6 text-slate-600	`} >{item.text}</Text>
       </View>
     );
@@ -115,15 +119,16 @@ const Salonwoman = (props) => {
 
   const renderItem1 = ({ item, index }) => {
     return (
-      <View >
-        <View style={tw`w-80 bg-white mb-6 ml-5 rounded-xl z-10 `} >
-          <Image source={item.image} style={tw`w-80 h-40 mx-auto rounded-xl  `} />
+      <TouchableOpacity style={tw`m-3 mx-4`} onPress={() => props.navigation.navigate("Eventdetail")}>
+        <View style={tw` bg-white  rounded-xl `} >
+          <Image source={item.image} style={tw` h-45 w-5/5 rounded-t-xl  `} />
           <Text style={tw`text-center py-4`} >{item.text}</Text>
         </View>
-        <View style={tw`w-12 h-12 bg-white mt-4 ml-10 rounded-xl border-solid  absolute z-50`} >
-          <Text style={tw`text-center pt-1 mb-2 text-black text-center text-justify	`} >{item.View}</Text>
+        <View style={tw` bg-white m-6 rounded-[3] border-solid  absolute p-1 px-3`} >
+          <Text style={tw`text-center text-black text-[3]`} >{item.month}</Text>
+          <Text style={tw`text-center text-[4] font-bold text-black `} >{item.date}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 
@@ -150,10 +155,10 @@ const Salonwoman = (props) => {
         </SafeAreaView>
 
       </ScrollView>
-      <Editprofile />
+      
       <Loader />
     </KeyboardAvoidingView>
   )
 }
 
-export default Salonwoman;
+export default EventScreen;

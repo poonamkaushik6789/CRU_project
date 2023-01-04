@@ -1,6 +1,6 @@
 
 import { connect } from 'react-redux';
-import Salonwoman from '../../screens/sales/Salonwoman';
+import Eventdetail from '../../screens/sales/Eventdetail';
 
 const mapStateToProps = (state) => ({
     //redeemedCouponTrackingData: state.coupon.redeemedCouponTrackingData,
@@ -11,5 +11,5 @@ const mapDispatchToProps = {
     
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Salonwoman);
+export default connect(mapStateToProps, mapDispatchToProps)(Eventdetail);
 

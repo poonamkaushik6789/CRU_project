@@ -205,7 +205,14 @@ const Step1 = (props) => {
                                     <Text style={tw`text-[#000] text-[3.9] font-normal`}>Select the areas you are willing to travel</Text>
                                 </View>
                                 <View style={tw`bg-[#fff] rounded-[3] flex py-5`}>
-
+                                    <MapView
+                                        initialRegion={{
+                                            latitude: 37.78825,
+                                            longitude: -122.4324,
+                                            latitudeDelta: 0.0922,
+                                            longitudeDelta: 0.0421,
+                                        }}
+                                    />
                                 </View>
                             </View>
                         </ProgressStep>
@@ -334,7 +341,7 @@ const Step1 = (props) => {
                                         value={loader}
                                         onValueChange={setLoader}
                                         tintColors={{ true: '#5fafcf', false: '#ccc', }}
-                                        
+
                                     />
                                     <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>Loader</Text>
                                 </View>

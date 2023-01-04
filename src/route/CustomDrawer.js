@@ -176,7 +176,15 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
                 }}
               />
             </TouchableOpacity>
-            <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%' }}>
+            <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%' }}
+              onPress={() => {
+                prop.navigation.toggleDrawer();
+                prop.navigation.reset({
+                  index: 0,
+                  routes: [{ name: 'EventScreen' }],
+                });
+                onItemSelection("Saleslisting");
+              }}>
               <Image source={calendar_icon} style={styles.calendar_icon} />
               <DrawerItem
                 key="Saleslisting"

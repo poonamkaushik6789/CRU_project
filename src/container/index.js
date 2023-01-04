@@ -31,8 +31,8 @@ import Likelist from './sales/Likelist';
 import Gyser from './sales/Gyser';
 import Washing from './sales/Washing';
 import Gysercondition from './sales/Gysercondition';
-import Booking from './sales/Booking';
-import Salonwoman from './sales/Salonwoman';
+import Eventdetail from './sales/Eventdetail';
+import EventScreen from './sales/EventScreen';
 import Searchloc from './sales/Searchloc';
 import Commentlist from './sales/Commentlist';
 import Search from './sales/Search';
@@ -61,8 +61,8 @@ export {
     Gyser,
     Washing,
     Gysercondition,
-    Booking,
-    Salonwoman,
+    Eventdetail,
+    EventScreen,
     Searchloc,
     Massagewomen,
     Massagemen,

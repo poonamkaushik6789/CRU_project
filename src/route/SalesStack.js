@@ -11,7 +11,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { Saleslisting, Editprofile, Search, Help, Commentlist, Salonwoman, Searchloc, Reportlisting, Booking, Gysercondition, Profile, Washing, Water, Appliances, Aircondition, Waterpurifier, Likelist, Gyser } from '../container'
+import { Saleslisting, Editprofile, Search, Help, Commentlist, EventScreen, Searchloc, Reportlisting, Eventdetail, Gysercondition, Profile, Washing, Water, Appliances, Aircondition, Waterpurifier, Likelist, Gyser } from '../container'
 import { Colors, Fonts, ImageIcons } from '../common';
 
 
@@ -85,8 +85,8 @@ const SalesStack = (props) => {
         />
 
         <Stack.Screen
-          name="Salonwoman"
-          component={Salonwoman}
+          name="EventScreen"
+          component={EventScreen}
           options={({ navigation }) => ({
              headerRight: () => (
                <View style={{flexDirection:'row'}}>
@@ -105,22 +105,22 @@ const SalesStack = (props) => {
         />
 
         <Stack.Screen
-          name="Booking"
-          component={Booking}
+          name="Eventdetail"
+          component={Eventdetail}
           options={({ navigation }) => ({
-            //  headerRight: () => (
-            //    <View style={{flexDirection:'row'}}>
-            //   <Image source={ImageIcons.mor} style={{width:20,height:21,right:20}}  />
-            //   <Image source={ImageIcons.moreoption1} style={{width:22,height:20,right:10}}  />
-            //   <Image source={ImageIcons.threedot} style={{width:22,height:20,right:5}}  />
-            //   </View>
-            // ),
+             headerRight: () => (
+               <View style={{flexDirection:'row'}}>
+              <Image source={ImageIcons.man} style={{width:35,height:35,right:20,borderRadius:75}}  />
+              {/* <Image source={ImageIcons.moreoption1} style={{width:22,height:20,right:10}}  />
+              <Image source={ImageIcons.threedot} style={{width:22,height:20,right:5}}  /> */}
+              </View>
+            ),
             headerShown: true,
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={false} />,
-            headerTitle: "My Bookings & Plans",
-            //headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.WHITE, left: '-20%' },
-            headerStyle: { backgroundColor: "#000000", elevation: 4, shadowOpacity: 0, },
+            headerTitle: "Event Detail",
+            headerTitleAlign: "center",
+            headerTitleStyle: { color: Colors.BLACK, left: '-20%' },
+            headerStyle: { backgroundColor: "#fff", elevation: 4, shadowOpacity: 0, },
           })}
         />
 
@@ -397,7 +397,7 @@ const LeftMenuItem = ({ navigation, isMenu }) => {
       }}
       style={styles.leftButton}
     >
-      <Image source={isMenu ? ImageIcons.menuIcon : ImageIcons.backIcon} style={[styles.leftIcon, { tintColor: isMenu ? Colors.BLACK : Colors.WHITE }]} />
+      <Image source={isMenu ? ImageIcons.menuIcon : ImageIcons.backIcon} style={[styles.leftIcon, { tintColor: isMenu ? Colors.BLACK : Colors.BLACK }]} />
     </TouchableOpacity>
   )
 }
@@ -413,7 +413,7 @@ const styles = StyleSheet.create({
     width: wp('5%'),
     height: wp('5%'),
     marginLeft: 15,
-    tintColor: Colors.WHITE
+    tintColor: Colors.BLACK
   }
 });
 
