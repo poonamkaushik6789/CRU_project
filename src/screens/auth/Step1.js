@@ -205,14 +205,14 @@ const Step1 = (props) => {
                                     <Text style={tw`text-[#000] text-[3.9] font-normal`}>Select the areas you are willing to travel</Text>
                                 </View>
                                 <View style={tw`bg-[#fff] rounded-[3] flex py-5`}>
-                                    <MapView
+                                    {/* <MapView
                                         initialRegion={{
                                             latitude: 37.78825,
                                             longitude: -122.4324,
                                             latitudeDelta: 0.0922,
                                             longitudeDelta: 0.0421,
                                         }}
-                                    />
+                                    /> */}
                                 </View>
                             </View>
                         </ProgressStep>
@@ -262,18 +262,13 @@ const Step1 = (props) => {
                                 <Text style={tw`text-base font-normal  text-black align-middle`} numberOfLines={1} ellipsizeMode='tail' >Congratulations</Text>
                             </View>
                             <View style={tw`p-3`}>
-
                                 <View style={tw`mx-5`}>
                                     <Text style={tw`text-[#000000] mt-1 font-normal text-[3.1]`}>You are now an official Cru Member! Feel free to use this resource to create your own crews, find jobs, events, and maintain your personal business all in one place!</Text>
                                 </View>
                                 <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`} onPress={() => setModalVisible(false)}>
                                     <Text style={tw`text-[#000] text-[3.5] p-2 px-15 font-normal`}>Continue</Text>
                                 </TouchableOpacity>
-
-
                             </View>
-
-
                         </View>
                     </View>
 

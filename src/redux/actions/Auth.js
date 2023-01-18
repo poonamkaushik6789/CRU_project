@@ -28,8 +28,9 @@ export const login = (loginCredentials, navigation) => {
     let isInternetConnected = await getState().auth?.isInternetConnected;
     if (isInternetConnected) {
       try {
-        dispatch({ type: SET_LOGIN_LOADER, payload: true });
+        dispatch({ type: SET_LOGIN_LOADER, payload: false });
         let response = await Utilise.apiCalling('POST', Api.login, loginCredentials);
+        //alert('sdfdsf')
         console.log('response::::',response);
         
         dispatch({ type: SET_LOGIN_LOADER, payload: false });

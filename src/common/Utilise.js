@@ -60,7 +60,7 @@ const APICalling = async (
       break;
   }
 
-  console.log('api calling method.', configuration);
+  //console.log('api calling method.', configuration);
 
   await axios(configuration)
     .then((response) => {
