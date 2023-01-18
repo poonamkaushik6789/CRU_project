@@ -11,7 +11,7 @@ import InputField from '../../components/forms/inputField';
 import { RoundedButton } from '../../components/forms/button';
 import Loader from '../../components/modals/Loader';
 import AsyncStorage from '@react-native-community/async-storage';
-import messaging from '@react-native-firebase/messaging';
+//import messaging from '@react-native-firebase/messaging';
 import { requestMultiplePermisisons } from '../../services/permission';
 import tw from 'twrnc';
 
@@ -51,7 +51,7 @@ const Login = (props) => {
 
 
     useEffect(() => {
-        requestUserPermission();
+        //requestUserPermission();
     }, [])
 
 
@@ -96,20 +96,20 @@ const Login = (props) => {
     // Login request submision 
     const handleLoginSubmit = async () => {
         Keyboard.dismiss();
-        if (email == "") {
-            Alert.alert(CommonStrings.AppName, errors.email)
-        } else if (password == "") {
-            Alert.alert(CommonStrings.AppName, errors.password)
-        } else {
+        // if (email == "") {
+        //     Alert.alert(CommonStrings.AppName, errors.email)
+        // } else if (password == "") {
+        //     Alert.alert(CommonStrings.AppName, errors.password)
+        // } else {
 
             let request = {
-                "email": email,
-                "password": password,
-                "deviceToken": deviceToken,
+                "email": 'ashishdevswami@gmail.com',
+                "password": 'Ashish@123',
+                "deviceToken": 'sdfsdfsdfsdfsdfsdf',
                 "roletype": "ad"
             }
             props.login(request, props.navigation)
-        }
+        //}
     }
 
 

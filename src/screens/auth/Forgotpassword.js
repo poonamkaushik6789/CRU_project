@@ -11,7 +11,6 @@ import InputField from '../../components/forms/inputField';
 import { RoundedButton } from '../../components/forms/button';
 import Loader from '../../components/modals/Loader';
 import AsyncStorage from '@react-native-community/async-storage';
-import messaging from '@react-native-firebase/messaging';
 import { requestMultiplePermisisons } from '../../services/permission';
 import tw from 'twrnc';
 
@@ -50,9 +49,7 @@ const Forgotpassword = (props) => {
 
 
 
-    useEffect(() => {
-        requestUserPermission();
-    }, [])
+    
 
 
 
@@ -80,18 +77,6 @@ const Forgotpassword = (props) => {
         ]).start()
     }
 
-    // Get device token
-    const requestUserPermission = async () => {
-        const authStatus = await messaging().requestPermission();
-        const enabled =
-            authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-            authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-        if (enabled) {
-            // console.log('Authorization status:', authStatus);
-            const _deviceToken = await messaging().getToken();
-            setDeviceToken(_deviceToken)
-        }
-    }
 
     // Login request submision 
     const handleLoginSubmit = async () => {

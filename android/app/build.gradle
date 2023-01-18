@@ -135,7 +135,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.borntosuccessed.agent.business"
+        applicationId "com.cru.agent.business"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
 

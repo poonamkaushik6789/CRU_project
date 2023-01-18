@@ -11,7 +11,6 @@ import InputField from '../../components/forms/inputField';
 import { RoundedButton } from '../../components/forms/button';
 import Loader from '../../components/modals/Loader';
 import AsyncStorage from '@react-native-community/async-storage';
-import messaging from '@react-native-firebase/messaging';
 import { requestMultiplePermisisons } from '../../services/permission';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import CalendarPicker from 'react-native-calendar-picker';
