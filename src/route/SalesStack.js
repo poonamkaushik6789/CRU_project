@@ -11,7 +11,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { Saleslisting, Editprofile, Search, Help, Commentlist, EventScreen, Searchloc, Reportlisting, Eventdetail, Gysercondition, Profile, Washing, Water, Appliances, Aircondition, Waterpurifier, Likelist, Gyser } from '../container'
+import { Saleslisting, Editprofile, Search, Help, Commentlist, EventScreen, Searchloc, Reportlisting, Eventdetail, Gysercondition, Profile, Washing, Water, Appliances, Aircondition, Waterpurifier, Likelist, Gyser, Matthew, Notifications, Cru , Camera,Viewall, Projects,Searchjobs,Lighting,Jobdetails1,Locator,Projectdetails,Glynden,Messages} from '../container'
 import { Colors, Fonts, ImageIcons } from '../common';
 
 
@@ -30,19 +30,281 @@ const SalesStack = (props) => {
           options={({ navigation }) => ({
             headerRight: () => (
               <View style={{ flexDirection: 'row' }}>
-                <Image source={ImageIcons.mor} style={{ width: 20, height: 21, right: 20 }} />
-                <Image source={ImageIcons.moreoption1} style={{ width: 22, height: 20, right: 10 }} />
-                <Image source={ImageIcons.threedot} style={{ width: 22, height: 20, right: 5 }} />
+                 <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
+                </TouchableOpacity>
               </View>
             ),
-            headerShown: false,
-            //headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
-            headerTitle: "Actions",
-            //headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, fontWeight: 'bold' },
-            headerStyle: { backgroundColor: "#ccccb3", elevation: 0, shadowOpacity: 0 },
+            headerShown: true,
+            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
+            headerTitle: "Social Feed",
+            headerTitleAlign: "center",
+            headerTitleStyle: { color: Colors.BLACK, },
+            headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
+        <Stack.Screen
+          name="Matthew"
+          component={Matthew}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <View style={{ flexDirection: 'row' }}>
+                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
+                </TouchableOpacity>
+                
+              </View>
+            ),
+            headerShown: true,
+            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
+            headerTitle: "Matthew Grace",
+            headerTitleAlign: "center",
+            headerTitleStyle: { color: Colors.BLACK, },
+            headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
+          })}
+        />
+        <Stack.Screen
+          name="Notifications"
+          component={Notifications}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <View style={{ flexDirection: 'row' }}>
+                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
+                </TouchableOpacity>
+                
+              </View>
+            ),
+            headerShown: true,
+            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
+            headerTitle: "Notifications",
+            headerTitleAlign: "center",
+            headerTitleStyle: { color: Colors.BLACK, },
+            headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
+          })}
+        />
+        <Stack.Screen
+          name="Messages"
+          component={Messages}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <View style={{ flexDirection: 'row' }}>
+                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
+                </TouchableOpacity>
+                
+              </View>
+            ),
+            headerShown: true,
+            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
+            headerTitle: "Messages",
+            headerTitleAlign: "center",
+            headerTitleStyle: { color: Colors.BLACK, },
+            headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
+          })}
+        />
+        <Stack.Screen
+          name="Cru"
+          component={Cru}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <View style={{ flexDirection: 'row' }}>
+                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
+                </TouchableOpacity>
+                
+              </View>
+            ),
+            headerShown: true,
+            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
+            headerTitle: "My Cru",
+            headerTitleAlign: "center",
+            headerTitleStyle: { color: Colors.BLACK, },
+            headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
+          })}
+        />
+        <Stack.Screen
+          name="Camera"
+          component={Camera}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <View style={{ flexDirection: 'row' }}>
+                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
+                </TouchableOpacity>
+                
+              </View>
+            ),
+            headerShown: true,
+            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
+            headerTitle: "Camera",
+            headerTitleAlign: "center",
+            headerTitleStyle: { color: Colors.BLACK, },
+            headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
+          })}
+        />
+        <Stack.Screen
+          name="Viewall"
+          component={Viewall}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <View style={{ flexDirection: 'row' }}>
+               <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
+                </TouchableOpacity>
+                
+              </View>
+            ),
+            headerShown: true,
+            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
+            headerTitle: "View All",
+            headerTitleAlign: "center",
+            headerTitleStyle: { color: Colors.BLACK, },
+            headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
+          })}
+        />
+        <Stack.Screen
+          name="Projects"
+          component={Projects}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <View style={{ flexDirection: 'row' }}>
+                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
+                </TouchableOpacity>
+                
+              </View>
+            ),
+            headerShown: true,
+            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
+            headerTitle: "View All",
+            headerTitleAlign: "center",
+            headerTitleStyle: { color: Colors.BLACK, },
+            headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
+          })}
+        />
+        <Stack.Screen
+          name="Searchjobs"
+          component={Searchjobs}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <View style={{ flexDirection: 'row' }}>
+                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
+                </TouchableOpacity>
+                
+              </View>
+            ),
+            headerShown: true,
+            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
+            headerTitle: "Search Jobs",
+            headerTitleAlign: "center",
+            headerTitleStyle: { color: Colors.BLACK, },
+            headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
+          })}
+        />
+       
+        <Stack.Screen
+          name="Lighting"
+          component={Lighting}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <View style={{ flexDirection: 'row' }}>
+               <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
+                </TouchableOpacity>
+                
+              </View>
+            ),
+            headerShown: true,
+            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
+            headerTitle: "Search Jobs",
+            headerTitleAlign: "center",
+            headerTitleStyle: { color: Colors.BLACK, },
+            headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
+          })}
+        />
+        <Stack.Screen
+          name="Jobdetails1"
+          component={Jobdetails1}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <View style={{ flexDirection: 'row' }}>
+               <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
+                </TouchableOpacity>
+                
+              </View>
+            ),
+            headerShown: true,
+            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
+            headerTitle: "Search Jobs",
+            headerTitleAlign: "center",
+            headerTitleStyle: { color: Colors.BLACK, },
+            headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
+          })}
+        />
+        <Stack.Screen
+          name="Locator"
+          component={Locator}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <View style={{ flexDirection: 'row' }}>
+               <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
+                </TouchableOpacity>
+                
+              </View>
+            ),
+            headerShown: true,
+            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
+            headerTitle: "Locator",
+            headerTitleAlign: "center",
+            headerTitleStyle: { color: Colors.BLACK, },
+            headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
+          })}
+        />
+         <Stack.Screen
+          name="Projectdetails"
+          component={Projectdetails}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <View style={{ flexDirection: 'row' }}>
+                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
+                </TouchableOpacity>
+                
+              </View>
+            ),
+            headerShown: true,
+            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
+            headerTitle: "Project details",
+            headerTitleAlign: "center",
+            headerTitleStyle: { color: Colors.BLACK, },
+            headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
+          })}
+        />
+        <Stack.Screen
+          name="Glynden"
+          component={Glynden}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <View style={{ flexDirection: 'row' }}>
+                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
+                </TouchableOpacity>
+                
+              </View>
+            ),
+            headerShown: true,
+            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
+            headerTitle: "Glynden Kenzie",
+            headerTitleAlign: "center",
+            headerTitleStyle: { color: Colors.BLACK, },
+            headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
+          })}
+        />
+
 
         <Stack.Screen
           name="Searchloc"
@@ -90,7 +352,9 @@ const SalesStack = (props) => {
           options={({ navigation }) => ({
              headerRight: () => (
                <View style={{flexDirection:'row'}}>
-              <Image source={ImageIcons.man} style={{width:35,height:35,right:20,borderRadius:75}}  />
+              <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
+                </TouchableOpacity>
             {/* //   <Image source={ImageIcons.moreoption1} style={{width:22,height:20,right:10}}  /> */}
             {/* //   <Image source={ImageIcons.threedot} style={{width:22,height:20,right:5}}  /> */}
                </View>
@@ -110,7 +374,9 @@ const SalesStack = (props) => {
           options={({ navigation }) => ({
              headerRight: () => (
                <View style={{flexDirection:'row'}}>
-              <Image source={ImageIcons.man} style={{width:35,height:35,right:20,borderRadius:75}}  />
+              <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
+                </TouchableOpacity>
               {/* <Image source={ImageIcons.moreoption1} style={{width:22,height:20,right:10}}  />
               <Image source={ImageIcons.threedot} style={{width:22,height:20,right:5}}  /> */}
               </View>
@@ -130,7 +396,9 @@ const SalesStack = (props) => {
           options={({ navigation }) => ({
             headerRight: () => (
               <View style={{ flexDirection: 'row' }}>
-                <Image source={ImageIcons.threedot} style={{ width: 22, height: 20, right: 5 }} />
+              <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
+                </TouchableOpacity>
               </View>
             ),
             headerShown: true,
@@ -208,7 +476,9 @@ const SalesStack = (props) => {
           options={({ navigation }) => ({
              headerRight: () => (
                <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-              <Image source={ImageIcons.womanclap} style={{width:30,height:30,right:20}}  />
+            <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
+                </TouchableOpacity>
               
               </View>
             ),

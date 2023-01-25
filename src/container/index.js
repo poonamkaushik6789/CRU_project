@@ -36,6 +36,20 @@ import EventScreen from './sales/EventScreen';
 import Searchloc from './sales/Searchloc';
 import Commentlist from './sales/Commentlist';
 import Search from './sales/Search';
+import Matthew from './sales/Matthew';
+import Notifications from './sales/Notifications';
+import Cru from './sales/Cru';
+import Camera from './sales/Camera';
+import Viewall from './sales/Viewall';
+import Projects from './sales/Projects';
+import Searchjobs from './sales/Searchjobs';
+import Lighting from './sales/Lighting';
+import Jobdetails1 from './sales/Jobdetails1';
+import Locator from './sales/Locator';
+import Projectdetails from './sales/Projectdetails';
+import Glynden from './sales/Glynden';
+import Messages from './sales/Messages';
+
 
 
 export {
@@ -72,5 +86,18 @@ export {
     waterpurifier,
     Cleaning,
     Homerepair,
-    Pestcontrol
-};
+    Pestcontrol,
+    Matthew,
+    Notifications,
+    Cru,
+    Camera,
+    Viewall,
+    Projects,
+    Searchjobs,
+    Lighting,
+    Jobdetails1,
+    Locator,
+    Projectdetails,
+    Glynden,
+    Messages
+}

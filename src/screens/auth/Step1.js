@@ -141,7 +141,7 @@ const Step1 = (props) => {
                                     <View style={tw`bg-[#fff] flex flex-row rounded-t	`}>
                                         <View style={tw`border-b border-r  border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15 `, { tintColor: '#5fafcf' }]} />
-                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                            <Text onPress={() => props.navigation.navigate("Step2")} style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
                                         </View>
                                         <View style={tw`border-b border-r border-l border-[#ccc] flex-1 items-center py-6`}>
                                             <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />

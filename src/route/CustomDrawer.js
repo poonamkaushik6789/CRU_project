@@ -17,6 +17,7 @@ import SalesStack from './SalesStack';
 import { ImageIcons, Colors, Fonts } from '../common';
 import { logout } from '../redux/actions/Auth'
 import { StackActions } from '@react-navigation/native';
+import tw from 'twrnc'; 
 
 const Drawer = createDrawerNavigator();
 
@@ -108,22 +109,22 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
   }, [verificationStatus])
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff', marginTop: '40%', marginBottom: '45%', marginLeft: '10%', borderRadius: 10, justifyContent: 'center', }} >
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff', marginTop: '10%', marginBottom: '7%', marginLeft: '2%', marginRight:'2%', borderRadius: 10, justifyContent: 'center', }} >
       {/* <View style={styles.drawerHeader}>
         <Image source={logo} style={styles.logo} />        
       </View> */}
 
-      <DrawerContentScrollView {...prop}>
+      <DrawerContentScrollView {...prop} >
         <View style={styles.drawerItemsContainer}>
-          <View style={{ flexDirection: 'row', marginTop: '3%', height: '20%', }}>
-            <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%' }}>
-              <View style={{}}>
-                <Image source={notification_icon} style={styles.calendar_icon} />
+          <View style={{ flexDirection: 'row', marginTop: '17%', height: '18%'}}>
+            <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '0%' }}>
+              <View style={{ width: '100%',padingTop: '25%',alignItems: 'center', justifyContent: 'center', }}>
+              <Image style={tw`w-17 h-15`}source={ImageIcons.notifications} />
 
               </View>
               <DrawerItem
                 key="Saleslisting"
-                label={({ focused, color }) => <DrawerItemLabel label='Notification' />}
+                label={({ focused, color }) => <DrawerItemLabel label='Notifications' />}
                 style={{ opacity: 1, width: 100, }}
                 // icon={({ focused }) => <DrawerLeftIcon focused={currentItem === "Saleslisting" ? true : false} icon={ImageIcons.viewIcon
                 // } />}
@@ -131,14 +132,16 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
                   prop.navigation.toggleDrawer();
                   prop.navigation.reset({
                     index: 0,
-                    routes: [{ name: 'Saleslisting' }],
+                    routes: [{ name: 'Notifications' }],
                   });
                   onItemSelection("Saleslisting");
                 }}
               />
             </TouchableOpacity>
-            <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%' }}>
-              <Image source={logo} style={styles.notification_icon} />
+            <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '0%' }}>
+            <View style={{ width: '100%', padingTop: '25%',alignItems: 'center', justifyContent: 'center',}}>
+              <Image style={tw`w-17 h-15`}source={ImageIcons.msgs} />
+              </View>
               <DrawerItem
                 key="Saleslisting"
                 label={({ focused, color }) => <DrawerItemLabel label='Messages' />}
@@ -149,9 +152,9 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
                   prop.navigation.toggleDrawer();
                   prop.navigation.reset({
                     index: 0,
-                    routes: [{ name: 'Saleslisting' }],
+                    routes: [{ name: 'Messages' }],
                   });
-                  onItemSelection("Saleslisting");
+                  onItemSelection("Glynden");
                 }}
               />
             </TouchableOpacity>
@@ -159,7 +162,11 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
           </View>
           <View style={{ flexDirection: 'row', height: '20%', }}>
             <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%' }}>
-              <Image source={logo} style={styles.notification_icon} />
+              
+            <View style={{ width: '100%',padingTop: '25%',alignItems: 'center', justifyContent: 'center', }}>
+              <Image style={tw`w-17 h-15`} source={ImageIcons.social} />
+              </View>
+
               <DrawerItem
                 key="Saleslisting"
                 label={({ focused, color }) => <DrawerItemLabel label='Social Feed' />}
@@ -168,11 +175,14 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
                 // } />}
                 onPress={() => {
                   prop.navigation.toggleDrawer();
+                 
+                  //prop.navigation.navigate('Saleslisting');
                   prop.navigation.reset({
                     index: 0,
                     routes: [{ name: 'Saleslisting' }],
                   });
-                  onItemSelection("Saleslisting");
+                  onItemSelection("Matthew");
+
                 }}
               />
             </TouchableOpacity>
@@ -185,7 +195,9 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
                 });
                 onItemSelection("Saleslisting");
               }}>
-              <Image source={calendar_icon} style={styles.calendar_icon} />
+              <View style={{ width: '100%',padingTop: '25%',alignItems: 'center', justifyContent: 'center', }}>
+              <Image style={tw`w-17 h-15`} source={ImageIcons.event} />
+              </View>
               <DrawerItem
                 key="Saleslisting"
                 label={({ focused, color }) => <DrawerItemLabel label='Events' />}
@@ -204,10 +216,10 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
             </TouchableOpacity>
 
           </View>
-          <View style={{ flexDirection: 'row', height: '20%', }}>
+          <View style={{ flexDirection: 'row', height: '18%', }}>
             <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%' }}>
-              <View>
-                <Image source={logo} style={styles.notification_icon} />
+            <View style={{ width: '100%',padingTop: '25%',alignItems: 'center', justifyContent: 'center', }}>
+              <Image style={tw`w-17 h-16`} source={ImageIcons.cru}  />
               </View>
               <DrawerItem
                 key="Saleslisting"
@@ -219,14 +231,16 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
                   prop.navigation.toggleDrawer();
                   prop.navigation.reset({
                     index: 0,
-                    routes: [{ name: 'Saleslisting' }],
+                    routes: [{ name: 'Cru' }],
                   });
                   onItemSelection("Saleslisting");
                 }}
               />
             </TouchableOpacity>
             <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%' }}>
-              <Image source={logo} style={styles.notification_icon} />
+            <View style={{ width: '100%',padingTop: '25%',alignItems: 'center', justifyContent: 'center', }}>
+              <Image style={tw`w-17 h-15`} source={ImageIcons.project}  />
+              </View>
               <DrawerItem
                 key="Saleslisting"
                 label={({ focused, color }) => <DrawerItemLabel label='Projects' />}
@@ -237,7 +251,7 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
                   prop.navigation.toggleDrawer();
                   prop.navigation.reset({
                     index: 0,
-                    routes: [{ name: 'Saleslisting' }],
+                    routes: [{ name: 'Projects' }],
                   });
                   onItemSelection("Saleslisting");
                 }}
@@ -245,9 +259,11 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
             </TouchableOpacity>
 
           </View>
-          <View style={{ flexDirection: 'row', height: '20%', }}>
+          <View style={{ flexDirection: 'row', height: '19%', }}>
             <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%' }}>
-              <Image source={logo} style={styles.notification_icon} />
+            <View style={{ width: '100%',padingTop: '25%',alignItems: 'center', justifyContent: 'center', }}>
+              <Image  style={tw`w-17 h-15`}source={ImageIcons.job} />
+              </View>
               <DrawerItem
                 key="Saleslisting"
                 label={({ focused, color }) => <DrawerItemLabel label='Job Match' />}
@@ -258,14 +274,16 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
                   prop.navigation.toggleDrawer();
                   prop.navigation.reset({
                     index: 0,
-                    routes: [{ name: 'Saleslisting' }],
+                    routes: [{ name: 'Lighting' }],
                   });
                   onItemSelection("Saleslisting");
                 }}
               />
             </TouchableOpacity>
             <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%' }}>
-              <Image source={search} style={styles.search_icon} />
+            <View style={{ width: '100%',padingTop: '25%',alignItems: 'center', justifyContent: 'center', }}>
+            <Image  style={tw`w-17 h-15`}source={ImageIcons.search} />
+              </View>
               <DrawerItem
                 key="Saleslisting"
                 label={({ focused, color }) => <DrawerItemLabel label='Search Jobs' />}
@@ -276,7 +294,7 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
                   prop.navigation.toggleDrawer();
                   prop.navigation.reset({
                     index: 0,
-                    routes: [{ name: 'Saleslisting' }],
+                    routes: [{ name: 'Searchjobs' }],
                   });
                   onItemSelection("Saleslisting");
                 }}
@@ -284,9 +302,12 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
             </TouchableOpacity>
 
           </View>
-          <View style={{ flexDirection: 'row', height: '20%', }}>
+          <View style={{ flexDirection: 'row', height: '18%'}}>
             <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%' }}>
-              <Image source={logo} style={styles.notification_icon} />
+            <View style={{ width: '100%',padingTop: '25%',alignItems: 'center', justifyContent: 'center', }}>
+
+            <Image  style={tw`w-17 h-15`}source={ImageIcons.locator} />
+              </View>
               <DrawerItem
                 key="Saleslisting"
                 label={({ focused, color }) => <DrawerItemLabel label='Locator' />}
@@ -297,14 +318,17 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
                   prop.navigation.toggleDrawer();
                   prop.navigation.reset({
                     index: 0,
-                    routes: [{ name: 'Saleslisting' }],
+                    routes: [{ name: 'Locator' }],
                   });
                   onItemSelection("Saleslisting");
                 }}
               />
             </TouchableOpacity>
             <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%' }}>
-              <Image source={logo} style={styles.notification_icon} />
+            <View style={{ width: '100%',padingTop: '25%',alignItems: 'center', justifyContent: 'center', }}>
+
+            <Image  style={tw`w-17 h-15`}source={ImageIcons.setting} />
+              </View>
               <DrawerItem
                 key="Saleslisting"
                 label={({ focused, color }) => <DrawerItemLabel label='Settings' />}
@@ -334,9 +358,9 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
               onItemSelection("Saleslisting");
               prop.navigation.navigate('Saleslisting');
             }}
-          />
+          /> */}
 
-          <DrawerItem
+          {/* <DrawerItem
             label={({ focused }) => <DrawerItemLabel label='Logout' />}
             style={{ height: 50, width: '100%', padding: 15, marginBottom: '5%' }}
             icon={({ focused }) => <DrawerLeftIcon icon={ImageIcons.logoutIcon} />}
@@ -426,7 +450,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   drawerItemsContainer: {
-    height: Platform.OS === "ios" ? hp('68%') : hp('75%'),
+    height: Platform.OS === "ios" ? hp('95%') : hp('95%'),
     flexDirection: 'column',
     justifyContent: 'space-between',
     marginTop: Platform.OS === "ios" ? hp('-5%') : hp('-6%'),

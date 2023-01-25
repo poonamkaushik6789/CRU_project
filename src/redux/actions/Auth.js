@@ -28,9 +28,18 @@ export const login = (loginCredentials, navigation) => {
     let isInternetConnected = await getState().auth?.isInternetConnected;
     if (isInternetConnected) {
       try {
+
+       // alert('sdfdsf')
+       let response = {'data':{
+        "email":"test@yopmail.com",
+        "user_id":2,
+        "id":2
+       }}
         dispatch({ type: SET_LOGIN_LOADER, payload: false });
-        let response = await Utilise.apiCalling('POST', Api.login, loginCredentials);
-        //alert('sdfdsf')
+        dispatch(changeLoginCredentials(response?.data));
+        dispatch({ type: SET_LOGIN_CREDENTIAL, payload: response?.data });
+        //let response = await Utilise.apiCalling('POST', Api.login, loginCredentials);
+        //alert(isInternetConnected)
         console.log('response::::',response);
         
         dispatch({ type: SET_LOGIN_LOADER, payload: false });

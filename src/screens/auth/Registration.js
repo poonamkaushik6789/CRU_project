@@ -94,8 +94,8 @@ const Registration = (props) => {
             setDeviceToken(_deviceToken)
         }
     }
-    
-    const handlestep = () =>{
+
+    const handlestep = () => {
         setModalVisible(false);
         props.navigation.navigate("Step1")
     }
@@ -233,7 +233,7 @@ const Registration = (props) => {
                                             <View style={tw`mx-5`}>
                                                 <Text style={tw`text-[#000000] mt-1 font-normal text-[3.1]`}>To get started, we'll walk you through our quick 3 step process to set up your account, and help you get plugged in to the best crew resource in LA!</Text>
                                             </View>
-                                            <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`} onPress={() =>handlestep()}>
+                                            <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`} onPress={() => handlestep()}>
                                                 <Text style={tw`text-[#000] text-[3.5] p-2 px-15 font-normal`}>Continue</Text>
                                             </TouchableOpacity>
 

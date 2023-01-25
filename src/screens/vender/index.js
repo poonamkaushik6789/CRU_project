@@ -139,7 +139,7 @@ const Vendor = (props) => {
               <Image source={ImageIcons.timer} style={tw`w-5 h-5`} />
             </View>
           </View>
-          <View style={tw`my-2 bg-white pt-14 px-4 rounded-[2]`}>
+          <View style={tw`my-2 bg-white pt-14 px-4 mx-auto w-80 rounded-[2]`}>
             <View style={tw`py-2 `}>
               <Text style={tw`text-[#000] text-[3.3] font-normal`}>{item.message}</Text>
               <View style={tw`pt-4`}>
@@ -207,28 +207,31 @@ const Vendor = (props) => {
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"} style={styles.root}>
-      <StatusBar backgroundColor={Colors.WHITE} barStyle="dark-content" translucent={true} />
-      <ScrollView style={{ paddingBottom: 0 }}>
+      <ScrollView style={{ paddingBottom: 0, marginTop: 0 }}>
         <View >
-          <View style={tw`bg-white m-4 rounded-[2] p-3 px-5`}>
-            <View style={tw`border-b border-[#ccc]`}>
+          <View style={tw`bg-white m-4 rounded-[2] p-3 px-5 h-38`}>
+            <View style={tw`border-b border-[#ccc] pl-5`}>
               <TextInput
                 value={search}
                 placeholder="Share work related content here..."
+                placeholderTextColor={'#D3D3D3'}
+              
                 onChangeText={(text) => setSearch(text)}
                 onSubmitEditing={() => handlesearch()}
               />
             </View>
-            <View style={tw`flex-row my-5`}>
-              <TouchableOpacity onPress={()=> props.navigation.navigate("Salonwoman")}>
-                <Image source={ImageIcons.camrea} style={tw`w-12 h-12`} />
+            <View style={tw`flex-row my-5 justify-center`}>
+              <TouchableOpacity onPress={() => props.navigation.navigate("Salonwoman")}>
+                <Image source={ImageIcons.camrea} style={tw`w-10 h-10`} />
               </TouchableOpacity>
-              <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1  mx-10`} onPress={() => setModalVisible(false)}>
-                <Text style={tw`text-[#000] text-[3.5]  px-15 font-normal`}>New Post</Text>
-              </TouchableOpacity>
+              <View style={tw`mr-9 ml-3`}>
+                <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 ml-4 h-12 w-45`}>
+                  <Text style={tw`text-[#000] text-[3.5]  px-10 font-normal`}>New Post</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
-          <View style={tw`m-4 `}>
+          <View style={tw` `}>
             <FlatList
               data={DATA}
               renderItem={renderItem}

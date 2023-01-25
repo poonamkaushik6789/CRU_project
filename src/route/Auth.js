@@ -8,7 +8,8 @@ import {
   StoreOwner,
   Forgotpassword,
   ResetPassword,
-  Step1
+  Step1,
+  Step2
 } from '../container';
 import Colors from '../common/Color';
 import { connect } from 'react-redux';
@@ -40,6 +41,7 @@ const Auth = (props) => {
         component={Step1}
         options={{ title: '', headerShown: false }}
       />
+      
     </Stack.Navigator>
   );
 };

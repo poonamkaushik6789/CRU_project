@@ -102,13 +102,13 @@ const Login = (props) => {
         //     Alert.alert(CommonStrings.AppName, errors.password)
         // } else {
 
-            let request = {
-                "email": 'ashishdevswami@gmail.com',
-                "password": 'Ashish@123',
-                "deviceToken": 'sdfsdfsdfsdfsdfsdf',
-                "roletype": "ad"
-            }
-            props.login(request, props.navigation)
+        let request = {
+            "email": 'ashishdevswami@gmail.com',
+            "password": 'Ashish@123',
+            "deviceToken": 'sfsfsfsfsfsfsfsfsfsdf',
+            "roletype": "ad"
+        }
+        props.login(request, props.navigation)
         //}
     }
 
