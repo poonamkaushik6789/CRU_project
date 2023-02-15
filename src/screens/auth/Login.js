@@ -96,21 +96,32 @@ const Login = (props) => {
     // Login request submision 
     const handleLoginSubmit = async () => {
         Keyboard.dismiss();
-        if (email == "") {
+        if (email == "ashishdevswami@gmail.com") {
             Alert.alert(CommonStrings.AppName, errors.email)
-        } else if (password == "") {
+        } else if (password == "Ashish@123") {
             Alert.alert(CommonStrings.AppName, errors.password)
         } else {
 
             let request = {
+<<<<<<< HEAD
                 "email": email,
                 "password": password,
                 
+=======
+                "email": 'email',
+                "password": 'password',
+                "deviceToken": deviceToken,
+                "roletype": "ad"
+>>>>>>> 905efd1eaed540ccad97965759be201685b008dc
             }
             
             props.login(request, props.navigation)
         }
+<<<<<<< HEAD
         //props.navigation.navigate('Saleslisting')
+=======
+        props.navigation.navigate('Saleslisting')
+>>>>>>> 905efd1eaed540ccad97965759be201685b008dc
     }
 
 
@@ -150,7 +161,11 @@ const Login = (props) => {
                                 </View>
                                 <TextInput
                                     style={tw`border-b	border-white text-white	pl-7 h-16`}
+<<<<<<< HEAD
                                     placeholder="Matthew@gmail.com"
+=======
+                                    placeholder="ashishdevswami@gmail.com"
+>>>>>>> 905efd1eaed540ccad97965759be201685b008dc
                                     value={email}
                                     onChangeText={(text) => setEmail(text)}
                                     reference={emailInputRef}
@@ -171,7 +186,11 @@ const Login = (props) => {
                                     reference={passwordInputRef}
                                     onSubmitEditing={() => handleLoginSubmit()}
                                     placeholderTextColor={'#fff'}
+<<<<<<< HEAD
                                     placeholder="1234"
+=======
+                                    placeholder="Ashish@123"
+>>>>>>> 905efd1eaed540ccad97965759be201685b008dc
                                 />
                                 <TouchableOpacity style={tw`absolute right-2 bottom-5	 `} onPress={() => setIsShowPassword(!isShowPassword)}>
                                     {isShowPassword ?

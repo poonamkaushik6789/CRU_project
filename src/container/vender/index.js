@@ -10,4 +10,8 @@ const mapDispatchToProps = {
     
 };
 
+<<<<<<< HEAD
 export default connect(mapStateToProps, mapDispatchToProps)(Vendor);
+=======
+export default connect(mapStateToProps, mapDispatchToProps)(Saleslisting);
+>>>>>>> 905efd1eaed540ccad97965759be201685b008dc

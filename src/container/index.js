@@ -48,7 +48,10 @@ import Jobdetails1 from './sales/Jobdetails1';
 import Locator from './sales/Locator';
 import Projectdetails from './sales/Projectdetails';
 import Glynden from './sales/Glynden';
+<<<<<<< HEAD
 import Glyndenprofile from './sales/Glyndenprofile';
+=======
+>>>>>>> 905efd1eaed540ccad97965759be201685b008dc
 import Messages from './sales/Messages';
 
 
@@ -100,6 +103,9 @@ export {
     Locator,
     Projectdetails,
     Glynden,
+<<<<<<< HEAD
     Glyndenprofile,
+=======
+>>>>>>> 905efd1eaed540ccad97965759be201685b008dc
     Messages
 }

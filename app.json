@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 {
   "name": "SalesmanStoreOwner",
   "displayName": "Salesman Store Owner"
+=======
+{
+  "name": "SalesmanStoreOwner",
+  "name1": "Dropship",
+  "displayName": "Salesman Store Owner"
+>>>>>>> 905efd1eaed540ccad97965759be201685b008dc
 }

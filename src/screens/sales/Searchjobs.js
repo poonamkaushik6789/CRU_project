@@ -139,7 +139,11 @@ const Searchjobs = (props) => {
                         </View>
                         <View style={tw`flex-row`}>
                             <Text style={tw`text-[#000] text-center	 text-[2.6] px-1 font-normal`}>{item.time}</Text>
+<<<<<<< HEAD
                             <Image source={ImageIcons.timer} style={tw`w-5 h-5`} />
+=======
+                            <Image source={''} style={tw`w-5 h-5`} />
+>>>>>>> 905efd1eaed540ccad97965759be201685b008dc
                         </View>
                     </View>
                     <View style={tw`my-2 bg-white pt-14 px-4 mx-auto w-80 rounded-[2]`}>

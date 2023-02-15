@@ -254,9 +254,15 @@ const Vendor = (props) => {
         <View style={tw`absolute  inset-x-0.7/2	 top-8		 `}>
           {/* <View style={tw`w-3 h-3 bg-[#ff0000] rounded-full absolute left-15 `}></View> */}
           <View style={tw`w-3 h-3 bg-[#008000] rounded-full absolute left-17 `}></View>
+<<<<<<< HEAD
           <TouchableOpacity onPress={()=> props.navigation.navigate("Glyndenprofile")}>
             <Image source={item.profile} style={tw`w-24 h-24 rounded-full	mt-1`} />
           </TouchableOpacity>
+=======
+          <View>
+            <Image source={item.profile} style={tw`w-24 h-24 rounded-full	mt-1`} />
+          </View>
+>>>>>>> 905efd1eaed540ccad97965759be201685b008dc
         </View>
 
       </TouchableOpacity>

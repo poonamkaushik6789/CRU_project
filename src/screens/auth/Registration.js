@@ -99,7 +99,30 @@ const Registration = (props) => {
         setModalVisible(false);
         props.navigation.navigate("Step1")
     }
+<<<<<<< HEAD
     //  Login request submision 
+=======
+    // Login request submision 
+    // const handleLoginSubmit = async () => {
+    // setModalVisible(!modalVisible)
+    // Keyboard.dismiss();
+    // if (errors.email) {
+    //     Alert.alert(CommonStrings.AppName, errors.email)
+    // } else if (errors.password) {
+    //     Alert.alert(CommonStrings.AppName, errors.password)
+    // } else {
+
+    //     let request = {
+    //         "email": values.email,
+    //         "password": values.password,
+    //         "deviceToken": deviceToken,
+    //         "roletype": "ad"
+    //     }
+    //     props.login(request, props.navigation)
+    // }
+    // }
+
+>>>>>>> 905efd1eaed540ccad97965759be201685b008dc
     const handleLoginSubmit = async () => {
         Keyboard.dismiss();
         if (username == "") {

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # OSX
 #
 .DS_Store
@@ -63,3 +64,6 @@ package-lock.json
 ios/Podfile.lock
 ios/SalesmanStoreOwner.xcodeproj/project.pbxproj
 android
+=======
+node_modules
+>>>>>>> 905efd1eaed540ccad97965759be201685b008dc

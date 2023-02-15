@@ -69,6 +69,85 @@ export const departmentList = () => {
 };
 
 
+<<<<<<< HEAD
+=======
+// Set LOGIN token for now fname and role is not recieved in api so passed static
+// export const Logincoupon = (loginCredentials, navigation) => {
+ 
+//   return async (dispatch, getState) => {
+//     let isInternetConnected = await getState().auth?.isInternetConnected;
+//     if (isInternetConnected) {
+//       try {
+//         dispatch({ type: SET_LOGIN_LOADER, payload: true });
+//         let response = await Utilise.apiCalling('POST', Api.Logincoupon, loginCredentials);
+//         console.log('response::::',response);
+   
+//         dispatch({ type: SET_LOGIN_LOADER, payload: false });
+//         if (response?.data?.status==true) {
+//               dispatch({ type: SET_LOGIN_CREDENTIAL, payload: response?.data });
+//               dispatch(changeLoginCredentials(response?.data));
+//               return;
+//         }  else {
+//           Alert.alert("Cru", 'Incorrect Email or Password')
+//         }
+//       } catch (error) {
+//              dispatch({ type: SET_LOGIN_LOADER, payload: false });
+//             dispatch(changeLoginCredentials(null));
+//             Alert.alert("Cru", 'Something went wrong!')
+//       }
+//     }
+//   };
+// };
+// export const Registrationcoupon = (loginCredentials, navigation) => {
+ 
+//   return async (dispatch, getState) => {
+//     let isInternetConnected = await getState().auth?.isInternetConnected;
+//     if (isInternetConnected) {
+//       try {
+//         dispatch({ type: SET_LOGIN_LOADER, payload: true });
+//         let response = await Utilise.apiCalling('POST',Api.Registrationcoupon, loginCredentials);
+//         console.log('response::::',response);
+   
+//         dispatch({ type: SET_LOGIN_LOADER, payload: false });
+//         if (response?.data?.status==false) {
+//               dispatch({ type: SET_LOGIN_CREDENTIAL, payload: response?.data });
+//               dispatch(changeLoginCredentials(response?.data));
+//               return;
+//         }  else {
+//           Alert.alert("Cru", 'User Sucessfully')
+//         }
+//       } catch (error) {
+//              dispatch({ type: SET_LOGIN_LOADER, payload: false });
+//             dispatch(changeLoginCredentials(null));
+//             Alert.alert("Cru", 'Something went wrong!')
+//       }
+//     }
+//   };
+// };
+// export const Newcoupon = (request, navigation) => {
+//   return async (getState) => {
+//     // let isInternetConnected = await getState().auth?.isInternetConnected;
+//     // if (isInternetConnected) {
+//       try {
+//         //console.log('abc')
+//   console.log('requestpayment==>>',request)
+
+//         let response = await Utilise.apiCalling('POST', Api.Newcoupon, request);
+//         console.log("xcç",response)
+//         if (response.status == "200") {
+//           Alert.alert("Transport", 'Save successfully.')
+//           // navigation.dispatch(
+//           //   StackActions.replace('Profile')
+//           // );
+//         } else {
+//           Alert.alert("Transport", String(response?.message))
+//         }
+//       } catch (error) {
+//         Alert.alert("Transport", String(error?.message))
+//       }
+//     };
+//   }
+>>>>>>> 905efd1eaed540ccad97965759be201685b008dc
 export const login = (loginCredentials, navigation) => {
   console.log('signinnnnn',loginCredentials)
   return async (dispatch, getState) => {
@@ -77,11 +156,23 @@ export const login = (loginCredentials, navigation) => {
       try {
 
        // alert('sdfdsf')
+<<<<<<< HEAD
        
         dispatch({ type: SET_LOGIN_LOADER, payload: false });
         dispatch(changeLoginCredentials(response?.data));
         dispatch({ type: SET_LOGIN_CREDENTIAL, payload: response?.data });
         let response = await Utilise.apiCalling('POST', Api.login, loginCredentials);
+=======
+       let response = {'data':{
+        "email":"test@yopmail.com",
+        "user_id":2,
+        "id":2
+       }}
+        dispatch({ type: SET_LOGIN_LOADER, payload: false });
+        dispatch(changeLoginCredentials(response?.data));
+        dispatch({ type: SET_LOGIN_CREDENTIAL, payload: response?.data });
+        //let response = await Utilise.apiCalling('POST', Api.login, loginCredentials);
+>>>>>>> 905efd1eaed540ccad97965759be201685b008dc
         //alert(isInternetConnected)
         console.log('response::::',response);
         

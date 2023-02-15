@@ -1,5 +1,6 @@
 //const projectUri = `https://devvca.pushcord.com:8000/vca-front/api/v1.0/ui/front`; //Production server URL
 //const baseUri = `http://3.133.223.72/api/`; //Production server URL
+<<<<<<< HEAD
 const baseUri = `http://192.168.1.6:7889/v1`; 
 //const baseUri = `https://api.wallpon.com/v1`;
 
@@ -20,6 +21,14 @@ const api = {
   // login: `/auth/login`,
   // login: `/auth/login`,
   // login: `/auth/login`,
+=======
+//const baseUri = `http://192.168.18.7:7888/v1`; 
+const baseUri = `https://api.wallpon.com/v1`;
+
+const api = {
+  baseUri,
+ login: `/auth/login`,
+>>>>>>> 905efd1eaed540ccad97965759be201685b008dc
   //login: `${baseUri}/auth/login`,
  // businessList:`${projectUri}/tab-web-list`
 };

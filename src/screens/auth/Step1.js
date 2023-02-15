@@ -186,6 +186,7 @@ const Step1 = (props) => {
                                 <View style={tw` items-center mb-7`}>
                                     <Text style={tw`text-[#000] text-[3.9] font-normal`}>Which department do you work in?</Text>
                                 </View>
+<<<<<<< HEAD
                                 <View style={tw`rounded-[3]`}>
                                     <FlatList
                                         data={DATA}
@@ -195,6 +196,66 @@ const Step1 = (props) => {
                                         //horizontal={true}
                                         numColumns={3}
                                     />
+=======
+                                <View style={tw`bg-[#fff] rounded-[3] flex `}>
+                                    <View style={tw`bg-[#fff] flex flex-row rounded-t	`}>
+                                        <TouchableOpacity style={tw`border-b border-r  border-[#ccc] flex-1 items-center py-6`} onPress={() => setCameramodalVisible(!cameramodalVisible)}>
+                                            <Image source={ImageIcons.producer} style={[tw`w-15 h-15 `, { tintColor: '#5fafcf' }]} />
+                                            <Text onPress={() => props.navigation.navigate("Step2")} style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity style={tw`border-b border-r border-l border-[#ccc] flex-1 items-center py-6`} onPress={() => setCameramodalVisible(!cameramodalVisible)}>
+                                            <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Director</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity style={tw`border-b border-l  border-[#ccc] flex-1 items-center py-6`} onPress={() => setCameramodalVisible(!cameramodalVisible)}>
+                                            <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Camera</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={tw`bg-[#fff] flex flex-row`}>
+                                        <TouchableOpacity style={tw`border-b border-r border-t border-[#ccc] flex-1 items-center py-6`}  onPress={() => setCameramodalVisible(!cameramodalVisible)}>
+                                            <Image source={ImageIcons.producer} style={[tw`w-15 h-15 `, { tintColor: '#5fafcf' }]} />
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Lighting</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity style={tw`border border-[#ccc] flex-1 items-center py-6`}  onPress={() => setCameramodalVisible(!cameramodalVisible)}>
+                                            <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Sound</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity style={tw`border-b border-t border-l border-[#ccc] flex-1 items-center py-6`}  onPress={() => setCameramodalVisible(!cameramodalVisible)}>
+                                            <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Editorial</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={tw`bg-[#fff] flex flex-row`}>
+                                        <TouchableOpacity style={tw`border-b border-r border-t border-[#ccc] flex-1 items-center py-6`}  onPress={() => setCameramodalVisible(!cameramodalVisible)}>
+                                            <Image source={ImageIcons.producer} style={[tw`w-15 h-15 `, { tintColor: '#5fafcf' }]} />
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>HMU</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity style={tw`border border-[#ccc] flex-1 items-center py-6`}  onPress={() => setCameramodalVisible(!cameramodalVisible)}>
+                                            <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Wardrobe</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity style={tw`border-b border-t border-l border-[#ccc] flex-1 items-center py-6`}  onPress={() => setCameramodalVisible(!cameramodalVisible)}>
+                                            <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Special FX</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={tw`bg-[#fff] flex flex-row rounded-b-md`}>
+                                        <TouchableOpacity style={tw` border-r border-t border-[#ccc] flex-1 items-center py-6`}  onPress={() => setCameramodalVisible(!cameramodalVisible)}>
+                                            <Image source={ImageIcons.producer} style={[tw`w-15 h-15 `, { tintColor: '#5fafcf' }]} />
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Art</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity style={tw`border-t border-l border-r border-[#ccc] flex-1 items-center py-6`}  onPress={() => setCameramodalVisible(!cameramodalVisible)}>
+                                            <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Office</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity style={tw`border-t border-l border-[#ccc] flex-1 items-center py-6`}  onPress={() => setCameramodalVisible(!cameramodalVisible)}>
+                                            <Image source={ImageIcons.producer} style={[tw`w-15 h-15`, { tintColor: '#5fafcf' }]} />
+                                            <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Misc.</Text>
+                                        </TouchableOpacity>
+                                    </View>
+
+>>>>>>> 905efd1eaed540ccad97965759be201685b008dc
                                 </View>
 
                             </View>
@@ -266,7 +327,11 @@ const Step1 = (props) => {
                                 <View style={tw`mx-5`}>
                                     <Text style={tw`text-[#000000] mt-1 font-normal text-[3.1]`}>You are now an official Cru Member! Feel free to use this resource to create your own crews, find jobs, events, and maintain your personal business all in one place!</Text>
                                 </View>
+<<<<<<< HEAD
                                 <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`} onPress={() => { setModalVisible(false); props.navigation.navigate('Login') }}>
+=======
+                                <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`} onPress={() => {setModalVisible(false);props.navigation.navigate('Login')}}>
+>>>>>>> 905efd1eaed540ccad97965759be201685b008dc
                                     <Text style={tw`text-[#000] text-[3.5] p-2 px-15 font-normal`}>Continue</Text>
                                 </TouchableOpacity>
                             </View>
@@ -283,7 +348,11 @@ const Step1 = (props) => {
                     }}
                     style={tw`m-0`} >
                     <View style={tw`flex-1	 justify-center  bg-zinc-500`}>
+<<<<<<< HEAD
                         <View style={tw`bg-white rounded-[2]  justify-center  m-4`} >
+=======
+                        <View style={tw`bg-white rounded-[2]  justify-center drop-shadow-xl m-4`} >
+>>>>>>> 905efd1eaed540ccad97965759be201685b008dc
                             <View style={tw`flex-row justify-between items-center border-b border-[#ccc] p-4`}>
                                 <View>
                                     <Text style={tw`text-base font-normal  text-black align-middle`} numberOfLines={1} ellipsizeMode='tail' ></Text>
