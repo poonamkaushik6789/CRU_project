@@ -5,6 +5,7 @@ Created Date: 01/06/2022
 
 import {
   SIGNUP_CREDENTIALS,
+  SET_REGISTER_ACCOUNT,
   SET_LOGIN_CREDENTIAL,
   SET_LOGIN_LOADER,
   SET_NETWORK_STATE,
@@ -16,6 +17,7 @@ import {
 const initialState = {
   isInternetConnected: false,
   loginCredentials: null,
+  signupCredentials:null,
   loginLoader: false,
   defaultAuthScreen: "Login"  //Login, ResetPaswword
 };
@@ -26,6 +28,12 @@ const Auth = (state = initialState, action) => {
       return {
         ...state,
         isInternetConnected: action.payload,
+      };
+      case SET_REGISTER_ACCOUNT:
+      console.log('SET_REGISTER_ACCOUNT:', action.payload)
+      return {
+        ...state,
+        signupCredentials: action.payload,
       };
     case SET_LOGIN_CREDENTIAL:
       console.log('SET_LOGIN_CREDENTIAL:', action.payload)

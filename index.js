@@ -2,15 +2,14 @@
  * @format
  */
 
-import { AppRegistry,Platform } from 'react-native';
+import { AppRegistry } from 'react-native';
 import App from './App';
 import { name as appName } from './app.json';
-import { name1 as appName1 } from './app.json';
 import PushNotificationIOS from "@react-native-community/push-notification-ios";
 import PushNotification from "react-native-push-notification";
+import AsyncStorage from '@react-native-community/async-storage';
 
-
-/*PushNotification.configure({
+PushNotification.configure({
     // (optional) Called when Token is generated (iOS and Android)
     onRegister: function (token) {
         console.log("TOKEN:", token);
@@ -21,7 +20,7 @@ import PushNotification from "react-native-push-notification";
         if (remoteMessage?.data?.vendor) {
             let vendorBody = JSON.parse(remoteMessage?.data?.vendor);
             console.log("vendorBody===>",vendorBody)
-
+            await AsyncStorage.setItem('@vendorInfo', JSON.stringify(vendorBody));
         }
         // process the notification
 
@@ -59,12 +58,8 @@ import PushNotification from "react-native-push-notification";
      * - if not, you must call PushNotificationsHandler.requestPermissions() later
      * - if you are not using remote notification or do not have Firebase installed, use this:
      *     requestPermissions: Platform.OS === 'ios'
-
+     */
     requestPermissions: true,
-});*/
+});
 
-if(Platform.OS === "ios"){
-AppRegistry.registerComponent('WallPon', () => App);
-}else {
 AppRegistry.registerComponent(appName, () => App);
-}

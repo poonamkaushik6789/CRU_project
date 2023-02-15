@@ -1,7 +1,7 @@
 
 
 const CommonStrings={
-    AppName:"VCA"
+    AppName:"Filmca"
 }
 
 export default CommonStrings;

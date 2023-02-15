@@ -1,6 +1,6 @@
 
-//login action types
-
+//login action typesSET_REGISTER_ACCOUNT
+export const SET_REGISTER_ACCOUNT = "SET_REGISTER_ACCOUNT";
 
 export const BUSINESS_LIST_DATA = "BUSINESS_LIST_DATA";
 export const SET_OPENMESSAGE_DATA = "SET_OPENMESSAGE_DATA";

@@ -4,28 +4,14 @@ import store from './src/redux/Store'
 import RootNavigation from './src/route/RootNavigation';
 import axios from 'axios';
 import api from './src/common/Api';
-import SplashScreen from 'react-native-splash-screen';
-import tw from 'twrnc';
-//import { typography } from './src/components/typography';
-
-
-//typography()
 
 const App = () => {
-
   axios.defaults.baseURL = api.baseUri; // BASE URL
-    useEffect(() => {
-      SplashScreen.hide();
-  }, []);
-
-    return (
-
-        <Provider store={store}>
-          <RootNavigation />
-        </Provider>
-
-    );
-
+  return (
+    <Provider store={store}>
+      <RootNavigation />
+    </Provider>
+  );
 };
 
 export default App;

@@ -4,6 +4,7 @@ Created Date: 01/06/2022
 */
 
 import {
+  SET_REGISTER_ACCOUNT,
   SET_LOGIN_CREDENTIAL,  
   SET_NETWORK_STATE,
   SET_LOGIN_LOADER,
@@ -20,35 +21,73 @@ export const setNetworkConnection = (networkState) => {
     dispatch({ type: SET_NETWORK_STATE, payload: networkState });
   }
 }
+//signUp
+export const signUp = (request, navigation) => {
+  console.log("requestsignup==>", request)
+  return async (dispatch, getState) => {
+    let isInternetConnected = await getState().auth?.isInternetConnected;
+    if (isInternetConnected) {
+      try {
+        let response = await Utilise.apiCalling('POST', Api.register, request);
+        console.log("newsignup==>>", response?.data)
 
-// Set LOGIN token for now fname and role is not recieved in api so passed static
+        if (response?.status) {
+          dispatch({ type: SET_REGISTER_ACCOUNT, payload: response.data });
+        } else {
+          //alert("hello")
+          Alert.alert("Filmca", "user already exist")
+        }
+      } catch (error) {
+        Alert.alert("Filmca", String(error?.message))
+      }
+    };
+  }
+};
+//departmentList
+export const departmentList = () => {
+  return async (dispatch, getState) => {
+      let loginCredentials = await getState().auth?.loginCredentials;
+      let isInternetConnected = await getState().auth?.isInternetConnected;
+      if (isInternetConnected) {
+          try {
+              dispatch({ type: GET_BILL_LIST, payload: true });
+              let response = await Utilise.apiCalling('GET', `${Api.getbill}`)
+              console.log("billresponse",response)
+              dispatch({ type: GET_BILL_LIST, payload: false });
+              if (response?.status) {
+                  
+                  dispatch({ type: GET_BILL_LIST, payload: response.data });
+                  
+              } else {
+                  Alert.alert("Transport", String(response?.message))
+              }
+          } catch (error) {
+              Alert.alert("Transport", String(error?.message))
+          }
+      };
+  }
+};
+
+
 export const login = (loginCredentials, navigation) => {
   console.log('signinnnnn',loginCredentials)
   return async (dispatch, getState) => {
     let isInternetConnected = await getState().auth?.isInternetConnected;
     if (isInternetConnected) {
       try {
-        dispatch({ type: SET_LOGIN_LOADER, payload: true });
+
+       // alert('sdfdsf')
+       
+        dispatch({ type: SET_LOGIN_LOADER, payload: false });
+        dispatch(changeLoginCredentials(response?.data));
+        dispatch({ type: SET_LOGIN_CREDENTIAL, payload: response?.data });
         let response = await Utilise.apiCalling('POST', Api.login, loginCredentials);
+        //alert(isInternetConnected)
         console.log('response::::',response);
         
         dispatch({ type: SET_LOGIN_LOADER, payload: false });
-        if (response?.status && !response?.data?.isVerified) {
+        if (response?.status) {
           dispatch({ type: SET_LOGIN_CREDENTIAL, payload: response?.data });
-          // Alert.alert(
-          //   CommonStrings.AppName,
-          //   "Please verify OTP.",
-          //   [
-          //     {
-          //       text: 'Cancel',
-          //       onPress: () => console.log('Cancel Pressed'),
-          //       style: 'cancel'
-          //     },
-          //     { text: 'Verify', onPress: () => { dispatch(resendOtp()); navigation.navigate("OTPVerification"); } }
-          //   ],
-          //   { cancelable: false }
-          // );
-          
           dispatch(changeLoginCredentials(response?.data));
           //navigation.navigate("Login");
          
@@ -57,18 +96,18 @@ export const login = (loginCredentials, navigation) => {
           //console.log('logindataaaa')
           dispatch({ type: SET_VERIFICAITON_STEPS, payload: 0 })
           if (response?.data?.role === "user") {
-            Alert.alert("WallPon", "Wrong email address and password")
+            Alert.alert("Filmca", "Wrong email address and password")
             return;
           }
           dispatch(changeLoginCredentials(response?.data));
         } else {
-          Alert.alert("WallPon", String(response?.message))
+          Alert.alert("Filmca", String(response?.message))
         }
       } catch (error) {
       // console.log('abcdef',error)
         dispatch({ type: SET_LOGIN_LOADER, payload: false });
         dispatch(changeLoginCredentials(null));
-        Alert.alert("WallPon", String(error?.message))
+        Alert.alert("Filmca", String(error?.message))
       }
     }
   };
