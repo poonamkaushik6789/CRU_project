@@ -31,7 +31,7 @@ const moreoption1 = require(`${assetsRootPath}moreoption1.png`);
 const threedot = require(`${assetsRootPath}threedot.png`);
 const back = require(`${assetsRootPath}back.png`);
 const plus1 = require(`${assetsRootPath}plus1.png`);
-const search = require(`${assetsRootPath}search.png`);
+
 const internet = require(`${assetsRootPath}internet.png`);
 const textmess = require(`${assetsRootPath}textmess.png`);
 const man = require(`${assetsRootPath}man.png`);
@@ -120,15 +120,49 @@ const linkdin = require(`${assetsRootPath}linkdin.png`);
 const producer = require(`${assetsRootPath}producer.png`);
 const camrea = require(`${assetsRootPath}camrea.png`);
 const calendar_icon = require(`${assetsRootPath}calendar_icon.png`);
+const timer = require(`${assetsRootPath}timer.png`);
+const like = require(`${assetsRootPath}like.png`);
+const chat = require(`${assetsRootPath}chat.png`);
+
+const closetoday = require(`${assetsRootPath}closetoday.png`);
+const notification_icon = require(`${assetsRootPath}notification_icon.png`);
+const rawartist = require(`${assetsRootPath}rawartist.png`);
+const gearexpo = require(`${assetsRootPath}gearexpo.png`);
+const conference = require(`${assetsRootPath}conference.png`);
+const filmmakers = require(`${assetsRootPath}filmmakers.png`);
+const filmfestival = require(`${assetsRootPath}filmfestival.png`);
+const msgs = require(`${assetsRootPath}msgs.png`);
+const social = require(`${assetsRootPath}social.png`);
+const event = require(`${assetsRootPath}event.png`);
+const cru = require(`${assetsRootPath}cru.png`);
+const job = require(`${assetsRootPath}job.png`);
+const project = require(`${assetsRootPath}project.png`);
+const map = require(`${assetsRootPath}map.png`);
+const locator = require(`${assetsRootPath}locator.png`);
+const setting = require(`${assetsRootPath}setting.png`);
+const Cross = require(`${assetsRootPath}Cross.png`);
+const tik = require(`${assetsRootPath}tik.png`);
+const search = require(`${assetsRootPath}search.png`);
+const notifications = require(`${assetsRootPath}notifications.png`)
+const googlemap = require(`${assetsRootPath}googlemap.png`)
+
+
+
+
 
 const ImageIcons = {
   rightarrow,
+  notification_icon,
+  closetoday,
   backarrow,
   fb,
   linkdin,
   camrea,
   calendar_icon,
   lock_icon,
+  timer,
+  like,
+  chat,
   eye_icon,
   eye_icon_hide,
   email_icon,
@@ -226,7 +260,6 @@ const ImageIcons = {
   man,
   textmess,
   internet,
-  search,
   moreoption1,
   back,
   plus1,
@@ -241,5 +274,24 @@ const ImageIcons = {
   viewIcon,
   kitchen,
   producer,
+  rawartist,
+  gearexpo,
+  conference,
+  filmmakers,
+  filmfestival,
+  msgs,
+  social,
+  event,
+  cru,
+  project,
+  job,
+  map,
+  locator,
+  setting,
+  Cross,
+  tik,
+  search,
+  notifications,
+  googlemap
 };
 export default ImageIcons;

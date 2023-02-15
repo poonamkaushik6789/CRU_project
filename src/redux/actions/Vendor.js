@@ -16,6 +16,29 @@ export const openMessage =(data,navigation)=>{
        navigation.navigate("MessageData");
   }
 }
+export const Newcoupon = (request, navigation) => {
+  return async (getState) => {
+    // let isInternetConnected = await getState().auth?.isInternetConnected;
+    // if (isInternetConnected) {
+      try {
+        //console.log('abc')
+  console.log('requestpayment==>>',request)
+
+        let response = await Utilise.apiCalling('POST', Api.Newcoupon, request);
+        console.log("xcç",response)
+        if (response.status == "200") {
+          Alert.alert("Transport", 'Save successfully.')
+          // navigation.dispatch(
+          //   StackActions.replace('Profile')
+          // );
+        } else {
+          Alert.alert("Transport", String(response?.message))
+        }
+      } catch (error) {
+        Alert.alert("Transport", String(error?.message))
+      }
+    };
+  }
 
 // Add Report 
 

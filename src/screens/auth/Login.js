@@ -11,7 +11,7 @@ import InputField from '../../components/forms/inputField';
 import { RoundedButton } from '../../components/forms/button';
 import Loader from '../../components/modals/Loader';
 import AsyncStorage from '@react-native-community/async-storage';
-import messaging from '@react-native-firebase/messaging';
+//import messaging from '@react-native-firebase/messaging';
 import { requestMultiplePermisisons } from '../../services/permission';
 import tw from 'twrnc';
 
@@ -51,7 +51,7 @@ const Login = (props) => {
 
 
     useEffect(() => {
-        requestUserPermission();
+        //requestUserPermission();
     }, [])
 
 
@@ -96,20 +96,21 @@ const Login = (props) => {
     // Login request submision 
     const handleLoginSubmit = async () => {
         Keyboard.dismiss();
-        if (email == "") {
+        if (email == "ashishdevswami@gmail.com") {
             Alert.alert(CommonStrings.AppName, errors.email)
-        } else if (password == "") {
+        } else if (password == "Ashish@123") {
             Alert.alert(CommonStrings.AppName, errors.password)
         } else {
 
             let request = {
-                "email": email,
-                "password": password,
+                "email": 'email',
+                "password": 'password',
                 "deviceToken": deviceToken,
                 "roletype": "ad"
             }
             props.login(request, props.navigation)
         }
+        props.navigation.navigate('Saleslisting')
     }
 
 
@@ -149,7 +150,7 @@ const Login = (props) => {
                                 </View>
                                 <TextInput
                                     style={tw`border-b	border-white text-white	pl-7 h-16`}
-                                    placeholder="matthegroup@gmail.com"
+                                    placeholder="ashishdevswami@gmail.com"
                                     value={email}
                                     onChangeText={(text) => setEmail(text)}
                                     reference={emailInputRef}
@@ -170,7 +171,7 @@ const Login = (props) => {
                                     reference={passwordInputRef}
                                     onSubmitEditing={() => handleLoginSubmit()}
                                     placeholderTextColor={'#fff'}
-                                    placeholder="Password"
+                                    placeholder="Ashish@123"
                                 />
                                 <TouchableOpacity style={tw`absolute right-2 bottom-5	 `} onPress={() => setIsShowPassword(!isShowPassword)}>
                                     {isShowPassword ?
@@ -198,9 +199,9 @@ const Login = (props) => {
                                 </Text>
                             </View>
                             <View style={tw`flex-row justify-center mt-9`}>
-                                <View>
+                                <TouchableOpacity onPress={() => props.navigation.navigate('Registration')}>
                                     <Image source={ImageIcons.linkdin} style={tw`w-15 h-15 rounded-full`} />
-                                </View>
+                                </TouchableOpacity>
 
                                 <View style={tw`mx-10`}>
                                     <Image source={ImageIcons.fb} style={tw`w-15 h-15 rounded-full`} />

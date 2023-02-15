@@ -1,4 +1,3 @@
-
 import { connect } from 'react-redux';
 import Saleslisting from '../../screens/sales/Saleslisting';
 
@@ -12,4 +11,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Saleslisting);
-

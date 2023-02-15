@@ -27,15 +27,29 @@ import Pestcontrol from './vender/Pestcontrol';
 import Appliances from './sales/Appliances';
 import Aircondition from './sales/Aircondition';
 import Waterpurifier from './sales/Waterpurifier';
-import Air from './sales/Air';
+import Likelist from './sales/Likelist';
 import Gyser from './sales/Gyser';
 import Washing from './sales/Washing';
 import Gysercondition from './sales/Gysercondition';
-import Booking from './sales/Booking';
-import Salonwoman from './sales/Salonwoman';
+import Eventdetail from './sales/Eventdetail';
+import EventScreen from './sales/EventScreen';
 import Searchloc from './sales/Searchloc';
-import Instantvalen from './sales/Instantvalen';
+import Commentlist from './sales/Commentlist';
 import Search from './sales/Search';
+import Matthew from './sales/Matthew';
+import Notifications from './sales/Notifications';
+import Cru from './sales/Cru';
+import Camera from './sales/Camera';
+import Viewall from './sales/Viewall';
+import Projects from './sales/Projects';
+import Searchjobs from './sales/Searchjobs';
+import Lighting from './sales/Lighting';
+import Jobdetails1 from './sales/Jobdetails1';
+import Locator from './sales/Locator';
+import Projectdetails from './sales/Projectdetails';
+import Glynden from './sales/Glynden';
+import Messages from './sales/Messages';
+
 
 
 export {
@@ -44,7 +58,7 @@ export {
     Registration,
     Step1,
     Search,
-    Instantvalen,
+    Commentlist,
     Vendor,
     Profile,
     Editprofile,
@@ -57,12 +71,12 @@ export {
     Appliances,
     Aircondition,
     Waterpurifier,
-    Air,
+    Likelist,
     Gyser,
     Washing,
     Gysercondition,
-    Booking,
-    Salonwoman,
+    Eventdetail,
+    EventScreen,
     Searchloc,
     Massagewomen,
     Massagemen,
@@ -72,5 +86,18 @@ export {
     waterpurifier,
     Cleaning,
     Homerepair,
-    Pestcontrol
-};
+    Pestcontrol,
+    Matthew,
+    Notifications,
+    Cru,
+    Camera,
+    Viewall,
+    Projects,
+    Searchjobs,
+    Lighting,
+    Jobdetails1,
+    Locator,
+    Projectdetails,
+    Glynden,
+    Messages
+}

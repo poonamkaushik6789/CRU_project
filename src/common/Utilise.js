@@ -11,7 +11,6 @@ const APICalling = async (
   contentType = `application/json`,
 ) => {
   let configuration = null;
- 
   let headers = {};
   if (authToken && authToken !== null) {
     headers = {
@@ -60,10 +59,13 @@ const APICalling = async (
       break;
   }
 
-  console.log('api calling method.', configuration);
+  //console.log('api calling method.', configuration);
+  
 
   await axios(configuration)
     .then((response) => {
+     // alert('sdfsdf')
+      console.log('configuration',configuration)
       console.log("Utilize response =====?", response)
       if (response.status === 200) {
         apiResponse.status = response?.status;
@@ -85,6 +87,7 @@ const APICalling = async (
       }
     })
     .catch((error) => {
+     
       console.log(
         '========= api error : response =========',
         error,
