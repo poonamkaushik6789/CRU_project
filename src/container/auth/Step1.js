@@ -1,14 +1,26 @@
 import { connect } from 'react-redux';
 import  Step1  from '../../screens/auth/Step1';
-import {departmentList} from '../../redux/actions/Auth'
+import {departmentList,
+    subdepartmentList,
+    updateworkdepartment,
+    updateAreatoTravel,
+    updateAvailAbilty
+} from '../../redux/actions/Auth'
 
 const mapStateToProps = (state) => ({
-    loginLoader:state.auth.loginLoader
+    loginLoader:state.auth.loginLoader,
+    signupCredentials:state.auth.signupCredentials,
+    getdepartMentlist: state.auth.getdepartMentlist,
+    getsubdepartmentlist: state.auth.getsubdepartmentlist,
+    departmentworkupdate: state.auth.departmentworkupdate,
 });
 
 const mapDispatchToProps = {
-    
-    departmentList
+    departmentList,
+    subdepartmentList,
+    updateworkdepartment,
+    updateAreatoTravel,
+    updateAvailAbilty,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Step1);

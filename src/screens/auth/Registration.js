@@ -245,7 +245,7 @@ const Registration = (props) => {
                                 }}
                                 style={tw`m-0`} >
                                 <View style={tw`flex-1	 justify-center  bg-zinc-500`}>
-                                    <View style={tw`bg-white rounded-[2]  justify-center drop-shadow-xl m-4`} >
+                                    <View style={tw`bg-white rounded-[2]  justify-center  m-4`} >
                                         <View style={tw`items-center border-b border-[#ccc] p-4`}>
                                             <Text style={tw`text-base font-normal  text-black `} numberOfLines={1} ellipsizeMode='tail' >Welcome</Text>
                                         </View>

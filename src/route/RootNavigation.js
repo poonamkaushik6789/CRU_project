@@ -64,8 +64,8 @@ const RootNavigation = (props) => {
         </View >
     } else {
 
-        console.log('loginCredentials123',loginCredentials)
-        console.log('loginCredentialsstatus',loginCredentials?.status)
+        // console.log('loginCredentials123',loginCredentials)
+        // console.log('loginCredentialsstatus',loginCredentials?.status)
         return (
             <NavigationContainer >
                 {(!loginCredentials) && <Auth />}

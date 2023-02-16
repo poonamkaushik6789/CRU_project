@@ -1,14 +1,17 @@
 
 import { connect } from 'react-redux';
 import Commentlist from '../../screens/sales/Commentlist';
-
-const mapStateToProps = (state) => ({
-    //redeemedCouponTrackingData: state.coupon.redeemedCouponTrackingData,
-    //redeemedCouponTrackingLoader: state.coupon.redeemedCouponTrackingLoader
+import { commentIdlist,
+    commentAdd,
+    socialfeedlist } from '../../redux/actions/Vendor';
+    const mapStateToProps = (state) => ({
+        loginCredentials: state.auth.loginCredentials,
+        getcommentidlist: state.vendor.getcommentidlist,
 });
 
 const mapDispatchToProps = {
-    
+    commentIdlist,
+    commentAdd
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Commentlist);

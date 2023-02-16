@@ -3,6 +3,7 @@ import { Text, Image, View, ImageBackground, SafeAreaView, Modal, FlatList, Scro
 import LinearGradient from 'react-native-linear-gradient';
 import CheckBox from '@react-native-community/checkbox';
 import { withFormik } from 'formik';
+import { Api, Utilise } from '../../common';
 import * as Yup from 'yup';
 import styles from './styles';
 import { Colors, CommonStrings } from '../../common'
@@ -17,6 +18,7 @@ import CalendarPicker from 'react-native-calendar-picker';
 import moment from 'moment';
 import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
 import tw from 'twrnc';
+import api from '../../common/Api';
 
 const Step1 = (props) => {
 
@@ -35,7 +37,7 @@ const Step1 = (props) => {
 
     // Local states
     const [isShowPassword, setIsShowPassword] = useState(true);
-    const [rememberMe, setRememberMe] = useState(false);
+    const [deparmentname, setDepartmentname] = useState('');
     const [refreshFiled, setRefreshFiled] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
     const [cameramodalVisible, setCameramodalVisible] = useState(false);
@@ -56,13 +58,38 @@ const Step1 = (props) => {
     const fadeAnim = useRef(new Animated.Value(0)).current
     const transformAnim = useRef(new Animated.Value(300)).current
 
-
-
+    console.log("props======>>>", props)
+const signupId = props?.signupCredentials?.data?._id;
     useEffect(() => {
         props.departmentList();
+        console.log("props.getdepartMentlist======>>>", props?.getdepartMentlist);
+        console.log("getsubdepartmentlist====>>", props.getsubdepartmentlist)
     }, [])
 
+    const data = [
+        { id: 1, txt: 'first check', isChecked: false },
+        { id: 2, txt: 'second check', isChecked: false },
+        { id: 3, txt: 'third check', isChecked: false },
+        { id: 4, txt: 'fourth check', isChecked: false },
+        { id: 5, txt: 'fifth check', isChecked: false },
+        { id: 6, txt: 'sixth check', isChecked: false },
+        { id: 7, txt: 'seventh check', isChecked: false },
+    ];
+    const [products, setProducts] = useState(data);
 
+    const handlecameacategory = (e) => {
+        console.log("checkbox===>>>>",e.target)
+        // let temp = products.map((product) => {
+        //     console.log("checkbox===>", temp)
+        //     if (id === product.id) {
+        //         return { ...product, isChecked: !product.isChecked };
+        //     }
+
+        //     return product;
+
+        // });
+       // setProducts(temp);
+    };
 
 
     const onDateChange = (date, type) => {
@@ -74,24 +101,15 @@ const Step1 = (props) => {
             setSelectedStartDate(date);
         }
     };
+    const handledeparment = async (id, name) => {
+        setDepartmentname(name);
+        setCameramodalVisible(!cameramodalVisible);
+        props.subdepartmentList(id);
+    }
     // Login request submision 
     const handlestepSubmit = async () => {
         setModalVisible(!modalVisible)
-        // Keyboard.dismiss();
-        // if (errors.email) {
-        //     Alert.alert(CommonStrings.AppName, errors.email)
-        // } else if (errors.password) {
-        //     Alert.alert(CommonStrings.AppName, errors.password)
-        // } else {
 
-        //     let request = {
-        //         "email": values.email,
-        //         "password": values.password,
-        //         "deviceToken": deviceToken,
-        //         "roletype": "ad"
-        //     }
-        //     props.login(request, props.navigation)
-        // }
     }
     const progressStepsStyle = {
         activeStepIconBorderColor: '#000',
@@ -105,8 +123,27 @@ const Step1 = (props) => {
         completedCheckColor: '#fff',
         disabledStepNumColor: '#000'
     };
-    const onNext = {
-
+    const onNextStep1 = async () => {
+        let request = {
+            "_id": signupId,
+            "workDepartments": ["63e4bebf43f6ad32e81057f4"],    
+        }
+        props.updateworkdepartment(request, props.navigation);
+    }
+    const onNextStep2 = async () => {
+        let request = {
+            "_id": signupId,
+            "willingToTravel": ["kapil"],    
+        }
+        props.updateAreatoTravel(request, props.navigation);
+    }
+    const onsubmitbtn = async () => {
+        let request = {
+            "_id": signupId,
+            "availabilty": ["kapil"],    
+        }
+        props.updateAvailAbilty(request, props.navigation);
+        setModalVisible(!modalVisible)
     }
     const DATA = [
         {
@@ -149,12 +186,27 @@ const Step1 = (props) => {
     ];
 
     const renderItem = ({ item, index }) => {
+
         return (
             <View style={tw`bg-[#fff]  flex items-center`}>
-                <TouchableOpacity style={tw`border  border-[#ccc] w-33 items-center p-5`} onPress={() => setCameramodalVisible(!cameramodalVisible)}>
-                    <Image source={ImageIcons.producer} style={[tw`w-15 h-15 `, { tintColor: '#5fafcf' }]} />
-                    <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>Producer</Text>
+                <TouchableOpacity style={tw`border  border-[#ccc] w-33 items-center p-5`} onPress={() => handledeparment(item._id, item.departmentName)}>
+                    <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-13 h-13 `, { tintColor: '#5fafcf' }]} />
+                    <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>{item.departmentName}</Text>
                 </TouchableOpacity>
+            </View>
+        );
+    }
+    const renderItem1 = ({ item, index }) => {
+console.log("checboxitem===>",item)
+        return (
+            <View style={tw`flex-row items-center my-1`}>
+                <CheckBox
+                    value={item.isChecked}
+                    onValueChange={setCinematographer}
+                    onChange={ handlecameacategory}
+                    tintColors={{ true: '#5fafcf', false: '#ccc', }}
+                />
+                <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>{item.name}</Text>
             </View>
         );
     }
@@ -181,14 +233,14 @@ const Step1 = (props) => {
 
                 <View style={tw`flex-1`}>
                     <ProgressSteps {...progressStepsStyle} >
-                        <ProgressStep label="" >
+                        <ProgressStep label="" onNext={onNextStep1}>
                             <View style={tw`mx-3`}>
                                 <View style={tw` items-center mb-7`}>
                                     <Text style={tw`text-[#000] text-[3.9] font-normal`}>Which department do you work in?</Text>
                                 </View>
                                 <View style={tw`rounded-[3]`}>
                                     <FlatList
-                                        data={DATA}
+                                        data={props?.getdepartMentlist}
                                         renderItem={renderItem}
                                         keyExtractor={item => item.id}
                                         showsHorizontalScrollIndicator={false}
@@ -199,7 +251,7 @@ const Step1 = (props) => {
 
                             </View>
                         </ProgressStep>
-                        <ProgressStep label="">
+                        <ProgressStep label="" onNext={onNextStep2}>
                             <View style={tw`mx-3`}>
                                 <View style={tw` items-center mb-7`}>
                                     <Text style={tw`text-[#000] text-[3.9] font-normal`}>Select the areas you are willing to travel</Text>
@@ -217,7 +269,7 @@ const Step1 = (props) => {
                                 </View>
                             </View>
                         </ProgressStep>
-                        <ProgressStep label="">
+                        <ProgressStep label="" onSubmit={onsubmitbtn}>
                             <View style={tw`mx-3`}>
                                 <View style={tw` items-center mb-7`}>
                                     <Text style={tw`text-[#000] text-[3.9] font-normal`}>Tab on a date to edit your availability</Text>
@@ -246,9 +298,7 @@ const Step1 = (props) => {
                         </ProgressStep>
                     </ProgressSteps>
                 </View>
-                <TouchableOpacity style={tw`bg-[#e6e6e6] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`} onPress={() => handlestepSubmit()}  >
-                    <Text style={tw`text-[#000] text-[3.5] p-3 px-15 font-normal`}>Step 2</Text>
-                </TouchableOpacity>
+                
                 <Modal
                     animationType="slide"
                     transparent={true}
@@ -289,7 +339,7 @@ const Step1 = (props) => {
                                     <Text style={tw`text-base font-normal  text-black align-middle`} numberOfLines={1} ellipsizeMode='tail' ></Text>
                                 </View>
                                 <View>
-                                    <Text style={tw`text-base font-normal  text-black align-middle`} numberOfLines={1} ellipsizeMode='tail' >Camera</Text>
+                                    <Text style={tw`text-base font-normal  text-black align-middle`} numberOfLines={1} ellipsizeMode='tail' >{deparmentname}</Text>
                                 </View>
                                 <TouchableOpacity onPress={() => setCameramodalVisible(false)}>
                                     <Image source={ImageIcons.closetoday} style={[tw`w-4 h-4`, { tintColor: '#5fafcf' }]} />
@@ -300,7 +350,17 @@ const Step1 = (props) => {
                                 <View style={tw`mx-5 my-2 items-center`}>
                                     <Text style={tw`text-[#000000]  font-normal text-[3.9]`}>Select the positions you work</Text>
                                 </View>
-                                <View style={tw`flex-row items-center my-1`}>
+                                <View>
+                                    <FlatList
+                                        data={props?.getsubdepartmentlist}
+                                        renderItem={renderItem1}
+                                        keyExtractor={item => item.id}
+                                        showsHorizontalScrollIndicator={false}
+                                    //horizontal={true}
+                                    //numColumns={3}
+                                    />
+                                </View>
+                                {/* <View style={tw`flex-row items-center my-1`}>
                                     <CheckBox
                                         value={Cinematographer}
                                         onValueChange={setCinematographer}
@@ -340,8 +400,8 @@ const Step1 = (props) => {
 
                                     />
                                     <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>Loader</Text>
-                                </View>
-                                <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`} onPress={() => setCameramodalVisible(false)}>
+                                </View> */}
+                                <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`} onPress={() => handlecameacategory()}>
                                     <Text style={tw`text-[#000] text-[3.5] p-2 px-15 font-normal`}>Save</Text>
                                 </TouchableOpacity>
 

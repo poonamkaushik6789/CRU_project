@@ -31,13 +31,13 @@ const VendorStack = (props) => {
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
             headerRight: () => (
               <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 20, height: 21, right: 20 }} />
+                <Image source={ImageIcons.womanclap} style={{ width: 30, height: 30, right: 20 }} />
               </TouchableOpacity>
             ),
             headerTitle: "Social Feed",
             headerTitleAlign: "center",
             headerTitleStyle: { color: Colors.BLACK, },
-            headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
+            headerStyle: { backgroundColor: "#fff", shadowOpacity: 0 },
           })}
         />
         <Stack.Screen

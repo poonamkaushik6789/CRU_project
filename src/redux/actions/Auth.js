@@ -8,6 +8,11 @@ import {
   SET_LOGIN_CREDENTIAL,  
   SET_NETWORK_STATE,
   SET_LOGIN_LOADER,
+  GET_DEPARTMENT_LIST,
+  GET_SUBDEPARTMENT_LIST,
+  SET_UPDATE_WORKDEPARTMENT,
+  SET_UPDATE_AREATRAVEL,
+  SET_UPDATE_ABILITY,
   USER_LOGOUT
 } from '../actions/ActionTypes';
 import { Alert } from 'react-native';
@@ -50,21 +55,114 @@ export const departmentList = () => {
       let isInternetConnected = await getState().auth?.isInternetConnected;
       if (isInternetConnected) {
           try {
-              dispatch({ type: GET_BILL_LIST, payload: true });
-              let response = await Utilise.apiCalling('GET', `${Api.getbill}`)
-              console.log("billresponse",response)
-              dispatch({ type: GET_BILL_LIST, payload: false });
+              dispatch({ type: GET_DEPARTMENT_LIST, payload: true });
+              let response = await Utilise.apiCalling('GET', `${Api.departmentlist}`)
+              console.log("DEPARTMENT_reponse",response)
+              dispatch({ type: GET_DEPARTMENT_LIST, payload: false });
               if (response?.status) {
                   
-                  dispatch({ type: GET_BILL_LIST, payload: response.data });
+                  dispatch({ type: GET_DEPARTMENT_LIST, payload: response.data.data });
                   
               } else {
-                  Alert.alert("Transport", String(response?.message))
+                  Alert.alert("Filmca", String(response?.message))
               }
           } catch (error) {
-              Alert.alert("Transport", String(error?.message))
+              Alert.alert("Filmca", String(error?.message))
           }
       };
+  }
+};
+//subdepartmentList
+export const subdepartmentList = (id) => {
+  return async (dispatch, getState) => {
+      let loginCredentials = await getState().auth?.loginCredentials;
+      let isInternetConnected = await getState().auth?.isInternetConnected;
+      if (isInternetConnected) {
+          try {
+              dispatch({ type: GET_SUBDEPARTMENT_LIST, payload: true });
+              let response = await Utilise.apiCalling('GET', `${Api.subDepartmentlist}/${id}`)
+              console.log("SUBDEPARTMENT_reponse",response)
+              dispatch({ type: GET_SUBDEPARTMENT_LIST, payload: false });
+              if (response?.status) {
+                  
+                  dispatch({ type: GET_SUBDEPARTMENT_LIST, payload: response.data.data });
+                  
+              } else {
+                  Alert.alert("Filmca", String(response?.message))
+              }
+          } catch (error) {
+              Alert.alert("Filmca", String(error?.message))
+          }
+      };
+  }
+};
+//updateWorkDepartments
+export const updateworkdepartment = (request, navigation) => {
+  console.log("requestupdatework==>", request)
+  return async (dispatch, getState) => {
+    let isInternetConnected = await getState().auth?.isInternetConnected;
+    if (isInternetConnected) {
+      try {
+        let response = await Utilise.apiCalling('POST', Api.updateWorkdepartment, request);
+        console.log("updateworkdepartment==>>", response?.data)
+
+        if (response?.status) {
+          dispatch({ type: SET_UPDATE_WORKDEPARTMENT, payload: response.data });
+        } else {
+          //alert("hello")
+          Alert.alert("Filmca", "Save successfully")
+        }
+      } catch (error) {
+        Alert.alert("Filmca", String(error?.message))
+      }
+    };
+  }
+};
+//updateAreatoTravel
+export const updateAreatoTravel = (request, navigation) => {
+  console.log("requestupdatetravel==>", request)
+  return async (dispatch, getState) => {
+    let isInternetConnected = await getState().auth?.isInternetConnected;
+    if (isInternetConnected) {
+      try {
+        let response = await Utilise.apiCalling('POST', Api.updateareatotravel, request);
+        console.log("updateareatotravel==>>", response?.data)
+
+        if (response?.status) {
+          dispatch({ type: SET_UPDATE_AREATRAVEL, payload: response.data });
+        } else {
+          //alert("hello")
+          Alert.alert("Filmca", "Save successfully")
+        }
+      } catch (error) {
+        Alert.alert("Filmca", String(error?.message))
+      }
+    };
+  }
+};
+
+//updateAvailAbilty
+export const updateAvailAbilty = (request, navigation) => {
+  console.log("requestupdateability==>", request)
+  return async (dispatch, getState) => {
+    let isInternetConnected = await getState().auth?.isInternetConnected;
+    if (isInternetConnected) {
+      try {
+        let response = await Utilise.apiCalling('POST', Api.updateAvailabilty, request);
+        console.log("updateAvailabilty==>>", response?.data)
+
+        if (response?.status) {
+          dispatch({ type: SET_UPDATE_ABILITY, payload: response.data });
+          
+        } else {
+          //alert("hello")
+          Alert.alert("Filmca", "Save successfully")
+          navigation?.navigate("Vendor")
+        }
+      } catch (error) {
+        Alert.alert("Filmca", String(error?.message))
+      }
+    };
   }
 };
 
@@ -95,10 +193,7 @@ export const login = (loginCredentials, navigation) => {
         } else if (response?.status) {
           //console.log('logindataaaa')
           dispatch({ type: SET_VERIFICAITON_STEPS, payload: 0 })
-          if (response?.data?.role === "user") {
-            Alert.alert("Filmca", "Wrong email address and password")
-            return;
-          }
+         
           dispatch(changeLoginCredentials(response?.data));
         } else {
           Alert.alert("Filmca", String(response?.message))

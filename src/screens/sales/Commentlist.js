@@ -25,9 +25,12 @@ const Commentlist = (props) => {
     handleSubmit,
   } = props;
 
+  const postid = props?.route?.params?.post_Id
+  const loginId = props?.loginCredentials?.data?._id
+  console.log("loginId===>", loginId)
   const [visible, setVisible] = React.useState(false);
   const [subMsg, onChangeText1] = React.useState("");
-  const [msg, onChangeText2] = React.useState("");
+  const [msg, setMsg] = React.useState("");
 
   const [panelProps, setPanelProps] = useState({
     fullWidth: true,
@@ -44,22 +47,24 @@ const Commentlist = (props) => {
   const [isaction, setisaction] = useState(true);
 
 
+  useEffect(() => {
+    props.commentIdlist(postid);
+    console.log("props.getcommentidlist======>>>", props?.getcommentidlist);
 
-  const openPanel = () => {
+  }, [])
 
-    setIsPanelActive(true);
-    setisaction(false);
+  const handleSubmitcomment = async () => {
+
+    let request = {
+      "post": postid,
+      "commentedBy": loginId,
+      "message": msg,
+    }
+
+    props.commentAdd(request, props.navigation)
+    setMsg('');
+    props.commentIdlist(postid);
   };
-
-  const closePanel = () => {
-    setIsPanelActive(false);
-    setisaction(true);
-
-  };
-
-  // const showisaction = () => {
-  //   setisaction(true);
-  // };
   // const hideisaction = () => {
   //   setisaction(false);
   // };
@@ -96,18 +101,23 @@ const Commentlist = (props) => {
       <View style={tw`mt-2`}>
         <TouchableOpacity onPress={() => props.navigation.navigate("Air")} style={tw`flex-row justify-between	py-5 px-4 w-full `}>
           <View style={tw`flex-row items-center ml-2 w-3/12`}>
-            <Image source={item.image} style={tw`w-20 h-20 rounded-full`} />
+            {item?.commentedBy?.profileImage != null ?
+              <Image source={{ uri: `${Api.imageUri}${item?.commentedBy?.profileImage}` }} style={tw`w-20 h-20 rounded-full`} />
+              :
+              <Image source={ImageIcons.man} style={tw`w-20 h-20 rounded-full`} />
+            }
+
           </View>
           <View style={tw`flex-row items-center w-9.2/12	`}>
             <View style={tw`ml-2 w-11.3/12`}>
               <View style={tw`flex-row items-center	justify-between `}>
-                <Text style={tw`text-[#000]	 text-[3.4] font-bold`}>{item.text}</Text>
+                <Text style={tw`text-[#000]	 text-[3.4] font-bold`}>{item?.commentedBy?.fullName}</Text>
 
                 <View style={tw`	`}>
-                  <Text style={tw`text-[#000] text-center	 text-[2.4] font-bold`}>{item.time}</Text>
+                  <Text style={tw`text-[#000] text-center	 text-[2.4] font-bold`}>{moment(item?.createdAt).startOf('hour').fromNow()}</Text>
                 </View>
               </View>
-              <Text style={tw`text-[#000] text-[3.4] font-normal`}>{item.text1}</Text>
+              <Text style={tw`text-[#000] text-[3.4] font-normal`}>{item.message}</Text>
             </View>
 
           </View>
@@ -124,17 +134,37 @@ const Commentlist = (props) => {
     <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"} style={styles.root}>
       <StatusBar backgroundColor={Colors.WHITE} barStyle="dark-content" translucent={true} />
       <ScrollView style={tw``}>
-        <View style={tw`bg-white m-4 rounded-[3]`}>
-          <FlatList
-            data={DATA}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-            showsHorizontalScrollIndicator={false}
-          />
+        <View>
+          {props?.getcommentidlist?.length > 0 ?
+            <View style={tw`bg-white m-4 mb-10 rounded-[3]`}>
+              <FlatList
+                data={props?.getcommentidlist}
+                renderItem={renderItem}
+                keyExtractor={item => item.id}
+                showsHorizontalScrollIndicator={false}
+              />
+
+            </View>
+            :
+            <Text style={tw`text-[#000] text-[5] font-bold text-center	mt-20`}>No Comment</Text>
+          }
+
         </View>
-
       </ScrollView>
-
+      <View style={tw`absolute bottom-0	 z-0	flex-1	bg-white flex-row justify-between	w-full p-2 px-4`}>
+        <View style={tw``}>
+          <TextInput
+            value={msg}
+            onChangeText={(text) => setMsg(text)}
+            placeholder="Type Your comment here..."
+            placeholderTextColor={"#000"}
+            style={{ paddingLeft: "2%", color: "#000" }}
+          ></TextInput>
+        </View>
+        <TouchableOpacity style={tw``} onPress={() => handleSubmitcomment()}>
+          <Image source={ImageIcons.Sendicon} style={[tw`w-8 h-8`, { tintColor: '#5fafcf' }]} />
+        </TouchableOpacity>
+      </View>
       <Loader />
     </KeyboardAvoidingView>
   )

@@ -143,10 +143,9 @@ const setting = require(`${assetsRootPath}setting.png`);
 const Cross = require(`${assetsRootPath}Cross.png`);
 const tik = require(`${assetsRootPath}tik.png`);
 const search = require(`${assetsRootPath}search.png`);
-const notifications = require(`${assetsRootPath}notifications.png`)
-const googlemap = require(`${assetsRootPath}googlemap.png`)
-
-
+const notifications = require(`${assetsRootPath}notifications.png`);
+const googlemap = require(`${assetsRootPath}googlemap.png`);
+const Sendicon = require(`${assetsRootPath}Sendicon.png`);
 
 
 
@@ -292,6 +291,7 @@ const ImageIcons = {
   tik,
   search,
   notifications,
-  googlemap
+  googlemap,
+  Sendicon
 };
 export default ImageIcons;
