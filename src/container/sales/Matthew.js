@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import Matthew from '../../screens/sales/Matthew';
 import {
     profiledetail,
+    updateprofile,
+    updatebackgroudimage,
+    updateabout,
+    deletepost
 } from '../../redux/actions/Vendor';
 const mapStateToProps = (state) => ({
     loginCredentials: state.auth.loginCredentials,
@@ -10,7 +14,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    profiledetail
+    profiledetail,
+    updateprofile,
+    updatebackgroudimage,
+    updateabout,
+    deletepost
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Matthew);

@@ -59,7 +59,7 @@ const Step1 = (props) => {
     const transformAnim = useRef(new Animated.Value(300)).current
 
     console.log("props======>>>", props)
-const signupId = props?.signupCredentials?.data?._id;
+    const signupId = props?.signupCredentials?.data?._id;
     useEffect(() => {
         props.departmentList();
         console.log("props.getdepartMentlist======>>>", props?.getdepartMentlist);
@@ -78,7 +78,7 @@ const signupId = props?.signupCredentials?.data?._id;
     const [products, setProducts] = useState(data);
 
     const handlecameacategory = (e) => {
-        console.log("checkbox===>>>>",e.target)
+        console.log("checkbox===>>>>", e.target)
         // let temp = products.map((product) => {
         //     console.log("checkbox===>", temp)
         //     if (id === product.id) {
@@ -88,7 +88,7 @@ const signupId = props?.signupCredentials?.data?._id;
         //     return product;
 
         // });
-       // setProducts(temp);
+        // setProducts(temp);
     };
 
 
@@ -134,21 +134,21 @@ const signupId = props?.signupCredentials?.data?._id;
                         "63e4bf0743f6ad32e81057f8"
                     ]
                 }
-            ],    
+            ],
         }
         props.updateworkdepartment(request, props.navigation);
     }
     const onNextStep2 = async () => {
         let request = {
             "_id": signupId,
-            "willingToTravel": ["kapil"],    
+            "willingToTravel": ["kapil"],
         }
         props.updateAreatoTravel(request, props.navigation);
     }
     const onsubmitbtn = async () => {
         let request = {
             "_id": signupId,
-            "availabilty": ["kapil"],    
+            "availabilty": ["kapil"],
         }
         props.updateAvailAbilty(request, props.navigation);
         setModalVisible(!modalVisible)
@@ -205,13 +205,13 @@ const signupId = props?.signupCredentials?.data?._id;
         );
     }
     const renderItem1 = ({ item, index }) => {
-console.log("checboxitem===>",item)
+        console.log("checboxitem===>", item)
         return (
             <View style={tw`flex-row items-center my-1`}>
                 <CheckBox
                     value={item.isChecked}
                     onValueChange={setCinematographer}
-                    onChange={ handlecameacategory}
+                    onChange={handlecameacategory}
                     tintColors={{ true: '#5fafcf', false: '#ccc', }}
                 />
                 <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>{item.name}</Text>
@@ -306,7 +306,7 @@ console.log("checboxitem===>",item)
                         </ProgressStep>
                     </ProgressSteps>
                 </View>
-                
+
                 <Modal
                     animationType="slide"
                     transparent={true}

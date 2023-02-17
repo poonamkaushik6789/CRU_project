@@ -146,7 +146,9 @@ const search = require(`${assetsRootPath}search.png`);
 const notifications = require(`${assetsRootPath}notifications.png`);
 const googlemap = require(`${assetsRootPath}googlemap.png`);
 const Sendicon = require(`${assetsRootPath}Sendicon.png`);
-
+const profile = require(`${assetsRootPath}profile.png`);
+const grouprofile = require(`${assetsRootPath}grouprofile.png`);
+const socialcolor = require(`${assetsRootPath}socialcolor.png`);
 
 
 const ImageIcons = {
@@ -292,6 +294,9 @@ const ImageIcons = {
   search,
   notifications,
   googlemap,
-  Sendicon
+  Sendicon,
+  profile,
+  grouprofile,
+  socialcolor,
 };
 export default ImageIcons;

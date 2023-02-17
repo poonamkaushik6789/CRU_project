@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { Text, KeyboardAvoidingView, View, TextInput, Dimensions, FlatList, StatusBar, TouchableOpacity, ScrollView, Image } from 'react-native';
-import { Fonts, Colors,Api, ImageIcons } from '../../common';
+import { Fonts, Colors, Api, ImageIcons } from '../../common';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import styles from './storestyles';
 import moment from 'moment';
+import ImagePicker from 'react-native-image-crop-picker';
 import Loader from '../../components/modals/Loader';
+import CalendarPicker from 'react-native-calendar-picker';
 import Editprofile from '../../screens/profile/Editprofile';
 import { SwipeablePanel } from 'rn-swipeable-panel';
 import { RadioButton, Provider, Portal, Button, } from 'react-native-paper';
 import Modal from 'react-native-modal'
 import { FlatListSlider } from 'react-native-flatlist-slider';
 import tw from 'twrnc';
+import Cru from './Cru';
 
 
 const Matthew = (props) => {
@@ -26,8 +29,8 @@ const Matthew = (props) => {
   } = props;
   const { width } = Dimensions.get('window');
   const [visible, setVisible] = React.useState(false);
-  const [search, setSearch] = React.useState("");
-  const [msg, onChangeText2] = React.useState("");
+  const [modalVisible, setModalVisible] = useState(false);
+  const [about, setAbout] = React.useState("");
   const [likecount, setLikecount] = React.useState(1);
   const [msgcount, setMsgcount] = React.useState(1);
 
@@ -43,15 +46,28 @@ const Matthew = (props) => {
   });
   const [isPanelActive, setIsPanelActive] = useState(false);
 
-  const [isaction, setisaction] = useState(true);
+  const [socilfeed, setSocialfeed] = useState('1');
+  const [billImgPath, setBillImgPath] = useState("");
+  const [deletepostid, setDeletepostid] = useState('');
+
 
   const loginId = props?.loginCredentials?.data?._id
+  console.log("loginId===>", loginId);
   useEffect(() => {
     props.profiledetail(loginId);
+    setAbout(props?.getprofilelist?.about);
     console.log("props.getprofilelist======>>>", props?.getprofilelist);
 
   }, [])
-
+  const onDateChange = (date, type) => {
+    //function to handle the date change
+    if (type === 'END_DATE') {
+      setSelectedEndDate(date);
+    } else {
+      setSelectedEndDate(null);
+      setSelectedStartDate(date);
+    }
+  };
   const handlelikecount = () => {
 
     setLikecount(likecount + 1)
@@ -65,9 +81,76 @@ const Matthew = (props) => {
   // const showisaction = () => {
   //   setisaction(true);
   // };
-  const handlesearch = () => {
-    setSearch("");
+  const handletabchange = (id) => {
+    setSocialfeed(id);
+    console.log("id=======<><>", id)
   };
+
+  const selectPhoto = async () => {
+    ImagePicker.openPicker({
+      width: 400,
+      cropping: true,
+      mediaType: 'photo',
+      compressImageQuality: 0.5,
+      height: 400,
+    }).then(image => {
+      if (image?.path) {
+        let fileName = image?.path?.split('/').pop();
+        let mimeType = image?.path?.split('.').pop();
+        let file = {
+          'uri': image?.path,
+          'type': `image/${mimeType}`,
+          'name': fileName
+        }
+        // setFieldValue("couponImage", file);
+        setBillImgPath(file);
+      }
+    }).catch((error) => {
+
+    });
+  }
+
+  const handleupdateprofile = async () => {
+    selectPhoto();
+
+    const formData = new FormData();
+    formData.append("_id", loginId);
+    formData.append("image", billImgPath);
+    props.updateprofile(formData, props.navigation)
+    props.profiledetail(loginId);
+  }
+
+  const handleupdatebackground = async () => {
+    selectPhoto();
+
+    const formData = new FormData();
+    formData.append("_id", loginId);
+    formData.append("image", billImgPath);
+    props.updatebackgroudimage(formData, props.navigation)
+    props.profiledetail(loginId);
+  }
+  const deletepostmodal = async (id) => {
+    setDeletepostid(id)
+    setModalVisible(true);
+
+  }
+  const handledeletepost = async () => {
+
+    props.deletepost(deletepostid)
+    setModalVisible(false);
+    props.profiledetail(loginId);
+  }
+  const handleeditabout = async () => {
+
+    let request = {
+      "_id": loginId,
+      "about": about,
+
+    }
+    props.updateabout(request, props.navigation)
+    setSocialfeed('3');
+    props.profiledetail(loginId);
+  }
   const containerStyle = { backgroundColor: 'red', padding: '7%', marginHorizontal: '5%', alignItems: 'center', };
 
   const DATA = [
@@ -87,47 +170,56 @@ const Matthew = (props) => {
   ];
   const DATA3 = [
     {
-
+      id: 1,
       image: ImageIcons.social,
+      image2: ImageIcons.socialcolor,
       text1: 'Social Feed',
 
     },
     {
+      id: 2,
       image: ImageIcons.event,
+      image2: ImageIcons.calendar_icon,
       text1: 'Calender',
 
     },
     {
+      id: 3,
       image: ImageIcons.event,
+      image2: ImageIcons.profile,
       text1: 'About',
 
     },
-    {
-      image: ImageIcons.event,
-      text1: 'About',
 
-    },
 
   ];
 
-
-
-
   const renderItem3 = ({ item, index }) => {
     return (
-      <View>
-        <View style={tw`w-30 h-38 bg-white mb-6 ml-0.5 mt-5  z-10 `} >
-          <Image source={item.image} style={tw`w-18 h-14 mt-10 mx-auto `} />
-          <Text style={tw`text-center text-black text-base font-semibold mt-1`} >{item.text1}</Text>
-
-        </View>
+      <View style={tw`my-5 justify-center	`}>
+        {socilfeed == item.id ?
+          <TouchableOpacity style={tw` bg-white ml-0.5 p-6 items-center	`} onPress={() => handletabchange(item.id)}>
+            {socilfeed == '3' &&
+              <TouchableOpacity style={tw`right-2 top-4 z-50 absolute`} onPress={() => setSocialfeed('6')}>
+                <Image source={ImageIcons.editclap} style={[tw`w-5 h-5 rounded-full`, { tintColor: '#5fafcf' }]} />
+              </TouchableOpacity>}
+            <Image source={item.image2} style={tw`w-14 h-14  `} />
+            <Text style={tw`text-center text-black text-base font-semibold `} >{item.text1}</Text>
+          </TouchableOpacity>
+          :
+          <TouchableOpacity style={tw` bg-white  ml-0.5 p-6 items-center	`} onPress={() => handletabchange(item.id)}>
+            <Image source={item.image} style={tw`w-16 h-14  `} />
+            <Text style={tw`text-center text-black text-base font-semibold `} >{item.text1}</Text>
+          </TouchableOpacity>
+        }
       </View>
     );
   }
 
   const renderItem = ({ item, index }) => {
     return (
-      <TouchableOpacity style={tw`my-2 `}>
+      <View style={tw`my-2 `}>
+
         <Text style={tw`text-[#000] text-center	 text-[3.5]  px-15 font-normal`}>{item?.userId?.fullName}</Text>
 
         <View style={tw`mt-7`}>
@@ -142,13 +234,18 @@ const Matthew = (props) => {
               <Image source={ImageIcons.timer} style={tw`w-5 h-5`} />
             </View>
           </View>
+          <TouchableOpacity style={tw`items-end	top-10 right-5 z-10 `} onPress={() => deletepostmodal(item._id)}>
+            <Image source={ImageIcons.closetoday} style={[tw`w-4 h-4`, { tintColor: '#5fafcf' }]} />
+          </TouchableOpacity>
           <View style={tw`my-2 bg-white pt-14 px-3  rounded-[2]`}>
+
             <View style={tw`py-2 `}>
               <Text style={tw`text-[#000] text-[3.3] font-normal`}>{item.description}</Text>
               <View style={tw`pt-4`}>
                 <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={tw`w-full h-90	`} />
               </View>
             </View>
+
             <View style={tw`flex-row justify-between	items-center	py-3`}>
               <View style={tw`flex-row items-center`}>
                 <TouchableOpacity style={tw`items-center`} onPress={() => handlelikecount()}>
@@ -169,7 +266,7 @@ const Matthew = (props) => {
               </View>
 
               <View style={tw`flex-row `}>
-                <TouchableOpacity style={tw`flex-row items-center`} onPress={() => props.navigation.navigate("Commentlist")}>
+                <TouchableOpacity style={tw`flex-row items-center`} onPress={() => props.navigation.navigate("Commentlist",{ post_Id: item._id })}>
 
                   <View style={tw`absolute z-0 `}>
                     <Image source={ImageIcons.man} style={tw`w-12 h-12	rounded-full`} />
@@ -178,7 +275,7 @@ const Matthew = (props) => {
                     <Image source={ImageIcons.man} style={tw`w-12 h-12	rounded-full`} />
                   </View>
                   <View style={tw`	z-20 right-12 bg-[#f2f2f2] w-12 h-12 rounded-full items-center justify-center`}>
-                    <Text>+{likecount}</Text>
+                    <Text>+{item?.comments?.length}</Text>
                   </View>
 
                 </TouchableOpacity>
@@ -190,6 +287,7 @@ const Matthew = (props) => {
             </View>
 
           </View>
+
 
         </View>
         <View>
@@ -205,7 +303,7 @@ const Matthew = (props) => {
           }
         </View>
 
-      </TouchableOpacity>
+      </View>
     );
   }
 
@@ -215,38 +313,35 @@ const Matthew = (props) => {
       <ScrollView style={{ paddingBottom: 0, marginTop: 0 }}>
         <View >
           <View>
-            <Image
-              style={tw`w-full h-45 rounded-b-full z-30 absolute`} source={ImageIcons.rawartist} ></Image>
-            <View
-              style={tw`w-95 h-75 mx-auto bg-white `}
-            // style={{width: "100%",
-            // height: 200,bagroundColor:'white',
-            // borderBottomRightRadius: width / 2,
-            // borderBottomStartRadius: width / 2,
-            // transform:[{scaleX: 2}]}}
-            >
+            {props?.getprofilelist?.coverImage != null ?
+              <Image source={{ uri: `${Api.imageUri}${props?.getprofilelist?.coverImage}` }} style={tw`w-full h-45 rounded-b-full z-30 absolute`} />
+              :
+              <Image source={ImageIcons.rawartist} style={tw`w-full h-45 rounded-b-full z-30 absolute`} />
+            }
 
-              <View style={tw`flex flex-row`}>
-                <Image style={tw`w-15 h-15 mt-47 ml-9`} source={ImageIcons.cru} ></Image>
-                <Image style={tw`w-15 h-15 mt-47 ml-43`} source={ImageIcons.cru} ></Image>
-              </View>
-              <View style={tw`flex flex-row`}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Cru")}>
-                  <Text style={tw`text-black ml-11`}>My cru</Text>
-                </TouchableOpacity>
-                <View>
-                  <Text style={tw`text-black ml-40`}>Connections</Text>
-                </View>
-              </View>
+            <View style={tw`w-95 h-75 mx-5 px-8 pt-50 flex-row	justify-between bg-white `} >
+              <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('4')}>
+                <Image style={tw`w-15 h-13 `} source={ImageIcons.cru} />
+                <Text style={tw`text-black `}>My Cru</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => setSocialfeed('5')}>
+                <Image style={[tw`w-15 h-13  `, { tintColor: '#5fafcf' }]} source={ImageIcons.grouprofile} />
+                <Text style={tw`text-black `}>Connect</Text>
+              </TouchableOpacity>
             </View>
-            
+            <TouchableOpacity style={tw`right-15 mt-33 z-60 absolute`} onPress={() => handleupdatebackground()}>
+              <Image source={ImageIcons.editclap} style={[tw`w-7 h-7 rounded-full`, { tintColor: '#5fafcf' }]} />
+            </TouchableOpacity>
             <View style={tw`ml-40 mt-33 z-50 absolute`}>
-            { props?.getprofilelist?.profileImage != null ?
+              {props?.getprofilelist?.profileImage != null ?
                 <Image source={{ uri: `${Api.imageUri}${props?.getprofilelist?.profileImage}` }} style={tw`w-30 h-30 rounded-full `} />
                 :
-                <Image source={ImageIcons.womanclap} style={tw`w-30 h-30 rounded-full `} />
+                <Image source={ImageIcons.man} style={tw`w-30 h-30 rounded-full `} />
               }
             </View>
+            <TouchableOpacity style={tw`right-34 mt-48 z-50 absolute`} onPress={() => handleupdateprofile()}>
+              <Image source={ImageIcons.editclap} style={[tw`w-7 h-7 rounded-full`, { tintColor: '#5fafcf' }]} />
+            </TouchableOpacity>
           </View>
           <View style={tw`flex flex-row mt-4 	justify-center		`}>
             <TouchableOpacity style={tw`  border-solid rounded-full bg-white`}>
@@ -266,16 +361,105 @@ const Matthew = (props) => {
             />
           </View>
         </View>
+
         <View style={tw`mx-5`}>
-          <FlatList
-            data={props?.getprofilelist?.posts}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-            showsHorizontalScrollIndicator={false}
-          />
+          {socilfeed == "1" &&
+            <FlatList
+              data={props?.getprofilelist?.posts}
+              renderItem={renderItem}
+              keyExtractor={item => item.id}
+              showsHorizontalScrollIndicator={false}
+            />
+          }
+          {socilfeed == "2" &&
+            <View style={tw`bg-[#fff] rounded-[3] flex py-5`}>
+              <CalendarPicker
+                startFromMonday={true}
+                allowRangeSelection={true}
+                minDate={moment(new Date()).toDate()}
+                maxDate={moment().add(1, 'month').toDate()}
+                weekdays={['S', 'M', 'T', 'W', 'T', 'F', 'S']}
+                months={['January', 'Februray', 'March', 'Abril', 'May', 'June', 'July', 'August', 'Setember', 'October', 'November', 'December']}
+
+                todayBackgroundColor="#e6ffe6"
+                selectedDayColor="#66ff33"
+                selectedDayTextColor="#000000"
+                scaleFactor={375}
+                textStyle={{
+                  fontFamily: 'Cochin',
+                  color: '#000000',
+                }}
+                onDateChange={onDateChange}
+              />
+            </View>
+          }
+          {socilfeed == "3" &&
+            <TouchableOpacity style={tw`	 border-solid rounded-[3] bg-white`}>
+              <Text style={tw` my-auto text-[3.8] p-7`}>{props?.getprofilelist?.about}</Text>
+            </TouchableOpacity>
+          }
+          {socilfeed == "4" &&
+            <Cru />
+
+          }
+          {socilfeed == "5" &&
+            <TouchableOpacity style={tw`mx-3	 border-solid rounded-[3] bg-white`}>
+              <Text style={tw`text-center my-auto text-xs p-2 px-3`}>Connection</Text>
+            </TouchableOpacity>
+          }
+          {socilfeed == "6" &&
+            <TouchableOpacity style={tw`	p-5 border-solid rounded-[3] bg-white items-center mb-5`}>
+              <View style={tw`border border-[#ccc] rounded-[3] w-85  pl-5`}>
+
+                <TextInput
+                  value={about}
+                  placeholder="Share work related content here..."
+                  placeholderTextColor={'#D3D3D3'}
+                  onChangeText={(text) => setAbout(text)}
+                  onSubmitEditing={() => handlenewpost()}
+                  multiline={true}
+                />
+
+              </View>
+              <TouchableOpacity onPress={() => handleeditabout()} style={tw`bg-[#fff] border-[#5fafcf] border-2 my-5	 items-center  justify-center rounded-[10] p-1 ml-4 h-12 w-45`}>
+                <Text style={tw`text-[#000] text-[3.5]  px-10 font-normal`}>Save</Text>
+              </TouchableOpacity>
+            </TouchableOpacity>
+          }
+
         </View>
 
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}
+          style={tw`m-0`} >
+          <View style={tw`flex-1	 justify-center  bg-neutral-500	`}>
+            <View style={tw`bg-white rounded-[2]  justify-center drop-shadow-xl m-4`} >
+              <View style={tw`items-center border-b border-[#ccc] p-4`}>
+                <Text style={tw`text-base font-bold  text-black `} numberOfLines={1} ellipsizeMode='tail' >Delete</Text>
+              </View>
+              <View style={tw`p-3`}>
+                <View style={tw`mx-5`}>
+                  <Text style={tw`text-[#000000] mt-1 font-normal text-[3.1]`}>Are You Sure You Want to delete this Post ?</Text>
+                </View>
+                <View style={tw`flex-row my-5 justify-around`}>
+                  <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	  justify-center rounded-[4] p-1 `} onPress={() => handledeletepost()}>
+                    <Text style={tw`text-[#000] text-[3.5] p-2 px-6 font-normal`}>Yes</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[4] p-1 `} onPress={() => { setModalVisible(false) }}>
+                    <Text style={tw`text-[#000] text-[3.5] p-2 px-10 font-normal`}>No</Text>
+                  </TouchableOpacity>
+                </View>
 
+              </View>
+            </View>
+          </View>
+
+        </Modal>
 
       </ScrollView>
       {/* <Editprofile /> */}

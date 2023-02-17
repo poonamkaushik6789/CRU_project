@@ -9,6 +9,10 @@ import {
   GET_MESSAGE_LIST,
   SET_LIKE_UNLIKE_POST,
   GET_PROFILE_LIST,
+  SET_UPDATE_PROFILE,
+  SET_UPDATE_BACKGROUND,
+  SET_UPDATE_ABOUT,
+  GET_DELETE_POST,
 } from './ActionTypes';
 import { Alert } from 'react-native';
 import { Api, Utilise } from '../../common';
@@ -297,6 +301,99 @@ export const profiledetail = (id) => {
               if (response?.status) {
                   
                   dispatch({ type: GET_PROFILE_LIST, payload: response.data.data });
+                  
+              } else {
+                  Alert.alert("Filmca", String(response?.message))
+              }
+          } catch (error) {
+              Alert.alert("Filmca", String(error?.message))
+          }
+      };
+  }
+};
+//updateProfileImage 
+export const updateprofile = (request, navigation) => {
+  console.log("updateProfileImagerequest==>", request)
+  return async (dispatch, getState) => {
+    let isInternetConnected = await getState().auth?.isInternetConnected;
+    if (isInternetConnected) {
+      try {
+        let response = await Utilise.apiCalling('POST', Api.updateProfileImage, request);
+        console.log("updateProfileImage==>>", response?.data)
+
+        if (response?.status) {
+          dispatch({ type: SET_UPDATE_PROFILE, payload: response.data });
+          
+        } else {
+          //alert("hello")
+          Alert.alert("Filmca", "Save successfully")
+        }
+      } catch (error) {
+        Alert.alert("Filmca", String(error?.message))
+      }
+    };
+  }
+};
+//updatecoverImage 
+export const updatebackgroudimage = (request, navigation) => {
+  console.log("updatebackgroudimageresponse==>", request)
+  return async (dispatch, getState) => {
+    let isInternetConnected = await getState().auth?.isInternetConnected;
+    if (isInternetConnected) {
+      try {
+        let response = await Utilise.apiCalling('POST', Api.updatecoverImage, request);
+        console.log("updatebackgroudimage==>>", response?.data)
+
+        if (response?.status) {
+          dispatch({ type: SET_UPDATE_BACKGROUND, payload: response.data });
+          
+        } else {
+          //alert("hello")
+          Alert.alert("Filmca", "Save successfully")
+        }
+      } catch (error) {
+        Alert.alert("Filmca", String(error?.message))
+      }
+    };
+  }
+};
+//updateuserAbout updateabout
+export const updateabout = (request, navigation) => {
+  console.log("updatebackgroudimageresponse==>", request)
+  return async (dispatch, getState) => {
+    let isInternetConnected = await getState().auth?.isInternetConnected;
+    if (isInternetConnected) {
+      try {
+        let response = await Utilise.apiCalling('POST', Api.updateuserAbout, request);
+        console.log("updatebackgroudimage==>>", response?.data)
+
+        if (response?.status) {
+          dispatch({ type: SET_UPDATE_ABOUT, payload: response.data });
+          
+        } else {
+          //alert("hello")
+          Alert.alert("Filmca", "Save successfully")
+        }
+      } catch (error) {
+        Alert.alert("Filmca", String(error?.message))
+      }
+    };
+  }
+};
+//deletePost
+export const deletepost = (id) => {
+  return async (dispatch, getState) => {
+      let loginCredentials = await getState().auth?.loginCredentials;
+      let isInternetConnected = await getState().auth?.isInternetConnected;
+      if (isInternetConnected) {
+          try {
+              dispatch({ type: GET_DELETE_POST, payload: true });
+              let response = await Utilise.apiCalling('GET', `${Api.deletePost}/${id}`)
+              console.log("deletepost==>>>",response)
+              dispatch({ type: GET_DELETE_POST, payload: false });
+              if (response?.status) {
+                  
+                  dispatch({ type: GET_DELETE_POST, payload: response.data.data });
                   
               } else {
                   Alert.alert("Filmca", String(response?.message))

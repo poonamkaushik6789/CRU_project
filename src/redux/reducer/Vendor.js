@@ -14,6 +14,10 @@ import {
     GET_MESSAGE_LIST,
     SET_LIKE_UNLIKE_POST,
     GET_PROFILE_LIST,
+    SET_UPDATE_PROFILE,
+    SET_UPDATE_BACKGROUND,
+    SET_UPDATE_ABOUT,
+    GET_DELETE_POST,
 } from '../actions/ActionTypes';
 
 // Redux states
@@ -28,6 +32,10 @@ const initialState = {
     grtpostdetail: [],
     getcommentidlist: [],
     getprofilelist:[],
+    profileupdate:false,
+    backgroundupdate:false,
+    updateabout:false,
+    postdelete:false,
 };
 
 const Vendor = (state = initialState, action) => {
@@ -81,26 +89,27 @@ const Vendor = (state = initialState, action) => {
             ...state,
             getprofilelist: action.payload,
         };
-        // case SET_COMMENT_POST:
-        // return {
-        //     ...state,
-        //     newcomment: action.payload,
-        // };
-        // case SET_COMMENT_POST:
-        // return {
-        //     ...state,
-        //     newcomment: action.payload,
-        // };
+        case SET_UPDATE_PROFILE:
+        return {
+            ...state,
+            profileupdate: action.payload,
+        };
+        case SET_UPDATE_BACKGROUND:
+        return {
+            ...state,
+            backgroundupdate: action.payload,
+        };
 
-        // case SET_COMMENT_POST:
-        // return {
-        //     ...state,
-        //     newcomment: action.payload,
-        // };case SET_COMMENT_POST:
-        // return {
-        //     ...state,
-        //     newcomment: action.payload,
-        // };
+        case SET_UPDATE_ABOUT:
+        return {
+            ...state,
+            updateabout: action.payload,
+        };
+        case GET_DELETE_POST:
+        return {
+            ...state,
+            postdelete: action.payload,
+        };
 
         case GET_POSTDETAIL_LIST:
             return {
