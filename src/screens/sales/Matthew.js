@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Text, KeyboardAvoidingView, View, TextInput, Dimensions, FlatList, StatusBar, TouchableOpacity, ScrollView, Image } from 'react-native';
-import { Fonts, Colors, ImageIcons } from '../../common';
+import { Fonts, Colors,Api, ImageIcons } from '../../common';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -16,7 +16,7 @@ import { FlatListSlider } from 'react-native-flatlist-slider';
 import tw from 'twrnc';
 
 
-const Vendor = (props) => {
+const Matthew = (props) => {
   const {
     navigation,
     values,
@@ -45,13 +45,13 @@ const Vendor = (props) => {
 
   const [isaction, setisaction] = useState(true);
 
+  const loginId = props?.loginCredentials?.data?._id
+  useEffect(() => {
+    props.profiledetail(loginId);
+    console.log("props.getprofilelist======>>>", props?.getprofilelist);
 
+  }, [])
 
-  const openPanel = () => {
-
-    setIsPanelActive(true);
-    setisaction(false);
-  };
   const handlelikecount = () => {
 
     setLikecount(likecount + 1)
@@ -128,40 +128,40 @@ const Vendor = (props) => {
   const renderItem = ({ item, index }) => {
     return (
       <TouchableOpacity style={tw`my-2 `}>
-        <Text style={tw`text-[#000] text-center	 text-[3.5]  px-15 font-normal`}>{item.name}</Text>
+        <Text style={tw`text-[#000] text-center	 text-[3.5]  px-15 font-normal`}>{item?.userId?.fullName}</Text>
 
         <View style={tw`mt-7`}>
 
           <View style={tw`flex-row justify-between mx-4 `}>
             <View style={tw`flex-row`}>
               <Image source={ImageIcons.calendar_icon} style={tw`w-4 h-4`} />
-              <Text style={tw`text-[#000] text-center	 text-[2.6] px-1 font-normal`}>{item.days}</Text>
+              <Text style={tw`text-[#000] text-center	 text-[2.6] px-1 font-normal`}>{moment(item?.createdAt).format('dddd')}</Text>
             </View>
             <View style={tw`flex-row`}>
-              <Text style={tw`text-[#000] text-center	 text-[2.6] px-1 font-normal`}>{item.time}</Text>
+              <Text style={tw`text-[#000] text-center	 text-[2.6] px-1 font-normal`}>{moment(item?.createdAt).startOf('hour').fromNow()}</Text>
               <Image source={ImageIcons.timer} style={tw`w-5 h-5`} />
             </View>
           </View>
-          <View style={tw`my-2 bg-white pt-14 px-3 mx-auto rounded-[2]`}>
+          <View style={tw`my-2 bg-white pt-14 px-3  rounded-[2]`}>
             <View style={tw`py-2 `}>
-              <Text style={tw`text-[#000] text-[3.3] font-normal`}>{item.message}</Text>
+              <Text style={tw`text-[#000] text-[3.3] font-normal`}>{item.description}</Text>
               <View style={tw`pt-4`}>
-                <Image source={item.image} style={tw`w-full h-fit	`} />
+                <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={tw`w-full h-90	`} />
               </View>
             </View>
             <View style={tw`flex-row justify-between	items-center	py-3`}>
               <View style={tw`flex-row items-center`}>
                 <TouchableOpacity style={tw`items-center`} onPress={() => handlelikecount()}>
-                  <Image source={item.likeimg} style={tw`w-8 h-8	`} />
+                  <Image source={ImageIcons.like} style={tw`w-8 h-8	`} />
                 </TouchableOpacity>
                 <TouchableOpacity style={tw`flex-row ml-2 items-center`} onPress={() => props.navigation.navigate("Likelist")}>
-                  <View style={tw`	z-[20]`}>
-                    <Image source={item.profile} style={tw`w-12 h-12 rounded-full`} />
+                  <View style={tw`	z-20`}>
+                    <Image source={ImageIcons.man} style={tw`w-12 h-12 rounded-full`} />
                   </View>
-                  <View style={tw`absolute	z-[10] left-6`}>
-                    <Image source={item.profile} style={tw`w-12 h-12	rounded-full`} />
+                  <View style={tw`absolute	z-10 left-6`}>
+                    <Image source={ImageIcons.man} style={tw`w-12 h-12	rounded-full`} />
                   </View>
-                  <View style={tw`absolute z-[0] left-12 bg-[#f2f2f2] w-12 h-12 rounded-full items-center justify-center`}>
+                  <View style={tw`absolute z-0 left-12 bg-[#f2f2f2] w-12 h-12 rounded-full items-center justify-center`}>
                     <Text>+{likecount}</Text>
                   </View>
                 </TouchableOpacity>
@@ -171,19 +171,19 @@ const Vendor = (props) => {
               <View style={tw`flex-row `}>
                 <TouchableOpacity style={tw`flex-row items-center`} onPress={() => props.navigation.navigate("Commentlist")}>
 
-                  <View style={tw`absolute z-[0] `}>
-                    <Image source={item.profile} style={tw`w-12 h-12	rounded-full`} />
+                  <View style={tw`absolute z-0 `}>
+                    <Image source={ImageIcons.man} style={tw`w-12 h-12	rounded-full`} />
                   </View>
-                  <View style={tw`absolute	z-[10] right-6`}>
-                    <Image source={item.profile} style={tw`w-12 h-12	rounded-full`} />
+                  <View style={tw`absolute	z-10 right-6`}>
+                    <Image source={ImageIcons.man} style={tw`w-12 h-12	rounded-full`} />
                   </View>
-                  <View style={tw`	z-[20] right-12 bg-[#f2f2f2] w-12 h-12 rounded-full items-center justify-center`}>
+                  <View style={tw`	z-20 right-12 bg-[#f2f2f2] w-12 h-12 rounded-full items-center justify-center`}>
                     <Text>+{likecount}</Text>
                   </View>
 
                 </TouchableOpacity>
                 <TouchableOpacity style={tw`ml-0 `} onPress={() => handleMsgcount()}>
-                  <Image source={item.chatimg} style={[tw`w-13 h-13	`, { tintColor: '#5fafcf' }]} />
+                  <Image source={ImageIcons.chat} style={[tw`w-13 h-13	`, { tintColor: '#5fafcf' }]} />
                 </TouchableOpacity>
               </View>
 
@@ -198,9 +198,11 @@ const Vendor = (props) => {
         <View style={tw`absolute  inset-x-0.7/2	 top-8		 `}>
           {/* <View style={tw`w-3 h-3 bg-[#ff0000] rounded-full absolute left-15 `}></View> */}
           <View style={tw`w-3 h-3 bg-[#008000] rounded-full absolute left-17 `}></View>
-          <View>
-            <Image source={item.profile} style={tw`w-24 h-24 rounded-full	mt-1`} />
-          </View>
+          {item?.userId?.profileImage != null ?
+            <Image source={{ uri: `${Api.imageUri}${item?.userId?.profileImage}` }} style={tw`w-24 h-24 rounded-full	mt-1`} />
+            :
+            <Image source={ImageIcons.man} style={tw`w-24 h-24 rounded-full	mt-1`} />
+          }
         </View>
 
       </TouchableOpacity>
@@ -237,8 +239,13 @@ const Vendor = (props) => {
                 </View>
               </View>
             </View>
-            <View style={tw`ml-40 mt-33 absolute`}>
-              <Image style={tw`w-25 h-30 rounded-full z-50 absolute`} source={ImageIcons.womanclap} ></Image>
+            
+            <View style={tw`ml-40 mt-33 z-50 absolute`}>
+            { props?.getprofilelist?.profileImage != null ?
+                <Image source={{ uri: `${Api.imageUri}${props?.getprofilelist?.profileImage}` }} style={tw`w-30 h-30 rounded-full `} />
+                :
+                <Image source={ImageIcons.womanclap} style={tw`w-30 h-30 rounded-full `} />
+              }
             </View>
           </View>
           <View style={tw`flex flex-row mt-4 	justify-center		`}>
@@ -261,7 +268,7 @@ const Vendor = (props) => {
         </View>
         <View style={tw`mx-5`}>
           <FlatList
-            data={DATA}
+            data={props?.getprofilelist?.posts}
             renderItem={renderItem}
             keyExtractor={item => item.id}
             showsHorizontalScrollIndicator={false}
@@ -277,4 +284,4 @@ const Vendor = (props) => {
   )
 }
 
-export default Vendor;
+export default Matthew;

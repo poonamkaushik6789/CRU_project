@@ -235,7 +235,6 @@ const Vendor = (props) => {
                 value={description}
                 placeholder="Share work related content here..."
                 placeholderTextColor={'#D3D3D3'}
-
                 onChangeText={(text) => setDescription(text)}
                 onSubmitEditing={() => handlenewpost()}
               />

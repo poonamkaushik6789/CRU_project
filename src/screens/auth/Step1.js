@@ -126,7 +126,15 @@ const signupId = props?.signupCredentials?.data?._id;
     const onNextStep1 = async () => {
         let request = {
             "_id": signupId,
-            "workDepartments": ["63e4bebf43f6ad32e81057f4"],    
+            "workDepartments": [
+                {
+                    "department": "63e4b6a243f6ad32e81057e5",
+                    "position": [
+                        "63e4bf1a43f6ad32e81057f9",
+                        "63e4bf0743f6ad32e81057f8"
+                    ]
+                }
+            ],    
         }
         props.updateworkdepartment(request, props.navigation);
     }
