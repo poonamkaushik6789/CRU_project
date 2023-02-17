@@ -18,6 +18,7 @@ const Stack = createStackNavigator();
 
 const VendorStack = (props) => {
   const { navigation } = props;
+  
 
   return (
     <>
