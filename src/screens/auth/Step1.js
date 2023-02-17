@@ -197,7 +197,7 @@ const signupId = props?.signupCredentials?.data?._id;
 
         return (
             <View style={tw`bg-[#fff]  flex items-center`}>
-                <TouchableOpacity style={tw`border  border-[#ccc] w-33 items-center p-5`} onPress={() => handledeparment(item._id, item.departmentName)}>
+                <TouchableOpacity style={tw`border  border-[#ccc] w-28 items-center p-4`} onPress={() => handledeparment(item._id, item.departmentName)}>
                     <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-13 h-13 `, { tintColor: '#5fafcf' }]} />
                     <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>{item.departmentName}</Text>
                 </TouchableOpacity>
