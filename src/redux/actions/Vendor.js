@@ -8,6 +8,7 @@ import {
   SET_SEND_MESSAGE,
   GET_MESSAGE_LIST,
   SET_LIKE_UNLIKE_POST,
+  GET_PROFILE_LIST,
 } from './ActionTypes';
 import { Alert } from 'react-native';
 import { Api, Utilise } from '../../common';
@@ -280,5 +281,29 @@ export const likeunlikepost = (request, navigation) => {
         Alert.alert("Filmca", String(error?.message))
       }
     };
+  }
+};
+//viewprofile 
+export const profiledetail = (id) => {
+  return async (dispatch, getState) => {
+      let loginCredentials = await getState().auth?.loginCredentials;
+      let isInternetConnected = await getState().auth?.isInternetConnected;
+      if (isInternetConnected) {
+          try {
+              dispatch({ type: GET_PROFILE_LIST, payload: true });
+              let response = await Utilise.apiCalling('GET', `${Api.viewprofile}/${id}`)
+              console.log("viewprofile_reponse",response)
+              dispatch({ type: GET_PROFILE_LIST, payload: false });
+              if (response?.status) {
+                  
+                  dispatch({ type: GET_PROFILE_LIST, payload: response.data.data });
+                  
+              } else {
+                  Alert.alert("Filmca", String(response?.message))
+              }
+          } catch (error) {
+              Alert.alert("Filmca", String(error?.message))
+          }
+      };
   }
 };

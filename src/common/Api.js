@@ -1,8 +1,8 @@
 //const projectUri = `https://devvca.pushcord.com:8000/vca-front/api/v1.0/ui/front`; //Production server URL
 //const baseUri = `http://3.133.223.72/api/`; //Production server URL
-const baseUri = `http://192.168.1.6:7889/v1`;
+const baseUri = `http://192.168.1.5:7889/v1`;
 //const baseUri = `https://api.wallpon.com/v1`;
-const imageUri = `http://192.168.1.6:7889/`;
+const imageUri = `http://192.168.1.5:7889/`;
 
 const api = {
   baseUri,imageUri,
@@ -21,8 +21,16 @@ const api = {
   sendmessage: `/users/sendMessage`,
   messagelist: `/users/messageList`,
   likeUnlikepost: `/users/likeUnlikePost`,
-  //login: `${baseUri}/auth/login`,
-  // businessList:`${projectUri}/tab-web-list`
+  viewprofile: `/users/viewProfile`,
+  // addcomment: `/users/addComment`,
+  // sendmessage: `/users/sendMessage`,
+  // messagelist: `/users/messageList`,
+  // likeUnlikepost: `/users/likeUnlikePost`,
+  // commentlistid: `/users/commentList`,
+  // addcomment: `/users/addComment`,
+  // sendmessage: `/users/sendMessage`,
+  // messagelist: `/users/messageList`,
+  // likeUnlikepost: `/users/likeUnlikePost`,
 };
 
 export default api; 

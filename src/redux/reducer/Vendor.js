@@ -13,6 +13,7 @@ import {
     SET_SEND_MESSAGE,
     GET_MESSAGE_LIST,
     SET_LIKE_UNLIKE_POST,
+    GET_PROFILE_LIST,
 } from '../actions/ActionTypes';
 
 // Redux states
@@ -26,6 +27,7 @@ const initialState = {
     getpostlist: [],
     grtpostdetail: [],
     getcommentidlist: [],
+    getprofilelist:[],
 };
 
 const Vendor = (state = initialState, action) => {
@@ -74,11 +76,11 @@ const Vendor = (state = initialState, action) => {
             ...state,
             postlikeunlike: action.payload,
         };
-        // case SET_COMMENT_POST:
-        // return {
-        //     ...state,
-        //     newcomment: action.payload,
-        // };
+        case GET_PROFILE_LIST:
+        return {
+            ...state,
+            getprofilelist: action.payload,
+        };
         // case SET_COMMENT_POST:
         // return {
         //     ...state,
