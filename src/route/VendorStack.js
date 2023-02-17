@@ -13,13 +13,16 @@ import {
 } from 'react-native-responsive-screen';
 import { Vendor, Ucsafe, Safeservice, Massagewomen, Massagemen, Hairwomen, Cleankitbath, Plumber, waterpurifier, Cleaning, Homerepair, Pestcontrol,Editprofile, Search, Help, Commentlist, EventScreen, Searchloc, Reportlisting, Eventdetail, Gysercondition, Profile, Washing, Water, Appliances, Aircondition, Waterpurifier, Likelist, Gyser, Matthew, Notifications, Cru , Camera,Viewall, Projects,Searchjobs,Lighting,Jobdetails1,Locator,Projectdetails,Glynden,Messages, Glyndenprofile } from '../container'
 import { Colors, Fonts, ImageIcons } from '../common';
+import { connect, useSelector } from 'react-redux';
+
+
 
 const Stack = createStackNavigator();
 
 const VendorStack = (props) => {
   const { navigation } = props;
-  
-
+  const  profilename  = useSelector(state => state.vendor);
+console.log("profilename===>>",profilename)
   return (
     <>
       <Stack.Navigator
@@ -55,7 +58,7 @@ const VendorStack = (props) => {
             ),
             headerShown: true,
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
-            headerTitle: "Matthew Grace",
+            headerTitle: profilename?.getprofilelist?.fullName,
             headerTitleAlign: "center",
             headerTitleStyle: { color: Colors.BLACK, },
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
@@ -296,7 +299,7 @@ const VendorStack = (props) => {
             ),
             headerShown: true,
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
-            headerTitle: "Glynden Kenzie",
+            headerTitle: profilename?.grtpostdetail?.fullName,
             headerTitleAlign: "center",
             headerTitleStyle: { color: Colors.BLACK, },
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
