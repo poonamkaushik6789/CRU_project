@@ -55,6 +55,9 @@ const Matthew = (props) => {
   console.log("loginId===>", loginId);
   useEffect(() => {
     props.profiledetail(loginId);
+    props.mycrulist(loginId);
+    props.mynetworklist(loginId);
+    console.log("props.getmynetworklist======>>>", props?.getmynetworklist);
     setAbout(props?.getprofilelist?.about);
     console.log("props.getprofilelist======>>>", props?.getprofilelist);
 
@@ -134,6 +137,8 @@ const Matthew = (props) => {
     setModalVisible(true);
 
   }
+
+
   const handledeletepost = async () => {
 
     props.deletepost(deletepostid)
@@ -168,6 +173,25 @@ const Matthew = (props) => {
       text3: "Organization Actions",
     },
   ];
+  const DATA2 = [
+    {
+
+      image: ImageIcons.social,
+      text1: 'Camera operator',
+
+    },
+    {
+      image: ImageIcons.event,
+      text1: 'Cinematographer',
+
+    },
+    {
+      image: ImageIcons.event,
+      text1: 'Gaffer',
+
+    },
+
+  ];
   const DATA3 = [
     {
       id: 1,
@@ -193,6 +217,43 @@ const Matthew = (props) => {
 
 
   ];
+  const renderItemnetwork = ({ item, index }) => {
+
+    return (
+      <View style={tw`bg-[#fff]  flex items-center`}>
+        <TouchableOpacity style={tw`border  border-[#ccc] w-32 items-center py-4`} 
+        //onPress={() => handledeparment(item._id, item.departmentName)}
+        >
+          <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-12 h-12 `, { tintColor: '#5fafcf' }]} />
+          <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>{item.departmentName}</Text>
+          <Text style={tw`text-[#000] text-[3.5] font-normal`}>{item?.user?.length}</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+  const renderItemcru = ({ item, index }) => {
+
+    return (
+      <View style={tw`bg-[#fff]  flex items-center`}>
+        <TouchableOpacity style={tw`border  border-[#ccc] w-32 items-center py-4`} 
+        //onPress={() => handledeparment(item._id, item.departmentName)}
+        >
+          <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-12 h-12 `, { tintColor: '#5fafcf' }]} />
+          <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>{item.departmentName}</Text>
+          <Text style={tw`text-[#000] text-[3.5] font-normal`}>{item?.user?.length}</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+  const renderItem1 = ({ item, index }) => {
+    return (
+      <View >
+        <TouchableOpacity style={tw`  border-solid rounded-full mx-2 bg-white`}>
+          <Text style={tw`text-center my-auto text-xs p-2 px-3`}>{item.text1}</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 
   const renderItem3 = ({ item, index }) => {
     return (
@@ -266,7 +327,7 @@ const Matthew = (props) => {
               </View>
 
               <View style={tw`flex-row `}>
-                <TouchableOpacity style={tw`flex-row items-center`} onPress={() => props.navigation.navigate("Commentlist",{ post_Id: item._id })}>
+                <TouchableOpacity style={tw`flex-row items-center`} onPress={() => props.navigation.navigate("Commentlist", { post_Id: item._id })}>
 
                   <View style={tw`absolute z-0 `}>
                     <Image source={ImageIcons.man} style={tw`w-12 h-12	rounded-full`} />
@@ -319,20 +380,20 @@ const Matthew = (props) => {
               <Image source={ImageIcons.rawartist} style={tw`w-full h-45 rounded-b-full z-30 absolute`} />
             }
 
-            <View style={tw`w-95 h-75 mx-5 px-8 pt-50 flex-row	justify-between bg-white `} >
+            <View style={tw`w-95 h-75 mx-5 px-5 pt-50 flex-row	justify-between bg-white `} >
               <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('4')}>
                 <Image style={tw`w-15 h-13 `} source={ImageIcons.cru} />
                 <Text style={tw`text-black `}>My Cru</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => setSocialfeed('5')}>
+              <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('5')}>
                 <Image style={[tw`w-15 h-13  `, { tintColor: '#5fafcf' }]} source={ImageIcons.grouprofile} />
-                <Text style={tw`text-black `}>Connect</Text>
+                <Text style={tw`text-black `}>Connections</Text>
               </TouchableOpacity>
             </View>
             <TouchableOpacity style={tw`right-15 mt-33 z-60 absolute`} onPress={() => handleupdatebackground()}>
               <Image source={ImageIcons.editclap} style={[tw`w-7 h-7 rounded-full`, { tintColor: '#5fafcf' }]} />
             </TouchableOpacity>
-            <View style={tw`ml-40 mt-33 z-50 absolute`}>
+            <View style={tw`inset-x-39	 mt-33 z-50 absolute`}>
               {props?.getprofilelist?.profileImage != null ?
                 <Image source={{ uri: `${Api.imageUri}${props?.getprofilelist?.profileImage}` }} style={tw`w-30 h-30 rounded-full `} />
                 :
@@ -343,14 +404,13 @@ const Matthew = (props) => {
               <Image source={ImageIcons.editclap} style={[tw`w-7 h-7 rounded-full`, { tintColor: '#5fafcf' }]} />
             </TouchableOpacity>
           </View>
-          <View style={tw`flex flex-row mt-4 	justify-center		`}>
-            <TouchableOpacity style={tw`  border-solid rounded-full bg-white`}>
-              <Text style={tw`text-center my-auto text-xs p-2 px-3`}>camera operator</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={tw`mx-3	 border-solid rounded-full bg-white`}>
-              <Text style={tw`text-center my-auto text-xs p-2 px-3`}>cinematographer</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={tw` border-solid rounded-full bg-white`}><Text style={tw`text-center my-auto text-xs p-2 px-3`}>Gaffer</Text></TouchableOpacity>
+          <View style={tw`ml-5 mt-5`}>
+            <FlatList
+              horizontal={true}
+              data={DATA2}
+              renderItem={renderItem1}
+              keyExtractor={item => item.id}
+            />
           </View>
           <View style={tw`ml-5`}>
             <FlatList
@@ -399,13 +459,35 @@ const Matthew = (props) => {
             </TouchableOpacity>
           }
           {socilfeed == "4" &&
-            <Cru />
+            <View style={tw`rounded-[3]`}>
+              <FlatList
+                data={props?.getmycrulist}
+                renderItem={renderItemcru}
+                keyExtractor={item => item.id}
+                showsHorizontalScrollIndicator={false}
+                //horizontal={true}
+                numColumns={3}
+              />
+              <View style={tw`  bg-white my-5 rounded-lg`}>
+                <Text style={tw`text-center py-5 text-base`}>Total:13</Text>
+              </View>
+            </View>
 
           }
           {socilfeed == "5" &&
-            <TouchableOpacity style={tw`mx-3	 border-solid rounded-[3] bg-white`}>
-              <Text style={tw`text-center my-auto text-xs p-2 px-3`}>Connection</Text>
-            </TouchableOpacity>
+            <View style={tw`rounded-[3]`}>
+            <FlatList
+              data={props?.getmynetworklist}
+              renderItem={renderItemnetwork}
+              keyExtractor={item => item.id}
+              showsHorizontalScrollIndicator={false}
+              //horizontal={true}
+              numColumns={3}
+            />
+            <View style={tw`  bg-white my-5 rounded-lg`}>
+              <Text style={tw`text-center py-5 text-base`}>Total:13</Text>
+            </View>
+          </View>
           }
           {socilfeed == "6" &&
             <TouchableOpacity style={tw`	p-5 border-solid rounded-[3] bg-white items-center mb-5`}>
@@ -438,7 +520,7 @@ const Matthew = (props) => {
           }}
           style={tw`m-0`} >
           <View style={tw`flex-1	 justify-center  bg-neutral-500	`}>
-            <View style={tw`bg-white rounded-[2]  justify-center drop-shadow-xl m-4`} >
+            <View style={tw`bg-white rounded-[2]  justify-center  m-4`} >
               <View style={tw`items-center border-b border-[#ccc] p-4`}>
                 <Text style={tw`text-base font-bold  text-black `} numberOfLines={1} ellipsizeMode='tail' >Delete</Text>
               </View>

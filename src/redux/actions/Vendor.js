@@ -13,6 +13,9 @@ import {
   SET_UPDATE_BACKGROUND,
   SET_UPDATE_ABOUT,
   GET_DELETE_POST,
+  SET_NETWORK_CRU,
+  GET_CRU_LIST,
+  GET_NETWORK_LIST,
 } from './ActionTypes';
 import { Alert } from 'react-native';
 import { Api, Utilise } from '../../common';
@@ -294,7 +297,7 @@ export const profiledetail = (id) => {
       let isInternetConnected = await getState().auth?.isInternetConnected;
       if (isInternetConnected) {
           try {
-              dispatch({ type: GET_PROFILE_LIST, payload: true });
+              dispatch({ type: GET_PROFILE_LIST, payload: [] });
               let response = await Utilise.apiCalling('GET', `${Api.viewprofile}/${id}`)
               console.log("viewprofile_reponse",response)
               dispatch({ type: GET_PROFILE_LIST, payload: false });
@@ -394,6 +397,77 @@ export const deletepost = (id) => {
               if (response?.status) {
                   
                   dispatch({ type: GET_DELETE_POST, payload: response.data.data });
+                  
+              } else {
+                  Alert.alert("Filmca", String(response?.message))
+              }
+          } catch (error) {
+              Alert.alert("Filmca", String(error?.message))
+          }
+      };
+  }
+};
+//addnetworkCru 
+export const addNetworkCru = (request, navigation) => {
+  console.log("addnetworkCruresponse==>", request)
+  return async (dispatch, getState) => {
+    let isInternetConnected = await getState().auth?.isInternetConnected;
+    if (isInternetConnected) {
+      try {
+        let response = await Utilise.apiCalling('POST', Api.addnetworkCru, request);
+        console.log("addnetworkCru==>>", response?.data)
+
+        if (response?.status) {
+          dispatch({ type: SET_NETWORK_CRU, payload: response.data });
+          
+        } else {
+          //alert("hello")
+          Alert.alert("Filmca", "Save successfully")
+        }
+      } catch (error) {
+        Alert.alert("Filmca", String(error?.message))
+      }
+    };
+  }
+};
+//mycru mycrulist
+export const mycrulist = (id) => {
+  return async (dispatch, getState) => {
+      let loginCredentials = await getState().auth?.loginCredentials;
+      let isInternetConnected = await getState().auth?.isInternetConnected;
+      if (isInternetConnected) {
+          try {
+              dispatch({ type: GET_CRU_LIST, payload: true });
+              let response = await Utilise.apiCalling('GET', `${Api.mycru}/${id}`)
+              console.log("mycru==>>>",response)
+              dispatch({ type: GET_CRU_LIST, payload: false });
+              if (response?.status) {
+                  
+                  dispatch({ type: GET_CRU_LIST, payload: response.data.data });
+                  
+              } else {
+                  Alert.alert("Filmca", String(response?.message))
+              }
+          } catch (error) {
+              Alert.alert("Filmca", String(error?.message))
+          }
+      };
+  }
+};
+//mynetwork
+export const mynetworklist = (id) => {
+  return async (dispatch, getState) => {
+      let loginCredentials = await getState().auth?.loginCredentials;
+      let isInternetConnected = await getState().auth?.isInternetConnected;
+      if (isInternetConnected) {
+          try {
+              dispatch({ type: GET_NETWORK_LIST, payload: true });
+              let response = await Utilise.apiCalling('GET', `${Api.mynetwork}/${id}`)
+              console.log("mynetworklist==>>>",response)
+              dispatch({ type: GET_NETWORK_LIST, payload: false });
+              if (response?.status) {
+                  
+                  dispatch({ type: GET_NETWORK_LIST, payload: response.data.data });
                   
               } else {
                   Alert.alert("Filmca", String(response?.message))

@@ -18,6 +18,9 @@ import {
     SET_UPDATE_BACKGROUND,
     SET_UPDATE_ABOUT,
     GET_DELETE_POST,
+    SET_NETWORK_CRU,
+    GET_CRU_LIST,
+    GET_NETWORK_LIST,
 } from '../actions/ActionTypes';
 
 // Redux states
@@ -25,17 +28,20 @@ const initialState = {
     businessList: [],
     newpost: false,
     newcomment: false,
-    messagesend:false,
-    postlikeunlike:false,
-    getmessagelist:[],
+    messagesend: false,
+    postlikeunlike: false,
+    getmessagelist: [],
     getpostlist: [],
     grtpostdetail: [],
     getcommentidlist: [],
-    getprofilelist:[],
-    profileupdate:false,
-    backgroundupdate:false,
-    updateabout:false,
-    postdelete:false,
+    getprofilelist: [],
+    profileupdate: false,
+    backgroundupdate: false,
+    updateabout: false,
+    postdelete: false,
+    networktocru: false,
+    getmycrulist:[],
+    getmynetworklist:[],
 };
 
 const Vendor = (state = initialState, action) => {
@@ -75,41 +81,98 @@ const Vendor = (state = initialState, action) => {
                 messagesend: action.payload,
             };
         case GET_MESSAGE_LIST:
-        return {
-            ...state,
-            getmessagelist: action.payload,
-        };
+            return {
+                ...state,
+                getmessagelist: action.payload,
+            };
         case SET_LIKE_UNLIKE_POST:
-        return {
-            ...state,
-            postlikeunlike: action.payload,
-        };
+            return {
+                ...state,
+                postlikeunlike: action.payload,
+            };
         case GET_PROFILE_LIST:
-        return {
-            ...state,
-            getprofilelist: action.payload,
-        };
+            return {
+                ...state,
+                getprofilelist: action.payload,
+            };
         case SET_UPDATE_PROFILE:
-        return {
-            ...state,
-            profileupdate: action.payload,
-        };
+            return {
+                ...state,
+                profileupdate: action.payload,
+            };
         case SET_UPDATE_BACKGROUND:
-        return {
-            ...state,
-            backgroundupdate: action.payload,
-        };
+            return {
+                ...state,
+                backgroundupdate: action.payload,
+            };
 
         case SET_UPDATE_ABOUT:
-        return {
-            ...state,
-            updateabout: action.payload,
-        };
+            return {
+                ...state,
+                updateabout: action.payload,
+            };
         case GET_DELETE_POST:
+            return {
+                ...state,
+                postdelete: action.payload,
+            };
+
+        case SET_NETWORK_CRU:
+            return {
+                ...state,
+                networktocru: action.payload,
+            };
+        case GET_CRU_LIST:
         return {
             ...state,
-            postdelete: action.payload,
+            getmycrulist: action.payload,
         };
+        case GET_NETWORK_LIST:
+        return {
+            ...state,
+            getmynetworklist: action.payload,
+        };
+        // case SET_UPDATE_ABOUT:
+        // return {
+        //     ...state,
+        //     updateabout: action.payload,
+        // };
+        // case SET_UPDATE_ABOUT:
+        // return {
+        //     ...state,
+        //     updateabout: action.payload,
+        // };
+        // case SET_UPDATE_ABOUT:
+        // return {
+        //     ...state,
+        //     updateabout: action.payload,
+        // };
+        // case SET_UPDATE_ABOUT:
+        // return {
+        //     ...state,
+        //     updateabout: action.payload,
+        // };
+        // case SET_UPDATE_ABOUT:
+        // return {
+        //     ...state,
+        //     updateabout: action.payload,
+        // };
+        // case SET_UPDATE_ABOUT:
+        // return {
+        //     ...state,
+        //     updateabout: action.payload,
+        // };
+
+        // case SET_UPDATE_ABOUT:
+        // return {
+        //     ...state,
+        //     updateabout: action.payload,
+        // };
+        // case SET_UPDATE_ABOUT:
+        // return {
+        //     ...state,
+        //     updateabout: action.payload,
+        // };
 
         case GET_POSTDETAIL_LIST:
             return {

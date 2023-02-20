@@ -6,13 +6,13 @@ Created Date: 01/06/2022
 
 import React, { Fragment, useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { TouchableOpacity, Text,View, Image, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, View, Image, StyleSheet } from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { Vendor, Ucsafe, Safeservice, Massagewomen, Massagemen, Hairwomen, Cleankitbath, Plumber, waterpurifier, Cleaning, Homerepair, Pestcontrol,Editprofile, Search, Help, Commentlist, EventScreen, Searchloc, Reportlisting, Eventdetail, Gysercondition, Profile, Washing, Water, Appliances, Aircondition, Waterpurifier, Likelist, Gyser, Matthew, Notifications, Cru , Camera,Viewall, Projects,Searchjobs,Lighting,Jobdetails1,Locator,Projectdetails,Glynden,Messages, Glyndenprofile } from '../container'
-import { Colors, Fonts, ImageIcons } from '../common';
+import { Vendor, Ucsafe, Safeservice, Massagewomen, Massagemen, Hairwomen, Cleankitbath, Plumber, waterpurifier, Cleaning, Homerepair, Pestcontrol, Editprofile, Search, Help, Commentlist, EventScreen, Searchloc, Reportlisting, Eventdetail, Gysercondition, Profile, Washing, Water, Appliances, Aircondition, Waterpurifier, Likelist, Gyser, Matthew, Notifications, Cru, Camera, Viewall, Projects, Searchjobs, Lighting, Jobdetails1, Locator, Projectdetails, Glynden, Messages, Glyndenprofile } from '../container'
+import { Colors, Fonts, ImageIcons, Api } from '../common';
 import { connect, useSelector } from 'react-redux';
 
 
@@ -21,8 +21,8 @@ const Stack = createStackNavigator();
 
 const VendorStack = (props) => {
   const { navigation } = props;
-  const  profilename  = useSelector(state => state.vendor);
-console.log("profilename===>>",profilename)
+  const profilename = useSelector(state => state.vendor);
+  //console.log("profilename===>>",profilename)
   return (
     <>
       <Stack.Navigator
@@ -34,9 +34,17 @@ console.log("profilename===>>",profilename)
             headerShown: true,
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
             headerRight: () => (
-              <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 30, height: 30, right: 20 }} />
-              </TouchableOpacity>
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
+              </View>
             ),
             headerTitle: "Social Feed",
             headerTitleAlign: "center",
@@ -49,11 +57,16 @@ console.log("profilename===>>",profilename)
           component={Matthew}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -69,11 +82,16 @@ console.log("profilename===>>",profilename)
           component={Notifications}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -89,11 +107,16 @@ console.log("profilename===>>",profilename)
           component={Messages}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -109,11 +132,16 @@ console.log("profilename===>>",profilename)
           component={Cru}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -129,11 +157,16 @@ console.log("profilename===>>",profilename)
           component={Camera}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -149,11 +182,16 @@ console.log("profilename===>>",profilename)
           component={Viewall}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-               <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -169,11 +207,16 @@ console.log("profilename===>>",profilename)
           component={Projects}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -189,11 +232,16 @@ console.log("profilename===>>",profilename)
           component={Searchjobs}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -204,17 +252,22 @@ console.log("profilename===>>",profilename)
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
-       
+
         <Stack.Screen
           name="Lighting"
           component={Lighting}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-               <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -230,11 +283,16 @@ console.log("profilename===>>",profilename)
           component={Jobdetails1}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-               <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -250,11 +308,16 @@ console.log("profilename===>>",profilename)
           component={Locator}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-               <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -265,16 +328,21 @@ console.log("profilename===>>",profilename)
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="Projectdetails"
           component={Projectdetails}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -290,11 +358,16 @@ console.log("profilename===>>",profilename)
           component={Glyndenprofile}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -310,11 +383,16 @@ console.log("profilename===>>",profilename)
           component={Glynden}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -332,10 +410,16 @@ console.log("profilename===>>",profilename)
           component={Searchloc}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <Image source={ImageIcons.mor} style={{ width: 20, height: 21, right: 20 }} />
-                <Image source={ImageIcons.moreoption1} style={{ width: 22, height: 20, right: 10 }} />
-                <Image source={ImageIcons.threedot} style={{ width: 22, height: 20, right: 5 }} />
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: false,
@@ -371,14 +455,18 @@ console.log("profilename===>>",profilename)
           name="EventScreen"
           component={EventScreen}
           options={({ navigation }) => ({
-             headerRight: () => (
-               <View style={{flexDirection:'row'}}>
-              <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-            {/* //   <Image source={ImageIcons.moreoption1} style={{width:22,height:20,right:10}}  /> */}
-            {/* //   <Image source={ImageIcons.threedot} style={{width:22,height:20,right:5}}  /> */}
-               </View>
+            headerRight: () => (
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
+              </View>
             ),
             headerShown: true,
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
@@ -393,13 +481,17 @@ console.log("profilename===>>",profilename)
           name="Eventdetail"
           component={Eventdetail}
           options={({ navigation }) => ({
-             headerRight: () => (
-               <View style={{flexDirection:'row'}}>
-              <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-              {/* <Image source={ImageIcons.moreoption1} style={{width:22,height:20,right:10}}  />
-              <Image source={ImageIcons.threedot} style={{width:22,height:20,right:5}}  /> */}
+            headerRight: () => (
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -416,10 +508,16 @@ console.log("profilename===>>",profilename)
           component={Likelist}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-              <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -495,12 +593,17 @@ console.log("profilename===>>",profilename)
           name="Commentlist"
           component={Commentlist}
           options={({ navigation }) => ({
-             headerRight: () => (
-               <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-            <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-              
+            headerRight: () => (
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -597,10 +700,16 @@ console.log("profilename===>>",profilename)
           component={Editprofile}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <Image source={ImageIcons.mor} style={{ width: 20, height: 21, right: 20 }} />
-                <Image source={ImageIcons.moreoption1} style={{ width: 22, height: 20, right: 10 }} />
-                <Image source={ImageIcons.threedot} style={{ width: 22, height: 20, right: 5 }} />
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
