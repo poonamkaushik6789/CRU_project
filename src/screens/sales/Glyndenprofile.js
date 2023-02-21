@@ -40,7 +40,8 @@ const Glyndenprofile = (props) => {
   const [msgcount, setMsgcount] = React.useState(1);
   const [checked, setChecked] = React.useState('network');
   const [socilfeed, setSocialfeed] = useState('1');
-
+  const [selectedStartDate, setSelectedStartDate] = useState(null);
+  const [selectedEndDate, setSelectedEndDate] = useState(null);
 
   const [panelProps, setPanelProps] = useState({
     fullWidth: true,

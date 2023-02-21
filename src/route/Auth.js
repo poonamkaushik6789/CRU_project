@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { TouchableOpacity, Text } from 'react-native';
 import {
+  Filmcascreen,
   Registration,
   Login,
   OTPVerification,
@@ -21,6 +22,11 @@ const Auth = (props) => {
   return (
     <Stack.Navigator
     >
+    <Stack.Screen
+        name="Filmcascreen"
+        component={Filmcascreen}
+        options={{ title: '', headerShown: false }}
+      />
       <Stack.Screen
         name="Login"
         component={Login}

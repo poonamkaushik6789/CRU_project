@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Text, KeyboardAvoidingView, View, TextInput, FlatList, StatusBar, TouchableOpacity, ScrollView, Image } from 'react-native';
-import { Fonts, Colors, ImageIcons,Api } from '../../common';
+import { Fonts, Colors, ImageIcons, Api } from '../../common';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -107,7 +107,7 @@ const Messages = (props) => {
       <View>
         <TouchableOpacity onPress={() => props.navigation.navigate("Glynden")}>
 
-          <View style={tw`bg-white rounded 	 flex-row mb-0.5 p-2 py-4`} >
+          <View style={tw`bg-white rounded w-99	 flex-row mb-0.5 p-2 py-4`} >
             <View style={tw`w-18 items-center`}>
               {item?.fromUser?.profileImage != null ?
                 <Image source={{ uri: `${Api.imageUri}${item?.fromUser?.profileImage}` }} style={tw`w-15 h-15 rounded-full	mt-1`} />
@@ -115,16 +115,16 @@ const Messages = (props) => {
                 <Image source={ImageIcons.man} style={tw`w-15 h-15 rounded-full	mt-1`} />
               }
             </View>
-            <View style={tw`flex-row justify-between	w-75`}>
-            <View style={tw` `}>
-              <Text style={tw` text-black text-base font-bold ml-2`} >{item?.fromUser?.fullName}</Text>
-              <Text style={tw`text-[#808080] text-sm font-semibold  ml-2`} >{item.message}</Text>
+            <View style={tw`flex-row justify-between	w-80 pr-3`}>
+              <View style={tw`w-50 `}>
+                <Text style={tw` text-black text-base font-bold ml-2`} >{item?.fromUser?.fullName}</Text>
+                <Text style={tw`text-[#808080] text-sm font-semibold  ml-2`} >{item.message}</Text>
+              </View>
+              <View style={tw`w-20 	`}>
+                <Text style={tw`text-center text-black text-xs text-right	 font-semibold  `} >{moment(item?.createdAt).startOf('hour').fromNow()}</Text>
+              </View>
             </View>
-            <View style={tw`w-20 	`}>
-              <Text style={tw`text-center text-black text-xs text-right	 font-semibold  `} >{moment(item?.createdAt).startOf('hour').fromNow()}</Text>
-            </View>
-            </View>
-            
+
           </View>
         </TouchableOpacity>
       </View>

@@ -4,16 +4,16 @@ import { Colors, Fonts } from '../../../common'
 
 const styles = StyleSheet.create({
     root: {
-        paddingVertical: Platform.OS === "ios" ? 25 : 20,// 15 ,// '6.5%',
+        paddingVertical: Platform.OS === "ios" ? 20 : 15,// 15 ,// '6.5%',
         backgroundColor: Colors.BLUE,
         borderRadius: 30,
-        marginHorizontal: 20,
+        //marginHorizontal: 10,
     },
     outline: {
-        paddingVertical: Platform.OS === "ios" ? 25 : 20,
+        paddingVertical: Platform.OS === "ios" ? 20 : 15,
         // backgroundColor: Colors.BLUE,
         borderRadius: 30,
-        marginHorizontal: 20,
+        //marginHorizontal: 10,
         borderColor: Colors.BLUE,
         borderWidth: 1
     },
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         fontFamily: Fonts.QuestrialRegular,
-        paddingHorizontal: 5
+        paddingHorizontal: 8
     },
     outlineButtonText: {
         color: Colors.BLUE,

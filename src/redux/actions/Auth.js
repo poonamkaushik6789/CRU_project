@@ -173,18 +173,14 @@ export const login = (loginCredentials, navigation) => {
     let isInternetConnected = await getState().auth?.isInternetConnected;
     if (isInternetConnected) {
       try {
-
-       // alert('sdfdsf')
-       
-        dispatch({ type: SET_LOGIN_LOADER, payload: false });
-        dispatch(changeLoginCredentials(response?.data));
-        dispatch({ type: SET_LOGIN_CREDENTIAL, payload: response?.data });
+        dispatch({ type: SET_LOGIN_LOADER, payload: true });
         let response = await Utilise.apiCalling('POST', Api.login, loginCredentials);
         //alert(isInternetConnected)
         console.log('response::::',response);
         
         dispatch({ type: SET_LOGIN_LOADER, payload: false });
         if (response?.status) {
+          response.data.isVerified = true;
           dispatch({ type: SET_LOGIN_CREDENTIAL, payload: response?.data });
           dispatch(changeLoginCredentials(response?.data));
           //navigation.navigate("Login");

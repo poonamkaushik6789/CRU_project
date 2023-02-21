@@ -1,3 +1,4 @@
+import Filmcascreen from './auth/Filmcascreen';
 import Login from './auth/Login';
 import Forgotpassword from './auth/Forgotpassword';
 import Registration from './auth/Registration';
@@ -54,6 +55,7 @@ import Messages from './sales/Messages';
 
 
 export {
+    Filmcascreen,
     Login,
     Forgotpassword,
     Registration,

@@ -33,6 +33,8 @@ const Matthew = (props) => {
   const [about, setAbout] = React.useState("");
   const [likecount, setLikecount] = React.useState(1);
   const [msgcount, setMsgcount] = React.useState(1);
+  const [selectedStartDate, setSelectedStartDate] = useState(null);
+  const [selectedEndDate, setSelectedEndDate] = useState(null);
 
   const [panelProps, setPanelProps] = useState({
     fullWidth: true,
@@ -221,7 +223,7 @@ const Matthew = (props) => {
 
     return (
       <View style={tw`bg-[#fff]  flex items-center`}>
-        <TouchableOpacity style={tw`border  border-[#ccc] w-32 items-center py-4`} 
+        <TouchableOpacity style={tw`border  border-[#ccc] w-32 items-center py-4`}
         //onPress={() => handledeparment(item._id, item.departmentName)}
         >
           <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-12 h-12 `, { tintColor: '#5fafcf' }]} />
@@ -235,7 +237,7 @@ const Matthew = (props) => {
 
     return (
       <View style={tw`bg-[#fff]  flex items-center`}>
-        <TouchableOpacity style={tw`border  border-[#ccc] w-32 items-center py-4`} 
+        <TouchableOpacity style={tw`border  border-[#ccc] w-32 items-center py-4`}
         //onPress={() => handledeparment(item._id, item.departmentName)}
         >
           <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-12 h-12 `, { tintColor: '#5fafcf' }]} />
@@ -476,18 +478,18 @@ const Matthew = (props) => {
           }
           {socilfeed == "5" &&
             <View style={tw`rounded-[3]`}>
-            <FlatList
-              data={props?.getmynetworklist}
-              renderItem={renderItemnetwork}
-              keyExtractor={item => item.id}
-              showsHorizontalScrollIndicator={false}
-              //horizontal={true}
-              numColumns={3}
-            />
-            <View style={tw`  bg-white my-5 rounded-lg`}>
-              <Text style={tw`text-center py-5 text-base`}>Total:13</Text>
+              <FlatList
+                data={props?.getmynetworklist}
+                renderItem={renderItemnetwork}
+                keyExtractor={item => item.id}
+                showsHorizontalScrollIndicator={false}
+                //horizontal={true}
+                numColumns={3}
+              />
+              <View style={tw`  bg-white my-5 rounded-lg`}>
+                <Text style={tw`text-center py-5 text-base`}>Total:13</Text>
+              </View>
             </View>
-          </View>
           }
           {socilfeed == "6" &&
             <TouchableOpacity style={tw`	p-5 border-solid rounded-[3] bg-white items-center mb-5`}>

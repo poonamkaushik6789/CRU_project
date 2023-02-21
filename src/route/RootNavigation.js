@@ -65,11 +65,12 @@ const RootNavigation = (props) => {
     } else {
 
         // console.log('loginCredentials123',loginCredentials)
-        // console.log('loginCredentialsstatus',loginCredentials?.status)
+         //console.log('loginCredentialsstatus',loginCredentials?.status)
+         console.log("loginCredentials?.data?.isVerified==>",loginCredentials?.data?.isVerified)
         return (
             <NavigationContainer >
-                {(!loginCredentials) && <Auth />}
-                {(loginCredentials) && <CustomDrawer />}                
+                {(!loginCredentials || !loginCredentials?.data?.isVerified) && <Auth />}
+                {(loginCredentials && loginCredentials?.data?.isVerified) && <CustomDrawer />}                
             </NavigationContainer>
         );
     }
