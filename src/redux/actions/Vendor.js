@@ -16,6 +16,9 @@ import {
   SET_NETWORK_CRU,
   GET_CRU_LIST,
   GET_NETWORK_LIST,
+  GET_EVENT_CATEGORY,
+  GET_EVENT_LIST,
+  GET_EVENTDETAIL_LIST,
 } from './ActionTypes';
 import { Alert } from 'react-native';
 import { Api, Utilise } from '../../common';
@@ -468,6 +471,78 @@ export const mynetworklist = (id) => {
               if (response?.status) {
                   
                   dispatch({ type: GET_NETWORK_LIST, payload: response.data.data });
+                  
+              } else {
+                  Alert.alert("Filmca", String(response?.message))
+              }
+          } catch (error) {
+              Alert.alert("Filmca", String(error?.message))
+          }
+      };
+  }
+};
+//eventcategory 
+export const geteventcategory = () => {
+  return async (dispatch, getState) => {
+      let loginCredentials = await getState().auth?.loginCredentials;
+      let isInternetConnected = await getState().auth?.isInternetConnected;
+      if (isInternetConnected) {
+          try {
+              dispatch({ type: GET_EVENT_CATEGORY, payload: true });
+              let response = await Utilise.apiCalling('GET', `${Api.eventcategory}`)
+              console.log("geteventcategory_reponse",response)
+              dispatch({ type: GET_EVENT_CATEGORY, payload: false });
+              if (response?.status) {
+                  
+                  dispatch({ type: GET_EVENT_CATEGORY, payload: response.data.data });
+                  
+              } else {
+                  Alert.alert("Filmca", String(response?.message))
+              }
+          } catch (error) {
+              Alert.alert("Filmca", String(error?.message))
+          }
+      };
+  }
+};
+// eventlist
+export const getevent = () => {
+  return async (dispatch, getState) => {
+      let loginCredentials = await getState().auth?.loginCredentials;
+      let isInternetConnected = await getState().auth?.isInternetConnected;
+      if (isInternetConnected) {
+          try {
+              dispatch({ type: GET_EVENT_LIST, payload: true });
+              let response = await Utilise.apiCalling('GET', `${Api.eventlist}`)
+              console.log("eventlist_reponse",response)
+              dispatch({ type: GET_EVENT_LIST, payload: false });
+              if (response?.status) {
+                  
+                  dispatch({ type: GET_EVENT_LIST, payload: response.data.data });
+                  
+              } else {
+                  Alert.alert("Filmca", String(response?.message))
+              }
+          } catch (error) {
+              Alert.alert("Filmca", String(error?.message))
+          }
+      };
+  }
+};
+//eventdetail
+export const geteventdetail = (id) => {
+  return async (dispatch, getState) => {
+      let loginCredentials = await getState().auth?.loginCredentials;
+      let isInternetConnected = await getState().auth?.isInternetConnected;
+      if (isInternetConnected) {
+          try {
+              dispatch({ type: GET_EVENTDETAIL_LIST, payload: true });
+              let response = await Utilise.apiCalling('GET', `${Api.eventdetail}/${id}`)
+              console.log("eventdetail_reponse",response)
+              dispatch({ type: GET_EVENTDETAIL_LIST, payload: false });
+              if (response?.status) {
+                  
+                  dispatch({ type: GET_EVENTDETAIL_LIST, payload: response.data.data });
                   
               } else {
                   Alert.alert("Filmca", String(response?.message))

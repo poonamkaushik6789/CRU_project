@@ -1,15 +1,19 @@
 
 import { connect } from 'react-redux';
 import Eventdetail from '../../screens/sales/Eventdetail';
+import {
+    geteventdetail,
+   
+} from '../../redux/actions/Vendor';
 
 const mapStateToProps = (state) => ({
     loginCredentials: state.auth.loginCredentials,
-    //redeemedCouponTrackingData: state.coupon.redeemedCouponTrackingData,
-    //redeemedCouponTrackingLoader: state.coupon.redeemedCouponTrackingLoader
+    geteventdetaillist: state.vendor.geteventdetaillist,
+
 });
 
 const mapDispatchToProps = {
-    
+    geteventdetail
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Eventdetail);

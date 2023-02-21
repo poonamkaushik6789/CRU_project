@@ -1,8 +1,8 @@
 //const projectUri = `https://devvca.pushcord.com:8000/vca-front/api/v1.0/ui/front`; //Production server URL
 //const baseUri = `http://3.133.223.72/api/`; //Production server URL
-const baseUri = `http://192.168.1.13:7889/v1`;
+const baseUri = `http://192.168.1.11:7889/v1`;
 //const baseUri = `https://api.wallpon.com/v1`;
-const imageUri = `http://192.168.1.13:7889/`;
+const imageUri = `http://192.168.1.11:7889/`;
 
 const api = {
   baseUri, imageUri,
@@ -29,7 +29,23 @@ const api = {
   addnetworkCru: `/users/addToNetworkOrCru`,
   mycru: `/users/myCru`,
   mynetwork: `/users/myNetwork`,
-  // messagelist: `/users/messageList`,
+  eventcategory: `/users/eventCategory`,
+  eventlist: `/users/events`,
+  eventdetail: `/users/eventDetail`,
+  // mynetwork: `/users/myNetwork`,
+  //  messagelist: `/users/eventCategory`,
+  // addnetworkCru: `/users/addToNetworkOrCru`,
+  // mycru: `/users/myCru`,
+  // mynetwork: `/users/myNetwork`,
+  //  messagelist: `/users/eventCategory`,
+  // addnetworkCru: `/users/addToNetworkOrCru`,
+  // mycru: `/users/myCru`,
+  // mynetwork: `/users/myNetwork`,
+  //  messagelist: `/users/eventCategory`,
+  // addnetworkCru: `/users/addToNetworkOrCru`,
+  // mycru: `/users/myCru`,
+  // mynetwork: `/users/myNetwork`,
+  //  messagelist: `/users/eventCategory`,
   // likeUnlikepost: `/users/likeUnlikePost`,
 };
 

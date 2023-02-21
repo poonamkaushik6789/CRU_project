@@ -66,7 +66,7 @@ const Cru = (props) => {
 
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"} style={styles.root}>
-        
+        <ScrollView >
                 <View style={tw`rounded-[3] mx-3 my-5`}>
                     <FlatList
                         data={props?.getmycrulist}
@@ -86,7 +86,7 @@ const Cru = (props) => {
                         <Text style={tw`text-center py-4 text-base`}>New Project</Text>
                     </TouchableOpacity>
                 </View>
-
+                </ScrollView>
             <Loader />
         </KeyboardAvoidingView>
     )

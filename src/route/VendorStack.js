@@ -498,7 +498,7 @@ const VendorStack = (props) => {
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={false} />,
             headerTitle: "Event Detail",
             headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, left: '-20%' },
+            headerTitleStyle: { color: Colors.BLACK,  },
             headerStyle: { backgroundColor: "#fff", elevation: 4, shadowOpacity: 0, },
           })}
         />
@@ -929,7 +929,7 @@ const LeftMenuItem = ({ navigation, isMenu }) => {
       }}
       style={styles.leftButton}
     >
-      <Image source={isMenu ? ImageIcons.menuIcon : ImageIcons.backIcon} style={[styles.leftIcon, { tintColor: isMenu ? Colors.BLACK : Colors.WHITE }]} />
+      <Image source={isMenu ? ImageIcons.menuIcon : ImageIcons.backarrow} style={[styles.leftIcon, { tintColor: isMenu ? '#5fafcf' : '#5fafcf' },{width: isMenu ? wp('5%') : wp('3%')}]} />
     </TouchableOpacity>
   )
 }
@@ -946,7 +946,7 @@ const LeftMenuItem1 = ({ navigation, isMenu }) => {
       }}
       style={styles.leftButton}
     >
-      <Image source={isMenu ? ImageIcons.menuIcon : ImageIcons.backIcon} style={[styles.leftIcon, { tintColor: isMenu ? Colors.BLACK : Colors.WHITE }]} />
+      <Image source={isMenu ? ImageIcons.menuIcon : ImageIcons.backarrow} style={[styles.leftIcon, { tintColor: isMenu ? Colors.BLACK : '#5fafcf' },{width: isMenu ? wp('5%') : wp('3%')}]} />
     </TouchableOpacity>
   )
 }
@@ -959,10 +959,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   leftIcon: {
-    width: wp('5%'),
+    
     height: wp('5%'),
     marginLeft: 15,
-    tintColor: Colors.WHITE
+    tintColor: '#5fafcf'
   }
 });
 

@@ -28,7 +28,9 @@ const Vendor = (props) => {
     handleChange,
     handleSubmit,
   } = props;
-
+  
+  console.log("props=====>>>>>", props)
+  const loginId = props?.loginCredentials?.data?._id
   const [visible, setVisible] = React.useState(false);
   const [description, setDescription] = React.useState("");
   const [msg, onChangeText2] = React.useState("");
@@ -54,8 +56,7 @@ const Vendor = (props) => {
   const [isPanelActive, setIsPanelActive] = useState(false);
 
   const [isaction, setisaction] = useState(true);
-  console.log("props=====>>>>>", props)
-  const loginId = props?.loginCredentials?.data?._id
+  
 
   const openPanel = () => {
 

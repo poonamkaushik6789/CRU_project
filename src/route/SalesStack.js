@@ -769,7 +769,7 @@ const LeftMenuItem = ({ navigation, isMenu }) => {
       }}
       style={styles.leftButton}
     >
-      <Image source={isMenu ? ImageIcons.menuIcon : ImageIcons.backIcon} style={[styles.leftIcon, { tintColor: isMenu ? Colors.BLACK : Colors.BLACK }]} />
+      <Image source={isMenu ? ImageIcons.menuIcon : ImageIcons.backarrow} style={[styles.leftIcon, { tintColor: isMenu ? Colors.BLACK : Colors.BLACK }]} />
     </TouchableOpacity>
   )
 }
