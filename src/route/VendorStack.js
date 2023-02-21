@@ -6,20 +6,23 @@ Created Date: 01/06/2022
 
 import React, { Fragment, useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { TouchableOpacity, Text,View, Image, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, View, Image, StyleSheet } from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { Vendor, Ucsafe, Safeservice, Massagewomen, Massagemen, Hairwomen, Cleankitbath, Plumber, waterpurifier, Cleaning, Homerepair, Pestcontrol,Editprofile, Search, Help, Commentlist, EventScreen, Searchloc, Reportlisting, Eventdetail, Gysercondition, Profile, Washing, Water, Appliances, Aircondition, Waterpurifier, Likelist, Gyser, Matthew, Notifications, Cru , Camera,Viewall, Projects,Searchjobs,Lighting,Jobdetails1,Locator,Projectdetails,Glynden,Messages, Glyndenprofile } from '../container'
-import { Colors, Fonts, ImageIcons } from '../common';
+import { Vendor, Ucsafe, Safeservice, Massagewomen, Massagemen, Hairwomen, Cleankitbath, Plumber, waterpurifier, Cleaning, Homerepair, Pestcontrol, Editprofile, Search, Help, Commentlist, EventScreen, Searchloc, Reportlisting, Eventdetail, Gysercondition, Profile, Washing, Water, Appliances, Aircondition, Waterpurifier, Likelist, Gyser, Matthew, Notifications, Cru, Camera, Viewall, Projects, Searchjobs, Lighting, Jobdetails1, Locator, Projectdetails, Glynden, Messages, Glyndenprofile } from '../container'
+import { Colors, Fonts, ImageIcons, Api } from '../common';
+import { connect, useSelector } from 'react-redux';
+
+
 
 const Stack = createStackNavigator();
 
 const VendorStack = (props) => {
   const { navigation } = props;
-  
-
+  const profilename = useSelector(state => state.vendor);
+  //console.log("profilename===>>",profilename)
   return (
     <>
       <Stack.Navigator
@@ -31,9 +34,17 @@ const VendorStack = (props) => {
             headerShown: true,
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
             headerRight: () => (
-              <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 30, height: 30, right: 20 }} />
-              </TouchableOpacity>
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
+              </View>
             ),
             headerTitle: "Social Feed",
             headerTitleAlign: "center",
@@ -46,16 +57,21 @@ const VendorStack = (props) => {
           component={Matthew}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
-            headerTitle: "Matthew Grace",
+            headerTitle: profilename?.getprofilelist?.fullName,
             headerTitleAlign: "center",
             headerTitleStyle: { color: Colors.BLACK, },
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
@@ -66,11 +82,16 @@ const VendorStack = (props) => {
           component={Notifications}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -86,11 +107,16 @@ const VendorStack = (props) => {
           component={Messages}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -106,11 +132,16 @@ const VendorStack = (props) => {
           component={Cru}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -126,11 +157,16 @@ const VendorStack = (props) => {
           component={Camera}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -146,11 +182,16 @@ const VendorStack = (props) => {
           component={Viewall}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-               <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -166,11 +207,16 @@ const VendorStack = (props) => {
           component={Projects}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -186,11 +232,16 @@ const VendorStack = (props) => {
           component={Searchjobs}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -201,17 +252,22 @@ const VendorStack = (props) => {
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
-       
+
         <Stack.Screen
           name="Lighting"
           component={Lighting}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-               <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -227,11 +283,16 @@ const VendorStack = (props) => {
           component={Jobdetails1}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-               <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -247,11 +308,16 @@ const VendorStack = (props) => {
           component={Locator}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-               <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -262,16 +328,21 @@ const VendorStack = (props) => {
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="Projectdetails"
           component={Projectdetails}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -287,16 +358,21 @@ const VendorStack = (props) => {
           component={Glyndenprofile}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
-            headerTitle: "Glynden Kenzie",
+            headerTitle: profilename?.grtpostdetail?.fullName,
             headerTitleAlign: "center",
             headerTitleStyle: { color: Colors.BLACK, },
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
@@ -307,11 +383,16 @@ const VendorStack = (props) => {
           component={Glynden}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-                
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -329,10 +410,16 @@ const VendorStack = (props) => {
           component={Searchloc}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <Image source={ImageIcons.mor} style={{ width: 20, height: 21, right: 20 }} />
-                <Image source={ImageIcons.moreoption1} style={{ width: 22, height: 20, right: 10 }} />
-                <Image source={ImageIcons.threedot} style={{ width: 22, height: 20, right: 5 }} />
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: false,
@@ -368,14 +455,18 @@ const VendorStack = (props) => {
           name="EventScreen"
           component={EventScreen}
           options={({ navigation }) => ({
-             headerRight: () => (
-               <View style={{flexDirection:'row'}}>
-              <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-            {/* //   <Image source={ImageIcons.moreoption1} style={{width:22,height:20,right:10}}  /> */}
-            {/* //   <Image source={ImageIcons.threedot} style={{width:22,height:20,right:5}}  /> */}
-               </View>
+            headerRight: () => (
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
+              </View>
             ),
             headerShown: true,
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
@@ -390,20 +481,24 @@ const VendorStack = (props) => {
           name="Eventdetail"
           component={Eventdetail}
           options={({ navigation }) => ({
-             headerRight: () => (
-               <View style={{flexDirection:'row'}}>
-              <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-              {/* <Image source={ImageIcons.moreoption1} style={{width:22,height:20,right:10}}  />
-              <Image source={ImageIcons.threedot} style={{width:22,height:20,right:5}}  /> */}
+            headerRight: () => (
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={false} />,
             headerTitle: "Event Detail",
             headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, left: '-20%' },
+            headerTitleStyle: { color: Colors.BLACK,  },
             headerStyle: { backgroundColor: "#fff", elevation: 4, shadowOpacity: 0, },
           })}
         />
@@ -413,10 +508,16 @@ const VendorStack = (props) => {
           component={Likelist}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-              <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -492,12 +593,17 @@ const VendorStack = (props) => {
           name="Commentlist"
           component={Commentlist}
           options={({ navigation }) => ({
-             headerRight: () => (
-               <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-            <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
-                <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius:100}} />
-                </TouchableOpacity>
-              
+            headerRight: () => (
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -594,10 +700,16 @@ const VendorStack = (props) => {
           component={Editprofile}
           options={({ navigation }) => ({
             headerRight: () => (
-              <View style={{ flexDirection: 'row' }}>
-                <Image source={ImageIcons.mor} style={{ width: 20, height: 21, right: 20 }} />
-                <Image source={ImageIcons.moreoption1} style={{ width: 22, height: 20, right: 10 }} />
-                <Image source={ImageIcons.threedot} style={{ width: 22, height: 20, right: 5 }} />
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
               </View>
             ),
             headerShown: true,
@@ -817,7 +929,7 @@ const LeftMenuItem = ({ navigation, isMenu }) => {
       }}
       style={styles.leftButton}
     >
-      <Image source={isMenu ? ImageIcons.menuIcon : ImageIcons.backIcon} style={[styles.leftIcon, { tintColor: isMenu ? Colors.BLACK : Colors.WHITE }]} />
+      <Image source={isMenu ? ImageIcons.menuIcon : ImageIcons.backarrow} style={[styles.leftIcon, { tintColor: isMenu ? '#5fafcf' : '#5fafcf' },{width: isMenu ? wp('5%') : wp('3%')}]} />
     </TouchableOpacity>
   )
 }
@@ -834,7 +946,7 @@ const LeftMenuItem1 = ({ navigation, isMenu }) => {
       }}
       style={styles.leftButton}
     >
-      <Image source={isMenu ? ImageIcons.menuIcon : ImageIcons.backIcon} style={[styles.leftIcon, { tintColor: isMenu ? Colors.BLACK : Colors.WHITE }]} />
+      <Image source={isMenu ? ImageIcons.menuIcon : ImageIcons.backarrow} style={[styles.leftIcon, { tintColor: isMenu ? Colors.BLACK : '#5fafcf' },{width: isMenu ? wp('5%') : wp('3%')}]} />
     </TouchableOpacity>
   )
 }
@@ -847,10 +959,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   leftIcon: {
-    width: wp('5%'),
+    
     height: wp('5%'),
     marginLeft: 15,
-    tintColor: Colors.WHITE
+    tintColor: '#5fafcf'
   }
 });
 

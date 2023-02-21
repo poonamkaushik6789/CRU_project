@@ -1,12 +1,14 @@
 
 import { connect } from 'react-redux';
 import Commentlist from '../../screens/sales/Commentlist';
-import { commentIdlist,
+import {
+    commentIdlist,
     commentAdd,
-    socialfeedlist } from '../../redux/actions/Vendor';
-    const mapStateToProps = (state) => ({
-        loginCredentials: state.auth.loginCredentials,
-        getcommentidlist: state.vendor.getcommentidlist,
+    socialfeedlist
+} from '../../redux/actions/Vendor';
+const mapStateToProps = (state) => ({
+    loginCredentials: state.auth.loginCredentials,
+    getcommentidlist: state.vendor.getcommentidlist,
 });
 
 const mapDispatchToProps = {

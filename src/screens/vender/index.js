@@ -28,7 +28,9 @@ const Vendor = (props) => {
     handleChange,
     handleSubmit,
   } = props;
-
+  
+  console.log("props=====>>>>>", props)
+  const loginId = props?.loginCredentials?.data?._id
   const [visible, setVisible] = React.useState(false);
   const [description, setDescription] = React.useState("");
   const [msg, onChangeText2] = React.useState("");
@@ -54,8 +56,7 @@ const Vendor = (props) => {
   const [isPanelActive, setIsPanelActive] = useState(false);
 
   const [isaction, setisaction] = useState(true);
-  console.log("props=====>>>>>", props)
-  const loginId = props?.loginCredentials?.data?._id
+  
 
   const openPanel = () => {
 
@@ -157,7 +158,9 @@ const Vendor = (props) => {
             <View style={tw`py-2 `}>
               <Text style={tw`text-[#000] text-[3.3] font-normal`}>{item.description}</Text>
               <View style={tw`pt-4`}>
+              { item?.image != "" &&
                 <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={tw`w-full h-90	`} />
+              }
               </View>
             </View>
             <View style={tw`flex-row justify-between	items-center	py-3`}>

@@ -7,7 +7,7 @@ import {
 } from 'react-native-responsive-screen';
 import styles from './storestyles';
 import moment from 'moment';
-
+import CalendarPicker from 'react-native-calendar-picker';
 import CheckBox from '@react-native-community/checkbox';
 import Loader from '../../components/modals/Loader';
 import Editprofile from '../../screens/profile/Editprofile';
@@ -27,7 +27,6 @@ const Glyndenprofile = (props) => {
     handleSubmit,
   } = props;
   const loginId = props?.loginCredentials?.data?._id
-
   const user_Id = props?.route?.params?.userId
   console.log("props====>", props)
 
@@ -39,7 +38,8 @@ const Glyndenprofile = (props) => {
   const [msg, onChangeText2] = React.useState("");
   const [likecount, setLikecount] = React.useState(1);
   const [msgcount, setMsgcount] = React.useState(1);
-  const [checked, setChecked] = React.useState('first');
+  const [checked, setChecked] = React.useState('network');
+  const [socilfeed, setSocialfeed] = useState('1');
 
 
   const [panelProps, setPanelProps] = useState({
@@ -53,14 +53,14 @@ const Glyndenprofile = (props) => {
     // ...or any prop you want
   });
   const [isPanelActive, setIsPanelActive] = useState(false);
-
   const [isaction, setisaction] = useState(true);
+  
   useEffect(() => {
     props.postdetails(user_Id);
     console.log("props.grtpostdetail======>>>", props?.grtpostdetail?.posts);
 
   }, [])
-
+ 
 
   const openPanel = () => {
 
@@ -76,6 +76,15 @@ const Glyndenprofile = (props) => {
     setMsgcount(msgcount + 1)
 
   };
+  const onDateChange = (date, type) => {
+    //function to handle the date change
+    if (type === 'END_DATE') {
+      setSelectedEndDate(date);
+    } else {
+      setSelectedEndDate(null);
+      setSelectedStartDate(date);
+    }
+  };
 
   // const showisaction = () => {
   //   setisaction(true);
@@ -90,6 +99,20 @@ const Glyndenprofile = (props) => {
     props.messagesend(request, props.navigation)
     setMessage("");
     setModalVisible(false)
+  };
+  const handleconnectnetwork = async () => {
+    
+    let request = {
+      "addedBy": loginId,
+      "whomToAdd": props?.grtpostdetail?._id,
+      "type": checked
+    }
+    props.addNetworkCru(request, props.navigation)
+    setConnectVisible(false);
+  }
+  const handletabchange = (id) => {
+    setSocialfeed(id);
+    console.log("id=======<><>", id)
   };
   
   const containerStyle = { backgroundColor: 'red', padding: '7%', marginHorizontal: '5%', alignItems: 'center', };
@@ -111,23 +134,23 @@ const Glyndenprofile = (props) => {
   ];
   const DATA3 = [
     {
-
+      id: 1,
       image: ImageIcons.social,
+      image2: ImageIcons.socialcolor,
       text1: 'Social Feed',
 
     },
     {
+      id: 2,
       image: ImageIcons.event,
+      image2: ImageIcons.calendar_icon,
       text1: 'Calender',
 
     },
     {
+      id: 3,
       image: ImageIcons.event,
-      text1: 'About',
-
-    },
-    {
-      image: ImageIcons.event,
+      image2: ImageIcons.profile,
       text1: 'About',
 
     },
@@ -157,12 +180,19 @@ const Glyndenprofile = (props) => {
 
   const renderItem3 = ({ item, index }) => {
     return (
-      <View>
-        <View style={tw`w-30 h-38 bg-white mb-6 ml-0.5 mt-5  z-10 `} >
-          <Image source={item.image} style={tw`w-18 h-14 mt-10 mx-auto `} />
-          <Text style={tw`text-center text-black text-base font-semibold mt-1`} >{item.text1}</Text>
-
-        </View>
+      <View style={tw`my-5 justify-center	`}>
+        {socilfeed == item.id ?
+          <TouchableOpacity style={tw` bg-white ml-0.5 p-6 items-center	`} onPress={() => handletabchange(item.id)}>
+            
+            <Image source={item.image2} style={tw`w-14 h-14  `} />
+            <Text style={tw`text-center text-black text-base font-semibold `} >{item.text1}</Text>
+          </TouchableOpacity>
+          :
+          <TouchableOpacity style={tw` bg-white  ml-0.5 p-6 items-center	`} onPress={() => handletabchange(item.id)}>
+            <Image source={item.image} style={tw`w-16 h-14  `} />
+            <Text style={tw`text-center text-black text-base font-semibold `} >{item.text1}</Text>
+          </TouchableOpacity>
+        }
       </View>
     );
   }
@@ -322,13 +352,43 @@ const Glyndenprofile = (props) => {
               />
             </View>
             <View style={tw`mx-5`}>
+            {socilfeed == "1" &&
               <FlatList
                 data={props?.grtpostdetail?.posts}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
                 showsHorizontalScrollIndicator={false}
               />
+            }
+            {socilfeed == "2" &&
+            <View style={tw`bg-[#fff] rounded-[3] flex py-5`}>
+              <CalendarPicker
+                startFromMonday={true}
+                allowRangeSelection={true}
+                minDate={moment(new Date()).toDate()}
+                maxDate={moment().add(1, 'month').toDate()}
+                weekdays={['S', 'M', 'T', 'W', 'T', 'F', 'S']}
+                months={['January', 'Februray', 'March', 'Abril', 'May', 'June', 'July', 'August', 'Setember', 'October', 'November', 'December']}
+
+                todayBackgroundColor="#e6ffe6"
+                selectedDayColor="#66ff33"
+                selectedDayTextColor="#000000"
+                scaleFactor={375}
+                textStyle={{
+                  fontFamily: 'Cochin',
+                  color: '#000000',
+                }}
+                onDateChange={onDateChange}
+              />
             </View>
+          }
+          {socilfeed == "3" &&
+            <TouchableOpacity style={tw`	 border-solid rounded-[3] bg-white`}>
+              <Text style={tw` my-auto text-[3.8] p-7`}>{props?.grtpostdetail?.about}</Text>
+            </TouchableOpacity>
+          }
+            </View>
+            
           </View>
 
 
@@ -344,10 +404,10 @@ const Glyndenprofile = (props) => {
               <View style={tw`bg-white rounded-[2]  justify-center  m-4`} >
                 <View style={tw`flex-row justify-between items-center border-b border-[#ccc] p-4`}>
                   <View>
-                    <Text style={tw`text-base font-normal  text-black align-middle`} numberOfLines={1} ellipsizeMode='tail' ></Text>
+                    <Text style={tw`text-base font-normal  text-black `} numberOfLines={1} ellipsizeMode='tail' ></Text>
                   </View>
                   <View>
-                    <Text style={tw`text-base font-normal  text-black align-middle`} numberOfLines={1} ellipsizeMode='tail' >Message</Text>
+                    <Text style={tw`text-base font-normal  text-black `} numberOfLines={1} ellipsizeMode='tail' >Message</Text>
                   </View>
                   <TouchableOpacity onPress={() => setModalVisible(false)}>
                     <Image source={ImageIcons.closetoday} style={[tw`w-4 h-4`, { tintColor: '#5fafcf' }]} />
@@ -384,10 +444,10 @@ const Glyndenprofile = (props) => {
               <View style={tw`bg-white rounded-[2]  justify-center  m-4`} >
                 <View style={tw`flex-row justify-between items-center border-b border-[#ccc] p-4`}>
                   <View>
-                    <Text style={tw`text-base font-normal  text-black align-middle`} numberOfLines={1} ellipsizeMode='tail' ></Text>
+                    <Text style={tw`text-base font-normal  text-black `} numberOfLines={1} ellipsizeMode='tail' ></Text>
                   </View>
                   <View>
-                    <Text style={tw`text-base font-normal  text-black align-middle`} numberOfLines={1} ellipsizeMode='tail' >Connect</Text>
+                    <Text style={tw`text-base font-normal  text-black `} numberOfLines={1} ellipsizeMode='tail' >Connect</Text>
                   </View>
                   <TouchableOpacity onPress={() => setConnectVisible(false)}>
                     <Image source={ImageIcons.closetoday} style={[tw`w-4 h-4`, { tintColor: '#5fafcf' }]} />
@@ -400,9 +460,9 @@ const Glyndenprofile = (props) => {
                       <View style={tw`items-center `}>
                         <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>My Network</Text>
                         <RadioButton
-                          value="first"
-                          status={checked === 'first' ? 'checked' : 'unchecked'}
-                          onPress={() => setChecked('first')}
+                          value="network"
+                          status={checked === 'network' ? 'checked' : 'unchecked'}
+                          onPress={() => setChecked('network')}
                           uncheckedColor={"#5fafcf"}
                           color={'#5fafcf'}
                         />
@@ -410,9 +470,9 @@ const Glyndenprofile = (props) => {
                       <View style={tw`items-center `}>
                         <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>My Cru</Text>
                         <RadioButton
-                          value="second"
-                          status={checked === 'second' ? 'checked' : 'unchecked'}
-                          onPress={() => setChecked('second')}
+                          value="cru"
+                          status={checked === 'cru' ? 'checked' : 'unchecked'}
+                          onPress={() => setChecked('cru')}
                           uncheckedColor={"#5fafcf"}
                           color={'#5fafcf'}
                         />
@@ -420,7 +480,7 @@ const Glyndenprofile = (props) => {
 
                     </View>
                   </View>
-                  <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mt-5 mx-10`} onPress={() => handlemessagesend()}>
+                  <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mt-5 mx-10`} onPress={() => handleconnectnetwork()}>
                     <Text style={tw`text-[#000] text-[3.9] p-2 px-15 font-normal`}>Add</Text>
                   </TouchableOpacity>
                 </View>

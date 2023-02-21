@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Text, KeyboardAvoidingView, View, TextInput, FlatList, StatusBar, TouchableOpacity, ScrollView, Image } from 'react-native';
-import { Fonts, Colors, ImageIcons } from '../../common';
+import { Fonts, Colors, ImageIcons,Api } from '../../common';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -25,6 +25,14 @@ const Eventdetail = (props) => {
     handleSubmit,
   } = props;
 
+  const enent_Id = props?.route?.params?.eventid
+  console.log("eventid===>",enent_Id)
+  useEffect(() => {
+    props.geteventdetail(enent_Id);
+    
+    console.log("props.geteventdetaillist======>>>", props?.geteventdetaillist);
+  }, [])
+
   const [visible, setVisible] = React.useState(false);
   const [subMsg, onChangeText1] = React.useState("");
   const [msg, onChangeText2] = React.useState("");
@@ -39,30 +47,9 @@ const Eventdetail = (props) => {
     onPressCloseButton: () => closePanel(),
     // ...or any prop you want
   });
-  const [isPanelActive, setIsPanelActive] = useState(false);
+  
 
-  const [isaction, setisaction] = useState(true);
-
-
-
-  const openPanel = () => {
-
-    setIsPanelActive(true);
-    setisaction(false);
-  };
-
-  const closePanel = () => {
-    setIsPanelActive(false);
-    setisaction(true);
-
-  };
-
-  // const showisaction = () => {
-  //   setisaction(true);
-  // };
-  // const hideisaction = () => {
-  //   setisaction(false);
-  // };
+ 
   const containerStyle = { backgroundColor: 'red', padding: '7%', marginHorizontal: '5%', alignItems: 'center', };
 
 
@@ -72,10 +59,10 @@ const Eventdetail = (props) => {
       <ScrollView >
         <View >
           <View>
-            <Image source={ImageIcons.rawartist} style={tw` h-60 w-5/5 `} />
+            <Image source={{ uri: `${Api.imageUri}${props?.geteventdetaillist?.image}` }} style={tw` h-60 w-5/5 `} />
           </View>
           <View style={tw`bg-white mx-4 rounded-b-lg mb-2`}>
-            <Text style={tw`text-center py-4`} >RAW Artists Annual Short Film Festival</Text>
+            <Text style={tw`text-center py-4`} >{props?.geteventdetaillist?.title}</Text>
           </View>
 
           <View style={tw`bg-white rounded-[2]  justify-center drop-shadow-xl m-4`} >
@@ -83,9 +70,7 @@ const Eventdetail = (props) => {
               <Text style={tw`text-[4.4] font-normal  text-black align-middle`} numberOfLines={1} ellipsizeMode='tail' >About</Text>
             </View>
             <View style={tw`mx-5 p-3 py-5`}>
-              <Text style={tw`text-[#000000] mt-1 font-normal text-[3.1]`}>RAWFF is the innovative film festival from acclaimed arts showcase presenters RAW: natural born artists.{'\n'}{'\n'}
-                Taking place at the Bootleg Theater in Echo Park, LOs Angeles, the one day pop-up shorts fest features work from local talent across Soluthern California and beyond.{'\n'}{'\n'}
-                Numerous cinematic disciplines are represented, with a focus on fresh, sdgy, subversive programming from innovative indies on the come-up.</Text>
+              <Text style={tw`text-[#000000] mt-1 font-normal text-[3.1]`}>{props?.geteventdetaillist?.about}</Text>
             </View>
           </View>
           <View style={tw`bg-white rounded-[2]  justify-center drop-shadow-xl m-4`} >
@@ -98,7 +83,7 @@ const Eventdetail = (props) => {
                   <Image source={ImageIcons.calendar_icon} style={tw` h-6 w-6 `} />
                 </View>
                 <View style={tw`ml-4`}>
-                  <Text style={tw`text-[#000000] mt-1 font-normal text-[3.2]`}>Sunday, June 3, 2018</Text>
+                  <Text style={tw`text-[#000000] mt-1 font-normal text-[3.2]`}>{moment(props?.geteventdetaillist?.createdAt).format('dddd, MMM D, YYYY')}</Text>
                 </View>
               </View>
               <View style={tw`flex-row my-2 items-center`}>
@@ -106,7 +91,7 @@ const Eventdetail = (props) => {
                   <Image source={ImageIcons.clockclap} style={tw` h-6 w-6 `} />
                 </View>
                 <View style={tw`ml-4`}>
-                  <Text style={tw`text-[#000000] mt-1 font-normal text-[3.2]`}>12:00 PM - 10:00 PM</Text>
+                  <Text style={tw`text-[#000000] mt-1 font-normal text-[3.2]`}>{moment(props?.geteventdetaillist?.fromTime).format('hA')} - {moment(props?.geteventdetaillist?.toTime).format('hA')}</Text>
                 </View>
               </View>
               <View style={tw`flex-row my-2 items-center`}>

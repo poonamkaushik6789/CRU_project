@@ -4,6 +4,7 @@ import Glyndenprofile from '../../screens/sales/Glyndenprofile';
 import {
     postdetails,
     messagesend,
+    addNetworkCru,
     socialfeedlist
 } from '../../redux/actions/Vendor';
 const mapStateToProps = (state) => ({
@@ -13,7 +14,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     postdetails,
-    messagesend
+    messagesend,
+    addNetworkCru
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Glyndenprofile);

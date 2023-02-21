@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Likelist from '../../screens/sales/Likelist';
 
 const mapStateToProps = (state) => ({
+    loginCredentials: state.auth.loginCredentials,
     //redeemedCouponTrackingData: state.coupon.redeemedCouponTrackingData,
     //redeemedCouponTrackingLoader: state.coupon.redeemedCouponTrackingLoader
 });

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Camera from '../../screens/sales/Camera';
 
 const mapStateToProps = (state) => ({
+    loginCredentials: state.auth.loginCredentials,
     //redeemedCouponTrackingData: state.coupon.redeemedCouponTrackingData,
     //redeemedCouponTrackingLoader: state.coupon.redeemedCouponTrackingLoader
 });

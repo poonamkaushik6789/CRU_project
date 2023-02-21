@@ -6,11 +6,15 @@ import {
     updateprofile,
     updatebackgroudimage,
     updateabout,
-    deletepost
+    deletepost,
+    mycrulist,
+    mynetworklist
 } from '../../redux/actions/Vendor';
 const mapStateToProps = (state) => ({
     loginCredentials: state.auth.loginCredentials,
     getprofilelist: state.vendor.getprofilelist,
+    getmycrulist: state.vendor.getmycrulist,
+    getmynetworklist: state.vendor.getmynetworklist,
 });
 
 const mapDispatchToProps = {
@@ -18,7 +22,9 @@ const mapDispatchToProps = {
     updateprofile,
     updatebackgroudimage,
     updateabout,
-    deletepost
+    deletepost,
+    mycrulist,
+    mynetworklist
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Matthew);
