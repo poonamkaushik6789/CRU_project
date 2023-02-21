@@ -15,7 +15,7 @@ const api = {
   updateAvailabilty: `/auth/updateavailabilty`,
   addnewpost: `/users/addNewPost`,
   postlisting: `/users/postListing`,
-   postDetails: `/users/postDetail`,
+  postDetails: `/users/postDetail`,
   commentlistid: `/users/commentList`,
   addcomment: `/users/addComment`,
   sendmessage: `/users/sendMessage`,
