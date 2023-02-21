@@ -120,10 +120,10 @@ const Projects = (props) => {
 
 
 
-                        <View style={tw`w-4 h-18 bg-black `} >
+                        <View style={tw`w-3 h-18 bg-black `} >
                         </View>
                         <View style={tw`flex flex-column`}>
-                            <Text style={tw`text-center text-black text-base font-semibold mt-3 ml-3`} >{item.text1}</Text>
+                            <Text style={tw`text-center text-black text-base font-semibold mt-3 ml-4`} >{item.text1}</Text>
                             <Text style={tw`text-center text-black text-base font-bold mt-1 ml-3`} >{item.text2}</Text>
 
                         </View>

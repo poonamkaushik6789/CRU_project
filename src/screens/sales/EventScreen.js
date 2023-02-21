@@ -30,6 +30,7 @@ const EventScreen = (props) => {
   const [visible, setVisible] = React.useState(false);
   const [subMsg, onChangeText1] = React.useState("");
   const [msg, onChangeText2] = React.useState("");
+  const [eventdata, setEventdata] = React.useState(false);
 
   const [panelProps, setPanelProps] = useState({
     fullWidth: true,
@@ -64,7 +65,9 @@ const EventScreen = (props) => {
 
   };
   const handletabchange = (id) => {
+
     props.getevent(socilfeed);
+    setEventdata(true)
     setSocialfeed(id);
     console.log("id=======<><>", id)
   };
@@ -170,6 +173,7 @@ const EventScreen = (props) => {
               data={props?.geteventlist}
               renderItem={renderItemevent}
               keyExtractor={item => item.id}
+              extraData ={eventdata}
             />
             
             
