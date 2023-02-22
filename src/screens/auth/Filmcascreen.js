@@ -37,7 +37,9 @@ const Filmcascreen = (props) => {
     const [deviceToken, setDeviceToken] = useState();
     const [email, setEmail] = useState(false);
     const [password, setPassword] = useState(false);
-
+    useEffect(() => {
+        props.assignlogindata();
+      }, [])
 
 
     return (

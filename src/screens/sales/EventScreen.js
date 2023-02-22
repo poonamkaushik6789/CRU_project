@@ -29,7 +29,7 @@ const EventScreen = (props) => {
   const [socilfeed, setSocialfeed] = useState('');
   const [visible, setVisible] = React.useState(false);
   const [subMsg, onChangeText1] = React.useState("");
-  const [msg, onChangeText2] = React.useState("");
+  const [eventarr, setEventarr] = React.useState([]);
   const [eventdata, setEventdata] = React.useState(false);
 
   const [panelProps, setPanelProps] = useState({
@@ -51,6 +51,7 @@ const EventScreen = (props) => {
     props.getevent();
     console.log("props.geteventcategorylist======>>>", props?.geteventcategorylist);
     console.log("props.geteventlist======>>>", props?.geteventlist);
+    setEventarr(props?.geteventlist)
   }, [])
 
   const openPanel = () => {
@@ -64,9 +65,15 @@ const EventScreen = (props) => {
     setisaction(true);
 
   };
-  const handletabchange = (id) => {
 
-    props.getevent(socilfeed);
+  const handletabchange = (id) => {
+    const unCheckInAttends = props?.geteventlist.filter((item) => {
+      const itemname = item.eventCategory;
+      //console.log(item)
+      return itemname == id;
+    });
+
+    setEventarr(unCheckInAttends)
     setEventdata(true)
     setSocialfeed(id);
     console.log("id=======<><>", id)
@@ -168,15 +175,15 @@ const EventScreen = (props) => {
             keyExtractor={item => item.id}
           />
           <View >
-            
-              <FlatList
-              data={props?.geteventlist}
+
+            <FlatList
+              data={eventarr}
               renderItem={renderItemevent}
               keyExtractor={item => item.id}
-              extraData ={eventdata}
+              extraData={eventdata}
             />
-            
-            
+
+
           </View>
         </SafeAreaView>
 

@@ -205,39 +205,53 @@ export const login = (loginCredentials, navigation) => {
 };
 
 
+export const changeLoginCredentials = (loginCredentials) => {
+  // console.log("loginCredentials==>", loginCredentials)
+   return async (dispatch, getState) => {
+     await AsyncStorage.setItem('@loginCredential', JSON.stringify(loginCredentials));
+     await AsyncStorage.setItem('@authtoken', JSON.stringify(loginCredentials));
+     dispatch({ type: SET_LOGIN_CREDENTIAL, payload: loginCredentials });
+     let verificationStatus = loginCredentials?.store?.verificationStatus
+     if (loginCredentials?.role === "vendor") {
+       if (loginCredentials?.store) {
+         dispatch({ type: SET_VERIFICAITON_STATUS, payload: verificationStatus })
+         dispatch({ type: SET_CREATE_STORE_INFO, payload: loginCredentials?.store });
+         if (verificationStatus?.isStore && verificationStatus?.isStoreImage && verificationStatus?.isUtilityBill) {
+           dispatch({ type: SET_VERIFICAITON_STEPS, payload: 3 })
+         }
+         dispatch(setStoreAutofilInfo(loginCredentials?.store, loginCredentials?.store?._id, verificationStatus));
+         await AsyncStorage.setItem('@storeInfo', JSON.stringify(loginCredentials?.store));
+       } else {
+         let verificationStatuss = {
+           "isStore": false,
+           "isStoreImage": false,
+           "isUtilityBill": false
+         }
+         dispatch(setStoreAutofilInfo(loginCredentials, null, verificationStatuss))
+       }
+     }
+     //global.authToken = loginCredentials?.token || null;
+   };
+ };
 // LOGOUT  
 export const logout = () => {
   return async (dispatch, getState) => {
-    dispatch({ type: "USER_LOGOUT", payload: null });
+    //await AsyncStorage.setItem('loginstatus', false);
+    dispatch({ type: SET_LOGIN_CREDENTIAL, payload: []});
+    await AsyncStorage.removeItem('@loginCredential');
+    dispatch({ type: "USER_LOGOUT", payload: false });
     global.authToken = null;   
   };
 };
 
-
-export const changeLoginCredentials = (loginCredentials) => {
-  console.log("loginCredentials==>", loginCredentials)
+// loginset  
+export const assignlogindata = () => {
   return async (dispatch, getState) => {
-    await AsyncStorage.setItem('@loginCredential', JSON.stringify(loginCredentials));
-    dispatch({ type: SET_LOGIN_CREDENTIAL, payload: loginCredentials });
-    let verificationStatus = loginCredentials?.store?.verificationStatus
-    if (loginCredentials?.role === "vendor") {
-      if (loginCredentials?.store) {
-        dispatch({ type: SET_VERIFICAITON_STATUS, payload: verificationStatus })
-        dispatch({ type: SET_CREATE_STORE_INFO, payload: loginCredentials?.store });
-        if (verificationStatus?.isStore && verificationStatus?.isStoreImage && verificationStatus?.isUtilityBill) {
-          dispatch({ type: SET_VERIFICAITON_STEPS, payload: 3 })
-        }
-        dispatch(setStoreAutofilInfo(loginCredentials?.store, loginCredentials?.store?._id, verificationStatus));
-        await AsyncStorage.setItem('@storeInfo', JSON.stringify(loginCredentials?.store));
-      } else {
-        let verificationStatuss = {
-          "isStore": false,
-          "isStoreImage": false,
-          "isUtilityBill": false
-        }
-        dispatch(setStoreAutofilInfo(loginCredentials, null, verificationStatuss))
-      }
+    let loginCredentials = await AsyncStorage.getItem('@loginCredential');
+     console.log('loginCredentials',loginCredentials);
+    if(loginCredentials!=undefined){
+      dispatch({ type: SET_LOGIN_CREDENTIAL, payload: JSON.parse(loginCredentials) });
+      global.authToken = JSON.parse(loginCredentials).token;   
     }
-    global.authToken = loginCredentials?.token || null;
   };
 };
