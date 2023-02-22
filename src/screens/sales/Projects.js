@@ -171,7 +171,7 @@ const Projects = (props) => {
         <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"} style={styles.root}>
             <StatusBar backgroundColor={Colors.WHITE} barStyle="dark-content" translucent={true} />
             <ScrollView style={tw``}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Projectdetails")} style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 mx-auto h-12 w-52 mt-6`}>
+                <TouchableOpacity onPress={() => props.navigation.navigate("Newproject")} style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 mx-auto h-12 w-52 mt-6`}>
                     <Text style={tw`text-[#000] text-base  px-10 font-normal`}>New Project</Text>
                 </TouchableOpacity>
 

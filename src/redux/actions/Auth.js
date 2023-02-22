@@ -98,7 +98,7 @@ export const subdepartmentList = (id) => {
 };
 //updateWorkDepartments
 export const updateworkdepartment = (request, navigation) => {
-  console.log("requestupdatework==>", request)
+  console.log("updateworkdepartmentresponse==>", request)
   return async (dispatch, getState) => {
     let isInternetConnected = await getState().auth?.isInternetConnected;
     if (isInternetConnected) {

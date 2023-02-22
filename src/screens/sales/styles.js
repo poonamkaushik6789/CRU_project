@@ -51,6 +51,19 @@ const styles = StyleSheet.create({
      borderRadius:5,
      position:'absolute'
     },
+    housedropdown: {
+        height: 45,
+        elevation: 5, shadowColor: '#b3b3b3', backgroundColor: '#ffffff',
+        borderWidth: 0.5,
+        borderRadius: 8, borderColor: '#d9d9d9',
+        paddingHorizontal: '4%'
+    },
+    house_placeholderStyleorigin: {
+        color: '#000000', fontWeight: '700', fontSize: 14
+    },
+    house_selectedTextStyle: {
+        color: '#000000', fontWeight: '700', fontSize: 14
+    },
 })
 
 export default styles;

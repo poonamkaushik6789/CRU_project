@@ -227,8 +227,8 @@ const formikEnhancer = withFormik({
     }),
     mapPropsToValues: (props) => {
         return {
-            // email: '',
-            // password: '',
+            email: '',
+            password: '',
         };
     },
     handleSubmit: async (payload, { props }) => {

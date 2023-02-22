@@ -53,6 +53,9 @@ const EventScreen = (props) => {
     console.log("props.geteventlist======>>>", props?.geteventlist);
     setEventarr(props?.geteventlist)
   }, [])
+  useEffect(() => {
+    setEventarr(props?.geteventlist)
+  }, [])
 
   const openPanel = () => {
 
@@ -138,7 +141,7 @@ const EventScreen = (props) => {
             <Text style={tw`text-center pt-6 text-slate-600	`} >{item.title}</Text>
           </TouchableOpacity>
           :
-          <TouchableOpacity style={tw`w-46 h-18 bg-white my-6 ml-5 rounded-xl border-solid border-t-8 border-[#fff]`} onPress={() => handletabchange(item._id)} >
+          <TouchableOpacity style={tw`w-46 h-18 bg-white my-6 ml-5 rounded-xl border-solid border-t-8 border-[#ccc]`} onPress={() => handletabchange(item._id)} >
             <Text style={tw`text-center pt-6 text-slate-600	`} >{item.title}</Text>
           </TouchableOpacity>
         }

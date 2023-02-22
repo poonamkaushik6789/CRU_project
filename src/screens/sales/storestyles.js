@@ -393,6 +393,37 @@ const styles = StyleSheet.create({
         color: Colors.LIGHT_GREY,
         fontFamily: Fonts.QuestrialRegular
     },
+    housedropdown: {
+        height: 45,width:200,
+        //elevation: 5, 
+        shadowColor: '#b3b3b3', backgroundColor: '#ffffff',
+        borderBottomWidth: 1,
+        borderRadius: 8, borderColor: '#d9d9d9',
+        paddingHorizontal: '4%'
+    },
+    house_placeholderStyleorigin: {
+        color: '#000000', fontWeight: '700', fontSize: 14
+    },
+    house_selectedTextStyle: {
+        color: '#000000', fontWeight: '700', fontSize: 14
+    },
+    iconStyle: {
+        marginRight: '2%'
+    },
+    dropdown1BtnStyle: {
+        width: '100%',
+        height: 50,
+        marginTop: '3%',
+        backgroundColor: '#ffffff',
+        borderRadius: 8,
+        borderBottomWidth: 1,
+        borderColor: '#d9d9d9',
+    },
+
+    dropdown1BtnTxtStyle: { color: '#444', textAlign: 'left',fontSize: 15, },
+    dropdown1DropdownStyle: { backgroundColor: '#EFEFEF' },
+    dropdown1RowStyle: { backgroundColor: '#EFEFEF', borderBottomColor: '#C5C5C5' },
+    dropdown1RowTxtStyle: { color: '#444', textAlign: 'left' },
 })
 
 export default styles;

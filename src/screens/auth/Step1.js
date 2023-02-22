@@ -36,16 +36,14 @@ const Step1 = (props) => {
     const passwordInputRef = useRef();
 
     // Local states
-    const [isShowPassword, setIsShowPassword] = useState(true);
+    const [checkedId1, setcheckedId1] = React.useState([]);
+    const [finalarr, setfinalarr] = React.useState([]);
+    const [newflat1, setnewflat1] = React.useState(false);
     const [deparmentname, setDepartmentname] = useState('');
-    const [refreshFiled, setRefreshFiled] = useState(false);
+    const [deparmentId, setSepartmentId] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
     const [cameramodalVisible, setCameramodalVisible] = useState(false);
-    const [Cinematographer, setCinematographer] = useState(false);
-    const [operator, setOperator] = useState(false);
-    const [assistantcamera, setAssistantcamera] = useState(false);
-    const [assistantcamera2, setAssistantcamera2] = useState(false);
-    const [loader, setLoader] = useState(false);
+
 
     const [deviceToken, setDeviceToken] = useState();
     const [email, setEmail] = useState(false);
@@ -62,34 +60,34 @@ const Step1 = (props) => {
     const signupId = props?.signupCredentials?.data?._id;
     useEffect(() => {
         props.departmentList();
-        console.log("props.getdepartMentlist======>>>", props?.getdepartMentlist);
+        // console.log("props.getdepartMentlist======>>>", );
         console.log("getsubdepartmentlist====>>", props.getsubdepartmentlist)
     }, [])
 
-    const data = [
-        { id: 1, txt: 'first check', isChecked: false },
-        { id: 2, txt: 'second check', isChecked: false },
-        { id: 3, txt: 'third check', isChecked: false },
-        { id: 4, txt: 'fourth check', isChecked: false },
-        { id: 5, txt: 'fifth check', isChecked: false },
-        { id: 6, txt: 'sixth check', isChecked: false },
-        { id: 7, txt: 'seventh check', isChecked: false },
-    ];
-    const [products, setProducts] = useState(data);
-
-    const handlecameacategory = () => {
-        //console.log("checkbox===>>>>", e.target)
-        let temp = products.map((product) => {
-            console.log("checkbox===>", temp)
-            if (id === product.id) {
-                return { ...product, isChecked: !product.isChecked };
+    
+    const callAction1 = async (value) => {
+        // alert(value)
+        for (var i = 0; i < props?.getsubdepartmentlist?.length; i++) {
+            if (props?.getsubdepartmentlist[i]._id == value) {
+                if (checkedId1.indexOf(value) > -1) {
+                    var index = checkedId1.indexOf(value);
+                    checkedId1.splice(index, 1);
+                    setcheckedId1(checkedId1)
+                } else {
+                    checkedId1.push(value);
+                    setcheckedId1(checkedId1)
+                }
             }
-
-            return product;
-
-        });
-        setProducts(temp);
-        setCameramodalVisible(false)
+        }
+        console.log("checkedId1==>", checkedId1)
+        setnewflat1(s => !s);
+    }
+    const handlecameacategory = () => {
+        finalarr.push({ 'department': deparmentId, position: checkedId1 });
+        setfinalarr(finalarr);
+        setcheckedId1([]);
+        console.log("finalarr==>", finalarr)
+        setCameramodalVisible(!cameramodalVisible);
     };
 
 
@@ -104,6 +102,7 @@ const Step1 = (props) => {
     };
     const handledeparment = async (id, name) => {
         setDepartmentname(name);
+        setSepartmentId(id);
         setCameramodalVisible(!cameramodalVisible);
         props.subdepartmentList(id);
     }
@@ -127,25 +126,11 @@ const Step1 = (props) => {
     const onNextStep1 = async () => {
         let request = {
             "_id": signupId,
-            "workDepartments": [
-                {
-                    "department": "63e4b6a243f6ad32e81057e5",
-                    "position": [
-                        "63e4bf1a43f6ad32e81057f9",
-                        "63e4bf0743f6ad32e81057f8"
-                    ]
-                }
-            ],
+            "workDepartments": finalarr,
         }
         props.updateworkdepartment(request, props.navigation);
     }
-    const onNextStep2 = async () => {
-        let request = {
-            "_id": signupId,
-            "willingToTravel": ["kapil"],
-        }
-        props.updateAreatoTravel(request, props.navigation);
-    }
+
     const onsubmitbtn = async () => {
         let request = {
             "_id": signupId,
@@ -154,45 +139,7 @@ const Step1 = (props) => {
         props.updateAvailAbilty(request, props.navigation);
         setModalVisible(!modalVisible)
     }
-    const DATA = [
-        {
 
-            image: ImageIcons.social,
-            text1: 'Camera operator',
-
-        },
-        {
-            image: ImageIcons.event,
-            text1: 'Cinematographer',
-
-        },
-        {
-            image: ImageIcons.event,
-            text1: 'Gaffer',
-
-        },
-        {
-            image: ImageIcons.event,
-            text1: 'Cinematographer',
-
-        },
-        {
-            image: ImageIcons.event,
-            text1: 'Gaffer',
-
-        },
-        {
-            image: ImageIcons.event,
-            text1: 'Cinematographer',
-
-        },
-        {
-            image: ImageIcons.event,
-            text1: 'Gaffer',
-
-        },
-
-    ];
 
     const renderItem = ({ item, index }) => {
 
@@ -206,17 +153,27 @@ const Step1 = (props) => {
         );
     }
     const renderItem1 = ({ item, index }) => {
-        console.log("checboxitem===>", item)
+        
         return (
-            <View style={tw`flex-row items-center my-1`}>
-                <CheckBox
-                    value={item.isChecked}
-                    onValueChange={setCinematographer}
-                    onChange={()=> handlecameacategory()}
-                    tintColors={{ true: '#5fafcf', false: '#ccc', }}
-                />
+            <TouchableOpacity style={tw`flex-row items-center my-1`} onPress={() => callAction1(item._id)}>
+
+                {(checkedId1.indexOf(item._id) > -1) ?
+                    <CheckBox
+                        value={true}
+                        disabled={false}
+                        //onValueChange={() =>callAction1(item.id)}
+                        tintColors={{ true: '#5fafcf', false: '#ccc', }}
+                    />
+                    :
+                    <CheckBox
+                        value={false}
+                        disabled={false}
+                        //onValueChange={() =>callAction1(item.id)}
+                        tintColors={{ true: '#5fafcf', false: '#ccc', }}
+                    />
+                }
                 <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>{item.name}</Text>
-            </View>
+            </TouchableOpacity>
         );
     }
 
@@ -365,51 +322,11 @@ const Step1 = (props) => {
                                         renderItem={renderItem1}
                                         keyExtractor={item => item.id}
                                         showsHorizontalScrollIndicator={false}
-                                    //horizontal={true}
-                                    //numColumns={3}
+                                        extraData={newflat1}
+                                    
                                     />
                                 </View>
-                                {/* <View style={tw`flex-row items-center my-1`}>
-                                    <CheckBox
-                                        value={Cinematographer}
-                                        onValueChange={setCinematographer}
-                                        tintColors={{ true: '#5fafcf', false: '#ccc', }}
-                                    />
-                                    <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>Cinematographer</Text>
-                                </View>
-                                <View style={tw`flex-row items-center  my-1`}>
-                                    <CheckBox
-                                        value={operator}
-                                        onValueChange={setOperator}
-                                        tintColors={{ true: '#5fafcf', false: '#ccc', }}
-                                    />
-                                    <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>Camera Operator</Text>
-                                </View>
-                                <View style={tw`flex-row items-center  my-1`}>
-                                    <CheckBox
-                                        value={assistantcamera}
-                                        onValueChange={setAssistantcamera}
-                                        tintColors={{ true: '#5fafcf', false: '#ccc', }}
-                                    />
-                                    <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>1st Assistant Camera</Text>
-                                </View>
-                                <View style={tw`flex-row items-center  my-1`}>
-                                    <CheckBox
-                                        value={assistantcamera2}
-                                        onValueChange={setAssistantcamera2}
-                                        tintColors={{ true: '#5fafcf', false: '#ccc', }}
-                                    />
-                                    <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>1st Assistant Camera</Text>
-                                </View>
-                                <View style={tw`flex-row items-center  my-1`}>
-                                    <CheckBox
-                                        value={loader}
-                                        onValueChange={setLoader}
-                                        tintColors={{ true: '#5fafcf', false: '#ccc', }}
-
-                                    />
-                                    <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>Loader</Text>
-                                </View> */}
+                                
                                 <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`} onPress={() => handlecameacategory()}>
                                     <Text style={tw`text-[#000] text-[3.5] p-2 px-15 font-normal`}>Save</Text>
                                 </TouchableOpacity>

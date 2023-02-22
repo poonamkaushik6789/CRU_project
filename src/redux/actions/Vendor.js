@@ -1,4 +1,5 @@
 import {
+  SET_LOGIN_LOADER,
   BUSINESS_LIST_DATA,
   SET_NEW_POST,
   GET_POST_LIST,
@@ -19,6 +20,9 @@ import {
   GET_EVENT_CATEGORY,
   GET_EVENT_LIST,
   GET_EVENTDETAIL_LIST,
+  GET_NOTIFICATION_LIST,
+  SET_PROJECT_ADD,
+  GET_PRODUCTION_LIST,
 } from './ActionTypes';
 import { Alert } from 'react-native';
 import { Api, Utilise } from '../../common';
@@ -512,6 +516,7 @@ export const getevent = () => {
       let isInternetConnected = await getState().auth?.isInternetConnected;
       if (isInternetConnected) {
           try {
+            dispatch({ type: SET_LOGIN_LOADER, payload: true });
               dispatch({ type: GET_EVENT_LIST, payload: true });
               let response = await Utilise.apiCalling('GET', `${Api.eventlist}`)
               console.log("eventlist_reponse",response)
@@ -543,6 +548,78 @@ export const geteventdetail = (id) => {
               if (response?.status) {
                   
                   dispatch({ type: GET_EVENTDETAIL_LIST, payload: response.data.data });
+                  
+              } else {
+                  Alert.alert("Filmca", String(response?.message))
+              }
+          } catch (error) {
+              Alert.alert("Filmca", String(error?.message))
+          }
+      };
+  }
+};
+//notificationlist
+export const getnotification = (id) => {
+  return async (dispatch, getState) => {
+      let loginCredentials = await getState().auth?.loginCredentials;
+      let isInternetConnected = await getState().auth?.isInternetConnected;
+      if (isInternetConnected) {
+          try {
+              dispatch({ type: GET_NOTIFICATION_LIST, payload: true });
+              let response = await Utilise.apiCalling('GET', `${Api.notificationlist}/${id}`)
+              console.log("eventdetail_reponse",response)
+              dispatch({ type: GET_NOTIFICATION_LIST, payload: false });
+              if (response?.status) {
+                  
+                  dispatch({ type: GET_NOTIFICATION_LIST, payload: response.data.data });
+                  
+              } else {
+                  Alert.alert("Filmca", String(response?.message))
+              }
+          } catch (error) {
+              Alert.alert("Filmca", String(error?.message))
+          }
+      };
+  }
+};
+//addprojectnew
+export const addnewproject = (request, navigation) => {
+  console.log("addprojectnewresponse==>", request)
+  return async (dispatch, getState) => {
+    let isInternetConnected = await getState().auth?.isInternetConnected;
+    if (isInternetConnected) {
+      try {
+        let response = await Utilise.apiCalling('POST', Api.addprojectnew, request);
+        console.log("addprojectnew==>>", response?.data)
+
+        if (response?.status) {
+          dispatch({ type: SET_PROJECT_ADD, payload: response.data });
+          
+        } else {
+          //alert("hello")
+          Alert.alert("Filmca", "Save successfully")
+        }
+      } catch (error) {
+        Alert.alert("Filmca", String(error?.message))
+      }
+    };
+  }
+};
+//productiontypes
+export const getproduction = () => {
+  return async (dispatch, getState) => {
+      let loginCredentials = await getState().auth?.loginCredentials;
+      let isInternetConnected = await getState().auth?.isInternetConnected;
+      if (isInternetConnected) {
+          try {
+            dispatch({ type: SET_LOGIN_LOADER, payload: true });
+              dispatch({ type: GET_PRODUCTION_LIST, payload: true });
+              let response = await Utilise.apiCalling('GET', `${Api.productiontypes}`)
+              console.log("productiontypesrespose",response)
+              dispatch({ type: GET_PRODUCTION_LIST, payload: false });
+              if (response?.status) {
+                  
+                  dispatch({ type: GET_PRODUCTION_LIST, payload: response.data.data });
                   
               } else {
                   Alert.alert("Filmca", String(response?.message))
