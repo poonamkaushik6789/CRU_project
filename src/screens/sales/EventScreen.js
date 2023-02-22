@@ -26,10 +26,11 @@ const EventScreen = (props) => {
     handleSubmit,
   } = props;
 
-
+  const [socilfeed, setSocialfeed] = useState('');
   const [visible, setVisible] = React.useState(false);
   const [subMsg, onChangeText1] = React.useState("");
-  const [msg, onChangeText2] = React.useState("");
+  const [eventarr, setEventarr] = React.useState([]);
+  const [eventdata, setEventdata] = React.useState(false);
 
   const [panelProps, setPanelProps] = useState({
     fullWidth: true,
@@ -50,6 +51,7 @@ const EventScreen = (props) => {
     props.getevent();
     console.log("props.geteventcategorylist======>>>", props?.geteventcategorylist);
     console.log("props.geteventlist======>>>", props?.geteventlist);
+    setEventarr(props?.geteventlist)
   }, [])
 
   const openPanel = () => {
@@ -62,6 +64,19 @@ const EventScreen = (props) => {
     setIsPanelActive(false);
     setisaction(true);
 
+  };
+
+  const handletabchange = (id) => {
+    const unCheckInAttends = props?.geteventlist.filter((item) => {
+      const itemname = item.eventCategory;
+      //console.log(item)
+      return itemname == id;
+    });
+
+    setEventarr(unCheckInAttends)
+    setEventdata(true)
+    setSocialfeed(id);
+    console.log("id=======<><>", id)
   };
 
   const DATA = [
@@ -117,9 +132,18 @@ const EventScreen = (props) => {
 
   const renderItemCategory = ({ item, index }) => {
     return (
-      <View style={tw`w-46 h-18 bg-white my-6 ml-5 rounded-xl border-solid border-t-8 border-black`} >
-        <Text style={tw`text-center pt-6 text-slate-600	`} >{item.title}</Text>
+      <View>
+        {socilfeed == item._id ?
+          <TouchableOpacity style={tw`w-46 h-18 bg-[#fff] my-6 ml-5 rounded-xl border-solid border-t-8 border-[#000]`} onPress={() => handletabchange(item._id)}>
+            <Text style={tw`text-center pt-6 text-slate-600	`} >{item.title}</Text>
+          </TouchableOpacity>
+          :
+          <TouchableOpacity style={tw`w-46 h-18 bg-white my-6 ml-5 rounded-xl border-solid border-t-8 border-[#fff]`} onPress={() => handletabchange(item._id)} >
+            <Text style={tw`text-center pt-6 text-slate-600	`} >{item.title}</Text>
+          </TouchableOpacity>
+        }
       </View>
+
     );
   }
 
@@ -151,11 +175,15 @@ const EventScreen = (props) => {
             keyExtractor={item => item.id}
           />
           <View >
+
             <FlatList
-              data={props?.geteventlist}
+              data={eventarr}
               renderItem={renderItemevent}
               keyExtractor={item => item.id}
+              extraData={eventdata}
             />
+
+
           </View>
         </SafeAreaView>
 

@@ -329,25 +329,18 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
                 }}
               />
             </TouchableOpacity>
-            <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%' }}>
+            <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%' }} onPress={() => { prop.navigation.closeDrawer(); rootProps.logout(); }}>
               <View style={{ width: '100%', padingTop: '25%', alignItems: 'center', justifyContent: 'center', }}>
 
                 <Image style={tw`w-17 h-15`} source={ImageIcons.setting} />
               </View>
               <DrawerItem
                 key="Saleslisting"
-                label={({ focused, color }) => <DrawerItemLabel label='Settings' />}
+                label={({ focused, color }) => <DrawerItemLabel label='Logout' />}
                 style={{ opacity: 1, width: 100, }}
                 // icon={({ focused }) => <DrawerLeftIcon focused={currentItem === "Saleslisting" ? true : false} icon={ImageIcons.viewIcon
                 // } />}
-                onPress={() => {
-                  prop.navigation.toggleDrawer();
-                  prop.navigation.reset({
-                    index: 0,
-                    routes: [{ name: 'Saleslisting' }],
-                  });
-                  onItemSelection("Saleslisting");
-                }}
+                onPress={() => { prop.navigation.closeDrawer(); rootProps.logout(); }}
               />
             </TouchableOpacity>
             {/* <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%' }}

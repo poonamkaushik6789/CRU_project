@@ -195,7 +195,7 @@ const Login = (props) => {
                             </View>
                             <View style={tw`mt-15`}>
                                 <Text style={[styles.privacyText, { textAlign: 'center' }]}>
-                                    Or Sign In with <Text onPress={() => props.navigation.navigate('Registration')} style={[styles.linkText, { fontSize: 16, fontWeight: 'bold', color: Colors.WHITE }]}>Sign Up</Text>
+                                    Or Sign In with 
                                 </Text>
                             </View>
                             <View style={tw`flex-row justify-center mt-9`}>
@@ -227,8 +227,8 @@ const formikEnhancer = withFormik({
     }),
     mapPropsToValues: (props) => {
         return {
-            email: '',
-            password: '',
+            // email: '',
+            // password: '',
         };
     },
     handleSubmit: async (payload, { props }) => {

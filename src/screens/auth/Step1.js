@@ -77,18 +77,19 @@ const Step1 = (props) => {
     ];
     const [products, setProducts] = useState(data);
 
-    const handlecameacategory = (e) => {
-        console.log("checkbox===>>>>", e.target)
-        // let temp = products.map((product) => {
-        //     console.log("checkbox===>", temp)
-        //     if (id === product.id) {
-        //         return { ...product, isChecked: !product.isChecked };
-        //     }
+    const handlecameacategory = () => {
+        //console.log("checkbox===>>>>", e.target)
+        let temp = products.map((product) => {
+            console.log("checkbox===>", temp)
+            if (id === product.id) {
+                return { ...product, isChecked: !product.isChecked };
+            }
 
-        //     return product;
+            return product;
 
-        // });
-        // setProducts(temp);
+        });
+        setProducts(temp);
+        setCameramodalVisible(false)
     };
 
 
@@ -211,7 +212,7 @@ const Step1 = (props) => {
                 <CheckBox
                     value={item.isChecked}
                     onValueChange={setCinematographer}
-                    onChange={handlecameacategory}
+                    onChange={()=> handlecameacategory()}
                     tintColors={{ true: '#5fafcf', false: '#ccc', }}
                 />
                 <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>{item.name}</Text>
@@ -259,24 +260,24 @@ const Step1 = (props) => {
 
                             </View>
                         </ProgressStep>
-                        <ProgressStep label="" onNext={onNextStep2}>
+                        {/* <ProgressStep label="" onNext={onNextStep2}>
                             <View style={tw`mx-3`}>
                                 <View style={tw` items-center mb-7`}>
                                     <Text style={tw`text-[#000] text-[3.9] font-normal`}>Select the areas you are willing to travel</Text>
                                 </View>
                                 <View style={tw`bg-[#fff] rounded-[3] flex p-1`}>
-                                    {/* <MapView
+                                     <MapView
                                         initialRegion={{
                                             latitude: 37.78825,
                                             longitude: -122.4324,
                                             latitudeDelta: 0.0922,
                                             longitudeDelta: 0.0421,
                                         }}
-                                    /> */}
+                                    /> 
                                     <Image source={ImageIcons.googlemap} style={tw`w-full h-96`} />
                                 </View>
                             </View>
-                        </ProgressStep>
+                        </ProgressStep> */}
                         <ProgressStep label="" onSubmit={onsubmitbtn}>
                             <View style={tw`mx-3`}>
                                 <View style={tw` items-center mb-7`}>

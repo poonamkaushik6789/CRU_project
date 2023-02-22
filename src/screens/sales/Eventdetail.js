@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Text, KeyboardAvoidingView, View, TextInput, FlatList, StatusBar, TouchableOpacity, ScrollView, Image } from 'react-native';
-import { Fonts, Colors, ImageIcons,Api } from '../../common';
+import { Fonts, Colors, ImageIcons, Api } from '../../common';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -26,30 +26,16 @@ const Eventdetail = (props) => {
   } = props;
 
   const enent_Id = props?.route?.params?.eventid
-  console.log("eventid===>",enent_Id)
+  //console.log("eventid===>",enent_Id)
+
   useEffect(() => {
     props.geteventdetail(enent_Id);
-    
     console.log("props.geteventdetaillist======>>>", props?.geteventdetaillist);
   }, [])
 
   const [visible, setVisible] = React.useState(false);
-  const [subMsg, onChangeText1] = React.useState("");
-  const [msg, onChangeText2] = React.useState("");
 
-  const [panelProps, setPanelProps] = useState({
-    fullWidth: true,
-    openLarge: true,
-    //onlySmall:true,
-    showCloseButton: true,
-    closeOnTouchOutside: true,
-    onClose: () => closePanel(),
-    onPressCloseButton: () => closePanel(),
-    // ...or any prop you want
-  });
-  
 
- 
   const containerStyle = { backgroundColor: 'red', padding: '7%', marginHorizontal: '5%', alignItems: 'center', };
 
 
@@ -94,14 +80,14 @@ const Eventdetail = (props) => {
                   <Text style={tw`text-[#000000] mt-1 font-normal text-[3.2]`}>{moment(props?.geteventdetaillist?.fromTime).format('hA')} - {moment(props?.geteventdetaillist?.toTime).format('hA')}</Text>
                 </View>
               </View>
-              <View style={tw`flex-row my-2 items-center`}>
+              {/* <View style={tw`flex-row my-2 items-center`}>
                 <View>
                   <Image source={ImageIcons.locationclap} style={tw` h-6 w-6 `} />
                 </View>
                 <View style={tw`mx-4`}>
                   <Text style={tw`text-[#000000] mt-1 font-normal text-[3.2]`}>2220 Beverly Boulevard Los Angeles, California 90057</Text>
                 </View>
-              </View>
+              </View> */}
               <View style={tw`my-2 items-center`}>
 
               </View>
@@ -110,7 +96,9 @@ const Eventdetail = (props) => {
 
         </View>
 
-        <TouchableOpacity style={tw`border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-2 my-5 mx-15`} onPress={() => setModalVisible(false)}>
+        <TouchableOpacity style={tw`border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-2 my-5 mx-15`} 
+        //onPress={() => setModalVisible(false)}
+        >
           <Text style={tw`text-[#000] text-[4] p-2 px-7 font-normal`}>Purchase Tickets</Text>
         </TouchableOpacity>
 
