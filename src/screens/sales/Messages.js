@@ -107,21 +107,21 @@ const Messages = (props) => {
       <View>
         <TouchableOpacity onPress={() => props.navigation.navigate("Glynden")}>
 
-          <View style={tw`bg-white rounded w-99	 flex-row mb-0.5 p-2 py-4`} >
-            <View style={tw`w-18 items-center`}>
+          <View style={tw`bg-white rounded w-full mx-2 flex-row mb-0.5 p-2 py-4`} >
+            <View style={tw`w-2/12 items-center`}>
               {item?.fromUser?.profileImage != null ?
                 <Image source={{ uri: `${Api.imageUri}${item?.fromUser?.profileImage}` }} style={tw`w-15 h-15 rounded-full	mt-1`} />
                 :
                 <Image source={ImageIcons.man} style={tw`w-15 h-15 rounded-full	mt-1`} />
               }
             </View>
-            <View style={tw`flex-row justify-between	w-80 pr-3`}>
-              <View style={tw`w-50 `}>
+            <View style={tw`flex-row	w-10/12`}>
+              <View style={tw` w-7/12`}>
                 <Text style={tw` text-black text-base font-bold ml-2`} >{item?.fromUser?.fullName}</Text>
                 <Text style={tw`text-[#808080] text-sm font-semibold  ml-2`} >{item.message}</Text>
               </View>
-              <View style={tw`w-20 	`}>
-                <Text style={tw`text-center text-black text-xs text-right	 font-semibold  `} >{moment(item?.createdAt).startOf('hour').fromNow()}</Text>
+              <View style={tw` w-5/12 pr-5`}>
+                <Text style={tw` text-black text-xs text-right font-semibold  `} >{moment(item?.createdAt).startOf('hour').fromNow()}</Text>
               </View>
             </View>
 

@@ -97,31 +97,29 @@ const Notifications = (props) => {
     return (
       <View>
 
-        <View style={tw`bg-white rounded  mx-2	w-96 flex-row mb-0.5 p-2 py-4`} >
-          <View style={tw`w-18 items-center`}>
+        <View style={tw`bg-white rounded w-full mx-2 flex-row mb-0.5 p-2 py-4`} >
+          <View style={tw`w-2/12 items-center`}>
             {item?.from?.profileImage != null ?
               <Image source={{ uri: `${Api.imageUri}${item?.from?.profileImage}` }} style={tw`w-15 h-15 rounded-full	mt-1`} />
               :
               <Image source={ImageIcons.man} style={tw`w-15 h-15 rounded-full	mt-1`} />
             }
           </View>
-          <View style={tw`flex-row	w-80 pr-3`}>
-            <View style={tw` `}>
+          <View style={tw`flex-row	w-10/12`}>
+            <View style={tw` w-9/12`}>
               <Text style={tw` text-black text-base font-bold ml-2`} >{item?.from?.fullName}</Text>
               <Text style={tw`text-[#808080] text-sm font-semibold  ml-2`} >{item.message}</Text>
             </View>
-            <View style={tw`w-20 	`}>
-              <Text style={tw`text-center text-black text-xs text-right	 font-semibold  `} >{moment(item?.createdAt).format("h:mm a")}</Text>
+            <View style={tw` w-3/12 pr-5`}>
+              <Text style={tw`text-black text-xs text-right	 font-semibold  `} >{moment(item?.createdAt).format("h:mm a")}</Text>
             </View>
-          </View>
+          </View>  
 
         </View>
 
       </View>
     );
   }
-
-
 
 
   return (

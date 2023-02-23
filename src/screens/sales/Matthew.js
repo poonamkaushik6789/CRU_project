@@ -373,7 +373,7 @@ const Matthew = (props) => {
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"} style={styles.root}>
-      <ScrollView style={{ paddingBottom: 0, marginTop: 0 }}>
+      <ScrollView style={ tw`w-full`}>
         <View >
           <View>
             {props?.getprofilelist?.coverImage != null ?
@@ -382,7 +382,7 @@ const Matthew = (props) => {
               <Image source={ImageIcons.rawartist} style={tw`w-full h-45 rounded-b-full z-30 absolute`} />
             }
 
-            <View style={tw`w-95 h-75 mx-5 px-5 pt-50 flex-row	justify-between bg-white `} >
+            <View style={tw`w-full h-75 px-6 pt-50 flex-row	justify-between bg-white `} >
               <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('4')}>
                 <Image style={tw`w-15 h-13 `} source={ImageIcons.cru} />
                 <Text style={tw`text-black `}>My Cru</Text>
@@ -395,14 +395,14 @@ const Matthew = (props) => {
             <TouchableOpacity style={tw`right-15 mt-33 z-60 absolute`} onPress={() => handleupdatebackground()}>
               <Image source={ImageIcons.editclap} style={[tw`w-7 h-7 rounded-full`, { tintColor: '#5fafcf' }]} />
             </TouchableOpacity>
-            <View style={tw`inset-x-39	 mt-33 z-50 absolute`}>
+            <View style={tw` left-4/12 mt-33 z-50 absolute`}>
               {props?.getprofilelist?.profileImage != null ?
                 <Image source={{ uri: `${Api.imageUri}${props?.getprofilelist?.profileImage}` }} style={tw`w-30 h-30 rounded-full `} />
                 :
                 <Image source={ImageIcons.man} style={tw`w-30 h-30 rounded-full `} />
               }
             </View>
-            <TouchableOpacity style={tw`right-34 mt-48 z-50 absolute`} onPress={() => handleupdateprofile()}>
+            <TouchableOpacity style={tw`left-7/12 mt-48 z-50 absolute`} onPress={() => handleupdateprofile()}>
               <Image source={ImageIcons.editclap} style={[tw`w-7 h-7 rounded-full`, { tintColor: '#5fafcf' }]} />
             </TouchableOpacity>
           </View>

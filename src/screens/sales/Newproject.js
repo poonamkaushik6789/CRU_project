@@ -33,8 +33,8 @@ const Newproject = (props) => {
 
     const [selectedStartDate, setSelectedStartDate] = useState(null);
     const [selectedEndDate, setSelectedEndDate] = useState(null);
-    const [visible, setVisible] = React.useState(false);
-    const [selectprofile, setSelectprofile] = useState('');
+    const [userarrlist, setUsearrlist] = React.useState('');
+    const [selectprofile, setSelectprofile] = useState(false);
     const [description, setDescription] = React.useState("");
     const [title, setTitle] = React.useState("");
     const [production, setProduction] = useState(null);
@@ -45,6 +45,7 @@ const Newproject = (props) => {
         console.log("props.getproductionlist======>>>", props?.getproductionlist);
         props.mycrulist(loginId);
         console.log("props.getmycrulist======>>>", props?.getmycrulist);
+        console.log("props.getmycrulist?.user======>>>", props?.getmycrulist?.user);
     }, [])
 
     const progressStepsStyle = {
@@ -88,7 +89,12 @@ const Newproject = (props) => {
         //console.log("selectedStartDate===>",selectedStartDate.toDate())
         props.addnewproject(request, props.navigation);
     }
-
+    const handlecrudata = async (user) => {
+        console.log("item.user===>",user)
+        setSelectprofile(!selectprofile);
+        setUsearrlist(user);
+        //props.navigation.navigate("Camera", { user: item.user })
+    }
     const DATA3 = [
         {
             text2: 'Jonathan Williams',
@@ -106,8 +112,7 @@ const Newproject = (props) => {
         return (
             <View style={tw`bg-[#fff]  flex items-center`}>
                 <TouchableOpacity style={tw`border  border-[#ccc] w-33 items-center py-4`}
-                    //onPress={() => props.navigation.navigate("Camera", { user: item.user })}
-                    onPress={() => setSelectprofile(!selectprofile)}>
+                    onPress={() => handlecrudata(item.user)}>
                     <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-12 h-12 `, { tintColor: '#5fafcf' }]} />
                     <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>{item.departmentName}</Text>
                     <Text style={tw`text-[#000] text-[3.5] font-normal`}>{item?.user?.length}</Text>
@@ -250,7 +255,7 @@ const Newproject = (props) => {
                                 {selectprofile == true ?
                                     <View style={tw`mx-3 `}>
                                         <FlatList
-                                            data={DATA3}
+                                            data={userarrlist}
                                             Key={2}
                                             numColumns={2}
                                             renderItem={renderItem3}

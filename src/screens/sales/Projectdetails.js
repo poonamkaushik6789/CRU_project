@@ -16,7 +16,7 @@ import { FlatListSlider } from 'react-native-flatlist-slider';
 import tw from 'twrnc';
 
 
-const Commentlist = (props) => {
+const Projectdetails = (props) => {
     const {
         navigation,
         values,
@@ -24,6 +24,8 @@ const Commentlist = (props) => {
         handleChange,
         handleSubmit,
     } = props;
+
+
 
     const [visible, setVisible] = React.useState(false);
     const [subMsg, onChangeText1] = React.useState("");
@@ -39,34 +41,15 @@ const Commentlist = (props) => {
         onPressCloseButton: () => closePanel(),
         // ...or any prop you want
     });
-    const [isPanelActive, setIsPanelActive] = useState(false);
+    
 
-    const [isaction, setisaction] = useState(true);
+    useEffect(() => {
+        props.getprojectdetail();
+        console.log("props.getprojectdetilslist======>>>", props?.getprojectdetilslist);
 
+    }, [])
 
-
-    const openPanel = () => {
-
-        setIsPanelActive(true);
-        setisaction(false);
-    };
-
-    const closePanel = () => {
-        setIsPanelActive(false);
-        setisaction(true);
-
-    };
-
-    // const showisaction = () => {
-    //   setisaction(true);
-    // };
-    // const hideisaction = () => {
-    //   setisaction(false);
-    // };
-    const containerStyle = { backgroundColor: 'red', padding: '7%', marginHorizontal: '5%', alignItems: 'center', };
-
-
-
+    
     const DATA = [
         {
             text: '6/15',
@@ -185,22 +168,22 @@ const Commentlist = (props) => {
     const renderItem2 = ({ item, index }) => {
         return (
             <View>
-            <View style={tw`w-80 h-25 bg-white rounded flex flex-row mb-6`} >
-                <Image source={item.image} style={tw`w-15 h-15 mt-5 ml-4  `} />
-                <View style={tw` flex flex-column w-38`}>
-                    <Text style={tw` text-black text-base font-bold mt-4 ml-2`} >{item.text1}</Text>
-                    <Text style={tw`text-[#808080] text-xs font-semibold mt-1 mt-5 ml-2`} >{item.text2}</Text>
+                <View style={tw`w-80 h-25 bg-white rounded flex flex-row mb-6`} >
+                    <Image source={item.image} style={tw`w-15 h-15 mt-5 ml-4  `} />
+                    <View style={tw` flex flex-column w-38`}>
+                        <Text style={tw` text-black text-base font-bold mt-4 ml-2`} >{item.text1}</Text>
+                        <Text style={tw`text-[#808080] text-xs font-semibold mt-1 mt-5 ml-2`} >{item.text2}</Text>
+                    </View>
+                    <Image source={item.image2} style={tw`w-9.5 h-9.5 mt-7 `} />
+
+                    <Image source={item.image1} style={tw`w-10 h-10 mt-7 ml-2`} />
+
+
+
                 </View>
-                <Image source={item.image2} style={tw`w-9.5 h-9.5 mt-7 `} />
-
-                <Image source={item.image1} style={tw`w-10 h-10 mt-7 ml-2`} />
-
-
-
             </View>
-        </View>
-    );
-}
+        );
+    }
     const renderItem3 = ({ item, index }) => {
         return (
             <View>
@@ -283,4 +266,4 @@ const Commentlist = (props) => {
     )
 }
 
-export default Commentlist;
+export default Projectdetails;

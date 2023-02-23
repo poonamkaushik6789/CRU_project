@@ -23,6 +23,8 @@ import {
   GET_NOTIFICATION_LIST,
   SET_PROJECT_ADD,
   GET_PRODUCTION_LIST,
+  GET_MYPROJECT_LIST,
+  GET_PROJECTDETAIL_LIST,
 } from './ActionTypes';
 import { Alert } from 'react-native';
 import { Api, Utilise } from '../../common';
@@ -620,6 +622,54 @@ export const getproduction = () => {
               if (response?.status) {
                   
                   dispatch({ type: GET_PRODUCTION_LIST, payload: response.data.data });
+                  
+              } else {
+                  Alert.alert("Filmca", String(response?.message))
+              }
+          } catch (error) {
+              Alert.alert("Filmca", String(error?.message))
+          }
+      };
+  }
+};
+//myprojectdata
+export const getprojectdata = (id) => {
+  return async (dispatch, getState) => {
+      let loginCredentials = await getState().auth?.loginCredentials;
+      let isInternetConnected = await getState().auth?.isInternetConnected;
+      if (isInternetConnected) {
+          try {
+              dispatch({ type: GET_MYPROJECT_LIST, payload: true });
+              let response = await Utilise.apiCalling('GET', `${Api.myprojectdata}/${id}`)
+              console.log("getprojectdata_reponse",response)
+              dispatch({ type: GET_MYPROJECT_LIST, payload: false });
+              if (response?.status) {
+                  
+                  dispatch({ type: GET_MYPROJECT_LIST, payload: response.data.data });
+                  
+              } else {
+                  Alert.alert("Filmca", String(response?.message))
+              }
+          } catch (error) {
+              Alert.alert("Filmca", String(error?.message))
+          }
+      };
+  }
+};
+//projectdetails
+export const getprojectdetail = (id) => {
+  return async (dispatch, getState) => {
+      let loginCredentials = await getState().auth?.loginCredentials;
+      let isInternetConnected = await getState().auth?.isInternetConnected;
+      if (isInternetConnected) {
+          try {
+              dispatch({ type: GET_PROJECTDETAIL_LIST, payload: true });
+              let response = await Utilise.apiCalling('GET', `${Api.projectdetails}/${id}`)
+              console.log("getprojectdetail_reponse",response)
+              dispatch({ type: GET_PROJECTDETAIL_LIST, payload: false });
+              if (response?.status) {
+                  
+                  dispatch({ type: GET_PROJECTDETAIL_LIST, payload: response.data.data });
                   
               } else {
                   Alert.alert("Filmca", String(response?.message))

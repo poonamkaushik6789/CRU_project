@@ -116,7 +116,7 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
 
       <DrawerContentScrollView {...prop} >
         <View style={styles.drawerItemsContainer}>
-          <View style={{ flexDirection: 'row', marginTop: '17%', height: '18%' }}>
+          <View style={{ flexDirection: 'row', marginTop: '17%', height: '20%' }}>
             <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '0%' }}
               onPress={() => {
                 prop.navigation.toggleDrawer();
@@ -127,7 +127,7 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
                 onItemSelection("Saleslisting");
               }}>
               <View style={{ width: '100%', padingTop: '25%', alignItems: 'center', justifyContent: 'center', }}>
-                <Image style={tw`w-17 h-15`} source={ImageIcons.notifications} />
+                <Image style={tw`w-15 h-15`} source={ImageIcons.notifications} />
               </View>
               <DrawerItem
                 key="Saleslisting"
@@ -241,7 +241,7 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
             </TouchableOpacity>
 
           </View>
-          <View style={{ flexDirection: 'row', height: '18%', }}>
+          <View style={{ flexDirection: 'row', height: '20%', }}>
             <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%' }}
               onPress={() => {
                 prop.navigation.toggleDrawer();
@@ -300,7 +300,7 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
             </TouchableOpacity>
 
           </View>
-          <View style={{ flexDirection: 'row', height: '19%', }}>
+          <View style={{ flexDirection: 'row', height: '20%', }}>
             <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%' }}
               onPress={() => {
                 prop.navigation.toggleDrawer();

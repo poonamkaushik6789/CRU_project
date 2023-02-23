@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Text, KeyboardAvoidingView, View, TextInput, FlatList, StatusBar, TouchableOpacity, ScrollView, Image } from 'react-native';
-import { Fonts, Colors, ImageIcons,Api } from '../../common';
+import { Fonts, Colors, ImageIcons, Api } from '../../common';
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
@@ -53,11 +53,11 @@ const Cru = (props) => {
     const renderItemcru = ({ item, index }) => {
 
         return (
-            <View style={tw`bg-[#fff]  flex items-center`}>
-                <TouchableOpacity style={tw`border  border-[#ccc] w-33 items-center py-4`} onPress={() => props.navigation.navigate("Camera",{user : item.user})}>
+            <View style={tw`bg-[#fff] w-33 flex  justify-center`}>
+                <TouchableOpacity style={tw`border  border-[#ccc]  items-center py-4 px-4`} onPress={() => props.navigation.navigate("Camera", { user: item.user })}>
                     <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-12 h-12 `, { tintColor: '#5fafcf' }]} />
-                    <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>{item.departmentName}</Text>
-                    <Text style={tw`text-[#000] text-[3.5] font-normal`}>{item?.user?.length}</Text>
+                    <Text style={tw`text-[#000] text-[3.5] text-center p-1 font-normal`}>{item.departmentName}</Text>
+                    <Text style={tw`text-[#000] text-[3.5] text-center font-normal`}>{item?.user?.length}</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -66,27 +66,29 @@ const Cru = (props) => {
 
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"} style={styles.root}>
-        <ScrollView >
-                <View style={tw`rounded-[3] mx-3 my-5`}>
-                    <FlatList
-                        data={props?.getmycrulist}
-                        renderItem={renderItemcru}
-                        keyExtractor={item => item.id}
-                        showsHorizontalScrollIndicator={false}
-                        //horizontal={true}
-                        numColumns={3}
-                    />
+            <ScrollView >
+                <View style={tw`mx-3 my-5`}>
+                    <View style={tw`rounded-[3] w-100 my-5`}>
+                        <FlatList
+                            data={props?.getmycrulist}
+                            renderItem={renderItemcru}
+                            keyExtractor={item => item.id}
+                            showsHorizontalScrollIndicator={false}
+                            //horizontal={true}
+                            numColumns={3}
+                        />
+                    </View>
                     <View style={tw`  bg-white my-5 rounded-lg`}>
                         <Text style={tw`text-center py-5 text-base`}>Total:13</Text>
                     </View>
                     <TouchableOpacity style={tw` mx-15 bg-white mt-5 rounded-3xl border-2 border-sky-400 `} onPress={() => props.navigation.navigate("Viewall")}>
-                        <Text  style={tw`text-center py-4 text-base`}>View All</Text>
+                        <Text style={tw`text-center py-4 text-base`}>View All</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={tw`mx-15 bg-white mt-5 rounded-3xl border-2 border-sky-400  `}>
                         <Text style={tw`text-center py-4 text-base`}>New Project</Text>
                     </TouchableOpacity>
                 </View>
-                </ScrollView>
+            </ScrollView>
             <Loader />
         </KeyboardAvoidingView>
     )
