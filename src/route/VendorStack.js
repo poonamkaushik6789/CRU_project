@@ -11,7 +11,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { Vendor, Ucsafe, Safeservice, Massagewomen, Massagemen, Hairwomen, Cleankitbath, Plumber, waterpurifier, Cleaning, Homerepair, Pestcontrol, Editprofile, Search, Help, Commentlist, EventScreen, Searchloc, Reportlisting, Eventdetail, Gysercondition, Profile, Washing, Water, Appliances, Aircondition, Waterpurifier, Likelist, Gyser, Matthew, Notifications, Cru, Camera, Viewall, Projects, Searchjobs, Lighting, Jobdetails1, Locator, Projectdetails, Glynden, Messages, Glyndenprofile } from '../container'
+import { Vendor, Ucsafe, Safeservice, Massagewomen, Massagemen, Hairwomen, Cleankitbath, Plumber, waterpurifier, Cleaning, Homerepair, Pestcontrol, Editprofile, Search, Help, Commentlist, EventScreen, Searchloc, Reportlisting, Eventdetail, Gysercondition, Profile, Washing, Water, Appliances, Aircondition, Waterpurifier, Likelist, Gyser, Matthew, Notifications, Cru, Camera, Viewall, Projects, Searchjobs, Lighting, Jobdetails1, Locator, Projectdetails,Newproject, Glynden, Messages, Glyndenprofile } from '../container'
 import { Colors, Fonts, ImageIcons, Api } from '../common';
 import { connect, useSelector } from 'react-redux';
 
@@ -222,6 +222,31 @@ const VendorStack = (props) => {
             headerShown: true,
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
             headerTitle: "View All",
+            headerTitleAlign: "center",
+            headerTitleStyle: { color: Colors.BLACK, },
+            headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
+          })}
+        />
+        <Stack.Screen
+          name="Newproject"
+          component={Newproject}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
+              </View>
+            ),
+            headerShown: true,
+            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
+            headerTitle: "Step",
             headerTitleAlign: "center",
             headerTitleStyle: { color: Colors.BLACK, },
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },

@@ -23,7 +23,10 @@ import {
     GET_NETWORK_LIST,
     GET_EVENT_CATEGORY,
     GET_EVENT_LIST,
-    GET_EVENTDETAIL_LIST
+    GET_EVENTDETAIL_LIST,
+    GET_NOTIFICATION_LIST,
+    GET_PRODUCTION_LIST,
+    SET_PROJECT_ADD,
 } from '../actions/ActionTypes';
 
 // Redux states
@@ -43,12 +46,14 @@ const initialState = {
     updateabout: false,
     postdelete: false,
     networktocru: false,
+    addproductiontype:false,
     getmycrulist:[],
     getmynetworklist:[],
     geteventcategorylist:[],
     geteventlist:[],
     geteventdetaillist:[],
-
+    getnotificationlist:[],
+    getproductionlist:[],
 };
 
 const Vendor = (state = initialState, action) => {
@@ -154,21 +159,21 @@ const Vendor = (state = initialState, action) => {
             ...state,
             geteventdetaillist: action.payload,
         };
-        // case SET_UPDATE_ABOUT:
-        // return {
-        //     ...state,
-        //     updateabout: action.payload,
-        // };
-        // case SET_UPDATE_ABOUT:
-        // return {
-        //     ...state,
-        //     updateabout: action.payload,
-        // };
-        // case SET_UPDATE_ABOUT:
-        // return {
-        //     ...state,
-        //     updateabout: action.payload,
-        // };
+        case GET_NOTIFICATION_LIST:
+        return {
+            ...state,
+            getnotificationlist: action.payload,
+        };
+        case GET_PRODUCTION_LIST:
+        return {
+            ...state,
+            getproductionlist: action.payload,
+        };
+        case SET_PROJECT_ADD:
+        return {
+            ...state,
+            addproductiontype: action.payload,
+        };
 
         // case SET_UPDATE_ABOUT:
         // return {

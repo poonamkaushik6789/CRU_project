@@ -11,7 +11,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { Saleslisting, Editprofile, Search, Help, Commentlist, EventScreen, Searchloc, Reportlisting, Eventdetail, Gysercondition, Profile, Washing, Water, Appliances, Aircondition, Waterpurifier, Likelist, Gyser, Matthew, Notifications, Cru , Camera,Viewall, Projects,Searchjobs,Lighting,Jobdetails1,Locator,Projectdetails,Glynden,Messages} from '../container'
+import { Saleslisting, Editprofile, Search, Help, Commentlist, EventScreen, Searchloc, Reportlisting, Eventdetail, Gysercondition, Profile, Washing, Water, Appliances, Aircondition, Waterpurifier, Likelist, Gyser, Matthew, Notifications, Cru, Camera, Viewall, Projects, Searchjobs, Lighting, Jobdetails1, Locator, Projectdetails, Newproject,Glynden, Messages } from '../container'
 import { Colors, Fonts, ImageIcons } from '../common';
 
 
@@ -225,6 +225,32 @@ const SalesStack = (props) => {
           })}
         />
         <Stack.Screen
+          name="Newproject"
+          component={Newproject}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <View >
+                {profilename?.getprofilelist?.profileImage != null ?
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+                    <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, right: 20, borderRadius: 100 }} />
+                  </TouchableOpacity>
+                }
+              </View>
+            ),
+            headerShown: true,
+            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
+            headerTitle: "step",
+            headerTitleAlign: "center",
+            headerTitleStyle: { color: Colors.BLACK, },
+            headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
+          })}
+        />
+        
+        <Stack.Screen
           name="Searchjobs"
           component={Searchjobs}
           options={({ navigation }) => ({
@@ -249,7 +275,7 @@ const SalesStack = (props) => {
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
-       
+
         <Stack.Screen
           name="Lighting"
           component={Lighting}
@@ -325,7 +351,7 @@ const SalesStack = (props) => {
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="Projectdetails"
           component={Projectdetails}
           options={({ navigation }) => ({

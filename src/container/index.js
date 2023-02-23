@@ -48,6 +48,7 @@ import Lighting from './sales/Lighting';
 import Jobdetails1 from './sales/Jobdetails1';
 import Locator from './sales/Locator';
 import Projectdetails from './sales/Projectdetails';
+import Newproject from './sales/Newproject';
 import Glynden from './sales/Glynden';
 import Glyndenprofile from './sales/Glyndenprofile';
 import Messages from './sales/Messages';
@@ -103,5 +104,6 @@ export {
     Projectdetails,
     Glynden,
     Glyndenprofile,
-    Messages
+    Messages,
+    Newproject,
 }

@@ -130,62 +130,7 @@ const Messages = (props) => {
       </View>
     );
   }
-  // const renderItem1 = ({ item, index }) => {
-  //   return (
-  //     <View>
-  //       <View style={tw`w-80 h-25 bg-white rounded flex flex-row mb-0.5`} >
-  //         <Image source={item.image} style={tw`w-15 h-15 mt-5 ml-4  `} />
-  //         <View style={tw` flex flex-column w-46`}>
-  //           <Text style={tw` text-black text-base font-bold mt-4 ml-2`} >{item.text1}</Text>
-  //           <Text style={tw`text-[#808080] text-sm font-semibold mt-1 mt-5 ml-2`} >{item.text2}</Text>
-  //         </View>
-
-  //         <Text style={tw`text-center text-black text-xs font-semibold mt-12 `} >{item.text3}</Text>
-
-
-
-  //       </View>
-  //     </View>
-  //   );
-  // }
-  // const renderItem2 = ({ item, index }) => {
-  //   return (
-  //     <View>
-  //       <View style={tw`w-80 h-25 bg-white rounded flex flex-row mb-0.5`} >
-  //         <Image source={item.image} style={tw`w-15 h-15 mt-5 ml-4  `} />
-  //         <View style={tw` flex flex-column w-46`}>
-  //           <Text style={tw` text-black text-base font-bold mt-4 ml-2`} >{item.text1}</Text>
-  //           <Text style={tw`text-[#808080] text-sm font-semibold mt-1 mt-5 ml-2`} >{item.text2}</Text>
-  //         </View>
-
-  //         <Text style={tw`text-center text-black text-xs font-semibold mt-12 `} >{item.text3}</Text>
-
-
-
-  //       </View>
-  //     </View>
-  //   );
-  //}
-  // const renderItem3 = ({ item, index }) => {
-  //   return (
-  //     <View>
-  //       <View style={tw`w-80 h-25 bg-white rounded flex flex-row mb-0.5`} >
-  //         <Image source={item.image} style={tw`w-15 h-15 mt-5 ml-4  `} />
-  //         <View style={tw` flex flex-column w-46`}>
-  //           <Text style={tw` text-black text-base font-bold mt-4 ml-2`} >{item.text1}</Text>
-  //           <Text style={tw`text-[#808080] text-sm font-semibold mt-1 mt-5 ml-2`} >{item.text2}</Text>
-  //         </View>
-
-  //         <Text style={tw`text-center text-black text-xs font-semibold mt-12 `} >{item.text3}</Text>
-
-
-
-  //       </View>
-  //     </View>
-  //   );
-  // }
-
-
+ 
 
 
   return (
@@ -201,32 +146,7 @@ const Messages = (props) => {
             keyExtractor={item => item.id}
           />
         </View>
-        {/* <View style={tw`mx-auto mt-6`}><Text style={tw`text-base font-bold`}>Yesterday</Text></View> */}
-        {/* <View style={tw`mx-auto mt-6`}>
-          <FlatList
-            data={DATA1}
-            renderItem={renderItem1}
-            keyExtractor={item => item.id}
-          />
-        </View>
-        <View style={tw`mx-auto mt-6`}><Text style={tw`text-base font-bold`}>Friday</Text></View> */}
-        {/* <View style={tw`mx-auto mt-6`}>
-          <FlatList
-            data={DATA2}
-            renderItem={renderItem2}
-            keyExtractor={item => item.id}
-          />
-        </View>
-        <View style={tw`mx-auto mt-6`}><Text style={tw`text-base font-bold`}>Thursday</Text></View>
-        <View style={tw`mx-auto mt-6 mb-10`}>
-          <FlatList
-            data={DATA3}
-            renderItem={renderItem3}
-            keyExtractor={item => item.id}
-          />
-        </View> */}
-
-
+       
       </ScrollView>
 
       <Loader />
