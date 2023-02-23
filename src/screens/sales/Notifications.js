@@ -29,16 +29,7 @@ const Notifications = (props) => {
   const [subMsg, onChangeText1] = React.useState("");
   const [msg, onChangeText2] = React.useState("");
 
-  const [panelProps, setPanelProps] = useState({
-    fullWidth: true,
-    openLarge: true,
-    //onlySmall:true,
-    showCloseButton: true,
-    closeOnTouchOutside: true,
-    onClose: () => closePanel(),
-    onPressCloseButton: () => closePanel(),
-    // ...or any prop you want
-  });
+  
   const loginId = props?.loginCredentials?.data?._id
 
   useEffect(() => {
@@ -47,50 +38,6 @@ const Notifications = (props) => {
 
   }, [])
   const containerStyle = { backgroundColor: 'red', padding: '7%', marginHorizontal: '5%', alignItems: 'center', };
-
-
-
-  const DATA = [
-    {
-
-      image: ImageIcons.womanclap,
-      text1: 'Sarah Orefice',
-      text2: 'Like your post',
-      text3: '8:44 pm',
-
-    },
-    {
-      image: ImageIcons.womanclap,
-      text1: 'Jonathan Williams',
-      text2: 'Commented on your post',
-      text3: '6:29 pm',
-
-    },
-    {
-      image: ImageIcons.womanclap,
-      text1: 'Jianna Maarten',
-      text2: 'Like your post',
-      text3: '03:11 pm',
-
-    },
-    {
-      image: ImageIcons.womanclap,
-      text1: 'John Hafner',
-      text2: 'Commented on your post',
-      text3: '12:42 pm',
-
-    },
-    {
-      image: ImageIcons.womanclap,
-      text1: 'Sven Campaka',
-      text2: 'Like your post',
-      text3: '11:17 am',
-
-    },
-
-  ];
-
-
 
 
   const renderItem = ({ item, index }) => {

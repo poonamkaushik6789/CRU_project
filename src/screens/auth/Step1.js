@@ -144,8 +144,8 @@ const Step1 = (props) => {
     const renderItem = ({ item, index }) => {
 
         return (
-            <View style={tw`bg-[#fff]  flex items-center`}>
-                <TouchableOpacity style={tw`border  border-[#ccc] w-28 items-center p-4`} onPress={() => handledeparment(item._id, item.departmentName)}>
+            <View style={tw`bg-[#fff] w-4/12 flex  justify-center`}>
+                <TouchableOpacity style={tw`border  border-[#ccc]  items-center py-4 px-4`} onPress={() => handledeparment(item._id, item.departmentName)}>
                     <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-13 h-13 `, { tintColor: '#5fafcf' }]} />
                     <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>{item.departmentName}</Text>
                 </TouchableOpacity>
@@ -204,7 +204,7 @@ const Step1 = (props) => {
                                 <View style={tw` items-center mb-7`}>
                                     <Text style={tw`text-[#000] text-[3.9] font-normal`}>Which department do you work in?</Text>
                                 </View>
-                                <View style={tw`rounded-[3]`}>
+                                <View style={tw`rounded-[3] w-full`}>
                                     <FlatList
                                         data={props?.getdepartMentlist}
                                         renderItem={renderItem}

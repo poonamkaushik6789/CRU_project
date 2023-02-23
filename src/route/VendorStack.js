@@ -371,7 +371,7 @@ const VendorStack = (props) => {
               </View>
             ),
             headerShown: true,
-            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
+            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={false} />,
             headerTitle: "Project details",
             headerTitleAlign: "center",
             headerTitleStyle: { color: Colors.BLACK, },
@@ -632,7 +632,7 @@ const VendorStack = (props) => {
               </View>
             ),
             headerShown: true,
-            //headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
+            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={false} />,
             headerTitle: "Comment",
             headerTitleAlign: "center",
             headerTitleStyle: { color: Colors.BLACK, },

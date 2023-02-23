@@ -25,8 +25,9 @@ const Projectdetails = (props) => {
         handleSubmit,
     } = props;
 
-
-
+    
+    const project_Id = props?.route?.params?.projectid
+//console.log("project_Id===>>>>",project_Id)
     const [visible, setVisible] = React.useState(false);
     const [subMsg, onChangeText1] = React.useState("");
     const [msg, onChangeText2] = React.useState("");
@@ -44,7 +45,7 @@ const Projectdetails = (props) => {
     
 
     useEffect(() => {
-        props.getprojectdetail();
+        props.getprojectdetail(project_Id);
         console.log("props.getprojectdetilslist======>>>", props?.getprojectdetilslist);
 
     }, [])
@@ -217,15 +218,15 @@ const Projectdetails = (props) => {
                 </View>
                 <View style={tw`w-80 h-15 bg-white  flex flex-row mt-1 mx-auto`} >
                     <Text style={tw`ml-4 py-4 text-sm font-bold`} >Production Type: </Text>
-                    <Text style={tw` text-base py-4 font-semibold ml-5`}>Music Video</Text>
+                    <Text style={tw` text-base py-4 font-semibold ml-5`}>{props?.getprojectdetilslist?.productionType}</Text>
                 </View>
                 <View style={tw`w-80 h-15 bg-white  flex flex-row mt-1 mx-auto`} >
                     <Text style={tw`ml-23 py-4 text-sm font-bold`} >Title: </Text>
-                    <Text style={tw` text-base py-4 font-semibold ml-5`}>R&B Artist</Text>
+                    <Text style={tw` text-base py-4 font-semibold ml-5`}>{props?.getprojectdetilslist?.title}</Text>
                 </View>
                 <View style={tw`w-80  bg-white rounded-b-xl flex flex-row mt-1 mx-auto`} >
                     <Text style={tw`ml-11 py-4 text-sm font-bold`} >Description: </Text>
-                    <Text style={tw` text-base py-4 font-semibold ml-5 w-40-`}>The majority of the video will be shot in the downtown with the lot of the extras</Text>
+                    <Text style={tw` text-base py-4 font-semibold ml-5 w-40-`}>{props?.getprojectdetilslist?.description}</Text>
                 </View>
                 <FlatList
                     horizontal={true}

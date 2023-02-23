@@ -139,6 +139,7 @@ export const socialfeedlist = () => {
       let isInternetConnected = await getState().auth?.isInternetConnected;
       if (isInternetConnected) {
           try {
+            dispatch({ type: SET_LOGIN_LOADER, payload: true });
               dispatch({ type: GET_POST_LIST, payload: true });
               let response = await Utilise.apiCalling('GET', `${Api.postlisting}`)
               console.log("postlisting_reponse",response)

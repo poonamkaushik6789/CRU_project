@@ -179,7 +179,7 @@ const Registration = (props) => {
                                 </View>
                                 <TextInput
                                     style={tw`border-b	border-white text-white	pl-7 h-17`}
-                                    placeholder="Matthew Grace"
+                                    placeholder="Name"
                                     value={username}
                                     onChangeText={(text) => setUsername(text)}
                                     reference={emailInputRef}
@@ -193,7 +193,7 @@ const Registration = (props) => {
                                 </View>
                                 <TextInput
                                     style={tw`border-b	border-white text-white	pl-7 h-17`}
-                                    placeholder="mattegroup@gmail.com"
+                                    placeholder="Email"
                                     value={email}
                                     onChangeText={(text) => setEmail(text)}
                                     reference={emailInputRef}
