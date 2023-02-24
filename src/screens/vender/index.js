@@ -166,15 +166,15 @@ const Vendor = (props) => {
                 }
 
 
-                <TouchableOpacity style={tw`flex-row ml-2 items-center`} onPress={() => props.navigation.navigate("Likelist")}>
+                <TouchableOpacity style={tw`flex-row ml-2 items-center`} onPress={() => props.navigation.navigate("Likelist",{ post_Id: item._id })}>
                   <View style={tw`	z-20`}>
                     <Image source={ImageIcons.man} style={tw`w-12 h-12 rounded-full`} />
                   </View>
                   <View style={tw`absolute	z-10 left-6`}>
                     <Image source={ImageIcons.man} style={tw`w-12 h-12	rounded-full`} />
                   </View>
-                  <View style={tw`absolute z-0 left-12 bg-[#f2f2f2] w-12 h-12 rounded-full items-center justify-center`}>
-                    <Text>+{item?.likedBy?.length}</Text>
+                  <View style={tw`absolute z-0 left-13 bg-[#f2f2f2] w-12 h-12 rounded-full items-center justify-center`}>
+                    <Text> +{item?.likedBy?.length}</Text>
                   </View>
                 </TouchableOpacity>
 

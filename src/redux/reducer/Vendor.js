@@ -13,6 +13,7 @@ import {
     SET_SEND_MESSAGE,
     GET_MESSAGE_LIST,
     SET_LIKE_UNLIKE_POST,
+    GET_LIKE_LIST,
     GET_PROFILE_LIST,
     SET_UPDATE_PROFILE,
     SET_UPDATE_BACKGROUND,
@@ -38,6 +39,7 @@ const initialState = {
     newcomment: false,
     messagesend: false,
     postlikeunlike: false,
+    getlikstlist:[],
     getmessagelist: [],
     getpostlist: [],
     grtpostdetail: [],
@@ -189,6 +191,56 @@ const Vendor = (state = initialState, action) => {
             ...state,
             getprojectdetilslist: action.payload,
         };
+        case GET_LIKE_LIST:
+        return {
+            ...state,
+            getlikstlist: action.payload,
+        };
+        // case GET_PROJECTDETAIL_LIST:
+        //     return {
+        //         ...state,
+        //         getprojectdetilslist: action.payload,
+        //     };
+        //     case GET_PROJECTDETAIL_LIST:
+        // return {
+        //     ...state,
+        //     getprojectdetilslist: action.payload,
+        // };
+        // case GET_PROJECTDETAIL_LIST:
+        // return {
+        //     ...state,
+        //     getprojectdetilslist: action.payload,
+        // };
+        // case GET_PROJECTDETAIL_LIST:
+        // return {
+        //     ...state,
+        //     getprojectdetilslist: action.payload,
+        // };
+        // case GET_PROJECTDETAIL_LIST:
+        // return {
+        //     ...state,
+        //     getprojectdetilslist: action.payload,
+        // };
+        // case GET_PROJECTDETAIL_LIST:
+        // return {
+        //     ...state,
+        //     getprojectdetilslist: action.payload,
+        // };
+        // case GET_PROJECTDETAIL_LIST:
+        // return {
+        //     ...state,
+        //     getprojectdetilslist: action.payload,
+        // };
+        // case GET_PROJECTDETAIL_LIST:
+        // return {
+        //     ...state,
+        //     getprojectdetilslist: action.payload,
+        // };
+        // case GET_PROJECTDETAIL_LIST:
+        // return {
+        //     ...state,
+        //     getprojectdetilslist: action.payload,
+        // };
 
         case GET_POSTDETAIL_LIST:
             return {

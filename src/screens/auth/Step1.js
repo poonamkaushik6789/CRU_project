@@ -64,7 +64,7 @@ const Step1 = (props) => {
         console.log("getsubdepartmentlist====>>", props.getsubdepartmentlist)
     }, [])
 
-    
+
     const callAction1 = async (value) => {
         // alert(value)
         for (var i = 0; i < props?.getsubdepartmentlist?.length; i++) {
@@ -153,26 +153,35 @@ const Step1 = (props) => {
         );
     }
     const renderItem1 = ({ item, index }) => {
-        
+
         return (
             <TouchableOpacity style={tw`flex-row items-center my-1`} onPress={() => callAction1(item._id)}>
 
                 {(checkedId1.indexOf(item._id) > -1) ?
-                    <CheckBox
-                        value={true}
-                        disabled={false}
-                        //onValueChange={() =>callAction1(item.id)}
-                        tintColors={{ true: '#5fafcf', false: '#ccc', }}
-                    />
+                    <View>
+                        <CheckBox
+                            value={true}
+                            disabled={false}
+                            //onValueChange={() =>callAction1(item.id)}
+                            tintColors={{ true: '#5fafcf', false: '#ccc', }}
+                        />
+                        <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>{item.name}</Text>
+
+                    </View>
+
                     :
-                    <CheckBox
-                        value={false}
-                        disabled={false}
-                        //onValueChange={() =>callAction1(item.id)}
-                        tintColors={{ true: '#5fafcf', false: '#ccc', }}
-                    />
+                    <View>
+                        <CheckBox
+                            value={false}
+                            disabled={false}
+                            //onValueChange={() =>callAction1(item.id)}
+                            tintColors={{ true: '#5fafcf', false: '#ccc', }}
+                        />
+                        <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>{item.name}</Text>
+
+                    </View>
+
                 }
-                <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>{item.name}</Text>
             </TouchableOpacity>
         );
     }
@@ -323,10 +332,10 @@ const Step1 = (props) => {
                                         keyExtractor={item => item.id}
                                         showsHorizontalScrollIndicator={false}
                                         extraData={newflat1}
-                                    
+
                                     />
                                 </View>
-                                
+
                                 <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`} onPress={() => handlecameacategory()}>
                                     <Text style={tw`text-[#000] text-[3.5] p-2 px-15 font-normal`}>Save</Text>
                                 </TouchableOpacity>

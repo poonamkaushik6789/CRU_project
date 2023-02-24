@@ -1,8 +1,8 @@
 //const projectUri = `https://devvca.pushcord.com:8000/vca-front/api/v1.0/ui/front`; //Production server URL
 //const baseUri = `http://3.133.223.72/api/`; //Production server URL
-const baseUri = `http://192.168.1.16:7889/v1`;
+const baseUri = `http://192.168.1.6:7889/v1`;
 //const baseUri = `https://api.wallpon.com/v1`;
-const imageUri = `http://192.168.1.16:7889/`;
+const imageUri = `http://192.168.1.6:7889/`;
 
 const api = {
   baseUri, imageUri,
@@ -37,7 +37,7 @@ const api = {
   productiontypes: `/users/productionTypes`,
   myprojectdata: `/users/myProjects`,
   projectdetails: `/users/projectDetails`,
-  //  messagelist: `/users/eventCategory`,
+  likelisting: `/users/postLikedBy`,
   // addnetworkCru: `/users/addToNetworkOrCru`,
   // mycru: `/users/myCru`,
   // mynetwork: `/users/myNetwork`,

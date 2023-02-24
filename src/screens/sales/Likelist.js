@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Text, KeyboardAvoidingView, View, TextInput, FlatList, StatusBar, TouchableOpacity, ScrollView, Image } from 'react-native';
-import { Fonts, Colors, ImageIcons } from '../../common';
+import { Fonts, Colors, ImageIcons, Api } from '../../common';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -25,25 +25,18 @@ const Likelist = (props) => {
     handleSubmit,
   } = props;
 
+  const postid = props?.route?.params?.post_Id;
   const [visible, setVisible] = React.useState(false);
   const [subMsg, onChangeText1] = React.useState("");
   const [msg, onChangeText2] = React.useState("");
 
   const [isaction, setisaction] = useState(true);
 
+  useEffect(() => {
+    props.getlike(postid);
+    console.log("props.getlikstlist======>>>", props?.getlikstlist);
 
-
-  const openPanel = () => {
-
-    setIsPanelActive(true);
-    setisaction(false);
-  };
-
-  const closePanel = () => {
-    setIsPanelActive(false);
-    setisaction(true);
-
-  };
+  }, [])
 
   // const showisaction = () => {
   //   setisaction(true);
@@ -53,63 +46,20 @@ const Likelist = (props) => {
   // };
   const containerStyle = { backgroundColor: 'red', padding: '7%', marginHorizontal: '5%', alignItems: 'center', };
 
-  const DATA = [
-    {
-      text: 'Matthew',
-      image: ImageIcons.womanclap,
-    },
-    {
-      text: 'Ashley',
-      image: ImageIcons.womanclap,
-    },
-    {
-      text: 'Brian',
-      image: ImageIcons.womanclap,
-    },
-    {
-      text: 'Jianna',
-      image: ImageIcons.womanclap,
-    },
-    {
-      text: 'Ed',
-      image: ImageIcons.womanclap,
-    },
-    {
-      text: 'Sven',
-      image: ImageIcons.womanclap,
-    },
-    {
-      text: 'Jonathan',
-      image: ImageIcons.womanclap,
-    },
-    {
-      text: 'Sarah',
-      image: ImageIcons.womanclap,
-    },
-    {
-      text: 'Paul',
-      image: ImageIcons.womanclap,
-    },
-    {
-      text: 'Pierce',
-      image: ImageIcons.womanclap,
-    },
-    {
-      text: 'John',
-      image: ImageIcons.womanclap,
-    },
-
-  ];
-
 
 
   const renderItem = ({ item, index }) => {
     return (
       <View style={tw`items-center mx-4`}>
-        <Text style={tw`text-[#000] text-center	 text-[3.4] font-normal`}>{item.text}</Text>
+        <Text style={tw`text-[#000] text-center	 text-[3.4] font-normal`}>{item.fullName}</Text>
         <View>
-          <Image source={item.image} style={tw`w-23 h-23 rounded-full`} />
+          {item?.profileImage != null ?
+            <Image source={{ uri: `${Api.imageUri}${item?.profileImage}` }} style={tw`w-20 h-20 rounded-full`} />
+            :
+            <Image source={ImageIcons.man} style={tw`w-20 h-20 rounded-full`} />
+          }
         </View>
+
       </View>
     );
   }
@@ -122,7 +72,7 @@ const Likelist = (props) => {
 
         <View style={tw`m-4 bg-white rounded-[3] p-3 py-5`}>
           <FlatList
-            data={DATA}
+            data={props?.getlikstlist}
             renderItem={renderItem}
             keyExtractor={item => item.id}
             showsHorizontalScrollIndicator={false}

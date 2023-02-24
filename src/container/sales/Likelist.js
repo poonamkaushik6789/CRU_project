@@ -2,14 +2,17 @@
 import { connect } from 'react-redux';
 import Likelist from '../../screens/sales/Likelist';
 
+import {
+    getlike,
+    
+} from '../../redux/actions/Vendor';
 const mapStateToProps = (state) => ({
     loginCredentials: state.auth.loginCredentials,
-    //redeemedCouponTrackingData: state.coupon.redeemedCouponTrackingData,
-    //redeemedCouponTrackingLoader: state.coupon.redeemedCouponTrackingLoader
+    getlikstlist: state.vendor.getlikstlist,
 });
 
 const mapDispatchToProps = {
-    
+    getlike
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Likelist);

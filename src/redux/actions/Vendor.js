@@ -9,6 +9,7 @@ import {
   SET_SEND_MESSAGE,
   GET_MESSAGE_LIST,
   SET_LIKE_UNLIKE_POST,
+  GET_LIKE_LIST,
   GET_PROFILE_LIST,
   SET_UPDATE_PROFILE,
   SET_UPDATE_BACKGROUND,
@@ -298,6 +299,30 @@ export const likeunlikepost = (request, navigation) => {
         Alert.alert("Filmca", String(error?.message))
       }
     };
+  }
+};
+//likelisting
+export const getlike = (id) => {
+  return async (dispatch, getState) => {
+      let loginCredentials = await getState().auth?.loginCredentials;
+      let isInternetConnected = await getState().auth?.isInternetConnected;
+      if (isInternetConnected) {
+          try {
+              dispatch({ type: GET_LIKE_LIST, payload: true });
+              let response = await Utilise.apiCalling('GET', `${Api.likelisting}/${id}`)
+              console.log("getlike_reponse",response)
+              dispatch({ type: GET_LIKE_LIST, payload: false });
+              if (response?.status) {
+                  
+                  dispatch({ type: GET_LIKE_LIST, payload: response.data.data });
+                  
+              } else {
+                  Alert.alert("Filmca", String(response?.message))
+              }
+          } catch (error) {
+              Alert.alert("Filmca", String(error?.message))
+          }
+      };
   }
 };
 //viewprofile 

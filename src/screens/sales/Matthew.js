@@ -305,7 +305,9 @@ const Matthew = (props) => {
             <View style={tw`py-2 `}>
               <Text style={tw`text-[#000] text-[3.3] font-normal`}>{item.description}</Text>
               <View style={tw`pt-4`}>
-                <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={tw`w-full h-90	`} />
+                {item?.image != "" &&
+                  <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={tw`w-full h-90	`} />
+                }
               </View>
             </View>
 
@@ -373,7 +375,7 @@ const Matthew = (props) => {
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"} style={styles.root}>
-      <ScrollView style={ tw`w-full`}>
+      <ScrollView style={tw`w-full`}>
         <View >
           <View>
             {props?.getprofilelist?.coverImage != null ?
