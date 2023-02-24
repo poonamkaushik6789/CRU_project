@@ -53,7 +53,7 @@ const Cru = (props) => {
     const renderItemcru = ({ item, index }) => {
 
         return (
-            <View style={tw`bg-[#fff] w-33 flex  justify-center`}>
+            <View style={tw`bg-[#fff] w-4/12 flex  justify-center`}>
                 <TouchableOpacity style={tw`border  border-[#ccc]  items-center py-4 px-4`} onPress={() => props.navigation.navigate("Camera", { user: item.user })}>
                     <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-12 h-12 `, { tintColor: '#5fafcf' }]} />
                     <Text style={tw`text-[#000] text-[3.5] text-center p-1 font-normal`}>{item.departmentName}</Text>
@@ -68,7 +68,7 @@ const Cru = (props) => {
         <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"} style={styles.root}>
             <ScrollView >
                 <View style={tw`mx-3 my-5`}>
-                    <View style={tw`rounded-[3] w-100 my-5`}>
+                    <View style={tw`rounded-[3] w-full my-5`}>
                         <FlatList
                             data={props?.getmycrulist}
                             renderItem={renderItemcru}

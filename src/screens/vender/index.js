@@ -53,16 +53,7 @@ const Vendor = (props) => {
     onPressCloseButton: () => closePanel(),
     // ...or any prop you want
   });
-  const [isPanelActive, setIsPanelActive] = useState(false);
-
-  const [isaction, setisaction] = useState(true);
-
-
-  const openPanel = () => {
-
-    setIsPanelActive(true);
-    setisaction(false);
-  };
+  
   const handlelikeunlike = (id) => {
 
     setLikecount(likecount + 1)
@@ -73,6 +64,7 @@ const Vendor = (props) => {
     }
 
     props.likeunlikepost(request, props.navigation)
+    props.socialfeedlist();
   };
 
   const handleMsgcount = () => {
@@ -122,21 +114,7 @@ const Vendor = (props) => {
   }
 
 
-  const DATA = [
-    {
-      name: "Glynden kenzie",
-      days: "Today",
-      time: "25 min ago",
-      profile: ImageIcons.womanclap,
-      image: ImageIcons.purifier,
-      likeimg: ImageIcons.like,
-      chatimg: ImageIcons.chat,
-      message: "Just used the Briese light for thr first time! Very even light, a great key light when shooting commercials. As you can see we had an audience watching.",
-      text2: "Get Plus now",
-      text3: "Organization Actions",
-    },
-
-  ];
+  
   const renderItem = ({ item, index }) => {
     return (
       <TouchableOpacity style={tw`my-2 `}>
@@ -188,15 +166,15 @@ const Vendor = (props) => {
                 }
 
 
-                <TouchableOpacity style={tw`flex-row ml-2 items-center`} onPress={() => props.navigation.navigate("Likelist")}>
+                <TouchableOpacity style={tw`flex-row ml-2 items-center`} onPress={() => props.navigation.navigate("Likelist",{ post_Id: item._id })}>
                   <View style={tw`	z-20`}>
                     <Image source={ImageIcons.man} style={tw`w-12 h-12 rounded-full`} />
                   </View>
                   <View style={tw`absolute	z-10 left-6`}>
                     <Image source={ImageIcons.man} style={tw`w-12 h-12	rounded-full`} />
                   </View>
-                  <View style={tw`absolute z-0 left-12 bg-[#f2f2f2] w-12 h-12 rounded-full items-center justify-center`}>
-                    <Text>+{item?.likedBy?.length}</Text>
+                  <View style={tw`absolute z-0 left-13 bg-[#f2f2f2] w-12 h-12 rounded-full items-center justify-center`}>
+                    <Text> +{item?.likedBy?.length}</Text>
                   </View>
                 </TouchableOpacity>
 
@@ -289,6 +267,7 @@ const Vendor = (props) => {
               renderItem={renderItem}
               keyExtractor={item => item.id}
               showsHorizontalScrollIndicator={false}
+              extraData={props}
             />
           </View>
         </View>

@@ -26,7 +26,8 @@ const Projectdetails = (props) => {
     } = props;
 
 
-
+    const project_Id = props?.route?.params?.projectid
+    //console.log("project_Id===>>>>",project_Id)
     const [visible, setVisible] = React.useState(false);
     const [subMsg, onChangeText1] = React.useState("");
     const [msg, onChangeText2] = React.useState("");
@@ -41,15 +42,15 @@ const Projectdetails = (props) => {
         onPressCloseButton: () => closePanel(),
         // ...or any prop you want
     });
-    
+
 
     useEffect(() => {
-        props.getprojectdetail();
+        props.getprojectdetail(project_Id);
         console.log("props.getprojectdetilslist======>>>", props?.getprojectdetilslist);
 
     }, [])
 
-    
+
     const DATA = [
         {
             text: '6/15',
@@ -211,22 +212,46 @@ const Projectdetails = (props) => {
         <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"} style={styles.root}>
             <StatusBar backgroundColor={Colors.WHITE} barStyle="dark-content" translucent={true} />
             <ScrollView style={tw``}>
-                <View style={tw`w-80 h-15 bg-white rounded-t-xl flex flex-row mt-6 mx-auto`} >
-                    <Text style={tw`ml-23 py-4 text-sm font-bold`} >Date: </Text>
-                    <Text style={tw` text-base py-4 font-semibold ml-5`}>6/7</Text>
+                
+                <View style={tw` rounded-xl mx-5 mt-4 py-4`}>
+                    <View style={tw`flex-row bg-white w-full rounded-t-[3]	 mb-1 py-4 items-center`}>
+                        <View style={tw` w-5/12 mr-5`}>
+                            <Text style={tw`text-[4] font-bold text-right`} >Date: </Text>
+                        </View>
+                        <View style={tw`w-7/12`}>
+                            <Text style={tw` text-base font-semibold `}>6/7</Text>
+                        </View>
+
+                    </View>
+                    <View style={tw`flex-row bg-white w-full py-4 mb-1 items-center`}>
+                        <View style={tw` w-5/12 mr-5 `}>
+                            <Text style={tw` text-[4] font-bold text-right`} >Production Type: </Text>
+                        </View>
+                        <View style={tw` w-7/12 `}>
+                            <Text style={tw` text-base font-semibold `}>{props?.getprojectdetilslist?.productionType?.title}</Text>
+
+                        </View>
+
+
+                    </View>
+                    <View style={tw`flex-row bg-white w-full py-4 mb-1 items-center`}>
+                        <View style={tw` w-5/12 mr-5`}>
+                            <Text style={tw`text-[4] font-bold text-right`} >Title: </Text>
+                        </View>
+                        <View style={tw` w-7/12`}>
+                            <Text style={tw` text-base font-semibold `}>{props?.getprojectdetilslist?.title}</Text>
+                        </View>
+                    </View>
+                    <View style={tw`flex-row bg-white w-full rounded-b-[3]	 py-4 mb-1 items-center mb-5`}>
+                        <View style={tw`w-5/12 mr-5`}>
+                            <Text style={tw`text-[4] font-bold text-right`} >Description: </Text>
+                        </View>
+                        <View style={tw`w-7/12`}>
+                            <Text style={tw` text-base font-semibold `}>{props?.getprojectdetilslist?.description}</Text>
+                        </View>
+                    </View>
                 </View>
-                <View style={tw`w-80 h-15 bg-white  flex flex-row mt-1 mx-auto`} >
-                    <Text style={tw`ml-4 py-4 text-sm font-bold`} >Production Type: </Text>
-                    <Text style={tw` text-base py-4 font-semibold ml-5`}>Music Video</Text>
-                </View>
-                <View style={tw`w-80 h-15 bg-white  flex flex-row mt-1 mx-auto`} >
-                    <Text style={tw`ml-23 py-4 text-sm font-bold`} >Title: </Text>
-                    <Text style={tw` text-base py-4 font-semibold ml-5`}>R&B Artist</Text>
-                </View>
-                <View style={tw`w-80  bg-white rounded-b-xl flex flex-row mt-1 mx-auto`} >
-                    <Text style={tw`ml-11 py-4 text-sm font-bold`} >Description: </Text>
-                    <Text style={tw` text-base py-4 font-semibold ml-5 w-40-`}>The majority of the video will be shot in the downtown with the lot of the extras</Text>
-                </View>
+
                 <FlatList
                     horizontal={true}
                     data={DATA}

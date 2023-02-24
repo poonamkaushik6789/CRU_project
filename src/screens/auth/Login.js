@@ -150,11 +150,11 @@ const Login = (props) => {
                                 </View>
                                 <TextInput
                                     style={tw`border-b	border-white text-white	pl-7 h-16`}
-                                    placeholder="Matthew@gmail.com"
+                                    placeholder="Enter Email Address"
                                     value={email}
                                     onChangeText={(text) => setEmail(text)}
                                     reference={emailInputRef}
-                                    placeholderTextColor={'#fff'}
+                                    placeholderTextColor={'#8c8c8c'}
                                     onSubmitEditing={() => passwordInputRef?.current?.focus()}
                                 />
                             </View>
@@ -170,8 +170,8 @@ const Login = (props) => {
                                     rightIcon={isShowPassword ? ImageIcons.eye_icon_hide : ImageIcons.eye_icon}
                                     reference={passwordInputRef}
                                     onSubmitEditing={() => handleLoginSubmit()}
-                                    placeholderTextColor={'#fff'}
-                                    placeholder="1234"
+                                    placeholderTextColor={'#8c8c8c'}
+                                    placeholder="Password"
                                 />
                                 <TouchableOpacity style={tw`absolute right-2 bottom-5	 `} onPress={() => setIsShowPassword(!isShowPassword)}>
                                     {isShowPassword ?

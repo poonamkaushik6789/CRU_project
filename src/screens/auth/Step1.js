@@ -64,7 +64,7 @@ const Step1 = (props) => {
         console.log("getsubdepartmentlist====>>", props.getsubdepartmentlist)
     }, [])
 
-    
+
     const callAction1 = async (value) => {
         // alert(value)
         for (var i = 0; i < props?.getsubdepartmentlist?.length; i++) {
@@ -144,8 +144,8 @@ const Step1 = (props) => {
     const renderItem = ({ item, index }) => {
 
         return (
-            <View style={tw`bg-[#fff]  flex items-center`}>
-                <TouchableOpacity style={tw`border  border-[#ccc] w-28 items-center p-4`} onPress={() => handledeparment(item._id, item.departmentName)}>
+            <View style={tw`bg-[#fff] w-4/12 flex  justify-center`}>
+                <TouchableOpacity style={tw`border  border-[#ccc]  items-center py-4 px-4`} onPress={() => handledeparment(item._id, item.departmentName)}>
                     <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-13 h-13 `, { tintColor: '#5fafcf' }]} />
                     <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>{item.departmentName}</Text>
                 </TouchableOpacity>
@@ -153,26 +153,35 @@ const Step1 = (props) => {
         );
     }
     const renderItem1 = ({ item, index }) => {
-        
+
         return (
             <TouchableOpacity style={tw`flex-row items-center my-1`} onPress={() => callAction1(item._id)}>
 
                 {(checkedId1.indexOf(item._id) > -1) ?
-                    <CheckBox
-                        value={true}
-                        disabled={false}
-                        //onValueChange={() =>callAction1(item.id)}
-                        tintColors={{ true: '#5fafcf', false: '#ccc', }}
-                    />
+                    <View>
+                        <CheckBox
+                            value={true}
+                            disabled={false}
+                            //onValueChange={() =>callAction1(item.id)}
+                            tintColors={{ true: '#5fafcf', false: '#ccc', }}
+                        />
+                        <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>{item.name}</Text>
+
+                    </View>
+
                     :
-                    <CheckBox
-                        value={false}
-                        disabled={false}
-                        //onValueChange={() =>callAction1(item.id)}
-                        tintColors={{ true: '#5fafcf', false: '#ccc', }}
-                    />
+                    <View>
+                        <CheckBox
+                            value={false}
+                            disabled={false}
+                            //onValueChange={() =>callAction1(item.id)}
+                            tintColors={{ true: '#5fafcf', false: '#ccc', }}
+                        />
+                        <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>{item.name}</Text>
+
+                    </View>
+
                 }
-                <Text style={tw`text-[#000000] ml-3 font-normal text-[3.7]`}>{item.name}</Text>
             </TouchableOpacity>
         );
     }
@@ -204,7 +213,7 @@ const Step1 = (props) => {
                                 <View style={tw` items-center mb-7`}>
                                     <Text style={tw`text-[#000] text-[3.9] font-normal`}>Which department do you work in?</Text>
                                 </View>
-                                <View style={tw`rounded-[3]`}>
+                                <View style={tw`rounded-[3] w-full`}>
                                     <FlatList
                                         data={props?.getdepartMentlist}
                                         renderItem={renderItem}
@@ -323,10 +332,10 @@ const Step1 = (props) => {
                                         keyExtractor={item => item.id}
                                         showsHorizontalScrollIndicator={false}
                                         extraData={newflat1}
-                                    
+
                                     />
                                 </View>
-                                
+
                                 <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`} onPress={() => handlecameacategory()}>
                                     <Text style={tw`text-[#000] text-[3.5] p-2 px-15 font-normal`}>Save</Text>
                                 </TouchableOpacity>

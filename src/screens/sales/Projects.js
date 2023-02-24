@@ -57,7 +57,7 @@ const Projects = (props) => {
     const renderItem = ({ item, index }) => {
         return (
             <View>
-                <TouchableOpacity style={tw`w-96 bg-white rounded-xl items-center  flex-row my-2 p-2`} onPress={()=> props?.navigation?.navigate("Projectdetails")}>
+                <TouchableOpacity style={tw`w-96 bg-white rounded-xl items-center  flex-row my-2 p-2`} onPress={()=> props?.navigation?.navigate("Projectdetails",{projectid: item._id})}>
                     <View style={tw`w-22 h-18 bg-white items-center  flex-row `} >
 
                         <View style={tw`w-4 h-18 bg-black `} >

@@ -67,19 +67,19 @@ const Commentlist = (props) => {
     const containerStyle = { backgroundColor: 'red', padding: '7%', marginHorizontal: '5%', alignItems: 'center', };
     const DATA2 = [
         {
-          text: 'Screenings',
-          //  image:ImageIcons.salonman,
+            text: 'Screenings',
+            //  image:ImageIcons.salonman,
         },
         {
-          text: 'Networking',
-          //  image:ImageIcons.salonwoman,
+            text: 'Networking',
+            //  image:ImageIcons.salonwoman,
         },
         {
-          text: 'Training',
-          //  image:ImageIcons.salonwoman,
+            text: 'Training',
+            //  image:ImageIcons.salonwoman,
         },
-    
-      ];
+
+    ];
 
 
     const DATA = [
@@ -119,7 +119,7 @@ const Commentlist = (props) => {
             text1: 'July',
             text2: '3',
             text3: 'Music Video',
-           
+
             text4: 'Hip-Hop Artist',
             text5: '$400',
 
@@ -165,18 +165,18 @@ const Commentlist = (props) => {
             text5: '$400',
 
         },
-       
+
 
     ];
-    
+
 
     const renderItem2 = ({ item, index }) => {
         return (
-          <View style={tw`w-46 h-18 bg-white my-6 ml-5 rounded-xl border-solid border-t-8 border-black`} >
-            <Text style={tw`text-center pt-6 text-slate-600	`} >{item.text}</Text>
-          </View>
+            <View style={tw`w-46 h-18 bg-white my-6 ml-5 rounded-xl border-solid border-t-8 border-black`} >
+                <Text style={tw`text-center pt-6 text-slate-600	`} >{item.text}</Text>
+            </View>
         );
-      }
+    }
 
 
     const renderItem = ({ item, index }) => {
@@ -184,64 +184,59 @@ const Commentlist = (props) => {
             <View>
                 <View style={tw`w-80 h-25 bg-white rounded-xl flex flex-row mb-6`} >
                     <View style={tw`w-18 h-18 bg-white mt-3 ml-3 flex flex-row  border-r-2 border-slate-100`} >
-                         <View style={tw`flex flex-column`}>
-                    <Text style={tw`text-center text-black text-base font-semibold mt-3 ml-3`} >{item.text1}</Text>
-                    <Text style={tw`text-center text-black text-base font-bold mt-1 ml-3`} >{item.text2}</Text>
-                 
+                        <View style={tw`flex flex-column`}>
+                            <Text style={tw`text-center text-black text-base font-semibold mt-3 ml-3`} >{item.text1}</Text>
+                            <Text style={tw`text-center text-black text-base font-bold mt-1 ml-3`} >{item.text2}</Text>
+
+                        </View>
                     </View>
-                         </View>
                     <View style={tw`flex flex column  mt-4 w-42`}>
-                    <Text style={tw` text-black text-base font-bold ml-4`} >{item.text3}</Text>
-                    <Text style={tw`text-black text-xm font-semibold mt-4 ml-4 `} >{item.text4}</Text>
+                        <Text style={tw` text-black text-base font-bold ml-4`} >{item.text3}</Text>
+                        <Text style={tw`text-black text-xm font-semibold mt-4 ml-4 `} >{item.text4}</Text>
                     </View>
                     <View style={tw`w-14 h-14 bg-slate-200 mt-5  flex flex-row rounded-full`} >
-                    <Text style={tw`text-black text-base font-semibold mx-auto mt-4 `} >{item.text5}</Text></View>
-                    </View>
+                        <Text style={tw`text-black text-base font-semibold mx-auto mt-4 `} >{item.text5}</Text></View>
                 </View>
-                );
-  }
-  
+            </View>
+        );
+    }
 
 
 
 
-                return (
-                <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"} style={styles.root}>
-                    <StatusBar backgroundColor={Colors.WHITE} barStyle="dark-content" translucent={true} />
-                    <ScrollView style={tw``}>
-                        <View style={tw`w-80`}>
-                            <Text style={tw`mx-auto mt-5 text-xs`}>Monday, April 16</Text>
-                            <View style={tw`flex flex-row`}>
+
+    return (
+        <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"} style={styles.root}>
+            <StatusBar backgroundColor={Colors.WHITE} barStyle="dark-content" translucent={true} />
+            <ScrollView style={tw``}>
+                <View style={tw`w-80`}>
+                    <Text style={tw`mx-auto mt-5 text-xs`}>Monday, April 16</Text>
+                    <View style={tw`flex flex-row`}>
                         <Image source={ImageIcons.womanclap} style={tw`w-15 h-15 mt-5 ml-5 rounded-full  `} />
                         <View style={tw`w-48 h-18 mt-5 ml-3 bg-white rounded-lg`}>
                         </View>
-                        </View>
-                        <Text style={tw`mx-auto mt-5 text-xs`}>7:53 pm</Text>
-                        <View style={tw`flex flex-row`}>
+                    </View>
+                    <Text style={tw`mx-auto mt-5 text-xs`}>7:53 pm</Text>
+                    <View style={tw`flex flex-row`}>
                         <View style={tw`w-38 h-14 mt-5 ml-29 bg-white rounded-lg`}></View>
-                            
-                        
+
+
                         <Image source={ImageIcons.womanclap} style={tw`w-15 h-15 mt-5 ml-3 rounded-full  `} /></View>
-                        <Text style={tw`mx-auto mt-5 text-xs`}>7:55 pm</Text>
-                        <View style={tw`flex flex-row`}>
+                    <Text style={tw`mx-auto mt-5 text-xs`}>7:55 pm</Text>
+                    <View style={tw`flex flex-row`}>
                         <Image source={ImageIcons.womanclap} style={tw`w-15 h-15 mt-5 ml-5 rounded-full  `} />
                         <View style={tw`w-48 h-18 mt-5 ml-3 bg-white rounded-lg`}>
                         </View>
-                        </View>
-
-                        
-                        </View>
-                   
-                        
-                        
-                
+                    </View>
 
 
-                    </ScrollView>
+                </View>
 
-                    <Loader />
-                </KeyboardAvoidingView>
-                )
+            </ScrollView>
+
+            <Loader />
+        </KeyboardAvoidingView>
+    )
 }
 
-                export default Commentlist;
+export default Commentlist;

@@ -90,12 +90,19 @@ const Newproject = (props) => {
         props.addnewproject(request, props.navigation);
     }
     const handlecrudata = async (user) => {
-        console.log("item.user===>",user)
+        console.log("item.user===>", user)
         setSelectprofile(!selectprofile);
         setUsearrlist(user);
         //props.navigation.navigate("Camera", { user: item.user })
     }
     const DATA3 = [
+        {
+            text2: 'Jonathan Williams',
+            fullName: 'aksd',
+            image: ImageIcons.womanclap,
+            text1: 'Cinematographer',
+
+        },
         {
             text2: 'Jonathan Williams',
             fullName: 'aksd',
@@ -134,6 +141,40 @@ const Newproject = (props) => {
                         }
                     </View>
                     <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.text1}</Text>
+                </View>
+            </TouchableOpacity>
+        );
+    }
+    const renderItem4 = ({ item, index }) => {
+        return (
+            <TouchableOpacity style={tw`mx-2 w-45`} onPress={() => props.navigation.navigate("Glyndenprofile", { userId: item?._id })}>
+
+                <View style={tw` bg-white mt-5 p-5   rounded-[3] `} >
+                    <View style={tw`flex-row justify-between 	`}>
+                        <View>
+                            <Text style={tw`text-center text-black text-xs font-semibold mt-1`} ></Text>
+                        </View>
+                        <View>
+                            <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.fullName}</Text>
+
+                        </View>
+                        <TouchableOpacity style={tw``} >
+                            <Image source={ImageIcons.closetoday} style={[tw`w-4 h-4`, { tintColor: '#5fafcf' }]} />
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={tw`items-center my-2`}>
+
+                        {item?.profileImage != null ?
+                            <Image source={{ uri: `${Api.imageUri}${item?.profileImage}` }} style={tw`w-24 h-24 rounded-full	mt-1`} />
+                            :
+                            <Image source={ImageIcons.man} style={tw`w-24 h-24 rounded-full	mt-1`} />
+                        }
+                    </View>
+                    <View style={tw`items-center`}>
+                        <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.text1}</Text>
+
+                    </View>
                 </View>
             </TouchableOpacity>
         );
@@ -281,26 +322,15 @@ const Newproject = (props) => {
                         <ProgressStep label="" >
                             <View style={tw`mx-3`}>
                                 <View style={tw` items-center mb-7`}>
-                                    <Text style={tw`text-[#000] text-[3.9] font-normal`}>Tab on a date to edit your availability</Text>
+                                    <Text style={tw`text-[#000] text-[3.9] font-normal`}>Review your Cru invites before sending</Text>
                                 </View>
-                                <View style={tw`bg-[#fff] rounded-[3] flex py-5`}>
-                                    <CalendarPicker
-                                        startFromMonday={true}
-                                        allowRangeSelection={true}
-                                        minDate={moment(new Date()).toDate()}
-                                        maxDate={moment().add(1, 'month').toDate()}
-                                        weekdays={['S', 'M', 'T', 'W', 'T', 'F', 'S']}
-                                        months={['January', 'Februray', 'March', 'Abril', 'May', 'June', 'July', 'August', 'Setember', 'October', 'November', 'December']}
-
-                                        todayBackgroundColor="#e6ffe6"
-                                        selectedDayColor="#66ff33"
-                                        selectedDayTextColor="#000000"
-                                        scaleFactor={375}
-                                        textStyle={{
-                                            fontFamily: 'Cochin',
-                                            color: '#000000',
-                                        }}
-                                        onDateChange={onDateChange}
+                                <View style={tw`mx-3 `}>
+                                    <FlatList
+                                        data={DATA3}
+                                        Key={2}
+                                        numColumns={2}
+                                        renderItem={renderItem4}
+                                        keyExtractor={item => item.id}
                                     />
                                 </View>
                             </View>

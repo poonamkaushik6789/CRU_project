@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Text, KeyboardAvoidingView, View, TextInput, FlatList, StatusBar, TouchableOpacity, ScrollView, Image } from 'react-native';
-import { Fonts, Colors, ImageIcons,Api } from '../../common';
+import { Fonts, Colors, ImageIcons, Api } from '../../common';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -54,16 +54,19 @@ const Commentlist = (props) => {
   }, [])
 
   const handleSubmitcomment = async () => {
+    if (msg == "") {
+      Alert.alert(CommonStrings.AppName, "")
+    } else {
+      let request = {
+        "post": postid,
+        "commentedBy": loginId,
+        "message": msg,
+      }
 
-    let request = {
-      "post": postid,
-      "commentedBy": loginId,
-      "message": msg,
+      props.commentAdd(request, props.navigation)
+      setMsg('');
+      props.commentIdlist(postid);
     }
-
-    props.commentAdd(request, props.navigation)
-    setMsg('');
-    props.commentIdlist(postid);
   };
   // const hideisaction = () => {
   //   setisaction(false);
@@ -122,7 +125,7 @@ const Commentlist = (props) => {
 
           </View>
         </TouchableOpacity>
-        <View style={tw`border-b border-[#ccc]`}></View>
+        <View style={tw`border-b border-[#ccc] `}></View>
       </View>
     );
   }
@@ -136,7 +139,7 @@ const Commentlist = (props) => {
       <ScrollView style={tw``}>
         <View>
           {props?.getcommentidlist?.length > 0 ?
-            <View style={tw`bg-white m-4 mb-10 rounded-[3]`}>
+            <View style={tw`bg-white m-4 mb-22 rounded-[3]`}>
               <FlatList
                 data={props?.getcommentidlist}
                 renderItem={renderItem}
