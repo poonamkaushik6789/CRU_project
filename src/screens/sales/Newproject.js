@@ -30,7 +30,13 @@ const Newproject = (props) => {
         handleSubmit,
     } = props;
     const loginId = props?.loginCredentials?.data?._id
+    const productionid = props?.addproductiontype?.data?._id
+//console.log("addproductiontype=======:::",productionid)
 
+    const [checkedId1, setcheckedId1] = React.useState([]);
+    const [finalarr, setfinalarr] = React.useState([]);
+    const [deparmentId, setSepartmentId] = useState('');
+    const [newflat1, setnewflat1] = React.useState(false);
     const [selectedStartDate, setSelectedStartDate] = useState(null);
     const [selectedEndDate, setSelectedEndDate] = useState(null);
     const [userarrlist, setUsearrlist] = React.useState('');
@@ -89,12 +95,45 @@ const Newproject = (props) => {
         //console.log("selectedStartDate===>",selectedStartDate.toDate())
         props.addnewproject(request, props.navigation);
     }
+    const onsubmitbtn = async () => {
+        let request = {
+            "_id": productionid,
+            "invitedCru": ["1","2"],
+        }
+       
+        props.inviteprojectcru(request, props.navigation);
+        alert( "Save successfully")
+        props.navigation.navigate("Projects")
+    }
     const handlecrudata = async (user) => {
         console.log("item.user===>", user)
         setSelectprofile(!selectprofile);
         setUsearrlist(user);
         //props.navigation.navigate("Camera", { user: item.user })
     }
+
+    const callAction1 = async (value) => {
+         alert(value)
+        for (var i = 0; i < userarrlist.length; i++) {
+            if (userarrlist[i]._id == value) {
+                if (checkedId1.indexOf(value) > -1) {
+                    var index = checkedId1.indexOf(value);
+                    checkedId1.splice(index, 1);
+                    setcheckedId1(checkedId1)
+                } else {
+                    checkedId1.push(value);
+                    setcheckedId1(checkedId1)
+                }
+            }
+        }
+        console.log("checkedId1==>", checkedId1)
+        setnewflat1(s => !s);
+        finalarr.push({ 'department': deparmentId, position: checkedId1 });
+        setfinalarr(finalarr);
+        setcheckedId1([]);
+        console.log("finalarr==>", finalarr)
+    }
+
     const DATA3 = [
         {
             text2: 'Jonathan Williams',
@@ -129,25 +168,44 @@ const Newproject = (props) => {
     }
     const renderItem3 = ({ item, index }) => {
         return (
-            <TouchableOpacity style={tw`mx-2 w-45`} onPress={() => props.navigation.navigate("Glyndenprofile", { userId: item?._id })}>
-                <View style={tw` bg-white mt-5 p-5 items-center  rounded-[3] `} >
-                    <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.fullName}</Text>
-                    <View style={tw`items-center`}>
+            <TouchableOpacity style={tw`mx-2 w-5.5/12 `} onPress={() => callAction1(item._id)}
+            //onPress={() => props.navigation.navigate("Glyndenprofile", { userId: item?._id })}
+            >
+                {(checkedId1.indexOf(item._id) > -1) ?
+                    <View style={tw` bg-white mt-5 p-5 items-center border border-[#53c653] rounded-[3] `} >
+                        <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.fullName}</Text>
+                        <View style={tw`items-center`}>
 
-                        {item?.profileImage != null ?
-                            <Image source={{ uri: `${Api.imageUri}${item?.profileImage}` }} style={tw`w-24 h-24 rounded-full	mt-1`} />
-                            :
-                            <Image source={ImageIcons.man} style={tw`w-24 h-24 rounded-full	mt-1`} />
-                        }
+                            {item?.profileImage != null ?
+                                <Image source={{ uri: `${Api.imageUri}${item?.profileImage}` }} style={tw`w-24 h-24 rounded-full	mt-1`} />
+                                :
+                                <Image source={ImageIcons.man} style={tw`w-24 h-24 rounded-full	mt-1`} />
+                            }
+                        </View>
+                        <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.text1}</Text>
                     </View>
-                    <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.text1}</Text>
-                </View>
+                    :
+                    <View style={tw` bg-white mt-5 p-5 items-center border border-[#fff] rounded-[3] `} >
+                        <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.fullName}</Text>
+                        <View style={tw`items-center`}>
+
+                            {item?.profileImage != null ?
+                                <Image source={{ uri: `${Api.imageUri}${item?.profileImage}` }} style={tw`w-24 h-24 rounded-full	mt-1`} />
+                                :
+                                <Image source={ImageIcons.man} style={tw`w-24 h-24 rounded-full	mt-1`} />
+                            }
+                        </View>
+                        <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.text1}</Text>
+                    </View>
+                }
             </TouchableOpacity>
         );
     }
     const renderItem4 = ({ item, index }) => {
         return (
-            <TouchableOpacity style={tw`mx-2 w-45`} onPress={() => props.navigation.navigate("Glyndenprofile", { userId: item?._id })}>
+            <TouchableOpacity style={tw`mx-2 w-45`} 
+            //onPress={() => props.navigation.navigate("Glyndenprofile", { userId: item?._id })}
+            >
 
                 <View style={tw` bg-white mt-5 p-5   rounded-[3] `} >
                     <View style={tw`flex-row justify-between 	`}>
@@ -319,7 +377,7 @@ const Newproject = (props) => {
 
                             </View>
                         </ProgressStep>
-                        <ProgressStep label="" >
+                        <ProgressStep label="" onSubmit={onsubmitbtn}>
                             <View style={tw`mx-3`}>
                                 <View style={tw` items-center mb-7`}>
                                     <Text style={tw`text-[#000] text-[3.9] font-normal`}>Review your Cru invites before sending</Text>

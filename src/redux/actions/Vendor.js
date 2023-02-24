@@ -26,6 +26,7 @@ import {
   GET_PRODUCTION_LIST,
   GET_MYPROJECT_LIST,
   GET_PROJECTDETAIL_LIST,
+  SET_INVITE_CRU_PROJECT,
 } from './ActionTypes';
 import { Alert } from 'react-native';
 import { Api, Utilise } from '../../common';
@@ -628,6 +629,7 @@ export const addnewproject = (request, navigation) => {
           Alert.alert("Filmca", "Save successfully")
         }
       } catch (error) {
+        
         Alert.alert("Filmca", String(error?.message))
       }
     };
@@ -704,5 +706,28 @@ export const getprojectdetail = (id) => {
               Alert.alert("Filmca", String(error?.message))
           }
       };
+  }
+};
+//invitecruproject
+export const inviteprojectcru = (request, navigation) => {
+  console.log("invitecruprojectresponse==>", request)
+  return async (dispatch, getState) => {
+    let isInternetConnected = await getState().auth?.isInternetConnected;
+    if (isInternetConnected) {
+      try {
+        let response = await Utilise.apiCalling('POST', Api.invitecruproject, request);
+        console.log("invitecruproject==>>", response?.data)
+
+        if (response?.status) {
+          dispatch({ type: SET_INVITE_CRU_PROJECT, payload: response.data });
+          
+        } else {
+          //alert("hello")
+          Alert.alert("Filmca", "Save successfully")
+        }
+      } catch (error) {
+        Alert.alert("Filmca", String(error?.message))
+      }
+    };
   }
 };

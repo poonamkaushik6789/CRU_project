@@ -117,7 +117,7 @@ const Vendor = (props) => {
   
   const renderItem = ({ item, index }) => {
     return (
-      <TouchableOpacity style={tw`my-2 `}>
+      <View style={tw`my-2 `}>
         <Text style={tw`text-[#000] text-center	 text-[3.5]  px-15 font-normal`}>{item?.userId?.fullName}</Text>
 
         <View style={tw`mt-7`}>
@@ -154,7 +154,7 @@ const Vendor = (props) => {
                   <Text style={[styles.middlebottomlike028, { color: '#a0a0ab' }]}>Like</Text>
                 </TouchableOpacity>
               } */}
-                {item.likedBy == "" ?
+                {item?.likedBy?.includes(loginId) == "" ?
                   <TouchableOpacity style={tw`items-center`} onPress={() => handlelikeunlike(item._id)}>
                     <Image source={ImageIcons.like} style={tw`w-8 h-8	`} />
                   </TouchableOpacity>
@@ -229,7 +229,7 @@ const Vendor = (props) => {
           }
         </View>
 
-      </TouchableOpacity>
+      </View>
     );
   }
 
