@@ -6,7 +6,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import styles from './storestyles';
-import { Api, Utilise,CommonStrings } from '../../common';
+import { Api, Utilise, CommonStrings } from '../../common';
 import ImagePicker from 'react-native-image-crop-picker';
 
 import moment from 'moment';
@@ -28,7 +28,7 @@ const Vendor = (props) => {
     handleChange,
     handleSubmit,
   } = props;
-  
+
   console.log("props=====>>>>>", props)
   const loginId = props?.loginCredentials?.data?._id
   const [visible, setVisible] = React.useState(false);
@@ -41,8 +41,8 @@ const Vendor = (props) => {
   useEffect(() => {
     props.socialfeedlist();
     console.log("props.getpostlist======>>>", props?.getpostlist);
-    
-}, [])
+
+  }, [])
   const [panelProps, setPanelProps] = useState({
     fullWidth: true,
     openLarge: true,
@@ -56,7 +56,7 @@ const Vendor = (props) => {
   const [isPanelActive, setIsPanelActive] = useState(false);
 
   const [isaction, setisaction] = useState(true);
-  
+
 
   const openPanel = () => {
 
@@ -69,10 +69,10 @@ const Vendor = (props) => {
     let request = {
       "_id": id,
       "userId": loginId,
-      
-  }
 
-  props.likeunlikepost(request, props.navigation)
+    }
+
+    props.likeunlikepost(request, props.navigation)
   };
 
   const handleMsgcount = () => {
@@ -120,7 +120,7 @@ const Vendor = (props) => {
     setDescription('');
     props.socialfeedlist();
   }
- 
+
 
   const DATA = [
     {
@@ -135,7 +135,7 @@ const Vendor = (props) => {
       text2: "Get Plus now",
       text3: "Organization Actions",
     },
-    
+
   ];
   const renderItem = ({ item, index }) => {
     return (
@@ -158,16 +158,35 @@ const Vendor = (props) => {
             <View style={tw`py-2 `}>
               <Text style={tw`text-[#000] text-[3.3] font-normal`}>{item.description}</Text>
               <View style={tw`pt-4`}>
-              { item?.image != "" &&
-                <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={tw`w-full h-90	`} />
-              }
+                {item?.image != "" &&
+                  <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={tw`w-full h-90	`} />
+                }
               </View>
             </View>
             <View style={tw`flex-row justify-between	items-center	py-3`}>
               <View style={tw`flex-row items-center`}>
-                <TouchableOpacity style={tw`items-center`} onPress={() => handlelikeunlike(item._id)}>
-                  <Image source={ImageIcons.like} style={tw`w-8 h-8	`} />
+                {/* {item.is_like == "" ?
+                <TouchableOpacity style={styles.middlikeview} onPress={() => { likedislikesubmit(item.id) }}>
+                  <LikeIcon height={18} width={18} color={"#a0a0ab"}></LikeIcon>
+                  <Text style={[styles.middlebottomlike028, { color: '#a0a0ab' }]}>Like</Text>
                 </TouchableOpacity>
+                :
+                <TouchableOpacity style={styles.middlikeview} onPress={() => likedislikesubmit(item.id)}>
+                  <LikeIcon height={18} width={18} color={"#028ec9"}></LikeIcon>
+                  <Text style={[styles.middlebottomlike028, { color: '#a0a0ab' }]}>Like</Text>
+                </TouchableOpacity>
+              } */}
+                {item.likedBy == "" ?
+                  <TouchableOpacity style={tw`items-center`} onPress={() => handlelikeunlike(item._id)}>
+                    <Image source={ImageIcons.like} style={tw`w-8 h-8	`} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity style={tw`items-center`} onPress={() => handlelikeunlike(item._id)}>
+                    <Image source={ImageIcons.like} style={[tw`w-8 h-8	`, { tintColor: '#5fafcf' }]} />
+                  </TouchableOpacity>
+
+                }
+
 
                 <TouchableOpacity style={tw`flex-row ml-2 items-center`} onPress={() => props.navigation.navigate("Likelist")}>
                   <View style={tw`	z-20`}>
@@ -184,7 +203,7 @@ const Vendor = (props) => {
               </View>
 
               <View style={tw`flex-row `}>
-                <TouchableOpacity style={tw`flex-row items-center`} onPress={() => props.navigation.navigate("Commentlist",{post_Id:item._id})}>
+                <TouchableOpacity style={tw`flex-row items-center`} onPress={() => props.navigation.navigate("Commentlist", { post_Id: item._id })}>
 
                   <View style={tw`absolute z-0 `}>
                     <Image source={ImageIcons.man} style={tw`w-12 h-12	rounded-full`} />
@@ -213,13 +232,23 @@ const Vendor = (props) => {
         <View style={tw`absolute  inset-x-0.7/2	 top-8		 `}>
           {/* <View style={tw`w-3 h-3 bg-[#ff0000] rounded-full absolute left-15 `}></View> */}
           <View style={tw`w-3 h-3 bg-[#008000] rounded-full absolute left-17 `}></View>
-          <TouchableOpacity onPress={() => props.navigation.navigate("Glyndenprofile",{userId: item?.userId?._id})}>
-          { item?.userId?.profileImage != null ?
+          {item?.userId?._id == loginId ?
+            <TouchableOpacity onPress={() => props.navigation.navigate("Matthew", { userId: item?.userId?._id })}>
+              {item?.userId?.profileImage != null ?
                 <Image source={{ uri: `${Api.imageUri}${item?.userId?.profileImage}` }} style={tw`w-24 h-24 rounded-full	mt-1`} />
                 :
                 <Image source={ImageIcons.man} style={tw`w-24 h-24 rounded-full	mt-1`} />
               }
-          </TouchableOpacity>
+            </TouchableOpacity>
+            :
+            <TouchableOpacity onPress={() => props.navigation.navigate("Glyndenprofile", { userId: item?.userId?._id })}>
+              {item?.userId?.profileImage != null ?
+                <Image source={{ uri: `${Api.imageUri}${item?.userId?.profileImage}` }} style={tw`w-24 h-24 rounded-full	mt-1`} />
+                :
+                <Image source={ImageIcons.man} style={tw`w-24 h-24 rounded-full	mt-1`} />
+              }
+            </TouchableOpacity>
+          }
         </View>
 
       </TouchableOpacity>

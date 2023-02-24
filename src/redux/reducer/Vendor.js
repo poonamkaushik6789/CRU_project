@@ -27,6 +27,8 @@ import {
     GET_NOTIFICATION_LIST,
     GET_PRODUCTION_LIST,
     SET_PROJECT_ADD,
+    GET_MYPROJECT_LIST,
+    GET_PROJECTDETAIL_LIST,
 } from '../actions/ActionTypes';
 
 // Redux states
@@ -54,6 +56,8 @@ const initialState = {
     geteventdetaillist:[],
     getnotificationlist:[],
     getproductionlist:[],
+    getprojectlist:[],
+    getprojectdetilslist:[],
 };
 
 const Vendor = (state = initialState, action) => {
@@ -175,16 +179,16 @@ const Vendor = (state = initialState, action) => {
             addproductiontype: action.payload,
         };
 
-        // case SET_UPDATE_ABOUT:
-        // return {
-        //     ...state,
-        //     updateabout: action.payload,
-        // };
-        // case SET_UPDATE_ABOUT:
-        // return {
-        //     ...state,
-        //     updateabout: action.payload,
-        // };
+        case GET_MYPROJECT_LIST:
+        return {
+            ...state,
+            getprojectlist: action.payload,
+        };
+        case GET_PROJECTDETAIL_LIST:
+        return {
+            ...state,
+            getprojectdetilslist: action.payload,
+        };
 
         case GET_POSTDETAIL_LIST:
             return {

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Eventdetail from '../../screens/sales/Eventdetail';
 import {
     geteventdetail,
-   
 } from '../../redux/actions/Vendor';
 
 const mapStateToProps = (state) => ({
