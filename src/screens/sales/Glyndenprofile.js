@@ -314,7 +314,7 @@ const Glyndenprofile = (props) => {
                 }} source={ImageIcons.rawartist} />
 
             </View>
-            <View style={tw`w-96 h-55 mx-5 px-8 pt-30 top-40  bg-white  absolute overflow-hidden rounded-[2]	flex-row	justify-between`}>
+            <View style={tw`w-full h-95 px-6 pt-68  bg-white  absolute overflow-hidden rounded-[2]	flex-row	justify-between`}>
               <TouchableOpacity style={tw`items-center	`} onPress={() => setModalVisible(!modalVisible)}>
                 <Image style={tw`w-15 h-13 `} source={ImageIcons.msgs} />
                 <Text style={tw`text-black `}>Message</Text>
@@ -324,7 +324,7 @@ const Glyndenprofile = (props) => {
                 <Text style={tw`text-black `}>Connect</Text>
               </TouchableOpacity>
             </View>
-            <View style={tw`ml-40 mt-49 z-50 absolute`}>
+            <View style={tw`left-4/12 mt-49 z-50 absolute`}>
             { props?.grtpostdetail?.profileImage != null ?
                 <Image source={{ uri: `${Api.imageUri}${props?.grtpostdetail?.profileImage}` }} style={tw`w-30 h-30 rounded-full `} />
                 :
@@ -335,8 +335,8 @@ const Glyndenprofile = (props) => {
 
 
           </View>
-          <View style={tw`flex-2 mt-43`}>
-            <View style={tw`ml-5 `}>
+          <View style={tw`flex-2 mt-40`}>
+            <View style={tw`ml-3 `}>
               <FlatList
                 horizontal={true}
                 data={DATA2}
@@ -344,7 +344,7 @@ const Glyndenprofile = (props) => {
                 keyExtractor={item => item.id}
               />
             </View>
-            <View style={tw`ml-5 mt-3`}>
+            <View style={tw`w-full ml-2 mt-3`}>
               <FlatList
                 horizontal={true}
                 data={DATA3}
