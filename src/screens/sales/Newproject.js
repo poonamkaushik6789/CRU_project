@@ -128,7 +128,7 @@ const Newproject = (props) => {
         }
         console.log("checkedId1==>", checkedId1)
         setnewflat1(s => !s);
-        finalarr.push({ 'department': deparmentId, position: checkedId1 });
+        finalarr.push({value });
         setfinalarr(finalarr);
         setcheckedId1([]);
         console.log("finalarr==>", finalarr)
@@ -168,7 +168,7 @@ const Newproject = (props) => {
     }
     const renderItem3 = ({ item, index }) => {
         return (
-            <TouchableOpacity style={tw`mx-2 w-5.5/12 `} onPress={() => callAction1(item._id)}
+            <TouchableOpacity style={tw`mx-2 w-5.5/12 `} onPress={() => callAction1(item)}
             //onPress={() => props.navigation.navigate("Glyndenprofile", { userId: item?._id })}
             >
                 {(checkedId1.indexOf(item._id) > -1) ?

@@ -28,7 +28,7 @@
     "axios": "^0.21.1",
     "formik": "^2.2.6",
     "moment": "^2.29.1",
-    "moment-timezone": "^0.5.33",
+    "moment-timezone": "^0.5.41",
     "react": "17.0.1",
     "react-native": "0.64.0",
     "react-native-background-timer": "^2.4.1",
