@@ -134,11 +134,11 @@ const Forgotpassword = (props) => {
                                 </View>
                                 <TextInput
                                     style={tw`border-b	border-white text-white	pl-7 h-16`}
-                                    placeholder="mattegroup@gmail.com"
+                                    placeholder="Enter Email Address" 
                                     value={email}
                                     onChangeText={(text) => setEmail(text)}
                                     reference={emailInputRef}
-                                    placeholderTextColor={'#fff'}
+                                    placeholderTextColor={'#8c8c8c'}
                                     onSubmitEditing={() => passwordInputRef?.current?.focus()}
                                 />
                             </View>
