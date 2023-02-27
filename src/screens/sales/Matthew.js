@@ -73,9 +73,17 @@ const Matthew = (props) => {
       setSelectedStartDate(date);
     }
   };
-  const handlelikecount = () => {
+  const handlelikeunlike = (id) => {
 
-    setLikecount(likecount + 1)
+    //setLikecount(likecount + 1)
+    let request = {
+      "_id": id,
+      "userId": loginId,
+
+    }
+
+    props.likeunlikepost(request, props.navigation)
+    props.socialfeedlist();
   };
 
   const handleMsgcount = () => {
@@ -222,7 +230,7 @@ const Matthew = (props) => {
   const renderItemnetwork = ({ item, index }) => {
 
     return (
-      <View style={tw`bg-[#fff]  flex items-center`}>
+      <View style={tw`bg-[#fff] w-4/12 flex  justify-center`}>
         <TouchableOpacity style={tw`border  border-[#ccc] w-32 items-center py-4`}
         //onPress={() => handledeparment(item._id, item.departmentName)}
         >
@@ -236,7 +244,7 @@ const Matthew = (props) => {
   const renderItemcru = ({ item, index }) => {
 
     return (
-      <View style={tw`bg-[#fff]  flex items-center`}>
+      <View style={tw`bg-[#fff] w-4/12 flex  justify-center`}>
         <TouchableOpacity style={tw`border  border-[#ccc] w-32 items-center py-4`}
         //onPress={() => handledeparment(item._id, item.departmentName)}
         >
@@ -311,11 +319,20 @@ const Matthew = (props) => {
               </View>
             </View>
 
+            
+
             <View style={tw`flex-row justify-between	items-center	py-3`}> 
               <View style={tw`flex-row items-center`}>
-                <TouchableOpacity style={tw`items-center`} onPress={() => handlelikecount()}>
-                  <Image source={ImageIcons.like} style={tw`w-8 h-8	`} />
-                </TouchableOpacity>
+              {item?.likedBy?.includes(loginId) == "" ?
+                  <TouchableOpacity style={tw`items-center`} onPress={() => handlelikeunlike(item._id)}>
+                    <Image source={ImageIcons.like} style={tw`w-8 h-8	`} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity style={tw`items-center`} onPress={() => handlelikeunlike(item._id)}>
+                    <Image source={ImageIcons.like} style={[tw`w-8 h-8	`, { tintColor: '#5fafcf' }]} />
+                  </TouchableOpacity>
+
+                }
                 <TouchableOpacity style={tw`flex-row ml-2 items-center`} onPress={() => props.navigation.navigate("Likelist",{ post_Id: item._id })}>
                   <View style={tw`	z-20`}>
                     <Image source={ImageIcons.man} style={tw`w-12 h-12 rounded-full`} />
@@ -384,7 +401,7 @@ const Matthew = (props) => {
               <Image source={ImageIcons.rawartist} style={tw`w-full h-45 rounded-b-full z-30 absolute`} />
             }
 
-            <View style={tw`w-full h-75 px-6 pt-50 flex-row	justify-between bg-white `} >
+            <View style={tw`w-11/12 h-75 px-6 pt-50 mx-4 flex-row	justify-between bg-white `} >
               <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('4')}>
                 <Image style={tw`w-15 h-13 `} source={ImageIcons.cru} />
                 <Text style={tw`text-black `}>My Cru</Text>
@@ -463,9 +480,9 @@ const Matthew = (props) => {
             </TouchableOpacity>
           }
           {socilfeed == "4" &&
-            <View style={tw`rounded-[3]`}>
+            <View style={tw`rounded-[3] w-full my-5`}>
               <FlatList
-                data={props?.getmycrulist}
+                data={props?.getmycrulist?.data}
                 renderItem={renderItemcru}
                 keyExtractor={item => item.id}
                 showsHorizontalScrollIndicator={false}
@@ -473,15 +490,15 @@ const Matthew = (props) => {
                 numColumns={3}
               />
               <View style={tw`  bg-white my-5 rounded-lg`}>
-                <Text style={tw`text-center py-5 text-base`}>Total:13</Text>
+                <Text style={tw`text-center py-5 text-base`}>Total: {props?.getmycrulist?.cruData?.length}</Text>
               </View>
             </View>
 
           }
           {socilfeed == "5" &&
-            <View style={tw`rounded-[3]`}>
+            <View style={tw`rounded-[3] w-full my-5`}>
               <FlatList
-                data={props?.getmynetworklist}
+                data={props?.getmynetworklist?.data}
                 renderItem={renderItemnetwork}
                 keyExtractor={item => item.id}
                 showsHorizontalScrollIndicator={false}
@@ -489,7 +506,7 @@ const Matthew = (props) => {
                 numColumns={3}
               />
               <View style={tw`  bg-white my-5 rounded-lg`}>
-                <Text style={tw`text-center py-5 text-base`}>Total:13</Text>
+                <Text style={tw`text-center py-5 text-base`}>Total: {props?.getmynetworklist?.cruData?.length}</Text>
               </View>
             </View>
           }

@@ -367,7 +367,7 @@ const Newproject = (props) => {
                                     :
                                     <View style={tw`rounded-[3]`}>
                                         <FlatList
-                                            data={props?.getmycrulist}
+                                            data={props?.getmycrulist?.data}
                                             renderItem={renderItem}
                                             keyExtractor={item => item.id}
                                             showsHorizontalScrollIndicator={false}

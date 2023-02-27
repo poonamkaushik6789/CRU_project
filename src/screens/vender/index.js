@@ -56,7 +56,7 @@ const Vendor = (props) => {
 
   const handlelikeunlike = (id) => {
 
-    setLikecount(likecount + 1)
+   // setLikecount(likecount + 1)
     let request = {
       "_id": id,
       "userId": loginId,

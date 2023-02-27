@@ -14,6 +14,6 @@ const mapDispatchToProps = {
     addpostnew,
     socialfeedlist,
     likeunlikepost,
-};
+}; 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Vendor);

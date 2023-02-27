@@ -78,7 +78,7 @@ const Cru = (props) => {
                 <View style={tw`mx-3 my-5`}>
                     <View style={tw`rounded-[3] w-full my-5`}>
                         <FlatList
-                            data={props?.getmycrulist}
+                            data={props?.getmycrulist?.data}
                             renderItem={renderItemcru}
                             keyExtractor={item => item.id}
                             showsHorizontalScrollIndicator={false}
@@ -87,7 +87,7 @@ const Cru = (props) => {
                         />
                     </View>
                     <View style={tw`  bg-white my-5 rounded-lg`}>
-                        <Text style={tw`text-center py-5 text-base`}>Total:10</Text>
+                        <Text style={tw`text-center py-5 text-base`}>Total: {props?.getmycrulist?.cruData?.length}</Text>
                     </View>
                     <TouchableOpacity style={tw` mx-15 bg-white mt-5 rounded-3xl border-2 border-sky-400 `} onPress={() => props.navigation.navigate("Viewall")}>
                         <Text style={tw`text-center py-4 text-base`}>View All</Text>
