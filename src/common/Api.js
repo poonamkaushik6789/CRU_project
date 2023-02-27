@@ -38,7 +38,7 @@ const api = {
   myprojectdata: `/users/myProjects`,
   projectdetails: `/users/projectDetails`,
   likelisting: `/users/postLikedBy`,
-  // addnetworkCru: `/users/addToNetworkOrCru`,
+  invitecruproject: `/users/inviteCruForProject`,
   // mycru: `/users/myCru`,
   // mynetwork: `/users/myNetwork`,
   //  messagelist: `/users/eventCategory`,

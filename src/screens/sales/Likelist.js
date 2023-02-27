@@ -50,8 +50,8 @@ const Likelist = (props) => {
 
   const renderItem = ({ item, index }) => {
     return (
-      <View style={tw`items-center mx-4`}>
-        <Text style={tw`text-[#000] text-center	 text-[3.4] font-normal`}>{item.fullName}</Text>
+      <View style={tw`items-center w-4/12  mb-2 `}>
+        <Text style={tw`text-[#000] text-center	py-3 text-[3.4] font-normal`}>{item.fullName}</Text>
         <View>
           {item?.profileImage != null ?
             <Image source={{ uri: `${Api.imageUri}${item?.profileImage}` }} style={tw`w-20 h-20 rounded-full`} />
@@ -70,7 +70,7 @@ const Likelist = (props) => {
       <StatusBar backgroundColor={Colors.WHITE} barStyle="dark-content" translucent={true} />
       <ScrollView style={tw``}>
 
-        <View style={tw`m-4 bg-white rounded-[3] p-3 py-5`}>
+        <View style={tw`m-4 w-11/12 bg-white rounded-[3]  py-5`}>
           <FlatList
             data={props?.getlikstlist}
             renderItem={renderItem}

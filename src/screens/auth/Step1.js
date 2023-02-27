@@ -158,7 +158,7 @@ const Step1 = (props) => {
             <TouchableOpacity style={tw`flex-row items-center my-1`} onPress={() => callAction1(item._id)}>
 
                 {(checkedId1.indexOf(item._id) > -1) ?
-                    <View>
+                    <View style={tw`flex-row items-center my-1`}>
                         <CheckBox
                             value={true}
                             disabled={false}
@@ -170,7 +170,7 @@ const Step1 = (props) => {
                     </View>
 
                     :
-                    <View>
+                    <View style={tw`flex-row items-center my-1`}>
                         <CheckBox
                             value={false}
                             disabled={false}

@@ -242,11 +242,11 @@ const Projectdetails = (props) => {
                             <Text style={tw` text-base font-semibold `}>{props?.getprojectdetilslist?.title}</Text>
                         </View>
                     </View>
-                    <View style={tw`flex-row bg-white w-full rounded-b-[3]	 py-4 mb-1 items-center mb-5`}>
+                    <View style={tw`flex-row bg-white w-full rounded-b-[3]	 py-4 mb-1  mb-5 pr-4`}>
                         <View style={tw`w-5/12 mr-5`}>
                             <Text style={tw`text-[4] font-bold text-right`} >Description: </Text>
                         </View>
-                        <View style={tw`w-7/12`}>
+                        <View style={tw`w-7/12 pr-3 `}>
                             <Text style={tw` text-base font-semibold `}>{props?.getprojectdetilslist?.description}</Text>
                         </View>
                     </View>

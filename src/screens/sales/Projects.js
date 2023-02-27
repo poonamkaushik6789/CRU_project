@@ -56,19 +56,15 @@ const Projects = (props) => {
     
     const renderItem = ({ item, index }) => {
         return (
-            <View>
-                <TouchableOpacity style={tw`w-96 bg-white rounded-xl items-center  flex-row my-2 p-2`} onPress={()=> props?.navigation?.navigate("Projectdetails",{projectid: item._id})}>
-                    <View style={tw`w-22 h-18 bg-white items-center  flex-row `} >
+            <View style={tw`w-full bg-white rounded-xl px-2 mt-2`}>
+                <TouchableOpacity style={tw`border-l-8 border-[#000] items-center  flex-row my-2 p-2`} onPress={()=> props?.navigation?.navigate("Projectdetails",{projectid: item._id})}>
+                    <View style={tw`  w-3/12  bg-white items-center `} >
 
-                        <View style={tw`w-4 h-18 bg-black `} >
-                        </View>
-                        <View style={tw`border-r w-20 items-center border-[#ccc] `}>
                             <Text style={tw`text-center text-black text-base font-semibold `} >{moment(item?.createdAt).format('MMM')}</Text>
                             <Text style={tw`text-center text-black text-base font-bold `} >{moment(item?.fromDate).format('D')}-{moment(item?.toDate).format('D')}</Text>
 
-                        </View>
                     </View>
-                    <View style={tw`w-60  px-4 `}>
+                    <View style={tw`border-l border-[#ccc] w-9/12  px-4 `}>
                         <Text style={tw` text-black text-base font-bold `} >{item.title}</Text>
                         <Text style={tw`text-black text-[3.5] font-semibold  `} >{item.description}</Text>
                     </View>
