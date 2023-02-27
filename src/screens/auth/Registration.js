@@ -226,9 +226,9 @@ const Registration = (props) => {
                                 </TouchableOpacity>
                             </View>
 
-                            <TouchableOpacity style={tw`items-center mt-8`} onPress={() => props.navigation.navigate('Forgotpassword')}>
+                            <View style={tw`items-center mt-8`} >
                                 <Text style={tw` font-normal text-[#fff] text-[3.5] text-center	`}>By signing up, you agree to Gaffer.io <Text style={tw`text-center font-bold text-[#fff] text-[4]`}>Terms and Condition of Use </Text>and <Text style={tw` font-bold text-[#fff] text-[4]`}>Privacy Policy</Text></Text>
-                            </TouchableOpacity>
+                            </View>
 
                             <View style={tw`mt-8`}>
                                 <RoundedButton
