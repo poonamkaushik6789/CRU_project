@@ -70,9 +70,9 @@ const Filmcascreen = (props) => {
                                     onPress={() => props.navigation.navigate("Login")}
                                 />
                             </View>
-                            <TouchableOpacity style={tw`items-center my-5`} onPress={() => props.navigation.navigate('Forgotpassword')}>
+                            <View style={tw`items-center my-5`}>
                                 <Text style={tw` font-normal text-[#fff] text-[3.3]`}>Don't have an account ?</Text>
-                            </TouchableOpacity>
+                            </View>
 
                             <View style={tw``}>
                                 <RoundedButton
