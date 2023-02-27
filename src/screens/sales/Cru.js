@@ -24,7 +24,7 @@ const Cru = (props) => {
         handleChange,
         handleSubmit,
     } = props;
-
+//console.log("props",)
     const [visible, setVisible] = React.useState(false);
     const [search, setSearch] = React.useState("");
     const [msg, onChangeText2] = React.useState("");
@@ -54,11 +54,19 @@ const Cru = (props) => {
 
         return (
             <View style={tw`bg-[#fff] w-4/12 flex  justify-center`}>
-                <TouchableOpacity style={tw`border  border-[#ccc]  items-center py-4 px-4`} onPress={() => props.navigation.navigate("Camera", { user: item.user })}>
-                    <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-12 h-12 `, { tintColor: '#5fafcf' }]} />
-                    <Text style={tw`text-[#000] text-[3.5] text-center p-1 font-normal`}>{item.departmentName}</Text>
-                    <Text style={tw`text-[#000] text-[3.5] text-center font-normal`}>{item?.user?.length}</Text>
-                </TouchableOpacity>
+                {item?.user?.length > 0 ?
+                    <TouchableOpacity style={tw`border  border-[#ccc]  items-center py-4 px-4`} onPress={() => props.navigation.navigate("Camera", { user: item })}>
+                        <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-12 h-12 `, { tintColor: '#5fafcf' }]} />
+                        <Text style={tw`text-[#000] text-[3.5] text-center p-1 font-normal`}>{item.departmentName}</Text>
+                        <Text style={tw`text-[#000] text-[3.5] text-center font-normal`}>{item?.user?.length}</Text>
+                    </TouchableOpacity>
+                    :
+                    <TouchableOpacity style={tw`border  border-[#ccc]  items-center py-4 px-4`} >
+                        <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-12 h-12 `, { tintColor: '#5fafcf' }]} />
+                        <Text style={tw`text-[#000] text-[3.5] text-center p-1 font-normal`}>{item.departmentName}</Text>
+                        <Text style={tw`text-[#000] text-[3.5] text-center font-normal`}>{item?.user?.length}</Text>
+                    </TouchableOpacity>
+                }
             </View>
         );
     }
@@ -79,7 +87,7 @@ const Cru = (props) => {
                         />
                     </View>
                     <View style={tw`  bg-white my-5 rounded-lg`}>
-                        <Text style={tw`text-center py-5 text-base`}>Total:13</Text>
+                        <Text style={tw`text-center py-5 text-base`}>Total:10</Text>
                     </View>
                     <TouchableOpacity style={tw` mx-15 bg-white mt-5 rounded-3xl border-2 border-sky-400 `} onPress={() => props.navigation.navigate("Viewall")}>
                         <Text style={tw`text-center py-4 text-base`}>View All</Text>

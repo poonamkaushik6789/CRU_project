@@ -31,14 +31,17 @@ const Newproject = (props) => {
     } = props;
     const loginId = props?.loginCredentials?.data?._id
     const productionid = props?.addproductiontype?.data?._id
-//console.log("addproductiontype=======:::",productionid)
+    //console.log("addproductiontype=======:::",productionid)
 
+    
     const [checkedId1, setcheckedId1] = React.useState([]);
     const [finalarr, setfinalarr] = React.useState([]);
     const [deparmentId, setSepartmentId] = useState('');
     const [newflat1, setnewflat1] = React.useState(false);
     const [selectedStartDate, setSelectedStartDate] = useState(null);
     const [selectedEndDate, setSelectedEndDate] = useState(null);
+    const startDate = selectedStartDate ? selectedStartDate.toString() : '';
+    const endDate = selectedEndDate ? selectedEndDate.toString() : '';
     const [userarrlist, setUsearrlist] = React.useState('');
     const [selectprofile, setSelectprofile] = useState(false);
     const [description, setDescription] = React.useState("");
@@ -98,11 +101,11 @@ const Newproject = (props) => {
     const onsubmitbtn = async () => {
         let request = {
             "_id": productionid,
-            "invitedCru": ["1","2"],
+            "invitedCru": ["1", "2"],
         }
-       
+
         props.inviteprojectcru(request, props.navigation);
-        alert( "Save successfully")
+        alert("Save successfully")
         props.navigation.navigate("Projects")
     }
     const handlecrudata = async (user) => {
@@ -113,9 +116,9 @@ const Newproject = (props) => {
     }
 
     const callAction1 = async (value) => {
-         alert(value)
+        alert(value)
         for (var i = 0; i < userarrlist.length; i++) {
-            if (userarrlist[i]._id == value) {
+            if (userarrlist[i].fullName == value) {
                 if (checkedId1.indexOf(value) > -1) {
                     var index = checkedId1.indexOf(value);
                     checkedId1.splice(index, 1);
@@ -128,7 +131,7 @@ const Newproject = (props) => {
         }
         console.log("checkedId1==>", checkedId1)
         setnewflat1(s => !s);
-        finalarr.push({value });
+        finalarr.push({ value });
         setfinalarr(finalarr);
         setcheckedId1([]);
         console.log("finalarr==>", finalarr)
@@ -203,7 +206,7 @@ const Newproject = (props) => {
     }
     const renderItem4 = ({ item, index }) => {
         return (
-            <TouchableOpacity style={tw`mx-2 w-45`} 
+            <TouchableOpacity style={tw`mx-2 w-45`}
             //onPress={() => props.navigation.navigate("Glyndenprofile", { userId: item?._id })}
             >
 
@@ -276,7 +279,7 @@ const Newproject = (props) => {
                                             <Text style={tw`text-[4] font-bold text-right	`} >*Date:</Text>
                                         </View>
                                         <View style={tw` w-40`}>
-                                            <Text style={tw` text-base font-semibold `}>6/7</Text>
+                                            <Text style={tw` text-base font-semibold `}>{moment(startDate).format('D')}-{moment(endDate).format('D')}</Text>
                                         </View>
 
                                     </View>
@@ -384,7 +387,7 @@ const Newproject = (props) => {
                                 </View>
                                 <View style={tw`mx-3 `}>
                                     <FlatList
-                                        data={DATA3}
+                                        data={finalarr}
                                         Key={2}
                                         numColumns={2}
                                         renderItem={renderItem4}

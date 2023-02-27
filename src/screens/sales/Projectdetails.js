@@ -197,9 +197,6 @@ const Projectdetails = (props) => {
                     <Image source={item.image2} style={tw`w-9.5 h-9.5 mt-7 `} />
 
                     <Image source={item.image1} style={tw`w-10 h-10 mt-7 ml-2`} />
-
-
-
                 </View>
             </View>
         );
@@ -219,7 +216,7 @@ const Projectdetails = (props) => {
                             <Text style={tw`text-[4] font-bold text-right`} >Date: </Text>
                         </View>
                         <View style={tw`w-7/12`}>
-                            <Text style={tw` text-base font-semibold `}>6/7</Text>
+                            <Text style={tw` text-base font-semibold `}>{moment(props?.getprojectdetilslist?.fromDate).format('D')}-{moment(props?.getprojectdetilslist?.toDate).format('D')}</Text>
                         </View>
 
                     </View>

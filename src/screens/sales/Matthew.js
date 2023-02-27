@@ -311,12 +311,12 @@ const Matthew = (props) => {
               </View>
             </View>
 
-            <View style={tw`flex-row justify-between	items-center	py-3`}>
+            <View style={tw`flex-row justify-between	items-center	py-3`}> 
               <View style={tw`flex-row items-center`}>
                 <TouchableOpacity style={tw`items-center`} onPress={() => handlelikecount()}>
                   <Image source={ImageIcons.like} style={tw`w-8 h-8	`} />
                 </TouchableOpacity>
-                <TouchableOpacity style={tw`flex-row ml-2 items-center`} onPress={() => props.navigation.navigate("Likelist")}>
+                <TouchableOpacity style={tw`flex-row ml-2 items-center`} onPress={() => props.navigation.navigate("Likelist",{ post_Id: item._id })}>
                   <View style={tw`	z-20`}>
                     <Image source={ImageIcons.man} style={tw`w-12 h-12 rounded-full`} />
                   </View>

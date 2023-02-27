@@ -95,10 +95,10 @@ const Registration = (props) => {
         }
     }
 
-    const handlestep = () => {
-        setModalVisible(false);
-        props.navigation.navigate("Step1")
-    }
+    // const handlestep = () => {
+    //     setModalVisible(false);
+    //     props.navigation.navigate("Step1")
+    // }
     //  Login request submision 
     const handleLoginSubmit = async () => {
         Keyboard.dismiss();
@@ -122,25 +122,6 @@ const Registration = (props) => {
 
         }
     }
-
-    // const handleLoginSubmit = async () => {
-    //     setModalVisible(!modalVisible)
-    //     // Keyboard.dismiss();
-    //     // if (errors.email) {
-    //     //     Alert.alert(CommonStrings.AppName, errors.email)
-    //     // } else if (errors.password) {
-    //     //     Alert.alert(CommonStrings.AppName, errors.password)
-    //     // } else {
-
-    //     //     let request = {
-    //     //         "email": values.email,
-    //     //         "password": values.password,
-    //     //         "deviceToken": deviceToken,
-    //     //         "roletype": "ad"
-    //     //     }
-    //     //     props.login(request, props.navigation)
-    //     // }
-    // }
 
 
     return (
@@ -256,7 +237,7 @@ const Registration = (props) => {
                                             <View style={tw`mx-5`}>
                                                 <Text style={tw`text-[#000000] mt-1 font-normal text-[3.1]`}>To get started, we'll walk you through our quick 3 step process to set up your account, and help you get plugged in to the best crew resource in LA!</Text>
                                             </View>
-                                            <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`} onPress={() => handlestep()}>
+                                            <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`} onPress={() => setModalVisible(!modalVisible)}>
                                                 <Text style={tw`text-[#000] text-[3.5] p-2 px-15 font-normal`}>Continue</Text>
                                             </TouchableOpacity>
 

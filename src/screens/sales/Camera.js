@@ -26,24 +26,15 @@ const Camera = (props) => {
   } = props;
   const userArray = props?.route?.params?.user
   console.log("user====>>", userArray)
+  console.log("props====>>", props)
+  const loginId = props?.loginCredentials?.data?._id
+  console.log("loginId===>", loginId);
 
-  const [panelProps, setPanelProps] = useState({
-    fullWidth: true,
-    openLarge: true,
-    //onlySmall:true,
-    showCloseButton: true,
-    closeOnTouchOutside: true,
-    onClose: () => closePanel(),
-    onPressCloseButton: () => closePanel(),
-    // ...or any prop you want
-  });
-  const [isPanelActive, setIsPanelActive] = useState(false);
+  useEffect(() => {
+      props.mycrulist(loginId);
+      console.log("props.getmycrulist======>>>", props?.getmycrulist);
 
-  const [isaction, setisaction] = useState(true);
-
-
-
-
+  }, [])
   const DATA3 = [
     {
       text2: 'Jonathan Williams',
@@ -52,12 +43,12 @@ const Camera = (props) => {
       text1: 'Cinematographer',
 
     },
-    
+
   ];
 
   const renderItem3 = ({ item, index }) => {
     return (
-      <TouchableOpacity style={tw`mx-2 w-45`} onPress={() => props.navigation.navigate("Glyndenprofile",{userId : item?._id})}>
+      <TouchableOpacity style={tw`mx-2 w-45`} onPress={() => props.navigation.navigate("Glyndenprofile", { userId: item?._id })}>
         <View style={tw` bg-white mt-5 p-5 items-center  rounded-[3] `} >
           <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.fullName}</Text>
           <View style={tw`items-center`}>
@@ -68,7 +59,7 @@ const Camera = (props) => {
               <Image source={ImageIcons.man} style={tw`w-24 h-24 rounded-full	mt-1`} />
             }
           </View>
-          <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.text1}</Text>
+          <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item?.workDepartments[0]?.position[0]?.name}</Text>
         </View>
       </TouchableOpacity>
     );
@@ -78,10 +69,30 @@ const Camera = (props) => {
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"} style={styles.root}>
-
+      <View style={tw`flex-row py-3 px-7 justify-between	 bg-[#fff]`}>
+        <View>
+          <TouchableOpacity onPress={() => props.navigation?.goBack()}>
+            <Image source={ImageIcons.backarrow} style={[tw`w-4 h-7  `,{tintColor:'#5fafcf'}]} />
+          </TouchableOpacity>
+        </View>
+        <View>
+        <Text style={tw`text-center text-black text-[5] font-bold mt-1`} >{userArray?.departmentName}</Text>
+        </View>
+        <View>
+          {props?.getprofilelist?.profileImage != null ?
+            <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+              <Image source={{ uri: `${Api.imageUri}${profilename?.getprofilelist?.profileImage}` }} style={{ width: 35, height: 35, borderRadius: 100 }} />
+            </TouchableOpacity>
+            :
+            <TouchableOpacity onPress={() => props.navigation.navigate("Matthew")}>
+              <Image source={ImageIcons.womanclap} style={{ width: 35, height: 35, borderRadius: 100 }} />
+            </TouchableOpacity>
+          }
+        </View>
+      </View>
       <View style={tw`mx-3 `}>
         <FlatList
-          data={userArray}
+          data={userArray?.user}
           numColumns={2}
           renderItem={renderItem3}
           keyExtractor={item => item.id}
