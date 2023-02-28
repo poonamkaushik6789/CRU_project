@@ -546,9 +546,9 @@ const VendorStack = (props) => {
               </View>
             ),
             headerShown: true,
-            //headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
-            headerTitle: " Like",
-            //headerTitleAlign: "center",
+            headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={false} />,
+            headerTitle: " Like",  
+            headerTitleAlign: "center",
             headerTitleStyle: { color: Colors.BLACK, },
             headerStyle: { backgroundColor: "#fff", elevation: 4, shadowOpacity: 0, },
           })}
