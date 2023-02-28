@@ -54,17 +54,29 @@ const Matthew = (props) => {
 
 
   const loginId = props?.loginCredentials?.data?._id
-   //console.log("loginId===>", props);
-  
+  //console.log("loginId===>", props);
+
   useEffect(() => {
-    props.profiledetail(loginId);
     props.mycrulist(loginId);
     props.mynetworklist(loginId);
     console.log("props.getmynetworklist======>>>", props?.getmynetworklist);
-    setAbout(props?.getprofilelist?.about);
-    console.log("props.getprofilelist======>>>", props?.getprofilelist);
 
   }, [])
+
+  useEffect(() => {
+    //console.log("props.getprofilelist======>>>", props?.getprofilelist?.email);
+    if (props?.getprofilelist.email == undefined) {
+      props.profiledetail(loginId);
+      setTimeout(function () {
+        props.profiledetail(loginId);
+
+      }, 1500);
+      setAbout(props?.getprofilelist?.about);
+
+    }
+    // console.log("props.getprofilelist======>>>", props?.getprofilelist);
+  }, [props.getprofilelist])
+
   const onDateChange = (date, type) => {
     //function to handle the date change
     if (type === 'END_DATE') {
@@ -118,31 +130,51 @@ const Matthew = (props) => {
         }
         // setFieldValue("couponImage", file);
         setBillImgPath(file);
+
+
+        const formData = new FormData();
+        formData.append("_id", loginId);
+        formData.append("image", file);
+        props.updateprofile(formData, props.navigation)
+        props.profiledetail(loginId);
       }
     }).catch((error) => {
 
     });
   }
 
-  const handleupdateprofile = async () => {
-    selectPhoto();
+  const selectPhotobackground = async () => {
+    ImagePicker.openPicker({
+      width: 400,
+      cropping: true,
+      mediaType: 'photo',
+      compressImageQuality: 0.5,
+      height: 400,
+    }).then(image => {
+      if (image?.path) {
+        let fileName = image?.path?.split('/').pop();
+        let mimeType = image?.path?.split('.').pop();
+        let file = {
+          'uri': image?.path,
+          'type': `image/${mimeType}`,
+          'name': fileName
+        }
+        // setFieldValue("couponImage", file);
+        setBillImgPath(file);
 
-    const formData = new FormData();
-    formData.append("_id", loginId);
-    formData.append("image", billImgPath);
-    props.updateprofile(formData, props.navigation)
-    props.profiledetail(loginId);
+
+        const formData = new FormData();
+        formData.append("_id", loginId);
+        formData.append("image", file);
+        props.updatebackgroudimage(formData, props.navigation)
+        props.profiledetail(loginId);
+      }
+    }).catch((error) => {
+
+    });
   }
 
-  const handleupdatebackground = async () => {
-    selectPhoto();
-
-    const formData = new FormData();
-    formData.append("_id", loginId);
-    formData.append("image", billImgPath);
-    props.updatebackgroudimage(formData, props.navigation)
-    props.profiledetail(loginId);
-  }
+  
   const deletepostmodal = async (id) => {
     setDeletepostid(id)
     setModalVisible(true);
@@ -168,41 +200,6 @@ const Matthew = (props) => {
     props.profiledetail(loginId);
   }
   const containerStyle = { backgroundColor: 'red', padding: '7%', marginHorizontal: '5%', alignItems: 'center', };
-
-  const DATA = [
-    {
-      name: "Matthew Grace",
-      days: "Friday",
-      time: "1 hour ago",
-      profile: ImageIcons.womanclap,
-      image: ImageIcons.purifier,
-      likeimg: ImageIcons.like,
-      chatimg: ImageIcons.chat,
-      message: "Just used the Briese light for thr first time! Very even light, a great key light when shooting commercials. As you can see we had an audience watching.",
-      text1: "Save 15% on every order",
-      text2: "Get Plus now",
-      text3: "Organization Actions",
-    },
-  ];
-  const DATA2 = [
-    {
-
-      image: ImageIcons.social,
-      text1: 'Camera operator',
-
-    },
-    {
-      image: ImageIcons.event,
-      text1: 'Cinematographer',
-
-    },
-    {
-      image: ImageIcons.event,
-      text1: 'Gaffer',
-
-    },
-
-  ];
   const DATA3 = [
     {
       id: 1,
@@ -320,11 +317,11 @@ const Matthew = (props) => {
               </View>
             </View>
 
-            
 
-            <View style={tw`flex-row justify-between	items-center	py-3`}> 
+
+            <View style={tw`flex-row justify-between	items-center	py-3`}>
               <View style={tw`flex-row items-center`}>
-              {item?.likedBy?.includes(loginId) == "" ?
+                {item?.likedBy?.includes(loginId) == "" ?
                   <TouchableOpacity style={tw`items-center`} onPress={() => handlelikeunlike(item._id)}>
                     <Image source={ImageIcons.like} style={tw`w-8 h-8	`} />
                   </TouchableOpacity>
@@ -334,7 +331,7 @@ const Matthew = (props) => {
                   </TouchableOpacity>
 
                 }
-                <TouchableOpacity style={tw`flex-row ml-2 items-center`} onPress={() => props.navigation.navigate("Likelist",{ post_Id: item._id })}>
+                <TouchableOpacity style={tw`flex-row ml-2 items-center`} onPress={() => props.navigation.navigate("Likelist", { post_Id: item._id })}>
                   <View style={tw`	z-20`}>
                     <Image source={ImageIcons.man} style={tw`w-12 h-12 rounded-full`} />
                   </View>
@@ -412,7 +409,7 @@ const Matthew = (props) => {
                 <Text style={tw`text-black `}>Connections</Text>
               </TouchableOpacity>
             </View>
-            <TouchableOpacity style={tw`right-15 mt-33 z-60 absolute`} onPress={() => handleupdatebackground()}>
+            <TouchableOpacity style={tw`right-15 mt-33 z-60 absolute`} onPress={() => selectPhotobackground()}>
               <Image source={ImageIcons.editclap} style={[tw`w-7 h-7 rounded-full`, { tintColor: '#5fafcf' }]} />
             </TouchableOpacity>
             <View style={tw` left-4/12 mt-33 z-50 absolute`}>
@@ -422,17 +419,19 @@ const Matthew = (props) => {
                 <Image source={ImageIcons.man} style={tw`w-30 h-30 rounded-full `} />
               }
             </View>
-            <TouchableOpacity style={tw`left-7/12 mt-48 z-50 absolute`} onPress={() => handleupdateprofile()}>
+            <TouchableOpacity style={tw`left-7/12 mt-48 z-50 absolute`} onPress={() => selectPhoto()}>
               <Image source={ImageIcons.editclap} style={[tw`w-7 h-7 rounded-full`, { tintColor: '#5fafcf' }]} />
             </TouchableOpacity>
           </View>
           <View style={tw`ml-5 mt-5`}>
-            <FlatList
-              horizontal={true}
-              data={props?.getprofilelist}
-              renderItem={renderItem1}
-              keyExtractor={item => item.id}
-            />
+            {(props?.getprofilelist.email != undefined && props?.getprofilelist.email != "") &&
+              <FlatList
+                horizontal={true}
+                data={props?.getprofilelist?.workDepartments[0]?.position}
+                renderItem={renderItem1}
+                keyExtractor={item => item.id}
+              />
+            }
           </View>
           <View style={tw`ml-5`}>
             <FlatList

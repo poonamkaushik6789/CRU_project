@@ -42,7 +42,7 @@ const api = {
   projectdetails: `/users/projectDetails`,
   likelisting: `/users/postLikedBy`,
   invitecruproject: `/users/inviteCruForProject`,
-  // mycru: `/users/myCru`,
+  messagedetail: `/users/messageListDetail`,
   // mynetwork: `/users/myNetwork`,
   //  messagelist: `/users/eventCategory`,
   // addnetworkCru: `/users/addToNetworkOrCru`,

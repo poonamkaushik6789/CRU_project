@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Text, KeyboardAvoidingView, View, TextInput, FlatList, StatusBar, TouchableOpacity, ScrollView, Image } from 'react-native';
-import { Fonts, Colors, ImageIcons } from '../../common';
+import { Fonts, Colors, ImageIcons, Api } from '../../common';
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
@@ -17,7 +17,7 @@ import tw from 'twrnc';
 import CalendarPicker from 'react-native-calendar-picker';
 
 
-const Commentlist = (props) => {
+const Glynden = (props) => {
     const {
         navigation,
         values,
@@ -25,218 +25,107 @@ const Commentlist = (props) => {
         handleChange,
         handleSubmit,
     } = props;
-
+    const fromUser = props?.route?.params?.fromUser?._id
+    const postid = props?.route?.params?.post_Id
+    const loginId = props?.loginCredentials?.data?._id
+    console.log("fromUser====>>>", fromUser)
     const [visible, setVisible] = React.useState(false);
     const [subMsg, onChangeText1] = React.useState("");
-    const [msg, onChangeText2] = React.useState("");
+    const [msg, setMsg] = React.useState("");
 
-    const [panelProps, setPanelProps] = useState({
-        fullWidth: true,
-        openLarge: true,
-        //onlySmall:true,
-        showCloseButton: true,
-        closeOnTouchOutside: true,
-        onClose: () => closePanel(),
-        onPressCloseButton: () => closePanel(),
-        // ...or any prop you want
-    });
-    const [isPanelActive, setIsPanelActive] = useState(false);
+    useEffect(() => {
+        props.getlistmessage(fromUser);
 
-    const [isaction, setisaction] = useState(true);
+        console.log("props.getmessagedetilslist======>>>", props?.getmessagedetilslist);
 
+    }, [])
 
+    const handleSubmitcomment = async () => {
+        if (msg == "") {
+            Alert.alert(CommonStrings.AppName, "")
+        } else {
+            let request = {
+                "fromUser": loginId,
+                "toUser": fromUser,
+                "message": msg,
+            }
 
-    const openPanel = () => {
+            props.messagesend(request, props.navigation)
+            setMsg("");
 
-        setIsPanelActive(true);
-        setisaction(false);
+            props.getlistmessage(fromUser);
+        }
     };
-
-    const closePanel = () => {
-        setIsPanelActive(false);
-        setisaction(true);
-
-    };
-
-    // const showisaction = () => {
-    //   setisaction(true);
-    // };
-    // const hideisaction = () => {
-    //   setisaction(false);
-    // };
-    const containerStyle = { backgroundColor: 'red', padding: '7%', marginHorizontal: '5%', alignItems: 'center', };
-    const DATA2 = [
-        {
-            text: 'Screenings',
-            //  image:ImageIcons.salonman,
-        },
-        {
-            text: 'Networking',
-            //  image:ImageIcons.salonwoman,
-        },
-        {
-            text: 'Training',
-            //  image:ImageIcons.salonwoman,
-        },
-
-    ];
-
-
-    const DATA = [
-        {
-            text1: 'June',
-            text2: '9',
-            text3: 'Music Video',
-            text4: 'R&B Artist',
-            text5: '$400',
-
-
-        },
-        {
-            text1: 'June',
-            text2: '13',
-            text3: 'TV Commercial',
-            text4: 'luxury Car Dealership',
-            text5: '$400',
-        },
-        {
-            text1: 'June',
-            text2: '15-16',
-            text3: 'Short Film',
-            text4: 'Comic Con',
-            text5: '$400',
-
-        },
-        {
-            text1: 'July',
-            text2: '3',
-            text3: 'Music Video',
-            text4: 'Hip-Hop Artist',
-            text5: '$400',
-
-        },
-        {
-            text1: 'July',
-            text2: '3',
-            text3: 'Music Video',
-
-            text4: 'Hip-Hop Artist',
-            text5: '$400',
-
-
-        },
-        {
-            text1: 'July',
-            text2: '3',
-            text3: 'Music Video',
-            text4: 'Hip-Hop Artist',
-            text5: '$400',
-
-        },
-        {
-            text1: 'July',
-            text2: '3',
-            text3: 'Music Video',
-            text4: 'Hip-Hop Artist',
-            text5: '$400',
-
-        },
-        {
-            text1: 'July',
-            text2: '3',
-            text3: 'Music Video',
-            text4: 'Hip-Hop Artist',
-            text5: '$400',
-
-        },
-        {
-            text1: 'July',
-            text2: '3',
-            text3: 'Music Video',
-            text4: 'Hip-Hop Artist',
-            text5: '$400',
-
-        },
-        {
-            text1: 'July',
-            text2: '3',
-            text3: 'Music Video',
-            text4: 'Hip-Hop Artist',
-            text5: '$400',
-
-        },
-
-
-    ];
-
-
-    const renderItem2 = ({ item, index }) => {
-        return (
-            <View style={tw`w-46 h-18 bg-white my-6 ml-5 rounded-xl border-solid border-t-8 border-black`} >
-                <Text style={tw`text-center pt-6 text-slate-600	`} >{item.text}</Text>
-            </View>
-        );
-    }
 
 
     const renderItem = ({ item, index }) => {
         return (
-            <View>
-                <View style={tw`w-80 h-25 bg-white rounded-xl flex flex-row mb-6`} >
-                    <View style={tw`w-18 h-18 bg-white mt-3 ml-3 flex flex-row  border-r-2 border-slate-100`} >
-                        <View style={tw`flex flex-column`}>
-                            <Text style={tw`text-center text-black text-base font-semibold mt-3 ml-3`} >{item.text1}</Text>
-                            <Text style={tw`text-center text-black text-base font-bold mt-1 ml-3`} >{item.text2}</Text>
+            <View style={tw`w-11/12`}>
+                <Text style={tw`text-center	 p-3 text-[3] text-slate-600	`}>{moment(item?.createdAt).format('h: mm a')}</Text>
+                {item?.toUser?._id != loginId ?
+                    <View style={tw`flex-row-reverse w-12/12 items-center `}>
+                        <View style={tw`  items-center rounded-full`}>
+                            {item?.fromUser?.profileImage != null ?
+                                <Image source={{ uri: `${Api.imageUri}${item?.fromUser?.profileImage}` }} style={tw`w-15 h-15 rounded-full`} />
+                                :
+                                <Image source={ImageIcons.man} style={tw`w-15 h-15 rounded-full	`} />
+                            }
 
                         </View>
+                        <View style={tw` m-3  bg-[#fff] px-2 rounded-[4] `}>
+                            <Text style={tw`text-right	 p-3 text-[3.6] text-slate-600	`}>{item.message}</Text>
+                        </View>
+
                     </View>
-                    <View style={tw`flex flex column  mt-4 w-42`}>
-                        <Text style={tw` text-black text-base font-bold ml-4`} >{item.text3}</Text>
-                        <Text style={tw`text-black text-xm font-semibold mt-4 ml-4 `} >{item.text4}</Text>
+                    :
+                    <View style={tw`flex-row items-center w-11/12 rounded-[3] `}>
+                        <View style={tw` items-center rounded-full`}>
+                            {item?.fromUser?.profileImage != null ?
+                                <Image source={{ uri: `${Api.imageUri}${item?.fromUser?.profileImage}` }} style={tw`w-15 h-15 rounded-full`} />
+                                :
+                                <Image source={ImageIcons.man} style={tw`w-15 h-15 rounded-full`} />
+                            }
+                            
+                        </View>
+                        <View style={tw` m-3 mr-6 bg-[#fff] px-2 rounded-[4]`}>
+                            <Text style={tw` p-3 text-[3.6] text-slate-600	`}>{item.message}</Text>
+                        </View>
                     </View>
-                    <View style={tw`w-14 h-14 bg-slate-200 mt-5  flex flex-row rounded-full`} >
-                        <Text style={tw`text-black text-base font-semibold mx-auto mt-4 `} >{item.text5}</Text></View>
-                </View>
+                }
             </View>
         );
     }
 
-
-
-
-
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"} style={styles.root}>
             <StatusBar backgroundColor={Colors.WHITE} barStyle="dark-content" translucent={true} />
-            <ScrollView style={tw``}>
-                <View style={tw`w-80`}>
-                    <Text style={tw`mx-auto mt-5 text-xs`}>Monday, April 16</Text>
-                    <View style={tw`flex flex-row`}>
-                        <Image source={ImageIcons.womanclap} style={tw`w-15 h-15 mt-5 ml-5 rounded-full  `} />
-                        <View style={tw`w-48 h-18 mt-5 ml-3 bg-white rounded-lg`}>
-                        </View>
-                    </View>
-                    <Text style={tw`mx-auto mt-5 text-xs`}>7:53 pm</Text>
-                    <View style={tw`flex flex-row`}>
-                        <View style={tw`w-38 h-14 mt-5 ml-29 bg-white rounded-lg`}></View>
+            <View style={tw`mx-3 w-full mb-20`}>
+                <FlatList
+                    data={props?.getmessagedetilslist}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.id}
+                    showsHorizontalScrollIndicator={false}
+                />
 
-
-                        <Image source={ImageIcons.womanclap} style={tw`w-15 h-15 mt-5 ml-3 rounded-full  `} /></View>
-                    <Text style={tw`mx-auto mt-5 text-xs`}>7:55 pm</Text>
-                    <View style={tw`flex flex-row`}>
-                        <Image source={ImageIcons.womanclap} style={tw`w-15 h-15 mt-5 ml-5 rounded-full  `} />
-                        <View style={tw`w-48 h-18 mt-5 ml-3 bg-white rounded-lg`}>
-                        </View>
-                    </View>
-
-
+            </View>
+            <View style={tw`absolute bottom-0	 z-0	flex-1	bg-white flex-row justify-between	w-full p-2 px-4`}>
+                <View style={tw`w-11/12`}>
+                    <TextInput
+                        value={msg}
+                        onChangeText={(text) => setMsg(text)}
+                        placeholder="Type Your message here..."
+                        placeholderTextColor={"#000"}
+                        style={{ paddingLeft: "2%", color: "#000" }}
+                    ></TextInput>
                 </View>
-
-            </ScrollView>
+                <TouchableOpacity style={tw`w-11/12`} onPress={() => handleSubmitcomment()}>
+                    <Image source={ImageIcons.Sendicon} style={[tw`w-8 h-8`, { tintColor: '#5fafcf' }]} />
+                </TouchableOpacity>
+            </View>
 
             <Loader />
         </KeyboardAvoidingView>
     )
 }
 
-export default Commentlist;
+export default Glynden;

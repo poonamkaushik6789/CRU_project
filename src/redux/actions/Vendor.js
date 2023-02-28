@@ -27,6 +27,7 @@ import {
   GET_MYPROJECT_LIST,
   GET_PROJECTDETAIL_LIST,
   SET_INVITE_CRU_PROJECT,
+  GET_MESSAGEDETAIL_LIST,
 } from './ActionTypes';
 import { Alert } from 'react-native';
 import { Api, Utilise } from '../../common';
@@ -333,17 +334,10 @@ export const profiledetail = (id) => {
       let isInternetConnected = await getState().auth?.isInternetConnected;
       if (isInternetConnected) {
           try {
-              dispatch({ type: GET_PROFILE_LIST, payload: [] });
               let response = await Utilise.apiCalling('GET', `${Api.viewprofile}/${id}`)
-              console.log("viewprofile_reponse",response)
-              dispatch({ type: GET_PROFILE_LIST, payload: false });
-              if (response?.status) {
-                  
-                  dispatch({ type: GET_PROFILE_LIST, payload: response.data.data });
-                  
-              } else {
-                  Alert.alert("Filmca", String(response?.message))
-              }
+              console.log("viewprofile_reponse",response.data.data)
+              dispatch({ type: GET_PROFILE_LIST, payload: response.data.data });
+              
           } catch (error) {
               Alert.alert("Filmca", String(error?.message))
           }
@@ -729,5 +723,29 @@ export const inviteprojectcru = (request, navigation) => {
         Alert.alert("Filmca", String(error?.message))
       }
     };
+  }
+};
+//messagedetail
+export const getlistmessage = (fromUser) => {
+  return async (dispatch, getState) => {
+      let loginCredentials = await getState().auth?.loginCredentials;
+      let isInternetConnected = await getState().auth?.isInternetConnected;
+      if (isInternetConnected) {
+          try {
+              dispatch({ type: GET_MESSAGEDETAIL_LIST, payload: true });
+              let response = await Utilise.apiCalling('GET', `${Api.messagedetail}?fromUser=${fromUser}&toUser=${loginCredentials?.data?._id}`)
+              console.log("getlistmessage_reponse",response)
+              dispatch({ type: GET_MESSAGEDETAIL_LIST, payload: false });
+              if (response?.status) {
+                  
+                  dispatch({ type: GET_MESSAGEDETAIL_LIST, payload: response.data.data });
+                  
+              } else {
+                  Alert.alert("Filmca", String(response?.message))
+              }
+          } catch (error) {
+              Alert.alert("Filmca", String(error?.message))
+          }
+      };
   }
 };

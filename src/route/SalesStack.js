@@ -13,13 +13,15 @@ import {
 } from 'react-native-responsive-screen';
 import { Saleslisting, Editprofile, Search, Help, Commentlist, EventScreen, Searchloc, Reportlisting, Eventdetail, Gysercondition, Profile, Washing, Water, Appliances, Aircondition, Waterpurifier, Likelist, Gyser, Matthew, Notifications, Cru, Camera, Viewall, Projects, Searchjobs, Lighting, Jobdetails1, Locator, Projectdetails, Newproject,Glynden, Messages } from '../container'
 import { Colors, Fonts, ImageIcons } from '../common';
+import { connect, useSelector } from 'react-redux';
 
 
 const Stack = createStackNavigator();
 
 const SalesStack = (props) => {
   const { navigation } = props;
-
+  const profilename = useSelector(state => state.vendor);
+  //console.log("profilename===>>",profilename)
   return (
     <>
       <Stack.Navigator

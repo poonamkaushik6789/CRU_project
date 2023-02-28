@@ -30,6 +30,7 @@ import {
     SET_PROJECT_ADD,
     GET_MYPROJECT_LIST,
     GET_PROJECTDETAIL_LIST,
+    GET_MESSAGEDETAIL_LIST,
 } from '../actions/ActionTypes';
 
 // Redux states
@@ -39,7 +40,7 @@ const initialState = {
     newcomment: false,
     messagesend: false,
     postlikeunlike: false,
-    getlikstlist:[],
+    getlikstlist: [],
     getmessagelist: [],
     getpostlist: [],
     grtpostdetail: [],
@@ -50,16 +51,17 @@ const initialState = {
     updateabout: false,
     postdelete: false,
     networktocru: false,
-    addproductiontype:false,
-    getmycrulist:[],
-    getmynetworklist:[],
-    geteventcategorylist:[],
-    geteventlist:[],
-    geteventdetaillist:[],
-    getnotificationlist:[],
-    getproductionlist:[],
-    getprojectlist:[],
-    getprojectdetilslist:[],
+    addproductiontype: false,
+    getmycrulist: [],
+    getmynetworklist: [],
+    geteventcategorylist: [],
+    geteventlist: [],
+    geteventdetaillist: [],
+    getnotificationlist: [],
+    getproductionlist: [],
+    getprojectlist: [],
+    getprojectdetilslist: [],
+    getmessagedetilslist: [],
 };
 
 const Vendor = (state = initialState, action) => {
@@ -141,66 +143,66 @@ const Vendor = (state = initialState, action) => {
                 networktocru: action.payload,
             };
         case GET_CRU_LIST:
-        return {
-            ...state,
-            getmycrulist: action.payload,
-        };
+            return {
+                ...state,
+                getmycrulist: action.payload,
+            };
         case GET_NETWORK_LIST:
-        return {
-            ...state,
-            getmynetworklist: action.payload,
-        };
+            return {
+                ...state,
+                getmynetworklist: action.payload,
+            };
         case GET_EVENT_CATEGORY:
-        return {
-            ...state,
-            geteventcategorylist: action.payload,
-        };
+            return {
+                ...state,
+                geteventcategorylist: action.payload,
+            };
         case GET_EVENT_LIST:
-        return {
-            ...state,
-            geteventlist: action.payload,
-        };
+            return {
+                ...state,
+                geteventlist: action.payload,
+            };
         case GET_EVENTDETAIL_LIST:
-        return {
-            ...state,
-            geteventdetaillist: action.payload,
-        };
+            return {
+                ...state,
+                geteventdetaillist: action.payload,
+            };
         case GET_NOTIFICATION_LIST:
-        return {
-            ...state,
-            getnotificationlist: action.payload,
-        };
+            return {
+                ...state,
+                getnotificationlist: action.payload,
+            };
         case GET_PRODUCTION_LIST:
-        return {
-            ...state,
-            getproductionlist: action.payload,
-        };
+            return {
+                ...state,
+                getproductionlist: action.payload,
+            };
         case SET_PROJECT_ADD:
-        return {
-            ...state,
-            addproductiontype: action.payload,
-        };
+            return {
+                ...state,
+                addproductiontype: action.payload,
+            };
 
         case GET_MYPROJECT_LIST:
-        return {
-            ...state,
-            getprojectlist: action.payload,
-        };
+            return {
+                ...state,
+                getprojectlist: action.payload,
+            };
         case GET_PROJECTDETAIL_LIST:
-        return {
-            ...state,
-            getprojectdetilslist: action.payload,
-        };
+            return {
+                ...state,
+                getprojectdetilslist: action.payload,
+            };
         case GET_LIKE_LIST:
-        return {
-            ...state,
-            getlikstlist: action.payload,
-        };
-        // case GET_PROJECTDETAIL_LIST:
-        //     return {
-        //         ...state,
-        //         getprojectdetilslist: action.payload,
-        //     };
+            return {
+                ...state,
+                getlikstlist: action.payload,
+            };
+        case GET_MESSAGEDETAIL_LIST:
+            return {
+                ...state,
+                getmessagedetilslist: action.payload,
+            };
         //     case GET_PROJECTDETAIL_LIST:
         // return {
         //     ...state,

@@ -105,7 +105,7 @@ const Messages = (props) => {
   const renderItem = ({ item, index }) => {
     return (
       <View>
-        <TouchableOpacity onPress={() => props.navigation.navigate("Glynden")}>
+        <TouchableOpacity onPress={() => props.navigation.navigate("Glynden",{fromUser: item.fromUser})}>
 
           <View style={tw`bg-white rounded w-full mx-2 flex-row mb-0.5 p-2 py-4`} >
             <View style={tw`w-2/12 items-center`}>

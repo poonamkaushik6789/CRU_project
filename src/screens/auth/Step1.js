@@ -288,7 +288,7 @@ const Step1 = (props) => {
                     <View style={tw`flex-1	 justify-center  bg-zinc-500`}>
                         <View style={tw`bg-white rounded-[2]  justify-center drop-shadow-xl m-4`} >
                             <View style={tw`items-center border-b border-[#ccc] p-4`}>
-                                <Text style={tw`text-base font-normal  text-black align-middle`} numberOfLines={1} ellipsizeMode='tail' >Congratulations</Text>
+                                <Text style={tw`text-base font-normal  text-black `} numberOfLines={1} ellipsizeMode='tail' >Congratulations</Text>
                             </View>
                             <View style={tw`p-3`}>
                                 <View style={tw`mx-5`}>
@@ -314,10 +314,10 @@ const Step1 = (props) => {
                         <View style={tw`bg-white rounded-[2]  justify-center  m-4`} >
                             <View style={tw`flex-row justify-between items-center border-b border-[#ccc] p-4`}>
                                 <View>
-                                    <Text style={tw`text-base font-normal  text-black align-middle`} numberOfLines={1} ellipsizeMode='tail' ></Text>
+                                    <Text style={tw`text-base font-normal  text-black `} numberOfLines={1} ellipsizeMode='tail' ></Text>
                                 </View>
                                 <View>
-                                    <Text style={tw`text-base font-normal  text-black align-middle`} numberOfLines={1} ellipsizeMode='tail' >{deparmentname}</Text>
+                                    <Text style={tw`text-base font-normal  text-black `} numberOfLines={1} ellipsizeMode='tail' >{deparmentname}</Text>
                                 </View>
                                 <TouchableOpacity onPress={() => setCameramodalVisible(false)}>
                                     <Image source={ImageIcons.closetoday} style={[tw`w-4 h-4`, { tintColor: '#5fafcf' }]} />

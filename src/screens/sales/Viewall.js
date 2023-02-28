@@ -88,7 +88,7 @@ const Viewall = (props) => {
                     <View style={tw`flex-1	 justify-center  bg-zinc-500`}>
                         <View style={tw`bg-white rounded-[2]  justify-center drop-shadow-xl m-4`} >
                             <View style={tw`items-center border-b border-[#ccc] p-4`}>
-                                <Text style={tw`text-lg font-normal  text-black align-middle`} numberOfLines={1} ellipsizeMode='tail' >John Hafner</Text>
+                                <Text style={tw`text-lg font-normal  text-black `} numberOfLines={1} ellipsizeMode='tail' >John Hafner</Text>
                             </View>
                             <View style={tw`p-3`}>
                                 <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] mt-4 mb-4 h-13  mx-10`} onPress={() => setModalVisible(false)}>
