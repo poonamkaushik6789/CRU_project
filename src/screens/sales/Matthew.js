@@ -54,7 +54,8 @@ const Matthew = (props) => {
 
 
   const loginId = props?.loginCredentials?.data?._id
-  console.log("loginId===>", loginId);
+   //console.log("loginId===>", props);
+  
   useEffect(() => {
     props.profiledetail(loginId);
     props.mycrulist(loginId);
@@ -259,7 +260,7 @@ const Matthew = (props) => {
     return (
       <View >
         <TouchableOpacity style={tw`  border-solid rounded-full mx-2 bg-white`}>
-          <Text style={tw`text-center my-auto text-xs p-2 px-3`}>{item.text1}</Text>
+          <Text style={tw`text-center my-auto text-xs p-2 px-3`}>{item?.name}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -428,7 +429,7 @@ const Matthew = (props) => {
           <View style={tw`ml-5 mt-5`}>
             <FlatList
               horizontal={true}
-              data={DATA2}
+              data={props?.getprofilelist}
               renderItem={renderItem1}
               keyExtractor={item => item.id}
             />

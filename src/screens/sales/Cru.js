@@ -24,7 +24,7 @@ const Cru = (props) => {
         handleChange,
         handleSubmit,
     } = props;
-//console.log("props",)
+    //console.log("props",)
     const [visible, setVisible] = React.useState(false);
     const [search, setSearch] = React.useState("");
     const [msg, onChangeText2] = React.useState("");
@@ -89,10 +89,10 @@ const Cru = (props) => {
                     <View style={tw`  bg-white my-5 rounded-lg`}>
                         <Text style={tw`text-center py-5 text-base`}>Total: {props?.getmycrulist?.cruData?.length}</Text>
                     </View>
-                    <TouchableOpacity style={tw` mx-15 bg-white mt-5 rounded-3xl border-2 border-sky-400 `} onPress={() => props.navigation.navigate("Viewall")}>
+                    <TouchableOpacity style={tw` mx-15 bg-white mt-5 rounded-3xl border-2 border-sky-400 `} onPress={() => props.navigation.navigate("Viewall", { crudata: props?.getmycrulist?.cruData })}>
                         <Text style={tw`text-center py-4 text-base`}>View All</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={tw`mx-15 bg-white mt-5 rounded-3xl border-2 border-sky-400  `}>
+                    <TouchableOpacity style={tw`mx-15 bg-white mt-5 rounded-3xl border-2 border-sky-400  `} onPress={() => props.navigation.navigate("Newproject")}>
                         <Text style={tw`text-center py-4 text-base`}>New Project</Text>
                     </TouchableOpacity>
                 </View>

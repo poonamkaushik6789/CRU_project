@@ -55,13 +55,25 @@ const Glyndenprofile = (props) => {
   });
   const [isPanelActive, setIsPanelActive] = useState(false);
   const [isaction, setisaction] = useState(true);
-  
+
   useEffect(() => {
     props.postdetails(user_Id);
     console.log("props.grtpostdetail======>>>", props?.grtpostdetail?.posts);
 
   }, [])
+  const handlelikeunlike = (id) => {
+
+    // setLikecount(likecount + 1)
+     let request = {
+       "_id": id,
+       "userId": loginId,
  
+     }
+ 
+     props.likeunlikepost(request, props.navigation)
+     props.socialfeedlist();
+   };
+
 
   const openPanel = () => {
 
@@ -96,13 +108,13 @@ const Glyndenprofile = (props) => {
       "toUser": props?.grtpostdetail?._id,
       "message": message,
     }
-    
+
     props.messagesend(request, props.navigation)
     setMessage("");
     setModalVisible(false)
   };
   const handleconnectnetwork = async () => {
-    
+
     let request = {
       "addedBy": loginId,
       "whomToAdd": props?.grtpostdetail?._id,
@@ -115,7 +127,7 @@ const Glyndenprofile = (props) => {
     setSocialfeed(id);
     console.log("id=======<><>", id)
   };
-  
+
   const containerStyle = { backgroundColor: 'red', padding: '7%', marginHorizontal: '5%', alignItems: 'center', };
 
   const DATA = [
@@ -184,7 +196,7 @@ const Glyndenprofile = (props) => {
       <View style={tw`my-5 justify-center	`}>
         {socilfeed == item.id ?
           <TouchableOpacity style={tw` bg-white ml-0.5 p-6 items-center	`} onPress={() => handletabchange(item.id)}>
-            
+
             <Image source={item.image2} style={tw`w-14 h-14  `} />
             <Text style={tw`text-center text-black text-base font-semibold `} >{item.text1}</Text>
           </TouchableOpacity>
@@ -229,16 +241,26 @@ const Glyndenprofile = (props) => {
             <View style={tw`py-2 `}>
               <Text style={tw`text-[#000] text-[3.3] font-normal`}>{item.description}</Text>
               <View style={tw`pt-4`}>
-                <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={tw`w-full h-90	`} />
+                {item?.image != "" &&
+                  <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={tw`w-full h-90	`} />
+                }
+
               </View>
             </View>
             <View style={tw`flex-row justify-between	items-center	py-3`}>
               <View style={tw`flex-row items-center`}>
-                <TouchableOpacity style={tw`items-center`} onPress={() => handlelikecount()}>
-                  <Image source={ImageIcons.like} style={tw`w-8 h-8	`} />
-                </TouchableOpacity>
+              {item?.likedBy?.includes(loginId) == "" ?
+                  <TouchableOpacity style={tw`items-center`} onPress={() => handlelikeunlike(item._id)}>
+                    <Image source={ImageIcons.like} style={tw`w-8 h-8	`} />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity style={tw`items-center`} onPress={() => handlelikeunlike(item._id)}>
+                    <Image source={ImageIcons.like} style={[tw`w-8 h-8	`, { tintColor: '#5fafcf' }]} />
+                  </TouchableOpacity>
 
-                <TouchableOpacity style={tw`flex-row ml-2 items-center`} onPress={() => props.navigation.navigate("Likelist")}>
+                }
+
+                <TouchableOpacity style={tw`flex-row ml-2 items-center`} onPress={() => props.navigation.navigate("Likelist", { post_Id: item._id })}>
                   <View style={tw`	z-20`}>
                     <Image source={ImageIcons.man} style={tw`w-12 h-12 rounded-full`} />
                   </View>
@@ -282,10 +304,22 @@ const Glyndenprofile = (props) => {
         <View style={tw`absolute  inset-x-0.7/2	 top-8		 `}>
           {/* <View style={tw`w-3 h-3 bg-[#ff0000] rounded-full absolute left-15 `}></View> */}
           <View style={tw`w-3 h-3 bg-[#008000] rounded-full absolute left-17 `}></View>
-          {item?.userId?.profileImage != null ?
-            <Image source={{ uri: `${Api.imageUri}${item?.userId?.profileImage}` }} style={tw`w-24 h-24 rounded-full	mt-1`} />
+          {item?.userId?._id == loginId ?
+            <TouchableOpacity onPress={() => props.navigation.navigate("Matthew", { userId: item?.userId?._id })}>
+              {item?.userId?.profileImage != null ?
+                <Image source={{ uri: `${Api.imageUri}${item?.userId?.profileImage}` }} style={tw`w-24 h-24 rounded-full	mt-1`} />
+                :
+                <Image source={ImageIcons.man} style={tw`w-24 h-24 rounded-full	mt-1`} />
+              }
+            </TouchableOpacity>
             :
-            <Image source={ImageIcons.man} style={tw`w-24 h-24 rounded-full	mt-1`} />
+            <TouchableOpacity onPress={() => props.navigation.navigate("Glyndenprofile", { userId: item?.userId?._id })}>
+              {item?.userId?.profileImage != null ?
+                <Image source={{ uri: `${Api.imageUri}${item?.userId?.profileImage}` }} style={tw`w-24 h-24 rounded-full	mt-1`} />
+                :
+                <Image source={ImageIcons.man} style={tw`w-24 h-24 rounded-full	mt-1`} />
+              }
+            </TouchableOpacity>
           }
         </View>
 
@@ -314,7 +348,7 @@ const Glyndenprofile = (props) => {
                 }} source={ImageIcons.rawartist} />
 
             </View>
-            <View style={tw`w-full h-95 px-6 pt-68  bg-white  absolute overflow-hidden rounded-[2]	flex-row	justify-between`}>
+            <View style={tw`w-11/12 mx-4 h-95 px-6 pt-68  bg-white  absolute overflow-hidden rounded-[2]	flex-row	justify-between `}>
               <TouchableOpacity style={tw`items-center	`} onPress={() => setModalVisible(!modalVisible)}>
                 <Image style={tw`w-15 h-13 `} source={ImageIcons.msgs} />
                 <Text style={tw`text-black `}>Message</Text>
@@ -325,7 +359,7 @@ const Glyndenprofile = (props) => {
               </TouchableOpacity>
             </View>
             <View style={tw`left-4/12 mt-49 z-50 absolute`}>
-            { props?.grtpostdetail?.profileImage != null ?
+              {props?.grtpostdetail?.profileImage != null ?
                 <Image source={{ uri: `${Api.imageUri}${props?.grtpostdetail?.profileImage}` }} style={tw`w-30 h-30 rounded-full `} />
                 :
                 <Image source={ImageIcons.womanclap} style={tw`w-30 h-30 rounded-full `} />
@@ -353,43 +387,43 @@ const Glyndenprofile = (props) => {
               />
             </View>
             <View style={tw`mx-5`}>
-            {socilfeed == "1" &&
-              <FlatList
-                data={props?.grtpostdetail?.posts}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
-                showsHorizontalScrollIndicator={false}
-              />
-            }
-            {socilfeed == "2" &&
-            <View style={tw`bg-[#fff] rounded-[3] flex py-5`}>
-              <CalendarPicker
-                startFromMonday={true}
-                allowRangeSelection={true}
-                minDate={moment(new Date()).toDate()}
-                maxDate={moment().add(1, 'month').toDate()}
-                weekdays={['S', 'M', 'T', 'W', 'T', 'F', 'S']}
-                months={['January', 'Februray', 'March', 'Abril', 'May', 'June', 'July', 'August', 'Setember', 'October', 'November', 'December']}
+              {socilfeed == "1" &&
+                <FlatList
+                  data={props?.grtpostdetail?.posts}
+                  renderItem={renderItem}
+                  keyExtractor={item => item.id}
+                  showsHorizontalScrollIndicator={false}
+                />
+              }
+              {socilfeed == "2" &&
+                <View style={tw`bg-[#fff] rounded-[3] flex py-5`}>
+                  <CalendarPicker
+                    startFromMonday={true}
+                    allowRangeSelection={true}
+                    minDate={moment(new Date()).toDate()}
+                    maxDate={moment().add(1, 'month').toDate()}
+                    weekdays={['S', 'M', 'T', 'W', 'T', 'F', 'S']}
+                    months={['January', 'Februray', 'March', 'Abril', 'May', 'June', 'July', 'August', 'Setember', 'October', 'November', 'December']}
 
-                todayBackgroundColor="#e6ffe6"
-                selectedDayColor="#66ff33"
-                selectedDayTextColor="#000000"
-                scaleFactor={375}
-                textStyle={{
-                  fontFamily: 'Cochin',
-                  color: '#000000',
-                }}
-                onDateChange={onDateChange}
-              />
+                    todayBackgroundColor="#e6ffe6"
+                    selectedDayColor="#66ff33"
+                    selectedDayTextColor="#000000"
+                    scaleFactor={375}
+                    textStyle={{
+                      fontFamily: 'Cochin',
+                      color: '#000000',
+                    }}
+                    onDateChange={onDateChange}
+                  />
+                </View>
+              }
+              {socilfeed == "3" &&
+                <TouchableOpacity style={tw`	 border-solid rounded-[3] bg-white`}>
+                  <Text style={tw` my-auto text-[3.8] p-7`}>{props?.grtpostdetail?.about}</Text>
+                </TouchableOpacity>
+              }
             </View>
-          }
-          {socilfeed == "3" &&
-            <TouchableOpacity style={tw`	 border-solid rounded-[3] bg-white`}>
-              <Text style={tw` my-auto text-[3.8] p-7`}>{props?.grtpostdetail?.about}</Text>
-            </TouchableOpacity>
-          }
-            </View>
-            
+
           </View>
 
 

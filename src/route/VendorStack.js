@@ -22,7 +22,7 @@ const Stack = createStackNavigator();
 const VendorStack = (props) => {
   const { navigation } = props;
   const profilename = useSelector(state => state.vendor);
-  console.log("profilename===>>",profilename)
+  //console.log("profilename===>>",profilename)
   return (
     <>
       <Stack.Navigator

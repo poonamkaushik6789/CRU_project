@@ -31,8 +31,8 @@ const Camera = (props) => {
   console.log("loginId===>", loginId);
 
   useEffect(() => {
-      props.mycrulist(loginId);
-      console.log("props.getmycrulist======>>>", props?.getmycrulist);
+    props.mycrulist(loginId);
+    console.log("props.getmycrulist======>>>", props?.getmycrulist);
 
   }, [])
   const DATA3 = [
@@ -48,20 +48,41 @@ const Camera = (props) => {
 
   const renderItem3 = ({ item, index }) => {
     return (
-      <TouchableOpacity style={tw`mx-2 w-45`} onPress={() => props.navigation.navigate("Glyndenprofile", { userId: item?._id })}>
-        <View style={tw` bg-white mt-5 p-5 items-center  rounded-[3] `} >
-          <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.fullName}</Text>
-          <View style={tw`items-center`}>
+      <View style={tw`mx-2 w-5.1/12`}>
+       
+        {item?._id == loginId ?
+        <TouchableOpacity  onPress={() => props.navigation.navigate("Matthew", { userId: item?._id })}>
+          <View style={tw` bg-white mt-5 p-5 items-center  rounded-[3] `} >
+            <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.fullName}</Text>
+            <View style={tw`items-center`}>
 
-            {item?.profileImage != null ?
-              <Image source={{ uri: `${Api.imageUri}${item?.profileImage}` }} style={tw`w-24 h-24 rounded-full	mt-1`} />
-              :
-              <Image source={ImageIcons.man} style={tw`w-24 h-24 rounded-full	mt-1`} />
-            }
+              {item?.profileImage != null ?
+                <Image source={{ uri: `${Api.imageUri}${item?.profileImage}` }} style={tw`w-24 h-24 rounded-full	mt-1`} />
+                :
+                <Image source={ImageIcons.man} style={tw`w-24 h-24 rounded-full	mt-1`} />
+              }
+            </View>
+            <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item?.workDepartments[0]?.position[0]?.name}</Text>
           </View>
-          <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item?.workDepartments[0]?.position[0]?.name}</Text>
-        </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+        :
+        <TouchableOpacity  onPress={() => props.navigation.navigate("Glyndenprofile", { userId: item?._id })}>
+          <View style={tw` bg-white mt-5 p-5 items-center  rounded-[3] `} >
+            <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.fullName}</Text>
+            <View style={tw`items-center`}>
+
+              {item?.profileImage != null ?
+                <Image source={{ uri: `${Api.imageUri}${item?.profileImage}` }} style={tw`w-24 h-24 rounded-full	mt-1`} />
+                :
+                <Image source={ImageIcons.man} style={tw`w-24 h-24 rounded-full	mt-1`} />
+              }
+            </View>
+            <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item?.workDepartments[0]?.position[0]?.name}</Text>
+          </View>
+        </TouchableOpacity>
+  }
+      </View>
+
     );
   }
 
@@ -72,11 +93,11 @@ const Camera = (props) => {
       <View style={tw`flex-row py-3 px-7 justify-between	 bg-[#fff]`}>
         <View>
           <TouchableOpacity onPress={() => props.navigation?.goBack()}>
-            <Image source={ImageIcons.backarrow} style={[tw`w-4 h-7  `,{tintColor:'#5fafcf'}]} />
+            <Image source={ImageIcons.backarrow} style={[tw`w-4 h-7  `, { tintColor: '#5fafcf' }]} />
           </TouchableOpacity>
         </View>
         <View>
-        <Text style={tw`text-center text-black text-[5] font-bold mt-1`} >{userArray?.departmentName}</Text>
+          <Text style={tw`text-center text-black text-[5] font-bold mt-1`} >{userArray?.departmentName}</Text>
         </View>
         <View>
           {props?.getprofilelist?.profileImage != null ?
@@ -90,7 +111,7 @@ const Camera = (props) => {
           }
         </View>
       </View>
-      <View style={tw`mx-3 `}>
+      <View style={tw`w-full mx-3 `}>
         <FlatList
           data={userArray?.user}
           numColumns={2}
