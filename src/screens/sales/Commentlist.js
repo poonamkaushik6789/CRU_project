@@ -73,32 +73,6 @@ const Commentlist = (props) => {
   // };
   const containerStyle = { backgroundColor: 'red', padding: '7%', marginHorizontal: '5%', alignItems: 'center', };
 
-
-
-  const DATA = [
-    {
-      image: ImageIcons.salonwoman,
-      text: 'Jonathan Williams',
-      text1: 'I use the Briese all the time',
-      time: '10 mins ago'
-    },
-    {
-      image: ImageIcons.salonwoman,
-      text: 'Jianna Maarten',
-      text1: 'Just used that light on a Reebok commercial. Too soft in my opinion.',
-      time: '10 mins ago'
-    },
-    {
-      image: ImageIcons.salonwoman,
-      text: 'John Hanfner',
-      text1: 'Never seen it, is it an LED?',
-      time: '10 mins ago'
-    },
-
-  ];
-
-
-
   const renderItem = ({ item, index }) => {
     return (
       <View style={tw`mt-2`}>

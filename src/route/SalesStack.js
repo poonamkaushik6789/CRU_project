@@ -166,9 +166,9 @@ const SalesStack = (props) => {
                 }
               </View>
             ),
-            headerShown: true,
+            headerShown: false,
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
-            headerTitle: "Camera",
+            headerTitle: "",
             headerTitleAlign: "center",
             headerTitleStyle: { color: Colors.BLACK, },
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },

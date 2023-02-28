@@ -58,7 +58,7 @@ const Likelist = (props) => {
             :
             <Image source={ImageIcons.man} style={tw`w-20 h-20 rounded-full`} />
           }
-        </View>
+        </View> 
 
       </View>
     );
@@ -71,6 +71,7 @@ const Likelist = (props) => {
       <ScrollView style={tw``}>
 
         <View style={tw`m-4 w-11/12 bg-white rounded-[3]  py-5`}>
+        {props?.getlikstlist?.length > 0 ?
           <FlatList
             data={props?.getlikstlist}
             renderItem={renderItem}
@@ -78,6 +79,9 @@ const Likelist = (props) => {
             showsHorizontalScrollIndicator={false}
             numColumns={3}
           />
+          :
+          <Text style={tw`text-[#000] text-[5] font-bold text-center	mt-20`}>No Like Yet</Text>
+        }
         </View>
 
       </ScrollView>

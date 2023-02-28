@@ -134,7 +134,10 @@ const Step1 = (props) => {
     const onsubmitbtn = async () => {
         let request = {
             "_id": signupId,
-            "availabilty": ["kapil"],
+            "availabilty": [{
+                "selectedStartDate":selectedStartDate,
+                "selectedEndtDate":selectedEndDate
+            }],
         }
         props.updateAvailAbilty(request, props.navigation);
         setModalVisible(!modalVisible)

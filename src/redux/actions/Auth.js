@@ -38,9 +38,15 @@ export const signUp = (request, navigation) => {
 
         if (response?.status) {
           dispatch({ type: SET_REGISTER_ACCOUNT, payload: response.data });
+          navigation.navigate("Step1")
         } else {
-          //alert("hello")
-          Alert.alert("Filmca", "user already exist")
+          //alert(response?.status)
+          Alert.alert("Filmca", "User Already Exist")
+          // if(response.status == 500 ){
+
+          //   Alert.alert("Filmca", "user already exist")
+          // }
+          // navigation.navigate("Step1")
         }
       } catch (error) {
         Alert.alert("Filmca", String(error?.message))

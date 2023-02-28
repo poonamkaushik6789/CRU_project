@@ -52,12 +52,12 @@ const Notifications = (props) => {
               <Image source={ImageIcons.man} style={tw`w-15 h-15 rounded-full	mt-1`} />
             }
           </View>
-          <View style={tw`flex-row	w-10/12`}>
-            <View style={tw` w-9/12`}>
+          <View style={tw`flex-row items-center	w-10/12`}>
+            <View style={tw` w-8/12`}>
               <Text style={tw` text-black text-base font-bold ml-2`} >{item?.from?.fullName}</Text>
               <Text style={tw`text-[#808080] text-sm font-semibold  ml-2`} >{item.message}</Text>
             </View>
-            <View style={tw` w-3/12 pr-5`}>
+            <View style={tw` w-4/12 pr-5`}>
               <Text style={tw`text-black text-xs text-right	 font-semibold  `} >{moment(item?.createdAt).format("h:mm a")}</Text>
             </View>
           </View>  
@@ -73,8 +73,7 @@ const Notifications = (props) => {
     <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"} style={styles.root}>
       <StatusBar backgroundColor={Colors.WHITE} barStyle="dark-content" translucent={true} />
       <ScrollView style={tw``}>
-        <View style={tw`mx-auto mt-6`}><Text style={tw`text-base font-bold`}>Today</Text></View>
-
+        
         <View style={tw`mx-3 mt-6`}>
           <FlatList
             data={props?.getnotificationlist}

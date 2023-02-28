@@ -115,7 +115,7 @@ const Messages = (props) => {
                 <Image source={ImageIcons.man} style={tw`w-15 h-15 rounded-full	mt-1`} />
               }
             </View>
-            <View style={tw`flex-row	w-10/12`}>
+            <View style={tw`flex-row items-center	w-10/12`}>
               <View style={tw` w-7/12`}>
                 <Text style={tw` text-black text-base font-bold ml-2`} >{item?.fromUser?.fullName}</Text>
                 <Text style={tw`text-[#808080] text-sm font-semibold  ml-2`} >{item.message}</Text>

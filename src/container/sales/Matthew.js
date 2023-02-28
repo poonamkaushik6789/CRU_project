@@ -8,7 +8,9 @@ import {
     updateabout,
     deletepost,
     mycrulist,
-    mynetworklist
+    mynetworklist,
+    socialfeedlist,
+    likeunlikepost,
 } from '../../redux/actions/Vendor';
 const mapStateToProps = (state) => ({
     loginCredentials: state.auth.loginCredentials,
@@ -16,7 +18,7 @@ const mapStateToProps = (state) => ({
     getmycrulist: state.vendor.getmycrulist,
     getmynetworklist: state.vendor.getmynetworklist,
 });
-
+ 
 const mapDispatchToProps = {
     profiledetail,
     updateprofile,
@@ -24,7 +26,9 @@ const mapDispatchToProps = {
     updateabout,
     deletepost,
     mycrulist,
-    mynetworklist
+    mynetworklist,
+    socialfeedlist,
+    likeunlikepost,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Matthew);

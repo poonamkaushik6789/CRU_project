@@ -45,14 +45,6 @@ const Projects = (props) => {
         console.log("props.getprojectlist======>>>", props?.getprojectlist);
        
     }, [])
-
-   
-    const containerStyle = { backgroundColor: 'red', padding: '7%', marginHorizontal: '5%', alignItems: 'center', };
-
-
-
-
-
     
     const renderItem = ({ item, index }) => {
         return (
@@ -87,17 +79,8 @@ const Projects = (props) => {
                     <Text style={tw`text-[#000] text-base  px-10 font-normal`}>New Project</Text>
                 </TouchableOpacity>
 
-                {/* <View style={tw`mx-auto mt-6`}>
-                    <FlatList
-                        data={DATA}
-                        renderItem={renderItem}
-                        keyExtractor={item => item.id}
-                    />
-
-                </View> */}
-                {/* <View>
-                    <Text style={tw` text-base  text-center font-normal`}>Complete</Text></View> */}
-                <View style={tw`mx-5 mt-6`}>
+               
+                <View style={tw`mx-5 my-6`}>
                     <FlatList
                         data={props?.getprojectlist}
                         renderItem={renderItem}

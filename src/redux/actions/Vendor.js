@@ -479,7 +479,7 @@ export const mycrulist = (id) => {
               dispatch({ type: GET_CRU_LIST, payload: false });
               if (response?.status) {
                   
-                  dispatch({ type: GET_CRU_LIST, payload: response.data.data });
+                  dispatch({ type: GET_CRU_LIST, payload: response.data });
                   
               } else {
                   Alert.alert("Filmca", String(response?.message))
@@ -503,7 +503,7 @@ export const mynetworklist = (id) => {
               dispatch({ type: GET_NETWORK_LIST, payload: false });
               if (response?.status) {
                   
-                  dispatch({ type: GET_NETWORK_LIST, payload: response.data.data });
+                  dispatch({ type: GET_NETWORK_LIST, payload: response.data });
                   
               } else {
                   Alert.alert("Filmca", String(response?.message))
