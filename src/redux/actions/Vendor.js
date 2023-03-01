@@ -539,8 +539,7 @@ export const getevent = () => {
       let isInternetConnected = await getState().auth?.isInternetConnected;
       if (isInternetConnected) {
           try {
-            dispatch({ type: SET_LOGIN_LOADER, payload: true });
-              dispatch({ type: GET_EVENT_LIST, payload: true });
+            
               let response = await Utilise.apiCalling('GET', `${Api.eventlist}`)
               console.log("eventlist_reponse",response)
               dispatch({ type: GET_EVENT_LIST, payload: false });
@@ -590,7 +589,7 @@ export const getnotification = (id) => {
           try {
               dispatch({ type: GET_NOTIFICATION_LIST, payload: true });
               let response = await Utilise.apiCalling('GET', `${Api.notificationlist}/${id}`)
-              console.log("eventdetail_reponse",response)
+              console.log("getnotification_reponse",response)
               dispatch({ type: GET_NOTIFICATION_LIST, payload: false });
               if (response?.status) {
                   

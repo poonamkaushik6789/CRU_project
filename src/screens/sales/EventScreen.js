@@ -27,26 +27,17 @@ const EventScreen = (props) => {
   } = props;
 
   const [socilfeed, setSocialfeed] = useState('');
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = React.useState(true);
   const [subMsg, onChangeText1] = React.useState("");
   const [eventarr, setEventarr] = React.useState([]);
   const [eventdata, setEventdata] = React.useState(false);
 
-  const [panelProps, setPanelProps] = useState({
-    fullWidth: true,
-    openLarge: true,
-    //onlySmall:true,
-    showCloseButton: true,
-    closeOnTouchOutside: true,
-    onClose: () => closePanel(),
-    onPressCloseButton: () => closePanel(),
-    // ...or any prop you want
-  });
-  const [isPanelActive, setIsPanelActive] = useState(false);
-
-  const [isaction, setisaction] = useState(true);
+  
 
   useEffect(() => {
+    setTimeout(function () {
+      setVisible(false)
+    }, 2000)
     props.geteventcategory();
     props.getevent();
     console.log("props.geteventcategorylist======>>>", props?.geteventcategorylist);
@@ -192,7 +183,7 @@ const EventScreen = (props) => {
 
       </ScrollView>
 
-      <Loader />
+      <Loader isVisible={visible} />
     </KeyboardAvoidingView>
   )
 }

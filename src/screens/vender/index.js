@@ -39,12 +39,16 @@ const Vendor = (props) => {
   const [billImgPath, setBillImgPath] = useState("");
 
   useEffect(() => {
-    setTimeout(function(){
+    setTimeout(function () {
       setVisible(false)
-    },2000)
+    }, 2000)
     props.socialfeedlist();
     console.log("props.getpostlist======>>>", props?.getpostlist);
+    props.profiledetail(loginId);
+    setTimeout(function () {
+      props.profiledetail(loginId);
 
+    }, 1500);
   }, [])
   const [panelProps, setPanelProps] = useState({
     fullWidth: true,
@@ -59,7 +63,7 @@ const Vendor = (props) => {
 
   const handlelikeunlike = (id) => {
 
-   // setLikecount(likecount + 1)
+    // setLikecount(likecount + 1)
     let request = {
       "_id": id,
       "userId": loginId,
@@ -144,74 +148,42 @@ const Vendor = (props) => {
                 }
               </View>
             </View>
-            <View style={tw`flex-row justify-between	items-center	py-3`}>
-              <View style={tw`flex-row items-center`}>
-                
+            <View style={tw`flex-row justify-between 	items-center 	py-3`}>
+              <View style={tw`flex-row items-center  w-6/12  `}>
+
                 {item?.likedBy?.includes(loginId) == "" ?
                   <TouchableOpacity style={tw`items-center`} onPress={() => handlelikeunlike(item._id)}>
                     <Image source={ImageIcons.like} style={tw`w-8 h-8	`} />
                   </TouchableOpacity>
                   :
                   <TouchableOpacity style={tw`items-center`} onPress={() => handlelikeunlike(item._id)}>
-                    <Image source={ImageIcons.redlike} style={tw`w-8 h-8	`} />
+                    <Image source={ImageIcons.redlike} style={tw`w-9 h-8	`} />
                   </TouchableOpacity>
 
                 }
-                {item?.likedBy?.length >0 ?
-                  <TouchableOpacity style={tw`flex-row ml-2 items-center`} onPress={() => props.navigation.navigate("Likelist", { post_Id: item._id })}>
-                    <View style={tw`	z-20`}>
-                      <Image source={ImageIcons.man} style={tw`w-12 h-12 rounded-full`} />
-                    </View>
-                    <View style={tw`absolute	z-10 left-6`}>
-                      <Image source={ImageIcons.man} style={tw`w-12 h-12	rounded-full`} />
-                    </View>
-                    <View style={tw`absolute z-0 left-13 bg-[#f2f2f2] w-12 h-12 rounded-full items-center justify-center`}>
-                      <Text> +{item?.likedBy?.length}</Text>
+                {item?.likedBy?.length > 0 ?
+                  <TouchableOpacity style={tw`flex-row ml-2 `} onPress={() => props.navigation.navigate("Likelist", { post_Id: item._id })}>
+
+                    <View style={tw` `}>
+                      <Text style={tw`text-[#000] text-[3.5]  font-normal`}> {item?.likedBy?.length} Likes</Text>
                     </View>
                   </TouchableOpacity>
                   :
-                  <TouchableOpacity style={tw`flex-row ml-2 items-center`} >
-                    <View style={tw`	z-20`}>
-                      <Image source={ImageIcons.man} style={tw`w-12 h-12 rounded-full`} />
-                    </View>
-                    <View style={tw`absolute	z-10 left-6`}>
-                      <Image source={ImageIcons.man} style={tw`w-12 h-12	rounded-full`} />
-                    </View>
-                    <View style={tw`absolute z-0 left-13 bg-[#f2f2f2] w-12 h-12 rounded-full items-center justify-center`}>
-                      <Text> +{item?.likedBy?.length}</Text>
+                  <TouchableOpacity style={tw`flex-row ml-2 `} >
+
+                    <View style={tw``}>
+                      <Text style={tw`text-[#000]	 text-[3.5]  font-normal`}> {item?.likedBy?.length} Likes</Text>
                     </View>
                   </TouchableOpacity>
                 }
 
-                {/* <TouchableOpacity style={tw`flex-row ml-2 items-center`} onPress={() => props.navigation.navigate("Likelist", { post_Id: item._id })}>
-                  <View style={tw`	z-20`}>
-                    <Image source={ImageIcons.man} style={tw`w-12 h-12 rounded-full`} />
-                  </View>
-                  <View style={tw`absolute	z-10 left-6`}>
-                    <Image source={ImageIcons.man} style={tw`w-12 h-12	rounded-full`} />
-                  </View>
-                  <View style={tw`absolute z-0 left-13 bg-[#f2f2f2] w-12 h-12 rounded-full items-center justify-center`}>
-                    <Text> +{item?.likedBy?.length}</Text>
-                  </View>
-                </TouchableOpacity> */}
-
               </View>
 
-              <View style={tw`flex-row `}>
-                <TouchableOpacity style={tw`flex-row items-center`} onPress={() => props.navigation.navigate("Commentlist", { post_Id: item._id })}>
-
-                  <View style={tw`absolute z-0 `}>
-                    <Image source={ImageIcons.man} style={tw`w-12 h-12	rounded-full`} />
-                  </View>
-                  <View style={tw`absolute	z-10 right-6`}>
-                    <Image source={ImageIcons.man} style={tw`w-12 h-12	rounded-full`} />
-                  </View>
-                  <View style={tw`	z-20 right-12 bg-[#f2f2f2] w-12 h-12 rounded-full items-center justify-center`}>
-                    <Text>+{item?.comments?.length}</Text>
-                  </View>
-
+              <View style={tw`flex-row items-center   `}>
+                <TouchableOpacity style={tw`items-center`} onPress={() => props.navigation.navigate("Commentlist", { post_Id: item._id })}>
+                  <Text style={tw`text-[#000]	 text-[3.5]  font-normal`}>{item?.comments?.length} Comment</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={tw`ml-0 `} onPress={() => handleMsgcount()}>
+                <TouchableOpacity style={tw` `} onPress={() => { handleMsgcount(), props.navigation.navigate("Commentlist", { post_Id: item._id }) }}>
                   <Image source={ImageIcons.chat} style={[tw`w-13 h-13	`, { tintColor: '#5fafcf' }]} />
                 </TouchableOpacity>
               </View>
@@ -290,7 +262,7 @@ const Vendor = (props) => {
         </View>
       </ScrollView>
       {/* <Editprofile /> */}
-      <Loader  isVisible={visible}/>
+      <Loader isVisible={visible} />
     </KeyboardAvoidingView>
   )
 }

@@ -15,7 +15,8 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = {
     geteventcategory,
-    getevent
+    getevent,
+    socialfeedlist
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventScreen);
