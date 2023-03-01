@@ -372,7 +372,7 @@ const VendorStack = (props) => {
             ),
             headerShown: true,
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={false} />,
-            headerTitle: "Project details",
+            headerTitle: "Project Details",
             headerTitleAlign: "center",
             headerTitleStyle: { color: Colors.BLACK, },
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
