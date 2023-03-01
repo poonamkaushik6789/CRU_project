@@ -83,11 +83,15 @@ const Step1 = (props) => {
         setnewflat1(s => !s);
     }
     const handlecameacategory = () => {
+        if(checkedId1.length >0){
         finalarr.push({ 'department': deparmentId, position: checkedId1 });
         setfinalarr(finalarr);
         setcheckedId1([]);
         console.log("finalarr==>", finalarr)
         setCameramodalVisible(!cameramodalVisible);
+        }else{
+            alert("Select Position")
+        }
     };
 
 
@@ -124,6 +128,7 @@ const Step1 = (props) => {
         disabledStepNumColor: '#000'
     };
     const onNextStep1 = async () => {
+        
         let request = {
             "_id": signupId,
             "workDepartments": finalarr,

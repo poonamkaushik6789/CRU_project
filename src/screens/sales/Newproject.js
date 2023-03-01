@@ -159,13 +159,26 @@ const Newproject = (props) => {
     const renderItem = ({ item, index }) => {
 
         return (
-            <View style={tw`bg-[#fff]  flex items-center`}>
-                <TouchableOpacity style={tw`border  border-[#ccc] w-33 items-center py-4`}
-                    onPress={() => handlecrudata(item.user)}>
+            <View style={tw`bg-[#fff] w-4/12 flex  justify-center`}>
+                
+                {/* <TouchableOpacity style={tw`border  border-[#ccc] w-33 items-center py-4`}onPress={() => handlecrudata(item.user)}>
                     <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-12 h-12 `, { tintColor: '#5fafcf' }]} />
                     <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>{item.departmentName}</Text>
                     <Text style={tw`text-[#000] text-[3.5] font-normal`}>{item?.user?.length}</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
+                {item?.user?.length > 0 ?
+                    <TouchableOpacity style={tw`border  border-[#ccc]  items-center py-4 px-4`} onPress={() => handlecrudata(item.user)}>
+                        <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-12 h-12 `, { tintColor: '#5fafcf' }]} />
+                        <Text style={tw`text-[#000] text-[3.5] text-center p-1 font-normal`}>{item.departmentName}</Text>
+                        <Text style={tw`text-[#000] text-[3.5] text-center font-normal`}>{item?.user?.length}</Text>
+                    </TouchableOpacity>
+                    :
+                    <TouchableOpacity style={tw`border  border-[#ccc]  items-center py-4 px-4`} >
+                        <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-12 h-12 `, { tintColor: '#5fafcf' }]} />
+                        <Text style={tw`text-[#000] text-[3.5] text-center p-1 font-normal`}>{item.departmentName}</Text>
+                        <Text style={tw`text-[#000] text-[3.5] text-center font-normal`}>{item?.user?.length}</Text>
+                    </TouchableOpacity>
+                }
             </View>
         );
     }

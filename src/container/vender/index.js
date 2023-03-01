@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 //import Saleslisting from '../../screens/sales/Saleslisting';
 import Vendor from '../../screens/vender';
-import { addpostnew,
+import { profiledetail,addpostnew,
     socialfeedlist,
     likeunlikepost } from '../../redux/actions/Vendor';
 const mapStateToProps = (state) => ({
@@ -11,9 +11,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
+    profiledetail,
     addpostnew,
     socialfeedlist,
-    likeunlikepost,
+    likeunlikepost, 
 }; 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Vendor);

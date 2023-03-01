@@ -43,22 +43,22 @@ const Projects = (props) => {
     useEffect(() => {
         props.getprojectdata(loginId);
         console.log("props.getprojectlist======>>>", props?.getprojectlist);
-       
+
     }, [])
-    
+
     const renderItem = ({ item, index }) => {
         return (
             <View style={tw`w-full bg-white rounded-xl px-2 mt-2`}>
-                <TouchableOpacity style={tw`border-l-8 border-[#000] items-center  flex-row my-2 p-2`} onPress={()=> props?.navigation?.navigate("Projectdetails",{projectid: item._id})}>
+                <TouchableOpacity style={tw`border-l-8 border-[#000] items-center  flex-row my-2 p-2`} onPress={() => props?.navigation?.navigate("Projectdetails", { projectid: item._id })}>
                     <View style={tw`  w-3/12  bg-white items-center `} >
 
-                            <Text style={tw`text-center text-black text-base font-semibold `} >{moment(item?.createdAt).format('MMM')}</Text>
-                            <Text style={tw`text-center text-black text-base font-bold `} >{moment(item?.fromDate).format('D')}-{moment(item?.toDate).format('D')}</Text>
+                        <Text style={tw`text-center text-black text-base font-semibold `} >{moment(item?.createdAt).format('MMM')}</Text>
+                        <Text style={tw`text-center text-black text-base font-bold `} >{moment(item?.fromDate).format('D')}-{moment(item?.toDate).format('D')}</Text>
 
                     </View>
                     <View style={tw`border-l border-[#ccc] w-9/12  px-4 `}>
-                        <Text style={tw` text-black text-base font-bold `} >{item.title}</Text>
-                        <Text style={tw`text-black text-[3.5] font-semibold  `} >{item.description}</Text>
+                        <Text style={tw` text-black text-base font-bold `} >{item?.productionType?.title}</Text>
+                        <Text style={tw`text-black text-[3.5] font-semibold  `} >{item.title}</Text>
                     </View>
                 </TouchableOpacity>
             </View>
@@ -79,7 +79,7 @@ const Projects = (props) => {
                     <Text style={tw`text-[#000] text-base  px-10 font-normal`}>New Project</Text>
                 </TouchableOpacity>
 
-               
+
                 <View style={tw`mx-5 my-6`}>
                     <FlatList
                         data={props?.getprojectlist}

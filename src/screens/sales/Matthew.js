@@ -33,20 +33,9 @@ const Matthew = (props) => {
   const [about, setAbout] = React.useState("");
   const [likecount, setLikecount] = React.useState(1);
   const [msgcount, setMsgcount] = React.useState(1);
-  const [selectedStartDate, setSelectedStartDate] = useState(null);
-  const [selectedEndDate, setSelectedEndDate] = useState(null);
+  const [selectedStartDate, setSelectedStartDate] = useState('');
+  const [selectedEndDate, setSelectedEndDate] = useState('');
 
-  const [panelProps, setPanelProps] = useState({
-    fullWidth: true,
-    openLarge: true,
-    //onlySmall:true,
-    showCloseButton: true,
-    closeOnTouchOutside: true,
-    onClose: () => closePanel(),
-    onPressCloseButton: () => closePanel(),
-    // ...or any prop you want
-  });
-  const [isPanelActive, setIsPanelActive] = useState(false);
 
   const [socilfeed, setSocialfeed] = useState('1');
   const [billImgPath, setBillImgPath] = useState("");
@@ -55,6 +44,7 @@ const Matthew = (props) => {
 
   const loginId = props?.loginCredentials?.data?._id
   //console.log("loginId===>", props);
+  console.log("jfjgfprops.availabilty======>>>", props?.getprofilelist?.availabilty);
 
   useEffect(() => {
     props.mycrulist(loginId);
@@ -84,6 +74,8 @@ const Matthew = (props) => {
     } else {
       setSelectedEndDate(null);
       setSelectedStartDate(date);
+      
+
     }
   };
   const handlelikeunlike = (id) => {
@@ -96,7 +88,7 @@ const Matthew = (props) => {
     }
 
     props.likeunlikepost(request, props.navigation)
-    props.socialfeedlist();
+    props.profiledetail(loginId);
   };
 
   const handleMsgcount = () => {
@@ -109,7 +101,7 @@ const Matthew = (props) => {
   // };
   const handletabchange = (id) => {
     setSocialfeed(id);
-    console.log("id=======<><>", id)
+    
   };
 
   const selectPhoto = async () => {
@@ -174,7 +166,7 @@ const Matthew = (props) => {
     });
   }
 
-  
+
   const deletepostmodal = async (id) => {
     setDeletepostid(id)
     setModalVisible(true);
@@ -217,7 +209,7 @@ const Matthew = (props) => {
     },
     {
       id: 3,
-      image: ImageIcons.event,
+      image: ImageIcons.about,
       image2: ImageIcons.profile,
       text1: 'About',
 
@@ -327,39 +319,33 @@ const Matthew = (props) => {
                   </TouchableOpacity>
                   :
                   <TouchableOpacity style={tw`items-center`} onPress={() => handlelikeunlike(item._id)}>
-                    <Image source={ImageIcons.like} style={[tw`w-8 h-8	`, { tintColor: '#5fafcf' }]} />
+                    <Image source={ImageIcons.redlike} style={tw`w-9 h-8	`} />
                   </TouchableOpacity>
 
                 }
-                <TouchableOpacity style={tw`flex-row ml-2 items-center`} onPress={() => props.navigation.navigate("Likelist", { post_Id: item._id })}>
-                  <View style={tw`	z-20`}>
-                    <Image source={ImageIcons.man} style={tw`w-12 h-12 rounded-full`} />
-                  </View>
-                  <View style={tw`absolute	z-10 left-6`}>
-                    <Image source={ImageIcons.man} style={tw`w-12 h-12	rounded-full`} />
-                  </View>
-                  <View style={tw`absolute z-0 left-12 bg-[#f2f2f2] w-12 h-12 rounded-full items-center justify-center`}>
-                    <Text>+{likecount}</Text>
-                  </View>
-                </TouchableOpacity>
+                {item?.likedBy?.length > 0 ?
+                  <TouchableOpacity style={tw`flex-row ml-2 `} onPress={() => props.navigation.navigate("Likelist", { post_Id: item._id })}>
+
+                    <View style={tw` `}>
+                      <Text style={tw`text-[#000] text-[3.5]  font-normal`}> {item?.likedBy?.length} Likes</Text>
+                    </View>
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity style={tw`flex-row ml-2 `} >
+
+                    <View style={tw``}>
+                      <Text style={tw`text-[#000]	 text-[3.5]  font-normal`}> {item?.likedBy?.length} Likes</Text>
+                    </View>
+                  </TouchableOpacity>
+                }
 
               </View>
 
-              <View style={tw`flex-row `}>
-                <TouchableOpacity style={tw`flex-row items-center`} onPress={() => props.navigation.navigate("Commentlist", { post_Id: item._id })}>
-
-                  <View style={tw`absolute z-0 `}>
-                    <Image source={ImageIcons.man} style={tw`w-12 h-12	rounded-full`} />
-                  </View>
-                  <View style={tw`absolute	z-10 right-6`}>
-                    <Image source={ImageIcons.man} style={tw`w-12 h-12	rounded-full`} />
-                  </View>
-                  <View style={tw`	z-20 right-12 bg-[#f2f2f2] w-12 h-12 rounded-full items-center justify-center`}>
-                    <Text>+{item?.comments?.length}</Text>
-                  </View>
-
+              <View style={tw`flex-row items-center   `}>
+                <TouchableOpacity style={tw`items-center`} onPress={() => props.navigation.navigate("Commentlist", { post_Id: item._id })}>
+                  <Text style={tw`text-[#000]	 text-[3.5]  font-normal`}>{item?.comments?.length} Comment</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={tw`ml-0 `} onPress={() => handleMsgcount()}>
+                <TouchableOpacity style={tw` `} onPress={() => { handleMsgcount(), props.navigation.navigate("Commentlist", { post_Id: item._id }) }}>
                   <Image source={ImageIcons.chat} style={[tw`w-13 h-13	`, { tintColor: '#5fafcf' }]} />
                 </TouchableOpacity>
               </View>
@@ -455,17 +441,21 @@ const Matthew = (props) => {
           {socilfeed == "2" &&
             <View style={tw`bg-[#fff] rounded-[3] flex py-5`}>
               <CalendarPicker
+                selectedStartDate={props?.getprofilelist?.availabilty[0]?.selectedStartDate}
+                selectedEndDate={props?.getprofilelist?.availabilty[0]?.selectedEndtDate}
+                //markedDates={}
                 startFromMonday={true}
                 allowRangeSelection={true}
                 minDate={moment(new Date()).toDate()}
                 maxDate={moment().add(1, 'month').toDate()}
                 weekdays={['S', 'M', 'T', 'W', 'T', 'F', 'S']}
                 months={['January', 'Februray', 'March', 'Abril', 'May', 'June', 'July', 'August', 'Setember', 'October', 'November', 'December']}
-
                 todayBackgroundColor="#e6ffe6"
                 selectedDayColor="#66ff33"
                 selectedDayTextColor="#000000"
                 scaleFactor={375}
+                markingType={"period"}
+
                 textStyle={{
                   fontFamily: 'Cochin',
                   color: '#000000',

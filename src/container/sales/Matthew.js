@@ -7,7 +7,7 @@ import {
     updatebackgroudimage,
     updateabout,
     deletepost,
-    mycrulist,
+    mycrulist, 
     mynetworklist,
     socialfeedlist,
     likeunlikepost,
