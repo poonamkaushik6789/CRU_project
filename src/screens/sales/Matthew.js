@@ -386,14 +386,29 @@ const Matthew = (props) => {
             }
 
             <View style={tw`w-11/12 h-75 px-6 pt-50 mx-4 flex-row	justify-between bg-white `} >
+              { socilfeed == 4 ?
+                <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('4')}>
+                <Image style={tw`w-15 h-13 `} source={ImageIcons.my_cru} />
+                <Text style={tw`text-black `}>My Cru</Text>
+              </TouchableOpacity>
+              :
               <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('4')}>
                 <Image style={tw`w-15 h-13 `} source={ImageIcons.cru} />
                 <Text style={tw`text-black `}>My Cru</Text>
               </TouchableOpacity>
+              }
+              { socilfeed == 5 ?
+                <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('5')}>
+                <Image style={tw`w-15 h-13  `} source={ImageIcons.users} />
+                <Text style={tw`text-black `}>Connections</Text>
+              </TouchableOpacity>
+              :
               <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('5')}>
                 <Image style={tw`w-15 h-13  `} source={ImageIcons.grouprofile} />
                 <Text style={tw`text-black `}>Connections</Text>
               </TouchableOpacity>
+              }
+              
             </View>
             <TouchableOpacity style={tw`right-15 mt-33 z-60 absolute`} onPress={() => selectPhotobackground()}>
               <Image source={ImageIcons.editclap} style={[tw`w-7 h-7 rounded-full`, { tintColor: '#5fafcf' }]} />
