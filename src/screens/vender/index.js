@@ -31,7 +31,7 @@ const Vendor = (props) => {
 
   console.log("props=====>>>>>", props)
   const loginId = props?.loginCredentials?.data?._id
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = React.useState(true);
   const [description, setDescription] = React.useState("");
   const [msg, onChangeText2] = React.useState("");
   const [likecount, setLikecount] = React.useState(1);
@@ -39,6 +39,9 @@ const Vendor = (props) => {
   const [billImgPath, setBillImgPath] = useState("");
 
   useEffect(() => {
+    setTimeout(function(){
+      setVisible(false)
+    },2000)
     props.socialfeedlist();
     console.log("props.getpostlist======>>>", props?.getpostlist);
 
@@ -143,24 +146,14 @@ const Vendor = (props) => {
             </View>
             <View style={tw`flex-row justify-between	items-center	py-3`}>
               <View style={tw`flex-row items-center`}>
-                {/* {item.is_like == "" ?
-                <TouchableOpacity style={styles.middlikeview} onPress={() => { likedislikesubmit(item.id) }}>
-                  <LikeIcon height={18} width={18} color={"#a0a0ab"}></LikeIcon>
-                  <Text style={[styles.middlebottomlike028, { color: '#a0a0ab' }]}>Like</Text>
-                </TouchableOpacity>
-                :
-                <TouchableOpacity style={styles.middlikeview} onPress={() => likedislikesubmit(item.id)}>
-                  <LikeIcon height={18} width={18} color={"#028ec9"}></LikeIcon>
-                  <Text style={[styles.middlebottomlike028, { color: '#a0a0ab' }]}>Like</Text>
-                </TouchableOpacity>
-              } */}
+                
                 {item?.likedBy?.includes(loginId) == "" ?
                   <TouchableOpacity style={tw`items-center`} onPress={() => handlelikeunlike(item._id)}>
                     <Image source={ImageIcons.like} style={tw`w-8 h-8	`} />
                   </TouchableOpacity>
                   :
                   <TouchableOpacity style={tw`items-center`} onPress={() => handlelikeunlike(item._id)}>
-                    <Image source={ImageIcons.like} style={[tw`w-8 h-8	`, { tintColor: '#5fafcf' }]} />
+                    <Image source={ImageIcons.redlike} style={tw`w-8 h-8	`} />
                   </TouchableOpacity>
 
                 }
@@ -297,7 +290,7 @@ const Vendor = (props) => {
         </View>
       </ScrollView>
       {/* <Editprofile /> */}
-      <Loader />
+      <Loader  isVisible={visible}/>
     </KeyboardAvoidingView>
   )
 }

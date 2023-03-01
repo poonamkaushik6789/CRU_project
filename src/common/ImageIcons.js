@@ -149,10 +149,11 @@ const Sendicon = require(`${assetsRootPath}Sendicon.png`);
 const profile = require(`${assetsRootPath}profile.png`);
 const grouprofile = require(`${assetsRootPath}grouprofile.png`);
 const socialcolor = require(`${assetsRootPath}socialcolor.png`);
-
+const redlike = require(`${assetsRootPath}redlike.png`);
 
 const ImageIcons = {
   rightarrow,
+  redlike,
   notification_icon,
   closetoday,
   backarrow,

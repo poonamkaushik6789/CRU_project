@@ -26,7 +26,7 @@ const Likelist = (props) => {
   } = props;
 
   const postid = props?.route?.params?.post_Id;
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = React.useState(true);
   const [subMsg, onChangeText1] = React.useState("");
   const [msg, onChangeText2] = React.useState("");
 
@@ -35,7 +35,9 @@ const Likelist = (props) => {
   useEffect(() => {
     props.getlike(postid);
     console.log("props.getlikstlist======>>>", props?.getlikstlist);
-
+    setTimeout(function(){
+      setVisible(false)
+    },2000)
   }, [])
 
   // const showisaction = () => {
@@ -58,7 +60,7 @@ const Likelist = (props) => {
             :
             <Image source={ImageIcons.man} style={tw`w-20 h-20 rounded-full`} />
           }
-        </View> 
+        </View>
 
       </View>
     );
@@ -71,21 +73,21 @@ const Likelist = (props) => {
       <ScrollView style={tw``}>
 
         <View style={tw`m-4 w-11/12 bg-white rounded-[3]  py-5`}>
-        {props?.getlikstlist?.length > 0 ?
-          <FlatList
-            data={props?.getlikstlist}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-            showsHorizontalScrollIndicator={false}
-            numColumns={3}
-          />
-          :
-          <Text style={tw`text-[#000] text-[5] font-bold text-center	mt-20`}>No Like Yet</Text>
-        }
+          {props?.getlikstlist?.length > 0 ?
+            <FlatList
+              data={props?.getlikstlist}
+              renderItem={renderItem}
+              keyExtractor={item => item.id}
+              showsHorizontalScrollIndicator={false}
+              numColumns={3}
+            />
+            :
+            <Text style={tw`text-[#000] text-[5] font-bold text-center	mt-20`}>No Like Yet</Text>
+          }
         </View>
 
       </ScrollView>
-      <Loader />
+      <Loader isVisible={visible} />
     </KeyboardAvoidingView>
   )
 }
