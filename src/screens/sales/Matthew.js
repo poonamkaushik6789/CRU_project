@@ -391,7 +391,7 @@ const Matthew = (props) => {
                 <Text style={tw`text-black `}>My Cru</Text>
               </TouchableOpacity>
               <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('5')}>
-                <Image style={[tw`w-15 h-13  `, { tintColor: '#5fafcf' }]} source={ImageIcons.grouprofile} />
+                <Image style={tw`w-15 h-13  `} source={ImageIcons.grouprofile} />
                 <Text style={tw`text-black `}>Connections</Text>
               </TouchableOpacity>
             </View>

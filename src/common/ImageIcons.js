@@ -150,10 +150,16 @@ const profile = require(`${assetsRootPath}profile.png`);
 const grouprofile = require(`${assetsRootPath}grouprofile.png`);
 const socialcolor = require(`${assetsRootPath}socialcolor.png`);
 const redlike = require(`${assetsRootPath}redlike.png`);
+const my_cru = require(`${assetsRootPath}my_cru.png`);
 const about = require(`${assetsRootPath}about.png`);
+ const users = require(`${assetsRootPath}users.png`);
+// const about = require(`${assetsRootPath}about.png`);
+
 
 const ImageIcons = {
   rightarrow,
+  my_cru,
+  users,
   about,
   redlike,
   notification_icon,
