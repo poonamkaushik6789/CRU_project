@@ -147,7 +147,7 @@ const Messages = (props) => {
               keyExtractor={item => item.id}
             />
             :
-            <Text style={tw`text-[#000] text-[5] font-bold text-center	mt-20`}>No Like Yet</Text>
+            <Text style={tw`text-[#000] text-[5] font-bold text-center	mt-20`}>No Messages</Text>
           }
         </View>
 
