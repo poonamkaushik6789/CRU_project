@@ -105,7 +105,7 @@ const Messages = (props) => {
   const renderItem = ({ item, index }) => {
     return (
       <View>
-        <TouchableOpacity onPress={() => props.navigation.navigate("Glynden",{fromUser: item.fromUser})}>
+        <TouchableOpacity onPress={() => props.navigation.navigate("Glynden", { fromUser: item.fromUser })}>
 
           <View style={tw`bg-white rounded w-full mx-2 flex-row mb-0.5 p-2 py-4`} >
             <View style={tw`w-2/12 items-center`}>
@@ -130,7 +130,7 @@ const Messages = (props) => {
       </View>
     );
   }
- 
+
 
 
   return (
@@ -140,13 +140,17 @@ const Messages = (props) => {
         {/* <View style={tw`mx-auto mt-6`}><Text style={tw`text-base font-bold`}>Today</Text></View> */}
 
         <View style={tw`mx-3 mt-6`}>
-          <FlatList
-            data={props?.getmessagelist}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-          />
+          {props?.getmessagelist?.length > 0 ?
+            <FlatList
+              data={props?.getmessagelist}
+              renderItem={renderItem}
+              keyExtractor={item => item.id}
+            />
+            :
+            <Text style={tw`text-[#000] text-[5] font-bold text-center	mt-20`}>No Like Yet</Text>
+          }
         </View>
-       
+
       </ScrollView>
 
       <Loader />

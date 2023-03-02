@@ -105,7 +105,7 @@ const Vendor = (props) => {
     });
   }
   const handlenewpost = async () => {
-    Keyboard.dismiss();
+    
     if (description == "") {
       alert('Description is required')
     } else {
@@ -117,7 +117,10 @@ const Vendor = (props) => {
 
     }
     setDescription('');
-    props.socialfeedlist();
+    
+    setTimeout(function () {
+      props.socialfeedlist();
+    }, 1500);
   }
 
 
@@ -234,6 +237,7 @@ const Vendor = (props) => {
                 value={description}
                 placeholder="Share work related content here..."
                 placeholderTextColor={'#D3D3D3'}
+                style={tw`text-black`}
                 onChangeText={(text) => setDescription(text)}
                 onSubmitEditing={() => handlenewpost()}
               />

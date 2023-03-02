@@ -121,14 +121,10 @@ export const addpostnew = (request, navigation) => {
     if (isInternetConnected) {
       try {
         let response = await Utilise.apiCalling('POST', Api.addnewpost, request);
-        console.log("addnewpost==>>", response?.data)
-
-        if (response?.status) {
-          dispatch({ type: SET_NEW_POST, payload: response.data });
-        } else {
+      
           //alert("hello")
           Alert.alert("Filmca", "Save successfully")
-        }
+        
       } catch (error) {
         Alert.alert("Filmca", String(error?.message))
       }

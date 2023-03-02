@@ -34,7 +34,7 @@ const Projectdetails = (props) => {
 
     const [panelProps, setPanelProps] = useState({
         fullWidth: true,
-        openLarge: true,
+        openLarge: true, 
         //onlySmall:true,
         showCloseButton: true,
         closeOnTouchOutside: true,

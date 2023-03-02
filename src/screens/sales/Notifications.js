@@ -29,7 +29,7 @@ const Notifications = (props) => {
   const [subMsg, onChangeText1] = React.useState("");
   const [msg, onChangeText2] = React.useState("");
 
-  
+
   const loginId = props?.loginCredentials?.data?._id
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const Notifications = (props) => {
             <View style={tw` w-4/12 pr-5`}>
               <Text style={tw`text-black text-xs text-right	 font-semibold  `} >{moment(item?.createdAt).format("h:mm a")}</Text>
             </View>
-          </View>  
+          </View>
 
         </View>
 
@@ -73,13 +73,17 @@ const Notifications = (props) => {
     <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"} style={styles.root}>
       <StatusBar backgroundColor={Colors.WHITE} barStyle="dark-content" translucent={true} />
       <ScrollView style={tw``}>
-        
+
         <View style={tw`mx-3 mt-6`}>
-          <FlatList
-            data={props?.getnotificationlist}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-          />
+          {props?.getnotificationlist?.length > 0 ?
+            <FlatList
+              data={props?.getnotificationlist}
+              renderItem={renderItem}
+              keyExtractor={item => item.id}
+            />
+            :
+            <Text style={tw`text-[#000] text-[5] font-bold text-center	mt-20`}>No Notifications</Text>
+          }
         </View>
 
 
