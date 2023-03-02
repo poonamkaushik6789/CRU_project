@@ -41,7 +41,7 @@ const Matthew = (props) => {
   const [billImgPath, setBillImgPath] = useState("");
   const [deletepostid, setDeletepostid] = useState('');
 
-
+  const signupId = props?.signupCredentials?.data?._id;
   const loginId = props?.loginCredentials?.data?._id
   //console.log("loginId===>", props);
   console.log("props.availabilty======>>>", props?.getprofilelist?.availabilty);
@@ -74,7 +74,7 @@ const Matthew = (props) => {
     } else {
       setSelectedEndDate(null);
       setSelectedStartDate(date);
-      
+
 
     }
   };
@@ -101,7 +101,7 @@ const Matthew = (props) => {
   // };
   const handletabchange = (id) => {
     setSocialfeed(id);
-    
+
   };
 
   const selectPhoto = async () => {
@@ -166,7 +166,17 @@ const Matthew = (props) => {
     });
   }
 
-
+  const handleeditcalender = async () => {
+    let request = {
+        "_id": loginId,
+        "availabilty": [{
+            "selectedStartDate":selectedStartDate,
+            "selectedEndtDate":selectedEndDate
+        }],
+    }
+    props.updateAvailAbilty(request, props.navigation);
+    props.profiledetail(loginId);
+}
   const deletepostmodal = async (id) => {
     setDeletepostid(id)
     setModalVisible(true);
@@ -264,6 +274,11 @@ const Matthew = (props) => {
               <TouchableOpacity style={tw`right-2 top-4 z-50 absolute`} onPress={() => setSocialfeed('6')}>
                 <Image source={ImageIcons.editclap} style={[tw`w-5 h-5 rounded-full`, { tintColor: '#5fafcf' }]} />
               </TouchableOpacity>}
+              {socilfeed == '2' &&
+              <TouchableOpacity style={tw`right-2 top-4 z-50 absolute`} onPress={() => setSocialfeed('7')}>
+              <Image source={ImageIcons.editclap} style={[tw`w-5 h-5 rounded-full`, { tintColor: '#5fafcf' }]} />
+            </TouchableOpacity>
+            }
             <Image source={item.image2} style={tw`w-14 h-14  `} />
             <Text style={tw`text-center text-black text-base font-semibold `} >{item.text1}</Text>
           </TouchableOpacity>
@@ -386,29 +401,29 @@ const Matthew = (props) => {
             }
 
             <View style={tw`w-11/12 h-75 px-6 pt-50 mx-4 flex-row	justify-between bg-white `} >
-              { socilfeed == 4 ?
+              {socilfeed == 4 ?
                 <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('4')}>
-                <Image style={tw`w-15 h-13 `} source={ImageIcons.my_cru} />
-                <Text style={tw`text-black `}>My Cru</Text>
-              </TouchableOpacity>
-              :
-              <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('4')}>
-                <Image style={tw`w-15 h-13 `} source={ImageIcons.cru} />
-                <Text style={tw`text-black `}>My Cru</Text>
-              </TouchableOpacity>
+                  <Image style={tw`w-15 h-13 `} source={ImageIcons.my_cru} />
+                  <Text style={tw`text-black `}>My Cru</Text>
+                </TouchableOpacity>
+                :
+                <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('4')}>
+                  <Image style={tw`w-15 h-13 `} source={ImageIcons.cru} />
+                  <Text style={tw`text-black `}>My Cru</Text>
+                </TouchableOpacity>
               }
-              { socilfeed == 5 ?
+              {socilfeed == 5 ?
                 <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('5')}>
-                <Image style={tw`w-15 h-13  `} source={ImageIcons.users} />
-                <Text style={tw`text-black `}>Connections</Text>
-              </TouchableOpacity>
-              :
-              <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('5')}>
-                <Image style={tw`w-15 h-13  `} source={ImageIcons.grouprofile} />
-                <Text style={tw`text-black `}>Connections</Text>
-              </TouchableOpacity>
+                  <Image style={tw`w-15 h-13  `} source={ImageIcons.users} />
+                  <Text style={tw`text-black `}>Connections</Text>
+                </TouchableOpacity>
+                :
+                <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('5')}>
+                  <Image style={tw`w-15 h-13  `} source={ImageIcons.grouprofile} />
+                  <Text style={tw`text-black `}>Connections</Text>
+                </TouchableOpacity>
               }
-              
+
             </View>
             <TouchableOpacity style={tw`right-15 mt-33 z-60 absolute`} onPress={() => selectPhotobackground()}>
               <Image source={ImageIcons.editclap} style={[tw`w-7 h-7 rounded-full`, { tintColor: '#5fafcf' }]} />
@@ -454,7 +469,7 @@ const Matthew = (props) => {
             />
           }
           {socilfeed == "2" &&
-            <View style={tw`bg-[#fff] rounded-[3] flex py-5`}>
+            <View style={tw`bg-[#fff] rounded-[3] flex  mb-10 py-5`}>
               <CalendarPicker
                 selectedStartDate={props?.getprofilelist?.availabilty[0]?.selectedStartDate}
                 selectedEndDate={props?.getprofilelist?.availabilty[0]?.selectedEndtDate}
@@ -516,8 +531,8 @@ const Matthew = (props) => {
             </View>
           }
           {socilfeed == "6" &&
-            <TouchableOpacity style={tw`	p-5 border-solid rounded-[3] bg-white items-center mb-5`}>
-              <View style={tw`border border-[#ccc] rounded-[3] w-85  pl-5`}>
+            <TouchableOpacity style={tw`	p-5 border-solid rounded-[3] w-full bg-white items-center mb-5`}>
+              <View style={tw`border border-[#ccc] rounded-[3] w-12/12  pl-5`}>
 
                 <TextInput
                   value={about}
@@ -533,6 +548,38 @@ const Matthew = (props) => {
                 <Text style={tw`text-[#000] text-[3.5]  px-10 font-normal`}>Save</Text>
               </TouchableOpacity>
             </TouchableOpacity>
+          }
+          {socilfeed == "7" &&
+            <View style={tw`rounded-[3] items-center mx-3 py-5 mb-10`}>
+              <View style={tw`bg-[#fff] rounded-[3] flex py-5`}>
+
+              <CalendarPicker
+                 selectedStartDate={props?.getprofilelist?.availabilty[0]?.selectedStartDate}
+                 selectedEndDate={props?.getprofilelist?.availabilty[0]?.selectedEndtDate}
+                //markedDates={}
+                startFromMonday={true}
+                allowRangeSelection={true}
+                minDate={moment(new Date()).toDate()}
+                maxDate={moment().add(1, 'month').toDate()}
+                weekdays={['S', 'M', 'T', 'W', 'T', 'F', 'S']}
+                months={['January', 'Februray', 'March', 'Abril', 'May', 'June', 'July', 'August', 'Setember', 'October', 'November', 'December']}
+                todayBackgroundColor="#e6ffe6"
+                selectedDayColor="#66ff33"
+                selectedDayTextColor="#000000"
+                scaleFactor={375}
+                markingType={"period"}
+
+                textStyle={{
+                  fontFamily: 'Cochin',
+                  color: '#000000',
+                }}
+                onDateChange={onDateChange}
+              />
+              </View>
+              <TouchableOpacity onPress={() => handleeditcalender()} style={tw`bg-[#fff] border-[#5fafcf] border-2 my-5	 items-center  justify-center rounded-[10] p-1 ml-4 h-12 w-7/12`}>
+                <Text style={tw`text-[#000] text-[3.5]  px-10 font-normal`}>Save</Text>
+              </TouchableOpacity>
+            </View>
           }
 
         </View>

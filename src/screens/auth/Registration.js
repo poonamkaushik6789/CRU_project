@@ -101,13 +101,16 @@ const Registration = (props) => {
     // }
     //  Login request submision 
     const handleLoginSubmit = async () => {
-        Keyboard.dismiss();
+       
+        const strongRegex = new RegExp("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
+        const strongRegexpass = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+
         if (username == "") {
             Alert.alert(CommonStrings.AppName, 'Please Enter Username')
-        } else if (email == "") {
-            Alert.alert(CommonStrings.AppName, 'Please Enter Email')
-        } else if (password == "") {
-            Alert.alert(CommonStrings.AppName, 'Please Enter Password')
+        } else if (!strongRegex.test(email)) {
+            Alert.alert(CommonStrings.AppName, 'Please Enter Valid Email')
+        } else if (!strongRegexpass.test(password)) {
+            Alert.alert(CommonStrings.AppName, 'Passwords must include at least 1 number, 1 special character,  1 capital letter, combine a minimum of 8 characters')
         } else {
 
             let request = {

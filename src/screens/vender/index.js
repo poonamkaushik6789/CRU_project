@@ -44,12 +44,14 @@ const Vendor = (props) => {
     }, 2000)
     props.socialfeedlist();
     console.log("props.getpostlist======>>>", props?.getpostlist);
-    props.profiledetail(loginId);
+    
+    //props.profiledetail(loginId);
     setTimeout(function () {
       props.profiledetail(loginId);
 
     }, 1500);
   }, [])
+  
   const [panelProps, setPanelProps] = useState({
     fullWidth: true,
     openLarge: true,
@@ -126,6 +128,7 @@ const Vendor = (props) => {
 
 
   const renderItem = ({ item, index }) => {
+    //console.log("suhfifhusfhusufhu",item?.userId?._id)
     return (
       <View style={tw`my-2 `}>
         <Text style={tw`text-[#000] text-center	 text-[3.5]  px-15 font-normal`}>{item?.userId?.fullName}</Text>

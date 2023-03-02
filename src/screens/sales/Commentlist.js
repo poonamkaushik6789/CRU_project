@@ -32,22 +32,11 @@ const Commentlist = (props) => {
   const [subMsg, onChangeText1] = React.useState("");
   const [msg, setMsg] = React.useState("");
 
-  const [panelProps, setPanelProps] = useState({
-    fullWidth: true,
-    openLarge: true,
-    //onlySmall:true,
-    showCloseButton: true,
-    closeOnTouchOutside: true,
-    onClose: () => closePanel(),
-    onPressCloseButton: () => closePanel(),
-    // ...or any prop you want
-  });
-  const [isPanelActive, setIsPanelActive] = useState(false);
-
-  const [isaction, setisaction] = useState(true);
-
-
+ 
   useEffect(() => {
+    setTimeout(function(){
+      setVisible(false)
+    },2000)
     props.commentIdlist(postid);
     console.log("props.getcommentidlist======>>>", props?.getcommentidlist);
 

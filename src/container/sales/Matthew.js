@@ -11,15 +11,19 @@ import {
     mynetworklist,
     socialfeedlist,
     likeunlikepost,
+    
 } from '../../redux/actions/Vendor';
+import { updateAvailAbilty} from '../../redux/actions/Auth'
 const mapStateToProps = (state) => ({
     loginCredentials: state.auth.loginCredentials,
+    signupCredentials:state.auth.signupCredentials,
     getprofilelist: state.vendor.getprofilelist,
     getmycrulist: state.vendor.getmycrulist,
     getmynetworklist: state.vendor.getmynetworklist,
 });
  
 const mapDispatchToProps = {
+    updateAvailAbilty,
     profiledetail,
     updateprofile,
     updatebackgroudimage,
@@ -29,6 +33,7 @@ const mapDispatchToProps = {
     mynetworklist,
     socialfeedlist,
     likeunlikepost,
+    
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Matthew);

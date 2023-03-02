@@ -216,7 +216,7 @@ const Projectdetails = (props) => {
                             <Text style={tw`text-[4] font-bold text-right`} >Date: </Text>
                         </View>
                         <View style={tw`w-7/12`}>
-                            <Text style={tw` text-base font-semibold `}>{moment(props?.getprojectdetilslist?.fromDate).format('D')}-{moment(props?.getprojectdetilslist?.toDate).format('D')}</Text>
+                            <Text style={tw` text-base font-semibold `}>{moment(props?.getprojectdetilslist?.fromDate).format('MMM D')} - {moment(props?.getprojectdetilslist?.toDate).format('MMM D')}</Text>
                         </View>
 
                     </View>

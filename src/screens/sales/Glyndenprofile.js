@@ -28,7 +28,7 @@ const Glyndenprofile = (props) => {
   } = props;
   const loginId = props?.loginCredentials?.data?._id
   const user_Id = props?.route?.params?.userId
-  console.log("props====>", props)
+  //console.log("props====>", props)
 
 
   const { width } = Dimensions.get('window');
@@ -46,14 +46,13 @@ const Glyndenprofile = (props) => {
 
   useEffect(() => {
     if (props?.grtpostdetail.email == undefined) {
-      props.postdetails(user_Id);
       setTimeout(function () {
         props.postdetails(user_Id);
 
       }, 1500);
-      props.postdetails(user_Id);
-      console.log("props.grtpostdetail======>>>", props?.grtpostdetail);
     }
+      props.postdetails(user_Id);
+      console.log("props.grtpostdetail======>>>", props?.grtpostdetail.email);
   }, [])
 
   const handlelikeunlike = (id) => {
@@ -98,6 +97,7 @@ const Glyndenprofile = (props) => {
     props.messagesend(request, props.navigation)
     setMessage("");
     setModalVisible(false)
+    props.postdetails(user_Id);
   };
   const handleconnectnetwork = async () => {
 

@@ -157,14 +157,14 @@ export const socialfeedlist = () => {
   }
 };
 //postDetails 
-export const postdetails = (userid) => {
+export const postdetails = (id) => {
   return async (dispatch, getState) => {
       let loginCredentials = await getState().auth?.loginCredentials;
       let isInternetConnected = await getState().auth?.isInternetConnected;
       if (isInternetConnected) {
           try {
-              dispatch({ type: GET_POSTDETAIL_LIST, payload: true });
-              let response = await Utilise.apiCalling('GET', `${Api.postDetails}/${userid}`)
+              dispatch({ type: GET_POSTDETAIL_LIST, payload: false });
+              let response = await Utilise.apiCalling('GET', `${Api.postDetails}/${id}`)
               console.log("postlisting_reponse",response)
               dispatch({ type: GET_POSTDETAIL_LIST, payload: false });
               if (response?.status) {
@@ -174,6 +174,24 @@ export const postdetails = (userid) => {
               } else {
                   Alert.alert("Filmca", String(response?.message))
               }
+          } catch (error) {
+              Alert.alert("Filmca", String(error?.message))
+          }
+      };
+  }
+};
+//viewprofile 
+export const profiledetail = (id) => {
+  return async (dispatch, getState) => {
+      let loginCredentials = await getState().auth?.loginCredentials;
+      let isInternetConnected = await getState().auth?.isInternetConnected;
+      if (isInternetConnected) {
+          try {
+              let response = await Utilise.apiCalling('GET', `${Api.viewprofile}/${id}`)
+              console.log("viewprofile====?",response)
+              dispatch({ type: GET_PROFILE_LIST, payload: response.data.data });
+              console.log("viewprofile_reponse",response.data.data)
+              
           } catch (error) {
               Alert.alert("Filmca", String(error?.message))
           }
@@ -323,23 +341,7 @@ export const getlike = (id) => {
       };
   }
 };
-//viewprofile 
-export const profiledetail = (id) => {
-  return async (dispatch, getState) => {
-      let loginCredentials = await getState().auth?.loginCredentials;
-      let isInternetConnected = await getState().auth?.isInternetConnected;
-      if (isInternetConnected) {
-          try {
-              let response = await Utilise.apiCalling('GET', `${Api.viewprofile}/${id}`)
-              console.log("viewprofile_reponse",response.data.data)
-              dispatch({ type: GET_PROFILE_LIST, payload: response.data.data });
-              
-          } catch (error) {
-              Alert.alert("Filmca", String(error?.message))
-          }
-      };
-  }
-};
+
 //updateProfileImage 
 export const updateprofile = (request, navigation) => {
   console.log("updateProfileImagerequest==>", request)
