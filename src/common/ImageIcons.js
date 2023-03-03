@@ -153,11 +153,15 @@ const redlike = require(`${assetsRootPath}redlike.png`);
 const my_cru = require(`${assetsRootPath}my_cru.png`);
 const about = require(`${assetsRootPath}about.png`);
  const users = require(`${assetsRootPath}users.png`);
-// const about = require(`${assetsRootPath}about.png`);
+ const cross_icon = require(`${assetsRootPath}cross_icon.png`);
+ const green_tik = require(`${assetsRootPath}green_tik.png`);
+
 
 
 const ImageIcons = {
   rightarrow,
+  cross_icon,
+  green_tik,
   my_cru,
   users,
   about,
