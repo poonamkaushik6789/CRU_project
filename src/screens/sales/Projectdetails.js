@@ -53,6 +53,7 @@ const Projectdetails = (props) => {
             "_id": id,
         }
         props.deleteuserrequest(request, props.navigation);
+        props.getprojectdetail(project_Id);
     }
     const DATA = [
         {
@@ -148,13 +149,13 @@ const Projectdetails = (props) => {
 
     const renderItem = ({ item, index }) => {
         return (
-            <View>
+            <View style={tw`mx-2`}>
                 {projectmember == item.id ?
-                    <TouchableOpacity style={tw`w-46 h-18 bg-[#fff] my-6 ml-5 rounded-xl border-solid border-t-8 border-[#000]`} onPress={() => handletabchange(item.id)}>
+                    <TouchableOpacity style={tw`w-46 h-18 bg-[#fff] my-6  rounded-xl border-solid border-t-8 border-[#000]`} onPress={() => handletabchange(item.id)}>
                         <Text style={tw`text-center pt-4 text-base text-[#000]	font-bold`} >{item.text}</Text>
                     </TouchableOpacity>
                     :
-                    <TouchableOpacity style={tw`w-46 h-18 bg-[#fff] my-6 ml-5 rounded-xl border-solid border-t-8 border-[#ccc]`} onPress={() => handletabchange(item.id)}>
+                    <TouchableOpacity style={tw`w-46 h-18 bg-[#fff] my-6 rounded-xl border-solid border-t-8 border-[#ccc]`} onPress={() => handletabchange(item.id)}>
                         <Text style={tw`text-center pt-4 text-base text-[#000]	font-bold`}>{item.text}</Text>
                     </TouchableOpacity>
                 }
@@ -214,9 +215,9 @@ const Projectdetails = (props) => {
                 <TouchableOpacity style={tw` items-center  flex-row my-2 `} onPress={() => props?.navigation?.navigate("Projectdetails", { projectid: item._id })}>
                     <View style={tw`  w-2.3/12  bg-white items-center `} >
                         {item?.appliedBy?.profileImage != null ?
-                            <Image source={{ uri: `${Api.imageUri}${item?.appliedBy?.profileImage}` }} style={tw`w-20 h-20 rounded-full`} />
+                            <Image source={{ uri: `${Api.imageUri}${item?.appliedBy?.profileImage}` }} style={tw`w-18 h-18 rounded-full`} />
                             :
-                            <Image source={ImageIcons.man} style={tw`w-20 h-20 rounded-full`} />
+                            <Image source={ImageIcons.man} style={tw`w-18 h-18 rounded-full`} />
                         }
 
                     </View>
@@ -236,8 +237,8 @@ const Projectdetails = (props) => {
                             </View>
                         }
                         {item.status == "Accepted" &&
-                            <TouchableOpacity onPress={() => handledeclinerequest(item._id)}>
-                                <Image source={ImageIcons.Cross} style={tw`w-11 h-10 `} />
+                            <TouchableOpacity >
+                                <Image source={ImageIcons.green_tik} style={tw`w-11 h-10 `} />
                             </TouchableOpacity>
                         }
                     </View>
@@ -292,29 +293,36 @@ const Projectdetails = (props) => {
                         </View>
                     </View>
                 </View>
+                <View style={tw`mx-2 w-full`}>
+                    <FlatList
+                        horizontal={true}
+                        data={DATA}
+                        renderItem={renderItem}
+                        keyExtractor={item => item.id}
+                        showsHorizontalScrollIndicator={false}
+                    />
+                </View>
 
-                <FlatList
-                    horizontal={true}
-                    data={DATA}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.id}
-                />
                 {projectmember == 1 &&
-                    <View style={tw`mx-5 my-6`}>
+                    <View style={tw`mx-2 my-6`}>
                         <FlatList
                             data={DATA1}
                             renderItem={renderItemmember}
                             keyExtractor={item => item.id}
+                            showsHorizontalScrollIndicator={false}
+
                         />
                     </View>
                 }
 
                 {projectmember == 2 &&
-                    <View style={tw`mx-5 my-6`}>
+                    <View style={tw`mx-2 my-6`}>
                         <FlatList
                             data={props?.getprojectdetilslist?.appliedJobs}
                             renderItem={renderItemaplied}
                             keyExtractor={item => item.id}
+                            showsHorizontalScrollIndicator={false}
+
                         />
                     </View>
                 }
