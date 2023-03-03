@@ -29,58 +29,11 @@ const Lighting = (props) => {
     const [subMsg, onChangeText1] = React.useState("");
     const [msg, onChangeText2] = React.useState("");
 
-    const [panelProps, setPanelProps] = useState({
-        fullWidth: true,
-        openLarge: true,
-        //onlySmall:true,
-        showCloseButton: true,
-        closeOnTouchOutside: true,
-        onClose: () => closePanel(),
-        onPressCloseButton: () => closePanel(),
-        // ...or any prop you want
-    });
-    const [isPanelActive, setIsPanelActive] = useState(false);
+    useEffect(() => {
+        props.alljobproject();
+        console.log("props.getalljobprojectlist======>>>", props?.getalljobprojectlist);
 
-    const [isaction, setisaction] = useState(true);
-
-
-
-    const openPanel = () => {
-
-        setIsPanelActive(true);
-        setisaction(false);
-    };
-
-    const closePanel = () => {
-        setIsPanelActive(false);
-        setisaction(true);
-
-    };
-
-    // const showisaction = () => {
-    //   setisaction(true);
-    // };
-    // const hideisaction = () => {
-    //   setisaction(false);
-    // };
-    const containerStyle = { backgroundColor: 'red', padding: '7%', marginHorizontal: '5%', alignItems: 'center', };
-    const DATA2 = [
-        {
-            text: 'Screenings',
-            //  image:ImageIcons.salonman,
-        },
-        {
-            text: 'Networking',
-            //  image:ImageIcons.salonwoman,
-        },
-        {
-            text: 'Training',
-            //  image:ImageIcons.salonwoman,
-        },
-
-    ];
-
-
+    }, [])
     const DATA = [
         {
             text1: 'June',
@@ -91,79 +44,7 @@ const Lighting = (props) => {
 
 
         },
-        {
-            text1: 'June',
-            text2: '13',
-            text3: 'TV Commercial',
-            text4: 'luxury Car Dealership',
-            text5: '$400',
-        },
-        {
-            text1: 'June',
-            text2: '15-16',
-            text3: 'Short Film',
-            text4: 'Comic Con',
-            text5: '$400',
 
-        },
-        {
-            text1: 'July',
-            text2: '3',
-            text3: 'Music Video',
-            text4: 'Hip-Hop Artist',
-            text5: '$400',
-
-        },
-        {
-            text1: 'July',
-            text2: '3',
-            text3: 'Music Video',
-
-            text4: 'Hip-Hop Artist',
-            text5: '$400',
-
-
-        },
-        {
-            text1: 'July',
-            text2: '3',
-            text3: 'Music Video',
-            text4: 'Hip-Hop Artist',
-            text5: '$400',
-
-        },
-        {
-            text1: 'July',
-            text2: '3',
-            text3: 'Music Video',
-            text4: 'Hip-Hop Artist',
-            text5: '$400',
-
-        },
-        {
-            text1: 'July',
-            text2: '3',
-            text3: 'Music Video',
-            text4: 'Hip-Hop Artist',
-            text5: '$400',
-
-        },
-        {
-            text1: 'July',
-            text2: '3',
-            text3: 'Music Video',
-            text4: 'Hip-Hop Artist',
-            text5: '$400',
-
-        },
-        {
-            text1: 'July',
-            text2: '3',
-            text3: 'Music Video',
-            text4: 'Hip-Hop Artist',
-            text5: '$400',
-
-        },
 
 
     ];
@@ -181,26 +62,23 @@ const Lighting = (props) => {
     const renderItem = ({ item, index }) => {
         return (
             <View>
-                <TouchableOpacity onPress={() => props.navigation.navigate("Jobdetails1")}>
+                <View style={tw`w-full bg-white rounded-xl px-2 mt-2`}>
+                    <TouchableOpacity style={tw` items-center  flex-row my-2 py-2`} onPress={() => props.navigation.navigate("Jobdetails1", { item: item })}>
+                        <View style={tw`  w-3/12  bg-white items-center `} >
 
-                <View style={tw`w-80 h-25 bg-white rounded-xl flex flex-row mb-6`} >
-                    <View style={tw`w-18 h-18 bg-white mt-3 ml-3 flex flex-row  border-r-2 border-slate-100`} >
-                        <View style={tw`flex flex-column`}>
-                            <Text style={tw`text-center text-black text-base font-semibold mt-3 ml-3`} >{item.text1}</Text>
-                            <Text style={tw`text-center text-black text-base font-bold mt-1 ml-3`} >{item.text2}</Text>
+                            <Text style={tw`text-center text-black text-base font-semibold `} >{moment(item?.fromDate).format('MMM')}</Text>
+                            <Text style={tw`text-center text-black text-base font-bold `} >{moment(item?.toDate).format('D')}</Text>
 
                         </View>
-                    </View>
-                    <View style={tw`flex flex column  mt-4 w-42`}>
-                        <Text style={tw` text-black text-base font-bold ml-4`} >{item.text3}</Text>
-                        <Text style={tw`text-black text-xm font-semibold mt-4 ml-4 `} >{item.text4}</Text>
-                    </View>
-                    <View style={tw`w-14 h-14 bg-slate-200 mt-5  flex flex-row rounded-full`} >
-                        <Text style={tw`text-black text-base font-semibold mx-auto mt-4 `} >{item.text5}</Text></View>
+                        <View style={tw`border-l border-[#ccc] w-9/12  px-4 `}>
+                            <Text style={tw` text-black text-base font-bold `} >{item?.productionType?.title}</Text>
+                            <Text style={tw`text-black text-[3.5] font-semibold  `} >{item.title}</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
-                </TouchableOpacity>
+
             </View>
-            
+
         );
     }
 
@@ -212,28 +90,18 @@ const Lighting = (props) => {
         <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"} style={styles.root}>
             <StatusBar backgroundColor={Colors.WHITE} barStyle="dark-content" translucent={true} />
             <ScrollView style={tw``}>
-                <FlatList
-                    horizontal={true}
-                    data={DATA2}
-                    renderItem={renderItem2}
-                    keyExtractor={item => item.id}
-                />
 
-
-                <View style={tw`mx-auto mt-3`}>
+                <View style={tw`mx-5 my-6`}>
                     <FlatList
-                        data={DATA}
+                        data={props?.getalljobprojectlist}
                         renderItem={renderItem}
                         keyExtractor={item => item.id}
                     />
-
                 </View>
 
                 <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 mx-auto h-12 w-52 mt-1 mb-15`}>
                     <Text style={tw`text-[#000] text-base  px-10 font-normal`}>View Details</Text>
                 </TouchableOpacity>
-
-
             </ScrollView>
 
             <Loader />

@@ -28,13 +28,14 @@ const EventScreen = (props) => {
 
   const [socilfeed, setSocialfeed] = useState('');
   const [visible, setVisible] = React.useState(true);
-  const [subMsg, onChangeText1] = React.useState("");
+  
   const [eventarr, setEventarr] = React.useState([]);
   const [eventdata, setEventdata] = React.useState(false);
 
   
-
+  //console.log("props.eventarr======>>>", eventarr);
   useEffect(() => {
+    setEventarr(props?.geteventlist)
     setTimeout(function () {
       setVisible(false)
     }, 2000)
@@ -42,23 +43,11 @@ const EventScreen = (props) => {
     props.getevent();
     console.log("props.geteventcategorylist======>>>", props?.geteventcategorylist);
     console.log("props.geteventlist======>>>", props?.geteventlist);
-    setEventarr(props?.geteventlist)
+    
   }, [])
   useEffect(() => {
     setEventarr(props?.geteventlist)
   }, [])
-
-  const openPanel = () => {
-
-    setIsPanelActive(true);
-    setisaction(false);
-  };
-
-  const closePanel = () => {
-    setIsPanelActive(false);
-    setisaction(true);
-
-  };
 
   const handletabchange = (id) => {
     const unCheckInAttends = props?.geteventlist.filter((item) => {
@@ -73,57 +62,7 @@ const EventScreen = (props) => {
     console.log("id=======<><>", id)
   };
 
-  const DATA = [
-    {
-      text: 'Screenings',
-      //  image:ImageIcons.salonman,
-    },
-    {
-      text: 'Networking',
-      //  image:ImageIcons.salonwoman,
-    },
-    {
-      text: 'Training',
-      //  image:ImageIcons.salonwoman,
-    },
-
-  ];
-
-  const DATA1 = [
-    {
-      text: 'RAW Artists Annual Short Film Festival',
-      image: ImageIcons.rawartist,
-      month: 'JUN',
-      date: '3',
-    },
-    {
-      text: 'Cine Gear Expo',
-      image: ImageIcons.gearexpo,
-      month: 'JUN',
-      date: '4',
-    },
-    {
-      text: 'Produced By Conference',
-      image: ImageIcons.conference,
-      month: 'JUN',
-      date: '3',
-    },
-    {
-      text: 'NewFilmmakers Los Angeles',
-      image: ImageIcons.filmmakers,
-      month: 'JUN',
-      date: '4',
-    },
-    {
-      text: 'Los Angeles Film Festival',
-      image: ImageIcons.filmfestival,
-      month: 'JUN',
-      date: '2',
-    },
-
-  ];
-
-
+  
   const renderItemCategory = ({ item, index }) => {
     return (
       <View>

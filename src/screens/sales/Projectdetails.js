@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Text, KeyboardAvoidingView, View, TextInput, FlatList, StatusBar, TouchableOpacity, ScrollView, Image } from 'react-native';
-import { Fonts, Colors, ImageIcons } from '../../common';
+import { Fonts, Colors, ImageIcons, Api } from '../../common';
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
@@ -30,34 +30,39 @@ const Projectdetails = (props) => {
     //console.log("project_Id===>>>>",project_Id)
     const [visible, setVisible] = React.useState(false);
     const [subMsg, onChangeText1] = React.useState("");
-    const [msg, onChangeText2] = React.useState("");
-
-    const [panelProps, setPanelProps] = useState({
-        fullWidth: true,
-        openLarge: true, 
-        //onlySmall:true,
-        showCloseButton: true,
-        closeOnTouchOutside: true,
-        onClose: () => closePanel(),
-        onPressCloseButton: () => closePanel(),
-        // ...or any prop you want
-    });
-
+    const [projectmember, setProjectmember] = useState('1');
 
     useEffect(() => {
         props.getprojectdetail(project_Id);
         console.log("props.getprojectdetilslist======>>>", props?.getprojectdetilslist);
-
+        console.log("props?.getprojectdetilslist?.appliedJobs======>>>", props?.getprojectdetilslist?.appliedJobs);
     }, [])
 
+    const handletabchange = (id) => {
+        setProjectmember(id);
 
+    };
+    const handleacceptrequest = async (id) => {
+        let request = {
+            "_id": id,
+        }
+        props.acceptuser(request, props.navigation);
+    }
+    const handledeclinerequest = async (id) => {
+        let request = {
+            "_id": id,
+        }
+        props.deleteuserrequest(request, props.navigation);
+    }
     const DATA = [
         {
-            text: '6/15',
+            id: '1',
+            text: 'Project Members',
             //  image:ImageIcons.salonman,
         },
         {
-            text: '6/16',
+            id: '2',
+            text: 'Applied Users',
             //  image:ImageIcons.salonwoman,
         },
 
@@ -76,6 +81,8 @@ const Projectdetails = (props) => {
         },
         {
             image: ImageIcons.womanclap,
+            image2: ImageIcons.tik,
+            image1: ImageIcons.Cross,
             text1: 'Sarah Orefice',
             text2: 'Ist Assistant director',
             text3: '6:29 pm',
@@ -141,8 +148,16 @@ const Projectdetails = (props) => {
 
     const renderItem = ({ item, index }) => {
         return (
-            <View style={tw`w-30 h-18 bg-white my-6 ml-5 rounded-xl border-solid border-t-8 border-black`} >
-                <Text style={tw`mx-auto my-auto text-base font-bold`}>{item.text}</Text>
+            <View>
+                {projectmember == item.id ?
+                    <TouchableOpacity style={tw`w-46 h-18 bg-[#fff] my-6 ml-5 rounded-xl border-solid border-t-8 border-[#000]`} onPress={() => handletabchange(item.id)}>
+                        <Text style={tw`text-center pt-4 text-base text-[#000]	font-bold`} >{item.text}</Text>
+                    </TouchableOpacity>
+                    :
+                    <TouchableOpacity style={tw`w-46 h-18 bg-[#fff] my-6 ml-5 rounded-xl border-solid border-t-8 border-[#ccc]`} onPress={() => handletabchange(item.id)}>
+                        <Text style={tw`text-center pt-4 text-base text-[#000]	font-bold`}>{item.text}</Text>
+                    </TouchableOpacity>
+                }
             </View>
         );
     }
@@ -152,7 +167,7 @@ const Projectdetails = (props) => {
             <View>
                 <View style={tw`w-80 h-25 bg-white rounded flex flex-row mb-6`} >
                     <Image source={item.image} style={tw`w-15 h-15 mt-5 ml-4  `} />
-                    <View style={tw` flex flex-column w-38`}>
+                    <View style={tw` flex  w-38`}>
                         <Text style={tw` text-black text-base font-bold mt-4 ml-2`} >{item.text1}</Text>
                         <Text style={tw`text-[#808080] text-xs font-semibold mt-1 mt-5 ml-2`} >{item.text2}</Text>
                     </View>
@@ -166,38 +181,67 @@ const Projectdetails = (props) => {
             </View>
         );
     }
-    const renderItem2 = ({ item, index }) => {
+    const renderItemmember = ({ item, index }) => {
         return (
-            <View>
-                <View style={tw`w-80 h-25 bg-white rounded flex flex-row mb-6`} >
-                    <Image source={item.image} style={tw`w-15 h-15 mt-5 ml-4  `} />
-                    <View style={tw` flex flex-column w-38`}>
-                        <Text style={tw` text-black text-base font-bold mt-4 ml-2`} >{item.text1}</Text>
-                        <Text style={tw`text-[#808080] text-xs font-semibold mt-1 mt-5 ml-2`} >{item.text2}</Text>
+            <View style={tw`w-full bg-white rounded-xl px-2 mt-2`}>
+                <TouchableOpacity style={tw` items-center  flex-row my-2 `} onPress={() => props?.navigation?.navigate("Projectdetails", { projectid: item._id })}>
+                    <View style={tw`  w-2.3/12  bg-white items-center `} >
+                        <Image source={item.image} style={tw`w-20 h-20  `} />
                     </View>
-                    <Image source={item.image2} style={tw`w-9.5 h-9.5 mt-7 `} />
+                    <View style={tw` w-9.6/12 flex-row justify-between pl-3 `}>
+                        <View>
+                            <Text style={tw` text-black text-base font-bold `} >{item.text1}</Text>
+                            <Text style={tw`text-black text-[3.5] font-semibold  `} >{item.text2}</Text>
+                        </View>
+                        <View style={tw`w-3.6/12  flex-row justify-between	items-center `}>
 
-                    <Image source={item.image1} style={tw`w-10 h-10 mt-7 ml-2`} />
-
-
-
-                </View>
+                            <View>
+                                <Image source={ImageIcons.tik} style={tw`w-11 h-10 `} />
+                            </View>
+                            <View>
+                                <Image source={ImageIcons.Cross} style={tw`w-11 h-10 `} />
+                            </View>
+                        </View>
+                    </View>
+                </TouchableOpacity>
             </View>
         );
     }
-    const renderItem3 = ({ item, index }) => {
-        return (
-            <View>
-                <View style={tw`w-80 h-25 bg-white rounded flex flex-row mb-6`} >
-                    <Image source={item.image} style={tw`w-15 h-15 mt-5 ml-4  `} />
-                    <View style={tw` flex flex-column w-38`}>
-                        <Text style={tw` text-black text-base font-bold mt-4 ml-2`} >{item.text1}</Text>
-                        <Text style={tw`text-[#808080] text-xs font-semibold mt-1 mt-5 ml-2`} >{item.text2}</Text>
-                    </View>
-                    <Image source={item.image2} style={tw`w-9.5 h-9.5 mt-7 `} />
 
-                    <Image source={item.image1} style={tw`w-10 h-10 mt-7 ml-2`} />
-                </View>
+    const renderItemaplied = ({ item, index }) => {
+        return (
+            <View style={tw`w-full bg-white rounded-xl px-2 mt-2`}>
+                <TouchableOpacity style={tw` items-center  flex-row my-2 `} onPress={() => props?.navigation?.navigate("Projectdetails", { projectid: item._id })}>
+                    <View style={tw`  w-2.3/12  bg-white items-center `} >
+                        {item?.appliedBy?.profileImage != null ?
+                            <Image source={{ uri: `${Api.imageUri}${item?.appliedBy?.profileImage}` }} style={tw`w-20 h-20 rounded-full`} />
+                            :
+                            <Image source={ImageIcons.man} style={tw`w-20 h-20 rounded-full`} />
+                        }
+
+                    </View>
+                    <View style={tw` w-9.6/12 flex-row justify-between pl-3 `}>
+                        <View>
+                            <Text style={tw` text-black text-base font-bold `} >{item?.appliedBy?.fullName}</Text>
+                            <Text style={tw`text-black text-[3.5] font-semibold  `} >{item?.appliedBy?.workDepartments?.position?.name}</Text>
+                        </View>
+                        {item.status == "pending" &&
+                            <View style={tw`w-3.6/12  flex-row justify-between	items-center `}>
+                                <TouchableOpacity onPress={() => handleacceptrequest(item._id)}>
+                                    <Image source={ImageIcons.tik} style={tw`w-11 h-10 `} />
+                                </TouchableOpacity >
+                                <TouchableOpacity onPress={() => handledeclinerequest(item._id)}>
+                                    <Image source={ImageIcons.Cross} style={tw`w-11 h-10 `} />
+                                </TouchableOpacity>
+                            </View>
+                        }
+                        {item.status == "Accepted" &&
+                            <TouchableOpacity onPress={() => handledeclinerequest(item._id)}>
+                                <Image source={ImageIcons.Cross} style={tw`w-11 h-10 `} />
+                            </TouchableOpacity>
+                        }
+                    </View>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -209,7 +253,7 @@ const Projectdetails = (props) => {
         <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"} style={styles.root}>
             <StatusBar backgroundColor={Colors.WHITE} barStyle="dark-content" translucent={true} />
             <ScrollView style={tw``}>
-                
+
                 <View style={tw` rounded-xl mx-5 mt-4 py-4`}>
                     <View style={tw`flex-row bg-white w-full rounded-t-[3]	 mb-1 py-4 items-center`}>
                         <View style={tw` w-5/12 mr-5`}>
@@ -255,30 +299,25 @@ const Projectdetails = (props) => {
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
                 />
-                <View style={tw`mx-auto `}><Text style={tw`text-base font-bold`}>Director</Text></View>
-                <View style={tw`mx-auto mt-6`}>
-                    <FlatList
-                        data={DATA1}
-                        renderItem={renderItem1}
-                        keyExtractor={item => item.id}
-                    />
-                </View>
-                <View style={tw`mx-auto `}><Text style={tw`text-base font-bold`}>Camera</Text></View>
-                <View style={tw`mx-auto mt-6`}>
-                    <FlatList
-                        data={DATA2}
-                        renderItem={renderItem2}
-                        keyExtractor={item => item.id}
-                    />
-                </View>
-                <View style={tw`mx-auto `}><Text style={tw`text-base font-bold`}>Lighting</Text></View>
-                <View style={tw`mx-auto mt-6`}>
-                    <FlatList
-                        data={DATA3}
-                        renderItem={renderItem3}
-                        keyExtractor={item => item.id}
-                    />
-                </View>
+                {projectmember == 1 &&
+                    <View style={tw`mx-5 my-6`}>
+                        <FlatList
+                            data={DATA1}
+                            renderItem={renderItemmember}
+                            keyExtractor={item => item.id}
+                        />
+                    </View>
+                }
+
+                {projectmember == 2 &&
+                    <View style={tw`mx-5 my-6`}>
+                        <FlatList
+                            data={props?.getprojectdetilslist?.appliedJobs}
+                            renderItem={renderItemaplied}
+                            keyExtractor={item => item.id}
+                        />
+                    </View>
+                }
 
 
             </ScrollView>

@@ -31,6 +31,10 @@ import {
     GET_MYPROJECT_LIST,
     GET_PROJECTDETAIL_LIST,
     GET_MESSAGEDETAIL_LIST,
+    SET_ACCEPT_USER,
+    GET_DELETE_USEREQUEST,
+    GET_ALL_JOBS,
+    SET_APPLY_PROJECT,
 } from '../actions/ActionTypes';
 
 // Redux states
@@ -50,8 +54,11 @@ const initialState = {
     backgroundupdate: false,
     updateabout: false,
     postdelete: false,
+    getuserdeleterequst:false,
     networktocru: false,
     addproductiontype: false,
+    acceptuserreduest: false,
+    applyjobproject:false,
     getmycrulist: [],
     getmynetworklist: [],
     geteventcategorylist: [],
@@ -62,6 +69,7 @@ const initialState = {
     getprojectlist: [],
     getprojectdetilslist: [],
     getmessagedetilslist: [],
+    getalljobprojectlist: [],
 };
 
 const Vendor = (state = initialState, action) => {
@@ -203,26 +211,26 @@ const Vendor = (state = initialState, action) => {
                 ...state,
                 getmessagedetilslist: action.payload,
             };
-        //     case GET_PROJECTDETAIL_LIST:
-        // return {
-        //     ...state,
-        //     getprojectdetilslist: action.payload,
-        // };
-        // case GET_PROJECTDETAIL_LIST:
-        // return {
-        //     ...state,
-        //     getprojectdetilslist: action.payload,
-        // };
-        // case GET_PROJECTDETAIL_LIST:
-        // return {
-        //     ...state,
-        //     getprojectdetilslist: action.payload,
-        // };
-        // case GET_PROJECTDETAIL_LIST:
-        // return {
-        //     ...state,
-        //     getprojectdetilslist: action.payload,
-        // };
+            case SET_ACCEPT_USER:
+        return {
+            ...state,
+            acceptuserreduest: action.payload,
+        };
+        case GET_DELETE_USEREQUEST:
+        return {
+            ...state,
+            getuserdeleterequst: action.payload,
+        };
+        case GET_ALL_JOBS:
+        return {
+            ...state,
+            getalljobprojectlist: action.payload,
+        };
+        case SET_APPLY_PROJECT:
+        return {
+            ...state,
+            applyjobproject: action.payload,
+        };
         // case GET_PROJECTDETAIL_LIST:
         // return {
         //     ...state,

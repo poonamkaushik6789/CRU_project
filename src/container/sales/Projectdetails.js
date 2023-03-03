@@ -2,7 +2,8 @@
 import { connect } from 'react-redux';
 import Projectdetails from '../../screens/sales/Projectdetails';
 import {
-    getprojectdetail,
+    getprojectdetail,acceptuser,
+    deleteuserrequest,
 } from '../../redux/actions/Vendor';
 
 const mapStateToProps = (state) => ({
@@ -12,7 +13,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    getprojectdetail
+    getprojectdetail,
+    acceptuser,
+    deleteuserrequest
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Projectdetails);

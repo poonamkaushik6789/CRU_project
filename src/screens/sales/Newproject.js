@@ -33,7 +33,7 @@ const Newproject = (props) => {
     const productionid = props?.addproductiontype?.data?._id
     //console.log("addproductiontype=======:::",productionid)
 
-    
+    const [modalVisible, setModalVisible] = useState(false);
     const [checkedId1, setcheckedId1] = React.useState([]);
     const [finalarr, setfinalarr] = React.useState([]);
     const [deparmentId, setSepartmentId] = useState('');
@@ -99,14 +99,14 @@ const Newproject = (props) => {
         props.addnewproject(request, props.navigation);
     }
     const onsubmitbtn = async () => {
-        let request = {
-            "_id": productionid,
-            "invitedCru": ["1", "2"],
-        }
+        // let request = {
+        //     "_id": productionid,
+        //     "invitedCru": ["1", "2"],
+        // }
 
-        props.inviteprojectcru(request, props.navigation);
-        alert("Save successfully")
-        props.navigation.navigate("Projects")
+        // props.inviteprojectcru(request, props.navigation);
+        setModalVisible(!modalVisible)
+       // props.navigation.navigate("Projects")
     }
     const handlecrudata = async (user) => {
         console.log("item.user===>", user)
@@ -219,7 +219,7 @@ const Newproject = (props) => {
     }
     const renderItem4 = ({ item, index }) => {
         return (
-            <TouchableOpacity style={tw`mx-2 w-45`}
+            <TouchableOpacity style={tw`mx-2 w-5.5/12`}
             //onPress={() => props.navigation.navigate("Glyndenprofile", { userId: item?._id })}
             >
 
@@ -285,14 +285,14 @@ const Newproject = (props) => {
                                         }}
                                         onDateChange={onDateChange}
                                     />
-                                </View>
+                                </View> 
                                 <View style={tw` bg-white rounded-t-xl  mt-6 py-7`}>
                                     <View style={tw`flex-row justify-center`}>
                                         <View style={tw` w-35 mr-5`}>
                                             <Text style={tw`text-[4] font-bold text-right	`} >*Date:</Text>
                                         </View>
                                         <View style={tw` w-40`}>
-                                            <Text style={tw` text-base font-semibold `}>{moment(startDate).format('D')}-{moment(endDate).format('D')}</Text>
+                                            <Text style={tw` text-base font-semibold `}>{moment(startDate).format('M/D')} - {moment(endDate).format('M/D')}</Text>
                                         </View>
 
                                     </View>
@@ -361,7 +361,7 @@ const Newproject = (props) => {
 
                             </View>
                         </ProgressStep>
-                        <ProgressStep label="" >
+                        {/* <ProgressStep label="" >
                             <View style={tw`mx-3`}>
                                 <View style={tw` items-center mb-7`}>
                                     <Text style={tw`text-[#000] text-[3.9] font-normal`}>Tab a department to select Cru to invite</Text>
@@ -392,15 +392,15 @@ const Newproject = (props) => {
                                 }
 
                             </View>
-                        </ProgressStep>
+                        </ProgressStep> */}
                         <ProgressStep label="" onSubmit={onsubmitbtn}>
                             <View style={tw`mx-3`}>
                                 <View style={tw` items-center mb-7`}>
                                     <Text style={tw`text-[#000] text-[3.9] font-normal`}>Review your Cru invites before sending</Text>
                                 </View>
-                                <View style={tw`mx-3 `}>
+                                <View style={tw` `}>
                                     <FlatList
-                                        data={finalarr}
+                                        data={DATA3}
                                         Key={2}
                                         numColumns={2}
                                         renderItem={renderItem4}
@@ -410,6 +410,31 @@ const Newproject = (props) => {
                             </View>
                         </ProgressStep>
                     </ProgressSteps>
+                    <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                        setModalVisible(!modalVisible);
+                    }}
+                    style={tw`m-0`} >
+                    <View style={tw`flex-1	 justify-center  bg-zinc-500`}>
+                        <View style={tw`bg-white rounded-[2]  justify-center drop-shadow-xl m-4`} >
+                            <View style={tw`items-center border-b border-[#ccc] p-4`}>
+                                <Text style={tw`text-base font-normal  text-black `} numberOfLines={1} ellipsizeMode='tail' >Invites Send</Text>
+                            </View>
+                            <View style={tw`p-3`}>
+                                <View style={tw`mx-5 my-4`}>
+                                    <Text style={tw`text-[#000000] text-center mt-1 font-normal text-[3.1]`}>Thanku for listing Your project on Cru !</Text>
+                                </View>
+                                <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`} onPress={() => { setModalVisible(false); props.navigation.navigate('Projectdetails') }}>
+                                    <Text style={tw`text-[#000] text-[3.5] p-2 px-15 font-normal`}>View Project</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
+
+                </Modal>
                 </View>
 
             </ScrollView>

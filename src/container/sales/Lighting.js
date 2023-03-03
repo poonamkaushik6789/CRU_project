@@ -1,15 +1,17 @@
 
 import { connect } from 'react-redux';
 import Lighting from '../../screens/sales/Lighting';
-
+import {
+    alljobproject,  
+} from '../../redux/actions/Vendor';
 const mapStateToProps = (state) => ({
     loginCredentials: state.auth.loginCredentials,
-    //redeemedCouponTrackingData: state.coupon.redeemedCouponTrackingData,
-    //redeemedCouponTrackingLoader: state.coupon.redeemedCouponTrackingLoader
+    getalljobprojectlist: state.vendor.getalljobprojectlist,
 });
 
+
 const mapDispatchToProps = {
-    
+    alljobproject
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Lighting);

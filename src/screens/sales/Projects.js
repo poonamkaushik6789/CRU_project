@@ -53,7 +53,7 @@ const Projects = (props) => {
                     <View style={tw`  w-3/12  bg-white items-center `} >
 
                         <Text style={tw`text-center text-black text-base font-semibold `} >{moment(item?.createdAt).format('MMM')}</Text>
-                        <Text style={tw`text-center text-black text-base font-bold `} >{moment(item?.fromDate).format('D')}-{moment(item?.toDate).format('D')}</Text>
+                        <Text style={tw`text-center text-black text-base font-bold `} >{moment(item?.fromDate).format('D')}</Text>
 
                     </View>
                     <View style={tw`border-l border-[#ccc] w-9/12  px-4 `}>
@@ -64,10 +64,6 @@ const Projects = (props) => {
             </View>
         );
     }
-
-
-
-
 
 
 
