@@ -45,7 +45,7 @@ const Matthew = (props) => {
   const loginId = props?.loginCredentials?.data?._id
   //console.log("loginId===>", props);
   console.log("props.availabilty======>>>", props?.getprofilelist?.availabilty);
-
+  console.log("workDepartments[0]?.position======>>>", props?.getprofilelist?.workDepartments[0]?.position);
   useEffect(() => {
     props.mycrulist(loginId);
     props.mynetworklist(loginId);

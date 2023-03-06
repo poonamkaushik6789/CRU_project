@@ -163,36 +163,23 @@ const Projectdetails = (props) => {
         );
     }
 
-    const renderItem1 = ({ item, index }) => {
-        return (
-            <View>
-                <View style={tw`w-80 h-25 bg-white rounded flex flex-row mb-6`} >
-                    <Image source={item.image} style={tw`w-15 h-15 mt-5 ml-4  `} />
-                    <View style={tw` flex  w-38`}>
-                        <Text style={tw` text-black text-base font-bold mt-4 ml-2`} >{item.text1}</Text>
-                        <Text style={tw`text-[#808080] text-xs font-semibold mt-1 mt-5 ml-2`} >{item.text2}</Text>
-                    </View>
-                    <Image source={item.image2} style={tw`w-9.5 h-9.5 mt-7 `} />
-
-                    <Image source={item.image1} style={tw`w-10 h-10 mt-7 ml-2`} />
-
-
-
-                </View>
-            </View>
-        );
-    }
+    
     const renderItemmember = ({ item, index }) => {
         return (
             <View style={tw`w-full bg-white rounded-xl px-2 mt-2`}>
                 <TouchableOpacity style={tw` items-center  flex-row my-2 `} onPress={() => props?.navigation?.navigate("Projectdetails", { projectid: item._id })}>
                     <View style={tw`  w-2.3/12  bg-white items-center `} >
-                        <Image source={item.image} style={tw`w-20 h-20  `} />
+                    {item?.profileImage != null ?
+                            <Image source={{ uri: `${Api.imageUri}${item?.profileImage}` }} style={tw`w-18 h-18 rounded-full`} />
+                            :
+                            <Image source={ImageIcons.man} style={tw`w-18 h-18 rounded-full`} />
+                        }
+                       
                     </View>
                     <View style={tw` w-9.6/12 flex-row justify-between pl-3 `}>
                         <View>
-                            <Text style={tw` text-black text-base font-bold `} >{item.text1}</Text>
-                            <Text style={tw`text-black text-[3.5] font-semibold  `} >{item.text2}</Text>
+                            <Text style={tw` text-black text-base font-bold `} >{item?.fullName}</Text>
+                            <Text style={tw`text-black text-[3.5] font-semibold  `} >{item?.workDepartments[0]?.position[0]?.name}</Text>
                         </View>
                         <View style={tw`w-3.6/12  flex-row justify-between	items-center `}>
 
@@ -306,7 +293,7 @@ const Projectdetails = (props) => {
                 {projectmember == 1 &&
                     <View style={tw`mx-2 my-6`}>
                         <FlatList
-                            data={DATA1}
+                            data={props?.getprojectdetilslist?.invitedCru}
                             renderItem={renderItemmember}
                             keyExtractor={item => item.id}
                             showsHorizontalScrollIndicator={false}
@@ -317,13 +304,18 @@ const Projectdetails = (props) => {
 
                 {projectmember == 2 &&
                     <View style={tw`mx-2 my-6`}>
-                        <FlatList
-                            data={props?.getprojectdetilslist?.appliedJobs}
-                            renderItem={renderItemaplied}
-                            keyExtractor={item => item.id}
-                            showsHorizontalScrollIndicator={false}
+                        {props?.getprojectdetilslist?.appliedJobs?.length > 0 ?
+                            <FlatList
+                                data={props?.getprojectdetilslist?.appliedJobs}
+                                renderItem={renderItemaplied}
+                                keyExtractor={item => item.id}
+                                showsHorizontalScrollIndicator={false}
 
-                        />
+                            />
+                            :
+                            <Text style={tw`text-[#000] text-[5] font-bold text-center	mt-20`}>No User</Text>
+                        }
+
                     </View>
                 }
 

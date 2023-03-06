@@ -30,7 +30,7 @@ const Newproject = (props) => {
         handleSubmit,
     } = props;
     const loginId = props?.loginCredentials?.data?._id
-    const productionid = props?.addproductiontype?.data?._id
+    const projectId = props?.addproductiontype?.data?._id;
     //console.log("addproductiontype=======:::",productionid)
 
     const [modalVisible, setModalVisible] = useState(false);
@@ -49,6 +49,12 @@ const Newproject = (props) => {
     const [production, setProduction] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
 
+    const [selectedItem, setSelectedItem] = useState(null);
+    const [allItems, setAllItems] = useState([]);
+
+
+
+
     useEffect(() => {
         props.getproduction();
         console.log("props.getproductionlist======>>>", props?.getproductionlist);
@@ -56,6 +62,31 @@ const Newproject = (props) => {
         console.log("props.getmycrulist======>>>", props?.getmycrulist);
         console.log("props.getmycrulist?.user======>>>", props?.getmycrulist?.user);
     }, [])
+    const selectedIngredient = (item) => {
+        //console.log('selecionado: ' ,item);
+        setSelectedItem(item);
+
+        let temp = allItems.filter((parentItem) => parentItem.id !== item.id);
+
+        item.selected = !item.selected;
+        temp = temp.concat(item);
+        temp.sort((a, b) => parseInt(a.id) - parseInt(b.id));
+        //setAllItems(temp);
+        //allItems.push(...temp)
+        //setAllItems([]);
+        let index = allItems.findIndex(obj => obj._id === temp[0]._id);
+
+        if (index >= 0) {
+            // Object exists in array, so remove it
+            allItems.splice(index, 1);
+        } else {
+            // Object does not exist in array, so push it
+            allItems.push(...temp);
+        }
+
+        console.log("allitemsss=====", allItems);
+        console.log("temp=====", temp);
+    };
 
     const progressStepsStyle = {
         activeStepIconBorderColor: '#000',
@@ -99,17 +130,18 @@ const Newproject = (props) => {
         props.addnewproject(request, props.navigation);
     }
     const onsubmitbtn = async () => {
-        // let request = {
-        //     "_id": productionid,
-        //     "invitedCru": ["1", "2"],
-        // }
+        let request = {
+            "_id": projectId,
+            "invitedCru": allItems,
+        }
 
-        // props.inviteprojectcru(request, props.navigation);
+        props.inviteprojectcru(request, props.navigation);
         setModalVisible(!modalVisible)
+        setAllItems([]);
         // props.navigation.navigate("Projects")
     }
     const handlecrudata = async (user) => {
-        console.log("item.user===>", user)
+        //console.log("item.user===>", user)
         setSelectprofile(!selectprofile);
         setUsearrlist(user);
         //props.navigation.navigate("Camera", { user: item.user })
@@ -183,58 +215,88 @@ const Newproject = (props) => {
         );
     }
     const renderItem3 = ({ item, index }) => {
-        console.log("item?.useritem?.user",item?.user)
+        //console.log("item?.useritem?.user", item?.user)
         return (
             <View style={tw`w-full`}>
                 <Text style={tw`text-center text-black text-[4] font-bold mt-1`} >{item.departmentName}</Text>
-                    <View style={tw`w-full `}>
-                        <FlatList
-                            data={item?.user}
-                            //Key={2}
-                            //numColumns={2}
-                            renderItem={renderItem4}
-                            keyExtractor={item => item.id}
-                            horizontal={true}
-                        />
-                    </View>
+                <View style={tw`w-full `}>
+                    <FlatList
+                        data={item?.user}
+                        //Key={2}
+                        //numColumns={2}
+                        renderItem={renderItem4}
+                        keyExtractor={item => item.id}
+                        horizontal={true}
+                    />
+                </View>
             </View>
 
         );
     }
     const renderItem4 = ({ item, index }) => {
-        console.log("jvkhrfkghrtiughit", item)
+
         return (
-            <TouchableOpacity style={tw`m-2`}
+            <TouchableOpacity style={tw`m-2`} onPress={() => selectedIngredient(item)}
             //onPress={() => props.navigation.navigate("Glyndenprofile", { userId: item?._id })}
             >
+                {!item.selected ?
+                    <View style={tw` bg-white mt-5 p-5 px-6  rounded-[3] `} >
+                        <View style={tw`flex-row justify-between 	`}>
+                            <View>
+                                <Text style={tw`text-center text-black text-xs font-semibold mt-1`} ></Text>
+                            </View>
+                            <View>
+                                <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.fullName}</Text>
 
-                <View style={tw` bg-white mt-5 p-5 px-6  rounded-[3] `} >
-                    <View style={tw`flex-row justify-between 	`}>
-                        <View>
-                            <Text style={tw`text-center text-black text-xs font-semibold mt-1`} ></Text>
+                            </View>
+                            <TouchableOpacity style={tw``} >
+                                <Image source={ImageIcons.closetoday} style={[tw`w-4 h-4`, { tintColor: '#5fafcf' }]} />
+                            </TouchableOpacity>
                         </View>
-                        <View>
-                            <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.fullName}</Text>
+
+                        <View style={tw`items-center my-2`}>
+
+                            {item?.profileImage != null ?
+                                <Image source={{ uri: `${Api.imageUri}${item?.profileImage}` }} style={tw`w-24 h-24 rounded-full mt-1`} />
+                                :
+                                <Image source={ImageIcons.man} style={tw`w-24 h-24 rounded-full	mt-1`} />
+                            }
+                        </View>
+                        <View style={tw`items-center`}>
+                            <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.workDepartments[0]?.position[0]?.name}</Text>
 
                         </View>
-                        <TouchableOpacity style={tw``} >
-                            <Image source={ImageIcons.closetoday} style={[tw`w-4 h-4`, { tintColor: '#5fafcf' }]} />
-                        </TouchableOpacity>
                     </View>
+                    :
+                    <View style={tw` bg-white mt-5 p-5 px-6 bg-[#00cc00] rounded-[3] `} >
+                        <View style={tw`flex-row justify-between 	`}>
+                            <View>
+                                <Text style={tw`text-center text-black text-xs font-semibold mt-1`} ></Text>
+                            </View>
+                            <View>
+                                <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.fullName}</Text>
 
-                    <View style={tw`items-center my-2`}>
+                            </View>
+                            <TouchableOpacity style={tw``} >
+                                <Image source={ImageIcons.closetoday} style={[tw`w-4 h-4`, { tintColor: '#5fafcf' }]} />
+                            </TouchableOpacity>
+                        </View>
 
-                        {item?.profileImage != null ?
-                            <Image source={{ uri: `${Api.imageUri}${item?.profileImage}` }} style={tw`w-24 h-24 rounded-full mt-1`} />
-                            :
-                            <Image source={ImageIcons.man} style={tw`w-24 h-24 rounded-full	mt-1`} />
-                        }
+                        <View style={tw`items-center my-2`}>
+
+                            {item?.profileImage != null ?
+                                <Image source={{ uri: `${Api.imageUri}${item?.profileImage}` }} style={tw`w-24 h-24 rounded-full mt-1`} />
+                                :
+                                <Image source={ImageIcons.man} style={tw`w-24 h-24 rounded-full	mt-1`} />
+                            }
+                        </View>
+                        <View style={tw`items-center`}>
+                            <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.workDepartments[0]?.position[0]?.name}</Text>
+
+                        </View>
                     </View>
-                    <View style={tw`items-center`}>
-                        <Text style={tw`text-center text-black text-xs font-semibold mt-1`} >{item.workDepartments[0]?.position[0]?.name}</Text>
+                }
 
-                    </View>
-                </View>
             </TouchableOpacity>
         );
     }
@@ -421,7 +483,7 @@ const Newproject = (props) => {
                                     <View style={tw`mx-5 my-4`}>
                                         <Text style={tw`text-[#000000] text-center mt-1 font-normal text-[3.1]`}>Thanku for listing Your project on Cru !</Text>
                                     </View>
-                                    <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`} onPress={() => { setModalVisible(false); props.navigation.navigate('Projectdetails') }}>
+                                    <TouchableOpacity style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 my-5 mx-10`} onPress={() => { setModalVisible(false); props.navigation.navigate('Projectdetails', { projectid: projectId }) }}>
                                         <Text style={tw`text-[#000] text-[3.5] p-2 px-15 font-normal`}>View Project</Text>
                                     </TouchableOpacity>
                                 </View>

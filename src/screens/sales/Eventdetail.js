@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, KeyboardAvoidingView, View, TextInput, FlatList, StatusBar, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { Text, KeyboardAvoidingView,Linking, View, TextInput, FlatList, StatusBar, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { Fonts, Colors, ImageIcons, Api } from '../../common';
 import {
   widthPercentageToDP as wp,
@@ -96,9 +96,8 @@ const Eventdetail = (props) => {
 
         </View>
 
-        <TouchableOpacity style={tw`border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-2 my-5 mx-15`} 
-        //onPress={() => setModalVisible(false)}
-        >
+        <TouchableOpacity style={tw`border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-2 my-5 mx-15`}
+         onPress={() => Linking.openURL(`http://${props?.geteventdetaillist?.purchase}`)} >
           <Text style={tw`text-[#000] text-[4] p-2 px-7 font-normal`}>Purchase Tickets</Text>
         </TouchableOpacity>
 
