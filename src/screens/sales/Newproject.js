@@ -77,10 +77,8 @@ const Newproject = (props) => {
         let index = allItems.findIndex(obj => obj._id === temp[0]._id);
 
         if (index >= 0) {
-            // Object exists in array, so remove it
             allItems.splice(index, 1);
         } else {
-            // Object does not exist in array, so push it
             allItems.push(...temp);
         }
 
@@ -169,51 +167,7 @@ const Newproject = (props) => {
         console.log("finalarr==>", finalarr)
     }
 
-    const DATA3 = [
-        {
-            text2: 'Jonathan Williams',
-            fullName: 'aksd',
-            image: ImageIcons.womanclap,
-            text1: 'Cinematographer',
-
-        },
-        {
-            text2: 'Jonathan Williams',
-            fullName: 'aksd',
-            image: ImageIcons.womanclap,
-            text1: 'Cinematographer',
-
-        },
-
-    ];
-
-
-    const renderItem = ({ item, index }) => {
-
-        return (
-            <View style={tw`bg-[#fff] w-4/12 flex  justify-center`}>
-
-                {/* <TouchableOpacity style={tw`border  border-[#ccc] w-33 items-center py-4`}onPress={() => handlecrudata(item.user)}>
-                    <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-12 h-12 `, { tintColor: '#5fafcf' }]} />
-                    <Text style={tw`text-[#000] text-[3.5] p-1 font-normal`}>{item.departmentName}</Text>
-                    <Text style={tw`text-[#000] text-[3.5] font-normal`}>{item?.user?.length}</Text>
-                </TouchableOpacity> */}
-                {item?.user?.length > 0 ?
-                    <TouchableOpacity style={tw`border  border-[#ccc]  items-center py-4 px-4`} onPress={() => handlecrudata(item.user)}>
-                        <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-12 h-12 `, { tintColor: '#5fafcf' }]} />
-                        <Text style={tw`text-[#000] text-[3.5] text-center p-1 font-normal`}>{item.departmentName}</Text>
-                        <Text style={tw`text-[#000] text-[3.5] text-center font-normal`}>{item?.user?.length}</Text>
-                    </TouchableOpacity>
-                    :
-                    <TouchableOpacity style={tw`border  border-[#ccc]  items-center py-4 px-4`} >
-                        <Image source={{ uri: `${Api.imageUri}${item.image}` }} style={[tw`w-12 h-12 `, { tintColor: '#5fafcf' }]} />
-                        <Text style={tw`text-[#000] text-[3.5] text-center p-1 font-normal`}>{item.departmentName}</Text>
-                        <Text style={tw`text-[#000] text-[3.5] text-center font-normal`}>{item?.user?.length}</Text>
-                    </TouchableOpacity>
-                }
-            </View>
-        );
-    }
+   
     const renderItem3 = ({ item, index }) => {
         //console.log("item?.useritem?.user", item?.user)
         return (
