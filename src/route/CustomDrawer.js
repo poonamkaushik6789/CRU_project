@@ -160,7 +160,7 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
               <DrawerItem
                 key="Saleslisting"
                 label={({ focused, color }) => <DrawerItemLabel label='Messages' />}
-                style={{ opacity: 1, width: 100, }}
+                style={{ opacity: 1, width: 100 }}
                 // icon={({ focused }) => <DrawerLeftIcon focused={currentItem === "Saleslisting" ? true : false} icon={ImageIcons.viewIcon
                 // } />}
                 onPress={() => {
@@ -195,7 +195,7 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
               <DrawerItem
                 key="Saleslisting"
                 label={({ focused, color }) => <DrawerItemLabel label='Social Feed' />}
-                style={{ opacity: 1, width: 100, }}
+                style={{ opacity: 1, width: 100 }}
                 // icon={({ focused }) => <DrawerLeftIcon focused={currentItem === "Saleslisting" ? true : false} icon={ImageIcons.viewIcon
                 // } />}
                 onPress={() => {
@@ -473,7 +473,7 @@ const DrawerItemLabel = ({ focused, label }) => {
 
 const styles = StyleSheet.create({
   label: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: 'bold',
     color: Colors.BLACK,
     marginLeft: -20,

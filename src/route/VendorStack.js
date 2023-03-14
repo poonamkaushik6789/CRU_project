@@ -48,7 +48,7 @@ const VendorStack = (props) => {
             ),
             headerTitle: "Social Feed",
             headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, },
+            headerTitleStyle: { color: Colors.BLACK,fontSize:18 },
             headerStyle: { backgroundColor: "#fff", shadowOpacity: 0 },
           })}
         />
@@ -73,7 +73,7 @@ const VendorStack = (props) => {
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
             headerTitle: profilename?.getprofilelist?.fullName,
             headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, },
+            headerTitleStyle: { color: Colors.BLACK,fontSize:18 },
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
@@ -98,7 +98,7 @@ const VendorStack = (props) => {
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
             headerTitle: "Notifications",
             headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, },
+            headerTitleStyle: { color: Colors.BLACK,fontSize:18},
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
@@ -123,7 +123,7 @@ const VendorStack = (props) => {
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
             headerTitle: "Messages",
             headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, },
+            headerTitleStyle: { color: Colors.BLACK,fontSize:18 },
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
@@ -148,7 +148,7 @@ const VendorStack = (props) => {
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
             headerTitle: "My Cru",
             headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, },
+            headerTitleStyle: { color: Colors.BLACK,fontSize:18 },
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
@@ -173,7 +173,7 @@ const VendorStack = (props) => {
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
             headerTitle: "Camera",
             headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, },
+            headerTitleStyle: { color: Colors.BLACK, fontSize:18},
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
@@ -198,7 +198,7 @@ const VendorStack = (props) => {
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={false} />,
             headerTitle: "View All",
             headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, },
+            headerTitleStyle: { color: Colors.BLACK,fontSize:18 },
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
@@ -223,7 +223,7 @@ const VendorStack = (props) => {
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
             headerTitle: "Projects",
             headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, },
+            headerTitleStyle: { color: Colors.BLACK,fontSize:18 },
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
@@ -248,7 +248,7 @@ const VendorStack = (props) => {
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
             headerTitle: "Step",
             headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, },
+            headerTitleStyle: { color: Colors.BLACK,fontSize:18 },
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
@@ -273,7 +273,7 @@ const VendorStack = (props) => {
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
             headerTitle: "Search Jobs",
             headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, },
+            headerTitleStyle: { color: Colors.BLACK,fontSize:18 },
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
@@ -299,7 +299,7 @@ const VendorStack = (props) => {
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
             headerTitle: "Search Jobs",
             headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, },
+            headerTitleStyle: { color: Colors.BLACK, fontSize:18 },
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
@@ -324,7 +324,7 @@ const VendorStack = (props) => {
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
             headerTitle: "Search Jobs",
             headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, },
+            headerTitleStyle: { color: Colors.BLACK,fontSize:18 },
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
@@ -349,7 +349,7 @@ const VendorStack = (props) => {
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
             headerTitle: "Locator",
             headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, },
+            headerTitleStyle: { color: Colors.BLACK, fontSize:18},
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
@@ -374,7 +374,7 @@ const VendorStack = (props) => {
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={false} />,
             headerTitle: "Project Details",
             headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, },
+            headerTitleStyle: { color: Colors.BLACK, fontSize:18},
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
@@ -399,7 +399,7 @@ const VendorStack = (props) => {
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
             headerTitle: profilename?.grtpostdetail?.fullName,
             headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, },
+            headerTitleStyle: { color: Colors.BLACK, fontSize:18 },
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
@@ -424,7 +424,7 @@ const VendorStack = (props) => {
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
             headerTitle: "Glynden Kenzie",
             headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, },
+            headerTitleStyle: { color: Colors.BLACK,fontSize:18 },
             headerStyle: { backgroundColor: "#dedede", shadowOpacity: 0 },
           })}
         />
@@ -497,7 +497,7 @@ const VendorStack = (props) => {
             headerLeft: () => <LeftMenuItem navigation={navigation} isMenu={true} />,
             headerTitle: "Events",
             headerTitleAlign: "center",
-            headerTitleStyle: { color: Colors.BLACK, },
+            headerTitleStyle: { color: Colors.BLACK, fontSize:18},
             headerStyle: { backgroundColor: "#FFFFFF", elevation: 4, shadowOpacity: 0, },
           })}
         />

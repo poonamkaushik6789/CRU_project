@@ -280,12 +280,12 @@ const Matthew = (props) => {
             </TouchableOpacity>
             }
             <Image source={item.image2} style={tw`w-14 h-14  `} />
-            <Text style={tw`text-center text-black text-base font-semibold `} >{item.text1}</Text>
+            <Text style={tw`text-center text-black text-base font-semibold text-[3.5]`} >{item.text1}</Text>
           </TouchableOpacity>
           :
           <TouchableOpacity style={tw` bg-white  ml-0.5 p-6 items-center	`} onPress={() => handletabchange(item.id)}>
             <Image source={item.image} style={tw`w-16 h-14  `} />
-            <Text style={tw`text-center text-black text-base font-semibold `} >{item.text1}</Text>
+            <Text style={tw`text-center text-black text-base font-semibold text-[3.5]`} >{item.text1}</Text>
           </TouchableOpacity>
         }
       </View>
