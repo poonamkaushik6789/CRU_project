@@ -279,13 +279,13 @@ const Matthew = (props) => {
               <Image source={ImageIcons.editclap} style={[tw`w-5 h-5 rounded-full`, { tintColor: '#5fafcf' }]} />
             </TouchableOpacity>
             }
-            <Image source={item.image2} style={tw`w-14 h-14  `} />
-            <Text style={tw`text-center text-black text-base font-semibold text-[3.5]`} >{item.text1}</Text>
+            <Image source={item.image2} style={tw`w-9 h-9  `} />
+            <Text style={tw`text-center text-black text-base font-semibold text-[3]`} >{item.text1}</Text>
           </TouchableOpacity>
           :
           <TouchableOpacity style={tw` bg-white  ml-0.5 p-6 items-center	`} onPress={() => handletabchange(item.id)}>
-            <Image source={item.image} style={tw`w-16 h-14  `} />
-            <Text style={tw`text-center text-black text-base font-semibold text-[3.5]`} >{item.text1}</Text>
+            <Image source={item.image} style={tw`w-12 h-9  `} />
+            <Text style={tw`text-center text-black text-base font-semibold text-[3]`} >{item.text1}</Text>
           </TouchableOpacity>
         }
       </View>
@@ -400,26 +400,26 @@ const Matthew = (props) => {
               <Image source={ImageIcons.rawartist} style={tw`w-full h-45 rounded-b-full z-30 absolute`} />
             }
 
-            <View style={tw`w-11/12 h-75 px-6 pt-50 mx-4 flex-row	justify-between bg-white `} >
+            <View style={tw`w-11/12 h-75 px-6 pt-55 mx-4 flex-row	justify-between bg-white `} >
               {socilfeed == 4 ?
                 <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('4')}>
-                  <Image style={tw`w-15 h-13 `} source={ImageIcons.my_cru} />
+                  <Image style={tw`w-11 h-10 `} source={ImageIcons.my_cru} />
                   <Text style={tw`text-black `}>My Cru</Text>
                 </TouchableOpacity>
                 :
                 <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('4')}>
-                  <Image style={tw`w-15 h-13 `} source={ImageIcons.cru} />
+                  <Image style={tw`w-11 h-10 `} source={ImageIcons.cru} />
                   <Text style={tw`text-black `}>My Cru</Text>
                 </TouchableOpacity>
               }
               {socilfeed == 5 ?
                 <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('5')}>
-                  <Image style={tw`w-15 h-13  `} source={ImageIcons.users} />
+                  <Image style={tw`w-11 h-12  `} source={ImageIcons.users} />
                   <Text style={tw`text-black `}>Connections</Text>
                 </TouchableOpacity>
                 :
                 <TouchableOpacity style={tw`items-center	`} onPress={() => setSocialfeed('5')}>
-                  <Image style={tw`w-15 h-13  `} source={ImageIcons.grouprofile} />
+                  <Image style={tw`w-11 h-10  `} source={ImageIcons.grouprofile} />
                   <Text style={tw`text-black `}>Connections</Text>
                 </TouchableOpacity>
               }
@@ -449,7 +449,7 @@ const Matthew = (props) => {
               />
             }
           </View>
-          <View style={tw`ml-5`}>
+          <View style={tw`ml-6`}>
             <FlatList
               horizontal={true}
               data={DATA3}

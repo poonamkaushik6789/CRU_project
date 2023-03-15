@@ -183,13 +183,13 @@ const Glyndenprofile = (props) => {
         {socilfeed == item.id ?
           <TouchableOpacity style={tw` bg-white ml-0.5 p-6 items-center	`} onPress={() => handletabchange(item.id)}>
 
-            <Image source={item.image2} style={tw`w-14 h-14  `} />
-            <Text style={tw`text-center text-black text-base font-semibold `} >{item.text1}</Text>
+            <Image source={item.image2} style={tw`w-9 h-9  `} />
+            <Text style={tw`text-center text-black text-base font-semibold text-[3] `} >{item.text1}</Text>
           </TouchableOpacity>
           :
           <TouchableOpacity style={tw` bg-white  ml-0.5 p-6 items-center	`} onPress={() => handletabchange(item.id)}>
-            <Image source={item.image} style={tw`w-16 h-14  `} />
-            <Text style={tw`text-center text-black text-base font-semibold `} >{item.text1}</Text>
+            <Image source={item.image} style={tw`w-12 h-9  `} />
+            <Text style={tw`text-center text-black text-base font-semibold text-[3] `} >{item.text1}</Text>
           </TouchableOpacity>
         }
       </View>
@@ -331,11 +331,11 @@ const Glyndenprofile = (props) => {
             </View>
             <View style={tw`w-11/12 mx-4 h-95 px-6 pt-68  bg-white  absolute overflow-hidden rounded-[2]	flex-row	justify-between `}>
               <TouchableOpacity style={tw`items-center	`} onPress={() => setModalVisible(!modalVisible)}>
-                <Image style={tw`w-15 h-13 `} source={ImageIcons.msgs} />
+                <Image style={tw`w-11 h-9 `} source={ImageIcons.msgs} />
                 <Text style={tw`text-black `}>Message</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => setConnectVisible(!connectVisible)}>
-                <Image style={tw`w-15 h-13  `} source={ImageIcons.cru} />
+                <Image style={tw`w-11 h-10  `} source={ImageIcons.cru} />
                 <Text style={tw`text-black `}>Connect</Text>
               </TouchableOpacity>
             </View>
@@ -366,7 +366,7 @@ const Glyndenprofile = (props) => {
                 keyExtractor={item => item.id}
               /> */}
             </View>
-            <View style={tw`w-full ml-2 mt-3`}>
+            <View style={tw`w-full ml-6 mt-3`}>
               <FlatList
                 horizontal={true}
                 data={DATA3}
