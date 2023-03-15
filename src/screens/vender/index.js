@@ -159,11 +159,11 @@ const Vendor = (props) => {
 
                 {item?.likedBy?.includes(loginId) == "" ?
                   <TouchableOpacity style={tw`items-center`} onPress={() => handlelikeunlike(item._id)}>
-                    <Image source={ImageIcons.like} style={tw`w-8 h-8	`} />
+                    <Image source={ImageIcons.like} style={tw`w-6 h-6	`} />
                   </TouchableOpacity>
                   :
                   <TouchableOpacity style={tw`items-center`} onPress={() => handlelikeunlike(item._id)}>
-                    <Image source={ImageIcons.redlike} style={tw`w-9 h-8	`} />
+                    <Image source={ImageIcons.redlike} style={tw`w-6 h-5.5	`} />
                   </TouchableOpacity>
 
                 }
@@ -190,7 +190,7 @@ const Vendor = (props) => {
                   <Text style={tw`text-[#000]	 text-[3.5]  font-normal`}>{item?.comments?.length} Comment</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={tw` `} onPress={() => { handleMsgcount(), props.navigation.navigate("Commentlist", { post_Id: item._id }) }}>
-                  <Image source={ImageIcons.chat} style={[tw`w-13 h-13	`, { tintColor: '#5fafcf' }]} />
+                  <Image source={ImageIcons.chat} style={[tw`w-8 h-8	ml-2`, { tintColor: '#5fafcf' }]} />
                 </TouchableOpacity>
               </View>
 
@@ -204,7 +204,7 @@ const Vendor = (props) => {
         </View>
         <View style={tw`absolute  inset-x-0.7/2	 top-8		 `}>
           {/* <View style={tw`w-3 h-3 bg-[#ff0000] rounded-full absolute left-15 `}></View> */}
-          <View style={tw`w-3 h-3 bg-[#008000] rounded-full absolute left-17 `}></View>
+          {/* <View style={tw`w-3 h-3 bg-[#008000] rounded-full absolute left-17 `}></View> */}
           {item?.userId?._id == loginId ?
             <TouchableOpacity onPress={() => props.navigation.navigate("Matthew", { userId: item?.userId?._id })}>
               {item?.userId?.profileImage != null ?
@@ -248,10 +248,10 @@ const Vendor = (props) => {
             </View>
             <View style={tw`flex-row my-5 justify-center`}>
               <TouchableOpacity onPress={() => selectPhoto()}>
-                <Image source={ImageIcons.camrea} style={tw`w-10 h-10`} />
+                <Image source={ImageIcons.camrea} style={tw`w-8 h-8`} />
               </TouchableOpacity>
               <View style={tw`mr-9 ml-3`}>
-                <TouchableOpacity onPress={() => handlenewpost()} style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 ml-4 h-12 w-45`}>
+                <TouchableOpacity onPress={() => handlenewpost()} style={tw`bg-[#fff] border-[#5fafcf] border-2	 items-center  justify-center rounded-[10] p-1 ml-4 h-10 w-38`}>
                   <Text style={tw`text-[#000] text-[3.5]  px-10 font-normal`}>New Post</Text>
                 </TouchableOpacity>
               </View>

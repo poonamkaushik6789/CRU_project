@@ -50,10 +50,11 @@ const CustomDrawer = (props) => {
       }}
       openByDefault={false}
       initialRouteName={"Vendor"}
+      drawerStyle={{backgroundColor: 'transparent'}}
       drawerContentOptions={{
         activeTintColor: Colors.GREEN,
         inactiveTintColor: Colors.WHITE,
-        activeBackgroundColor: Colors.WHITE,
+        activeBackgroundColor: Colors.BLACK,
       }}
       drawerContent={prop => <CustomDrawerContent prop={prop} rootProps={props} currentItem={currentItem} onItemSelection={onItemSelection} />}
     >
@@ -109,15 +110,16 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
   }, [verificationStatus])
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff', marginTop: '10%', marginBottom: '7%', marginLeft: '2%', marginRight: '2%', borderRadius: 10, justifyContent: 'center', }} >
-      {/* <View style={styles.drawerHeader}>
-        <Image source={logo} style={styles.logo} />        
-      </View> */}
-
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.02)',justifyContent: 'center', }} >
+       
       <DrawerContentScrollView {...prop} >
+        <TouchableOpacity onPress={() => { prop.navigation.toggleDrawer(); }}>
+          <Image source={ImageIcons.menuIcon} style={{ tintColor: '#5fafcf',width:20, height:20 ,marginTop:14, marginLeft:38}} />
+        </TouchableOpacity>
+        
         <View style={styles.drawerItemsContainer}>
-          <View style={{ flexDirection: 'row', marginTop: '15%', height: '20%' }}>
-            <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '40%', alignItems: 'center', justifyContent: 'center', padding: '0%', marginLeft:'3%' }}
+          <View style={{ flexDirection: 'row', height: '25%' }}>
+            <TouchableOpacity style={{ borderRightWidth: 1, borderRightColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '0%' }}
               onPress={() => {
                 prop.navigation.toggleDrawer();
                 prop.navigation.reset({
@@ -145,7 +147,7 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
                 }}
               />
             </TouchableOpacity>
-            <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '40%', alignItems: 'center', justifyContent: 'center', padding: '0%',}}
+            <TouchableOpacity style={{ width: '40%', alignItems: 'center', justifyContent: 'center', padding: '0%',}}
               onPress={() => {
                 prop.navigation.toggleDrawer();
                 prop.navigation.reset({
@@ -175,8 +177,8 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
             </TouchableOpacity>
 
           </View>
-          <View style={{ flexDirection: 'row', height: '20%', }}>
-            <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '40%', alignItems: 'center', justifyContent: 'center', padding: '2%', marginLeft:'3%' }}
+          <View style={{ flexDirection: 'row', height: '25%', }}>
+            <TouchableOpacity style={{ borderTopWidth: 1, borderTopColor: '#ccc',borderRightWidth: 1, borderRightColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%' }}
               onPress={() => {
                 prop.navigation.toggleDrawer();
                 //prop.navigation.navigate('Saleslisting');
@@ -211,7 +213,7 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
                 }}
               />
             </TouchableOpacity>
-            <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '40%', alignItems: 'center', justifyContent: 'center', padding: '2%', }}
+            <TouchableOpacity style={{ borderTopWidth: 1, borderTopColor: '#ccc',width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%', }}
               onPress={() => {
                 prop.navigation.toggleDrawer();
                 prop.navigation.reset({
@@ -241,8 +243,8 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
             </TouchableOpacity>
 
           </View>
-          <View style={{ flexDirection: 'row', height: '20%', }}>
-            <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '40%', alignItems: 'center', justifyContent: 'center', padding: '2%', marginLeft:'3%' }}
+          <View style={{ flexDirection: 'row', height: '25%', }}>
+            <TouchableOpacity style={{ borderTopWidth: 1, borderTopColor: '#ccc',borderRightWidth: 1, borderRightColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%' }}
               onPress={() => {
                 prop.navigation.toggleDrawer();
                 prop.navigation.reset({
@@ -270,7 +272,7 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
                 }}
               />
             </TouchableOpacity>
-            <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '40%', alignItems: 'center', justifyContent: 'center', padding: '2%',  }}
+            <TouchableOpacity style={{  borderTopWidth: 1, borderTopColor: '#ccc',width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%',  }}
               onPress={() => {
                 prop.navigation.toggleDrawer();
                 prop.navigation.reset({
@@ -300,8 +302,8 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
             </TouchableOpacity>
 
           </View>
-          <View style={{ flexDirection: 'row', height: '20%', }}>
-            <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '40%', alignItems: 'center', justifyContent: 'center', padding: '2%', marginLeft:'3%' }}
+          <View style={{ flexDirection: 'row', height: '25%', }}>
+            <TouchableOpacity style={{ borderTopWidth: 1, borderTopColor: '#ccc',borderRightWidth: 1, borderRightColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%'}}
               onPress={() => {
                 prop.navigation.toggleDrawer();
                 prop.navigation.reset({
@@ -329,7 +331,7 @@ const CustomDrawerContent = ({ prop, rootProps, currentItem, onItemSelection }) 
                 }}
               />
             </TouchableOpacity>
-            <TouchableOpacity style={{ borderWidth: 1, borderColor: '#ccc', width: '40%', alignItems: 'center', justifyContent: 'center', padding: '2%', }} onPress={() => { prop.navigation.closeDrawer(); rootProps.logout(); }}>
+            <TouchableOpacity style={{ borderTopWidth: 1, borderTopColor: '#ccc', width: '50%', alignItems: 'center', justifyContent: 'center', padding: '2%', }} onPress={() => { prop.navigation.closeDrawer(); rootProps.logout(); }}>
               <View style={{ width: '100%', padingTop: '25%', alignItems: 'center', justifyContent: 'center', }}>
 
                 <Image style={tw`w-10 h-9`} source={ImageIcons.setting} />
@@ -531,7 +533,10 @@ const styles = StyleSheet.create({
     height: Platform.OS === "ios" ? hp('75%') : hp('75%'),
     flexDirection: 'column',
     justifyContent: 'space-between',
-    marginTop: Platform.OS === "ios" ? hp('-1%') : hp('-0%'),
+    marginTop: 20,
+    backgroundColor:'#ffffff',
+    borderRadius:10,
+    marginLeft:20
 
   }
 });

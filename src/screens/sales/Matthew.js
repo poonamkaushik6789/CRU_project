@@ -330,11 +330,11 @@ const Matthew = (props) => {
               <View style={tw`flex-row items-center`}>
                 {item?.likedBy?.includes(loginId) == "" ?
                   <TouchableOpacity style={tw`items-center`} onPress={() => handlelikeunlike(item._id)}>
-                    <Image source={ImageIcons.like} style={tw`w-8 h-8	`} />
+                    <Image source={ImageIcons.like} style={tw`w-6 h-6	`} />
                   </TouchableOpacity>
                   :
                   <TouchableOpacity style={tw`items-center`} onPress={() => handlelikeunlike(item._id)}>
-                    <Image source={ImageIcons.redlike} style={tw`w-9 h-8	`} />
+                    <Image source={ImageIcons.redlike} style={tw`w-6 h-5.5	`} />
                   </TouchableOpacity>
 
                 }
@@ -361,7 +361,7 @@ const Matthew = (props) => {
                   <Text style={tw`text-[#000]	 text-[3.5]  font-normal`}>{item?.comments?.length} Comment</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={tw` `} onPress={() => { handleMsgcount(), props.navigation.navigate("Commentlist", { post_Id: item._id }) }}>
-                  <Image source={ImageIcons.chat} style={[tw`w-13 h-13	`, { tintColor: '#5fafcf' }]} />
+                  <Image source={ImageIcons.chat} style={[tw`w-8 h-8 ml-2	`, { tintColor: '#5fafcf' }]} />
                 </TouchableOpacity>
               </View>
 
@@ -376,7 +376,7 @@ const Matthew = (props) => {
         </View>
         <View style={tw`absolute  inset-x-0.7/2	 top-8		 `}>
           {/* <View style={tw`w-3 h-3 bg-[#ff0000] rounded-full absolute left-15 `}></View> */}
-          <View style={tw`w-3 h-3 bg-[#008000] rounded-full absolute left-17 `}></View>
+          {/* <View style={tw`w-3 h-3 bg-[#008000] rounded-full absolute left-17 `}></View> */}
           {item?.userId?.profileImage != null ?
             <Image source={{ uri: `${Api.imageUri}${item?.userId?.profileImage}` }} style={tw`w-24 h-24 rounded-full	mt-1`} />
             :
