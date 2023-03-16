@@ -155,12 +155,19 @@ const about = require(`${assetsRootPath}about.png`);
  const users = require(`${assetsRootPath}users.png`);
  const cross_icon = require(`${assetsRootPath}cross_icon.png`);
  const green_tik = require(`${assetsRootPath}green_tik.png`);
-
+ const filmca = require(`${assetsRootPath}filmca.jpg`);
+ const filmca1 = require(`${assetsRootPath}filmca1.jpg`);
+ const filmca3 = require(`${assetsRootPath}filmca3.jpg`);
+ const filmca4 = require(`${assetsRootPath}filmca4.png`);
 
 
 const ImageIcons = {
   rightarrow,
   cross_icon,
+  filmca,
+  filmca1,
+  filmca3,
+  filmca4,
   green_tik,
   my_cru,
   users,

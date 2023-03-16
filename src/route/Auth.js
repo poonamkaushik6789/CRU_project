@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { TouchableOpacity, Text } from 'react-native';
 import {
   Filmcascreen,
+  Welcomescreen,
   Registration,
   Login,
   OTPVerification,
@@ -22,7 +23,13 @@ const Auth = (props) => {
   return (
     <Stack.Navigator
     >
-    <Stack.Screen
+      <Stack.Screen
+        name="Welcomescreen"
+        component={Welcomescreen}
+        options={{ title: '', headerShown: false }}
+      />
+
+      <Stack.Screen
         name="Filmcascreen"
         component={Filmcascreen}
         options={{ title: '', headerShown: false }}
@@ -47,7 +54,7 @@ const Auth = (props) => {
         component={Step1}
         options={{ title: '', headerShown: false }}
       />
-      
+
     </Stack.Navigator>
   );
 };
